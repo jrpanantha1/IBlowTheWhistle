@@ -1,0 +1,192 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WhistleBlowerUser.master.cs" Inherits="Dev.Project.WhistleBlower.Web.WhistleBlowerUser" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- JS -->
+    <script src="/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="/Scripts/popper.min.js" async defer></script>
+    <script src="/Scripts/bootstrap.min.js" async defer></script>
+    <script src="/assets/js/theme.min.js" async defer></script>
+    <script src="/assets/js/form.validate.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="/assets/css/styles.min.css" rel="stylesheet" />
+    <script src="/Scripts/Utility.js"></script>
+    <script src="/Scripts/PageScripts/languageChange.js"></script>
+    <script src="/Scripts/PageScripts/CompanyProfile.js"></script>
+    <script src="/Scripts/Validation.js"></script>
+
+    <meta name="msapplication-config" content="browserconfig.xml" />
+    <meta name="theme-color" content="#00B48F" />
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+
+        .avatar-xxs {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .avatar {
+            width: 5rem;
+            height: 5rem;
+            -o-object-fit: cover !important;
+            object-fit: cover !important;
+            border-radius: 50rem !important;
+        }
+    </style>
+    <script type="text/javascript">
+        function clearSession() {
+            sessionStorage.clear();
+            sessionStorage.removeItem("accessToken");
+            window.location.href = "/";
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form" runat="server" action="" method="post" class="needs-validation" novalidate>
+        <div>
+            <header class="site-header">
+                <div class="site-nav navbar-light fixed-top">
+                    <div class="container-fluid px-md-5">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/Pages/ViewIncidents.aspx">
+                                <img alt="I Blow The Whistle" src="/assets/images/logo.png" class="logo"></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
+                            <div id="navbarNav" class="collapse navbar-collapse">
+                                <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item dropdown language-switcher">
+                                        <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-squared flag-icon-us"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-us"></i>
+                                                <span>English</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-th"></i>
+                                                <span>Thai</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-fr"></i>
+                                                <span>French</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-es"></i>
+                                                <span>Spanish</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-ru"></i>
+                                                <span>Russian</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-kz"></i>
+                                                <span>Kazakh</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item">
+                                                <i class="flag-icon flag-icon-squared flag-icon-ar"></i>
+                                                <span>Arabic</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+
+
+
+                                        <a class="nav-link avatar-dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class='userName mr-2'></span>
+                                            <!-- <img class="avatar avatar-xs" src="/assets/images/testimonial/02.jpg" alt="Arya Stark"> -->
+                                            <div class="no-avatar avatar-xs d-inline-flex" id="divNoavatar">
+                                                <i class="icon-user" id="defualtComLogo"></i>
+                                                <img class="companyavatar avatar-xs d-inline-flex" src="/assets/images/LargeAvatar.png" id="customizedLogo" alt="" style="display: none !important;" />
+                                            </div>
+                                            <!-- // remove this block if avatar available -->
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item py-4 d-flex align-items-center" href="#">
+                                                <img style="height: 24px; width: 24px; align-content: center;" class="companyavatar avatar avatar-sm mr-3" src="/assets/images/default-profile_01.png" alt="Arya Stark" />
+                                                <div>
+                                                    <h6 class="mb-0 font-weight-normal"><span class='spanCompanyNameIcon'></span></h6>
+                                                    <span class="text-muted" /><span class='userEmail'></span>
+                                                </div>
+                                                <!--end of div-->
+                                            </a>
+                                            <!--end of dropdown item-->
+                                            <div class="preferencesMenu AdminAccountOnlymenu">
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/Pages/MyAccount.aspx"><i class="mr-3 icon-settings"></i>Account</a>
+                                            </div>
+                                            <div class="dashboardMenu AdminAccountOnlymenu">
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>Dashboard</a>
+                                            </div>
+                                            <div class="preferencesMenu">
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/Pages/ResetPassword.aspx"><i class="mr-3 icon-settings"></i>Reset Password</a>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-power"></i>Sign Out</a>
+                                        </div>
+                                        <!--end of dropdown menu-->
+                                    </li>
+                                    <li class="nav-item" style="display: none">
+                                        <a href="/Pages/IncidentForm.aspx?F2aKFRGgdTcUQrtihBoXaw==/MxuIhQrz2uCRfhpn/Mx2tw==" class="btn btn-sm btn-primary d-block d-lg-inline-block smooth-scroll"><i class="icon-plus mr-2"></i>Report Incident</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end nav collapse-->
+                        </nav>
+                        <!--end of navbar-->
+                    </div>
+                    <!--end of container-->
+                </div>
+                <!--end of site-nav-->
+            </header>
+            <!-- // Header -->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer class="site-footer">
+                <div class="container">
+                    <div class="row py-4 align-items-center justify-content-between text-md-left text-center">
+                        <div class="col-md-auto">
+                            <img src="/assets/images/logo-light.png" alt="I Blow The Whistle" class="logo logo-xs mb-4 mb-md-0">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-md">
+                            <p>&copy; 2020 I Blow The Whistle. All rights reserved.</p>
+                        </div>
+                        <!--end of col-->
+                        <div class="col-md-auto">
+                            <ul class="nav justify-content-center justify-content-md-end">
+                                <li class="nav-item"><a class="nav-link" href="/Pages/Legal.aspx">Legal</a></li>
+                            </ul>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </footer>
+            <!-- // Footer -->
+
+        </div>
+    </form>
+</body>
+</html>

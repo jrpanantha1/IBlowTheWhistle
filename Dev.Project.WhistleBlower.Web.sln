@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev.Project.WhistleBlower.Web", "Dev.Project.WhistleBlower.Web\Dev.Project.WhistleBlower.Web.csproj", "{A54D284D-FFB1-4924-ADC5-6B76713F7AD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhistleBlowerDAL", "WhistleBlowerDAL\WhistleBlowerDAL.csproj", "{5B999C49-4BAB-4BC1-9630-8FD146786E95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A54D284D-FFB1-4924-ADC5-6B76713F7AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54D284D-FFB1-4924-ADC5-6B76713F7AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54D284D-FFB1-4924-ADC5-6B76713F7AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54D284D-FFB1-4924-ADC5-6B76713F7AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B999C49-4BAB-4BC1-9630-8FD146786E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B999C49-4BAB-4BC1-9630-8FD146786E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B999C49-4BAB-4BC1-9630-8FD146786E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B999C49-4BAB-4BC1-9630-8FD146786E95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41F75913-3FA8-4CA3-B3A3-AA788112210F}
+	EndGlobalSection
+EndGlobal

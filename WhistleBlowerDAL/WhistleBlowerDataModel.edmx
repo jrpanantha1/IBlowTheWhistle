@@ -1,0 +1,717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="eformulus_IBTW_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnonymousResponseHistory">
+          <Key>
+            <PropertyRef Name="RURN" />
+          </Key>
+          <Property Name="RURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ResClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="200" />
+          <Property Name="ResponseDate" Type="datetime" />
+          <Property Name="ViewStatus" Type="bit" />
+          <Property Name="commentBy" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CommunicationModeMaster">
+          <Key>
+            <PropertyRef Name="CuID" />
+          </Key>
+          <Property Name="CuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComNumer" Type="int" />
+          <Property Name="ComValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="CompanyMaster">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="CompanyKey" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="encPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="800" />
+          <Property Name="CRNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessArea" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="JoinedDate" Type="datetime" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyLogo" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubscriptionPlan" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Template" Type="nvarchar(max)" />
+          <Property Name="TemplateType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="IBTWProspects">
+          <Key>
+            <PropertyRef Name="PUID" />
+          </Key>
+          <Property Name="PUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GivenName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompanyEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyTelephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TimeZone" Type="nvarchar" MaxLength="10" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="BriefDesc" Type="nvarchar" MaxLength="800" />
+        </EntityType>
+        <EntityType Name="IncidentDocuments">
+          <Key>
+            <PropertyRef Name="DURN" />
+          </Key>
+          <Property Name="DURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DocumentNamewithExtn" Type="nvarchar" MaxLength="250" />
+          <Property Name="SupportingDocuments" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="OrderBy" Type="int" />
+        </EntityType>
+        <EntityType Name="LanguageDetails">
+          <Key>
+            <PropertyRef Name="LangURN" />
+          </Key>
+          <Property Name="LangURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FormID" Type="int" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="PleaseSelect" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yes" Type="nchar" MaxLength="10" />
+          <Property Name="No" Type="nchar" MaxLength="10" />
+          <Property Name="IsReportable" Type="nvarchar" MaxLength="200" />
+          <Property Name="SupportingEvidence" Type="nvarchar" MaxLength="200" />
+          <Property Name="EvidenceDetails" Type="nvarchar" MaxLength="200" />
+          <Property Name="DoyouhaveanyDocument" Type="nvarchar" MaxLength="200" />
+          <Property Name="BrowseText" Type="nvarchar" MaxLength="200" />
+          <Property Name="NoFileSelected" Type="nvarchar" MaxLength="200" />
+          <Property Name="HaveWitness" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessName" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessPhone" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOnIncident" Type="nvarchar" MaxLength="200" />
+          <Property Name="AckPolicy" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdentityNeverRevel" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="800" />
+          <Property Name="AdditionalComments" Type="nvarchar" MaxLength="200" />
+          <Property Name="ReportIncident" Type="nvarchar" MaxLength="200" />
+          <Property Name="Signin" Type="nvarchar" MaxLength="200" />
+          <Property Name="AreYouWhistleBlower" Type="nvarchar" MaxLength="200" />
+          <Property Name="AServiceForm" Type="nvarchar" MaxLength="200" />
+          <Property Name="TermsofService" Type="nvarchar" MaxLength="200" />
+          <Property Name="PrivacyPolicy" Type="nvarchar" MaxLength="200" />
+          <Property Name="AuthrizeDeclaration" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="200" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubmissionDateTime" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubmissionModifiedDate" Type="nvarchar" MaxLength="200" />
+          <Property Name="SupportingDocuments" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="LanguageMaster">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LanguageCode" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="RegisteredUsers">
+          <Key>
+            <PropertyRef Name="RegUserID" />
+          </Key>
+          <Property Name="RegUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="300" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="300" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActivationStatus" Type="bit" />
+          <Property Name="AcctType" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ResponseLanguage">
+          <Key>
+            <PropertyRef Name="RURN" />
+          </Key>
+          <Property Name="RURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ResClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="FormTitle" Type="nvarchar" MaxLength="800" />
+          <Property Name="TitleShortNotes" Type="nvarchar(max)" />
+          <Property Name="Submit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Close" Type="nvarchar" MaxLength="50" />
+          <Property Name="SuccessMessage" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnonymousUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrintResponse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Leavecomment" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="SetID" />
+          </Key>
+          <Property Name="SetID" Type="int" Nullable="false" />
+          <Property Name="SettingKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="SettingValue" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubscriptionPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubPlanID" Type="int" Nullable="false" />
+          <Property Name="SubscriptionPlan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WhistleBlowIncidents">
+          <Key>
+            <PropertyRef Name="IURN" />
+          </Key>
+          <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsReportable" Type="bit" />
+          <Property Name="SupportingEvidence" Type="bit" />
+          <Property Name="EvidenceDetails" Type="nvarchar(max)" />
+          <Property Name="FileAttachment" Type="bit" />
+          <Property Name="HaveWitness" Type="bit" />
+          <Property Name="UpdatedOnIncident" Type="bit" />
+          <Property Name="UpdatedOnIncidentMethod" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="bit" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="800" />
+          <Property Name="SubmissionDateTime" Type="datetime" />
+          <Property Name="SubmissionModifiedDate" Type="datetime" />
+          <Property Name="SupportingDocuments" Type="nvarchar(max)" />
+          <Property Name="AnonymousEmailID" Type="nvarchar" MaxLength="100" />
+          <Property Name="IncCategory" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WitnessDetails">
+          <Key>
+            <PropertyRef Name="WURN" />
+          </Key>
+          <Property Name="WURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="WitnessModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="eformulus_IBTW_DBModelStoreContainer">
+          <EntitySet Name="AnonymousResponseHistory" EntityType="Self.AnonymousResponseHistory" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="CommunicationModeMaster" EntityType="Self.CommunicationModeMaster" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="CompanyMaster" EntityType="Self.CompanyMaster" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="IBTWProspects" EntityType="Self.IBTWProspects" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="IncidentDocuments" EntityType="Self.IncidentDocuments" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="LanguageDetails" EntityType="Self.LanguageDetails" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="RegisteredUsers" EntityType="Self.RegisteredUsers" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="ResponseLanguage" EntityType="Self.ResponseLanguage" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="SubscriptionPlan" EntityType="Self.SubscriptionPlan" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="WhistleBlowIncidents" EntityType="Self.WhistleBlowIncidents" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="WitnessDetails" EntityType="Self.WitnessDetails" Schema="eformulus_admin" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eformulus_IBTW_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CommunicationModeMaster">
+          <Key>
+            <PropertyRef Name="CuID" />
+          </Key>
+          <Property Name="CuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComNumer" Type="Int32" />
+          <Property Name="ComValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="eformulus_IBTW_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CommunicationModeMasters" EntityType="Self.CommunicationModeMaster" />
+          <EntitySet Name="WitnessDetails" EntityType="eformulus_IBTW_DBModel.WitnessDetail" />
+          <EntitySet Name="LanguageDetails" EntityType="eformulus_IBTW_DBModel.LanguageDetail" />
+          <EntitySet Name="LanguageMasters" EntityType="eformulus_IBTW_DBModel.LanguageMaster" />
+          <EntitySet Name="EmailTemplates" EntityType="eformulus_IBTW_DBModel.EmailTemplate" />
+          <EntitySet Name="Settings" EntityType="eformulus_IBTW_DBModel.Setting" />
+          <EntitySet Name="IncidentDocuments" EntityType="eformulus_IBTW_DBModel.IncidentDocument" />
+          <EntitySet Name="RegisteredUsers" EntityType="eformulus_IBTW_DBModel.RegisteredUser" />
+          <EntitySet Name="AnonymousResponseHistories" EntityType="eformulus_IBTW_DBModel.AnonymousResponseHistory" />
+          <EntitySet Name="ResponseLanguages" EntityType="eformulus_IBTW_DBModel.ResponseLanguage" />
+          <EntitySet Name="IBTWProspects" EntityType="eformulus_IBTW_DBModel.IBTWProspect" />
+          <EntitySet Name="WhistleBlowIncidents" EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" />
+          <EntitySet Name="CompanyMasters" EntityType="eformulus_IBTW_DBModel.CompanyMaster" />
+          <EntitySet Name="SubscriptionPlans" EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" />
+        </EntityContainer>
+        <EntityType Name="WitnessDetail">
+          <Key>
+            <PropertyRef Name="WURN" />
+          </Key>
+          <Property Name="WURN" Type="Guid" Nullable="false" />
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LanguageDetail">
+          <Key>
+            <PropertyRef Name="LangURN" />
+          </Key>
+          <Property Name="LangURN" Type="Guid" Nullable="false" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="PleaseSelect" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsReportable" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SupportingEvidence" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceDetails" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DoyouhaveanyDocument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BrowseText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NoFileSelected" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HaveWitness" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnIncident" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AckPolicy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNeverRevel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalComments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ReportIncident" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Signin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AreYouWhistleBlower" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AServiceForm" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TermsofService" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PrivacyPolicy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AuthrizeDeclaration" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDateTime" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionModifiedDate" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SupportingDocuments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LanguageMaster">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LanguageCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Template" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SetID" />
+          </Key>
+          <Property Name="SetID" Type="Int32" Nullable="false" />
+          <Property Name="SettingKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SettingValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IncidentDocument">
+          <Key>
+            <PropertyRef Name="DURN" />
+          </Key>
+          <Property Name="DURN" Type="Guid" Nullable="false" />
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="DocumentNamewithExtn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SupportingDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="OrderBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RegisteredUser">
+          <Key>
+            <PropertyRef Name="RegUserID" />
+          </Key>
+          <Property Name="RegUserID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActivationStatus" Type="Boolean" />
+          <Property Name="AcctType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AnonymousResponseHistory">
+          <Key>
+            <PropertyRef Name="RURN" />
+          </Key>
+          <Property Name="RURN" Type="Guid" Nullable="false" />
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="RegUserID" Type="Guid" Nullable="false" />
+          <Property Name="ResClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseDate" Type="DateTime" Precision="3" />
+          <Property Name="ViewStatus" Type="Boolean" />
+          <Property Name="commentBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ResponseLanguage">
+          <Key>
+            <PropertyRef Name="RURN" />
+          </Key>
+          <Property Name="RURN" Type="Guid" Nullable="false" />
+          <Property Name="ResClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Submit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Close" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SuccessMessage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnonymousUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrintResponse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Leavecomment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IBTWProspect">
+          <Key>
+            <PropertyRef Name="PUID" />
+          </Key>
+          <Property Name="PUID" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GivenName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TimeZone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="BriefDesc" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WhistleBlowIncident">
+          <Key>
+            <PropertyRef Name="IURN" />
+          </Key>
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+          <Property Name="IsReportable" Type="Boolean" />
+          <Property Name="SupportingEvidence" Type="Boolean" />
+          <Property Name="EvidenceDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileAttachment" Type="Boolean" />
+          <Property Name="HaveWitness" Type="Boolean" />
+          <Property Name="UpdatedOnIncident" Type="Boolean" />
+          <Property Name="UpdatedOnIncidentMethod" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDateTime" Type="DateTime" Precision="3" />
+          <Property Name="SubmissionModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SupportingDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnonymousEmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IncCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CompanyMaster">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CURN" Type="Guid" Nullable="false" />
+          <Property Name="CompanyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyKey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="encPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="CRNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JoinedDate" Type="DateTime" Precision="3" />
+          <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyLogo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionPlan" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SubscriptionPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubPlanID" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionPlan1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eformulus_IBTW_DBModelStoreContainer" CdmEntityContainer="eformulus_IBTW_DBEntities">
+          <EntitySetMapping Name="CommunicationModeMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CommunicationModeMaster">
+              <MappingFragment StoreEntitySet="CommunicationModeMaster">
+                <ScalarProperty Name="CuID" ColumnName="CuID" />
+                <ScalarProperty Name="ComNumer" ColumnName="ComNumer" />
+                <ScalarProperty Name="ComValue" ColumnName="ComValue" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WitnessDetails">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.WitnessDetail">
+              <MappingFragment StoreEntitySet="WitnessDetails">
+                <ScalarProperty Name="WitnessModifiedDate" ColumnName="WitnessModifiedDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+                <ScalarProperty Name="WURN" ColumnName="WURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageDetails">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.LanguageDetail">
+              <MappingFragment StoreEntitySet="LanguageDetails">
+                <ScalarProperty Name="SupportingDocuments" ColumnName="SupportingDocuments" />
+                <ScalarProperty Name="SubmissionModifiedDate" ColumnName="SubmissionModifiedDate" />
+                <ScalarProperty Name="SubmissionDateTime" ColumnName="SubmissionDateTime" />
+                <ScalarProperty Name="EvidenceCanBeUsedForInvestigation" ColumnName="EvidenceCanBeUsedForInvestigation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AuthrizeDeclaration" ColumnName="AuthrizeDeclaration" />
+                <ScalarProperty Name="PrivacyPolicy" ColumnName="PrivacyPolicy" />
+                <ScalarProperty Name="TermsofService" ColumnName="TermsofService" />
+                <ScalarProperty Name="AServiceForm" ColumnName="AServiceForm" />
+                <ScalarProperty Name="AreYouWhistleBlower" ColumnName="AreYouWhistleBlower" />
+                <ScalarProperty Name="Signin" ColumnName="Signin" />
+                <ScalarProperty Name="ReportIncident" ColumnName="ReportIncident" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IdentityNeverRevel" ColumnName="IdentityNeverRevel" />
+                <ScalarProperty Name="AckPolicy" ColumnName="AckPolicy" />
+                <ScalarProperty Name="UpdatedOnIncident" ColumnName="UpdatedOnIncident" />
+                <ScalarProperty Name="WitnessPhone" ColumnName="WitnessPhone" />
+                <ScalarProperty Name="WitnessEmail" ColumnName="WitnessEmail" />
+                <ScalarProperty Name="WitnessName" ColumnName="WitnessName" />
+                <ScalarProperty Name="HaveWitness" ColumnName="HaveWitness" />
+                <ScalarProperty Name="NoFileSelected" ColumnName="NoFileSelected" />
+                <ScalarProperty Name="BrowseText" ColumnName="BrowseText" />
+                <ScalarProperty Name="DoyouhaveanyDocument" ColumnName="DoyouhaveanyDocument" />
+                <ScalarProperty Name="EvidenceDetails" ColumnName="EvidenceDetails" />
+                <ScalarProperty Name="SupportingEvidence" ColumnName="SupportingEvidence" />
+                <ScalarProperty Name="IsReportable" ColumnName="IsReportable" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Yes" ColumnName="Yes" />
+                <ScalarProperty Name="PleaseSelect" ColumnName="PleaseSelect" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="LangURN" ColumnName="LangURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.LanguageMaster">
+              <MappingFragment StoreEntitySet="LanguageMaster">
+                <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplate">
+                <ScalarProperty Name="TemplateType" ColumnName="TemplateType" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+                <ScalarProperty Name="SettingKey" ColumnName="SettingKey" />
+                <ScalarProperty Name="SetID" ColumnName="SetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IncidentDocuments">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.IncidentDocument">
+              <MappingFragment StoreEntitySet="IncidentDocuments">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="SupportingDocuments" ColumnName="SupportingDocuments" />
+                <ScalarProperty Name="DocumentNamewithExtn" ColumnName="DocumentNamewithExtn" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+                <ScalarProperty Name="DURN" ColumnName="DURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredUsers">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.RegisteredUser">
+              <MappingFragment StoreEntitySet="RegisteredUsers">
+                <ScalarProperty Name="AcctType" ColumnName="AcctType" />
+                <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnonymousResponseHistories">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AnonymousResponseHistory">
+              <MappingFragment StoreEntitySet="AnonymousResponseHistory">
+                <ScalarProperty Name="commentBy" ColumnName="commentBy" />
+                <ScalarProperty Name="ViewStatus" ColumnName="ViewStatus" />
+                <ScalarProperty Name="ResponseDate" ColumnName="ResponseDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ResClusterID" ColumnName="ResClusterID" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+                <ScalarProperty Name="RURN" ColumnName="RURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResponseLanguages">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ResponseLanguage">
+              <MappingFragment StoreEntitySet="ResponseLanguage">
+                <ScalarProperty Name="Leavecomment" ColumnName="Leavecomment" />
+                <ScalarProperty Name="PrintResponse" ColumnName="PrintResponse" />
+                <ScalarProperty Name="AnonymousUser" ColumnName="AnonymousUser" />
+                <ScalarProperty Name="SuccessMessage" ColumnName="SuccessMessage" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Submit" ColumnName="Submit" />
+                <ScalarProperty Name="TitleShortNotes" ColumnName="TitleShortNotes" />
+                <ScalarProperty Name="FormTitle" ColumnName="FormTitle" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="ResClusterID" ColumnName="ResClusterID" />
+                <ScalarProperty Name="RURN" ColumnName="RURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IBTWProspects">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.IBTWProspect">
+              <MappingFragment StoreEntitySet="IBTWProspects">
+                <ScalarProperty Name="BriefDesc" ColumnName="BriefDesc" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PUID" ColumnName="PUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WhistleBlowIncidents">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.WhistleBlowIncident">
+              <MappingFragment StoreEntitySet="WhistleBlowIncidents">
+                <ScalarProperty Name="IncCategory" ColumnName="IncCategory" />
+                <ScalarProperty Name="AnonymousEmailID" ColumnName="AnonymousEmailID" />
+                <ScalarProperty Name="SupportingDocuments" ColumnName="SupportingDocuments" />
+                <ScalarProperty Name="SubmissionModifiedDate" ColumnName="SubmissionModifiedDate" />
+                <ScalarProperty Name="SubmissionDateTime" ColumnName="SubmissionDateTime" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EvidenceCanBeUsedForInvestigation" ColumnName="EvidenceCanBeUsedForInvestigation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UpdatedOnIncidentMethod" ColumnName="UpdatedOnIncidentMethod" />
+                <ScalarProperty Name="UpdatedOnIncident" ColumnName="UpdatedOnIncident" />
+                <ScalarProperty Name="HaveWitness" ColumnName="HaveWitness" />
+                <ScalarProperty Name="FileAttachment" ColumnName="FileAttachment" />
+                <ScalarProperty Name="EvidenceDetails" ColumnName="EvidenceDetails" />
+                <ScalarProperty Name="SupportingEvidence" ColumnName="SupportingEvidence" />
+                <ScalarProperty Name="IsReportable" ColumnName="IsReportable" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CompanyMaster">
+              <MappingFragment StoreEntitySet="CompanyMaster">
+                <ScalarProperty Name="SubscriptionPlan" ColumnName="SubscriptionPlan" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="JoinedDate" ColumnName="JoinedDate" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="BusinessArea" ColumnName="BusinessArea" />
+                <ScalarProperty Name="CRNumber" ColumnName="CRNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="encPassword" ColumnName="encPassword" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CompanyValue" ColumnName="CompanyValue" />
+                <ScalarProperty Name="CompanyKey" ColumnName="CompanyKey" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CURN" ColumnName="CURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionPlans">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.SubscriptionPlan">
+              <MappingFragment StoreEntitySet="SubscriptionPlan">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SubscriptionPlan1" ColumnName="SubscriptionPlan" />
+                <ScalarProperty Name="SubPlanID" ColumnName="SubPlanID" />
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
