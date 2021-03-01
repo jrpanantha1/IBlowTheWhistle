@@ -14,7 +14,7 @@
                         <h1 class="display-3">Benefits </h1>
                         <p class="lead">Transparency is a recurring value that is reflected in our promise, our security protocol and our legal agreements.</p>
                     </div>
-                    <!-- end of text-center -->
+                    <!-- end of text-center --> 
                     <ul class="nav nav-tabs nav-tabs-line justify-content-center" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" href="#terms" data-toggle="tab" role="tab" aria-selected="true">Terms<span class="d-none d-md-inline">  of Service</span></a>
