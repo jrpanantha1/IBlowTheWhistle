@@ -49,12 +49,14 @@ function getResponseHistory() {
 function showHistroy(items) {
     var chatHtml = "";
     var chatHtmlCompany = "";
-
+    var resCompanyLogo = "";
     for (var i = 0; i < items.length; i++) {
 
         var resDate = new Date(items[i].ResponseDate).toLocaleString();
         var resMessage = items[i].Message != "" ? items[i].Message : "";
         var resCompanyName = items[i].companyName;
+        resCompanyLogo = items[i].companyLogo;
+
         if (items[i].commentBy == "Anonymous User") {
 
 
@@ -104,7 +106,7 @@ function showHistroy(items) {
             chatHtml = chatHtml + '<div class="col-auto order-2">';
             chatHtml = chatHtml + '<!-- Avatar -->';
             chatHtml = chatHtml + '<div class="no-avatar avatar-sm">';
-            chatHtml = chatHtml + '<i class="icon-user"></i>';
+            chatHtml = chatHtml + '<img class="companyavatarResponse avatar" src="#" style="height: 50px; width: 50px; align - content: center;"/>';
             chatHtml = chatHtml + '</div>';
             chatHtml = chatHtml + ' </div>';
             chatHtml = chatHtml + '<div class="col mr-n2 order-1">';
@@ -135,7 +137,9 @@ function showHistroy(items) {
             chatHtml = chatHtml + '</div>  <hr>';
         }
     }
+
     $("#chartDiv").html(chatHtml);
+    $('.companyavatarResponse').attr("src", resCompanyLogo);
 }
 
 function validateControl() {

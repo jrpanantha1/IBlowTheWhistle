@@ -42,6 +42,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
 
             var result = db.CompanyMasters.FirstOrDefault(u => u.CURN.ToString().Trim().ToUpper().Equals(companyID.ToUpper()));
+
+            result.CompanyKey = Cipher.Encrypt(result.CompanyKey, result.encPassword);
+            result.CompanyValue = Cipher.Encrypt(result.CompanyValue, result.encPassword);
+
             if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
             {
                 result.CompanyLogo = "";

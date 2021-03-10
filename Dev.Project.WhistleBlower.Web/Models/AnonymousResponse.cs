@@ -16,6 +16,7 @@ namespace Dev.Project.WhistleBlower.Web.Models
         public Nullable<bool> ViewStatus { get; set; }
         public string commentBy { get; set; }
         public string companyName { get; set; }
+        public string companyLogo { get; set; }
 
 
     }

@@ -8,21 +8,7 @@
         window.location.href = "/Pages/Home.aspx";
     }
 
-    //file upload starts here
-    $('#ibtwAttachements').FancyFileUpload({
-        params: {
-            action: 'fileuploader'
-        },
-        edit: false,
-        maxfilesize: 1048576,
-        added: function (SubmitUpload, e, data) {
-
-        },
-        startupload: function (SubmitUpload, e, data) {
-            thisElm = this;
-            fileData = data;
-        },
-    });
+    
 });
 
 

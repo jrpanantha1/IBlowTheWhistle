@@ -31,18 +31,49 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         public IHttpActionResult GetAnonymousResponseHistory(string strIURN)
         {
             var anonymousResponse = db.AnonymousResponseHistories.OrderBy(tt => tt.ResponseDate).Where(d => d.IURN.ToString() == strIURN).ToList();
+            string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
+
             if (anonymousResponse == null)
             {
                 return NotFound();
             }
+
+            if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
+            {
+                var updateAnonymousHistry = from x in db.AnonymousResponseHistories
+                                            where x.IURN.ToString() == strIURN && x.commentBy == "Admin" && x.ViewStatus == false
+                                            select x;
+
+                // now use First or a loop if you expect multiple
+                foreach (var updAnnoy in updateAnonymousHistry)
+                    updAnnoy.ViewStatus = true;
+                db.SaveChanges();
+            }
+            else
+            {
+                var updateAnonymousHistry = from x in db.AnonymousResponseHistories
+                                            where x.IURN.ToString() == strIURN && x.commentBy != "Admin" && x.ViewStatus == false
+                                            select x;
+
+                // now use First or a loop if you expect multiple
+                foreach (var updAnnoy in updateAnonymousHistry)
+                    updAnnoy.ViewStatus = true;
+                db.SaveChanges();
+            }
+
+
             string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
-            var objCompanyMaster = db.CompanyMasters.Where(e => e.CURN.ToString() == companyID).Select(o => new { o.encPassword, o.CompanyName }).Distinct();
-            string encPassword = "", companyName = "";
+            var objCompanyMaster = db.CompanyMasters.Where(e => e.CURN.ToString() == companyID).Select(o => new { o.encPassword, o.CompanyName, o.CompanyLogo }).Distinct();
+            string encPassword = "", companyName = "", companylogo = "";
 
             foreach (var comItem in objCompanyMaster)
             {
                 encPassword = comItem.encPassword;
                 companyName = comItem.CompanyName;
+
+
+                companylogo = comItem.CompanyLogo;
+
             }
 
             List<AnonymousResponse> objAnonymous = new List<AnonymousResponse>();
@@ -59,7 +90,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     RURN = item.RURN,
                     ViewStatus = item.ViewStatus,
                     commentBy = item.commentBy,
-                    companyName = companyName
+                    companyName = companyName,
+                    companyLogo = companylogo
                 });
 
             }
@@ -118,13 +150,14 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
             string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
             //var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == companyID).encPassword;
-            var objCompanyMaster = db.CompanyMasters.Where(e => e.CURN.ToString() == companyID).Select(o => new { o.encPassword, o.CompanyName }).Distinct();
-            string encPassword = "", companyName = "";
+            var objCompanyMaster = db.CompanyMasters.Where(e => e.CURN.ToString() == companyID).Select(o => new { o.encPassword, o.CompanyName, o.CompanyLogo }).Distinct();
+            string encPassword = "", companyName = "", companylogo = "";
 
             foreach (var comItem in objCompanyMaster)
             {
                 encPassword = comItem.encPassword;
                 companyName = comItem.CompanyName;
+                companylogo = comItem.CompanyLogo;
             }
 
             if (companyID != "" && anonymousResponseHistory != null)
@@ -140,7 +173,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 objEncryptedAnonymous.Message = anonymousResponseHistory.Message != null && anonymousResponseHistory.Message != "" ? Cipher.Encrypt(anonymousResponseHistory.Message, encPassword) : "";
                 objEncryptedAnonymous.ResponseDate = DateTime.Now;
                 objEncryptedAnonymous.commentBy = AccType;
-                objEncryptedAnonymous.ViewStatus = true;
+                objEncryptedAnonymous.ViewStatus = false;
 
                 db.AnonymousResponseHistories.Add(objEncryptedAnonymous);
             }
@@ -168,7 +201,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         RURN = item.RURN,
                         ViewStatus = item.ViewStatus,
                         commentBy = item.commentBy,
-                        companyName = companyName
+                        companyName = companyName,
+                        companyLogo = companylogo
                     });
 
                 }

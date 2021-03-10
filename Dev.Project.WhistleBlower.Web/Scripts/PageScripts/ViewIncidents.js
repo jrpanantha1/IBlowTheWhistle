@@ -48,20 +48,22 @@ function getIncidentDetails() {
 
 
                     if (localStorage.getItem("AcctType") == "Admin") {
-                        if (localStorage.getItem("AcctType") != "Admin") {
 
+                        if (response.objCompanyMasters.SubscriptionPlan != null && response.objCompanyMasters.SubscriptionPlan != 1) {
+                            $('.imgTopBanner').attr("src", response.CompantTopBanners);
+                            $('.ancImgTopBanner').attr("href", tarURL);
+                            
                         }
+                        else {
+                            $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                        }
+
                     }
 
                     //else { $('.companyURLSection').show() }
                     $('.companyURLSection').show();
 
-                    //if (response.objCompanyMasters.CompanyLogo != null && response.objCompanyMasters.CompanyLogo != "") {
 
-                    //    $('#defualtComLogo').hide();
-                    //    $('#customizedLogo').show();
-                    //    $('.companyavatar').attr("src", response.objCompanyMasters.CompanyLogo)
-                    //}
                 }
 
                 var items = response.objWhistleBlowIncidents;
@@ -94,8 +96,8 @@ function getIncidentDetails() {
                     "bDestroy": true,
                     "bProcessing": true,
                     "columnDefs": [
-                                    { targets: [0, 2, 3, 11, 12, 13], visible: true },
-                                    { targets: '_all', visible: false }
+                        { targets: [0, 2, 3, 11, 12, 13], visible: true },
+                        { targets: '_all', visible: false }
                     ],
                     dom: 'Bfrtip',
                     buttons: [{
@@ -107,84 +109,84 @@ function getIncidentDetails() {
                     }],
                     "iDisplayLength": 10,
                     "aoColumns": [
-                                { "data": "rID" },
-                                { "data": "rTranID" },
-                                {
-                                    "data": function (data, type, row, meta) {
-                                        var ReturnHTML = '';
-                                        ReturnHTML = "<div class='gridDescription wd100'>" + data.rEvidenceDetails + "</div>"
-                                        return ReturnHTML;
-                                    }
-                                },
-                                {
-                                    "data": function (data, type, row, meta) {
-                                        var ReturnHTML = '';
-                                        ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
-                                        return ReturnHTML;
-                                    }
+                        { "data": "rID" },
+                        { "data": "rTranID" },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = '';
+                                ReturnHTML = "<div class='gridDescription wd100'>" + data.rEvidenceDetails + "</div>"
+                                return ReturnHTML;
+                            }
+                        },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = '';
+                                ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
+                                return ReturnHTML;
+                            }
 
 
-                                },
-                                { "data": "rRepotable" },
-                                { "data": "rSupDocuments" },
-                                { "data": "rHaveWitness" },
-                                { "data": "rUpdatePro" },
-                                { "data": "rContactEmail" },
-                                { "data": "rContactPhone" },
-                                { "data": "rAnonymousEmail" },
-                                {
-                                    "data": function (data, type, row, meta) {
-                                        var ReturnHTML = '';
-                                        ReturnHTML = data.rSubmissionDateTime;
-                                        return ReturnHTML;
-                                    }
+                        },
+                        { "data": "rRepotable" },
+                        { "data": "rSupDocuments" },
+                        { "data": "rHaveWitness" },
+                        { "data": "rUpdatePro" },
+                        { "data": "rContactEmail" },
+                        { "data": "rContactPhone" },
+                        { "data": "rAnonymousEmail" },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = '';
+                                ReturnHTML = data.rSubmissionDateTime;
+                                return ReturnHTML;
+                            }
 
 
-                                },
-                                {
-                                    "data": function (data, type, row, meta) {
-                                        var ReturnHTML = '';
-                                        // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
-                                        if (data.hisCount == "0") {
-                                            ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
-                                        }
-                                        else {
-                                            ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
-                                        }
-                                        return ReturnHTML;
-                                    }
-
-
-                                },
-                                {
-                                    "data": function (data, type, row, meta) {
-                                        var ReturnHTML = '';
-                                        if (data.rIncCategory != null && data.rIncCategory != "") {
-
-                                            ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                                                "<option value='Unread'>Unread</option>" +
-                                                                "<option value='Read'>Read</option>" +
-                                                                "<option value='Important'>Important</option>" +
-                                                                "<option value='Done'>Done</option>" +
-                                                                "<option value='Discarded'>Discarded</option>" +
-                                                                "<option value='Routetoemail'>Route to email</option>" +
-                                                            "</select>";
-                                            $('#' + data.rTranID).val(data.rIncCategory);
-                                        }
-                                        else {
-                                            ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                                                "<option value='Unread'>Unread</option>" +
-                                                                "<option value='Read'>Read</option>" +
-                                                                "<option value='Important'>Important</option>" +
-                                                                "<option value='Done'>Done</option>" +
-                                                                "<option value='Discarded'>Discarded</option>" +
-                                                                "<option value='Routetoemail'>Route to email</option>" +
-                                                            "</select>";
-                                        }
-
-                                        return ReturnHTML;
-                                    }
+                        },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = '';
+                                // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
+                                if (data.hisCount == "0") {
+                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
                                 }
+                                else {
+                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
+                                }
+                                return ReturnHTML;
+                            }
+
+
+                        },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = '';
+                                if (data.rIncCategory != null && data.rIncCategory != "") {
+
+                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        "<option value='Unread'>Unread</option>" +
+                                        "<option value='Read'>Read</option>" +
+                                        "<option value='Important'>Important</option>" +
+                                        "<option value='Done'>Done</option>" +
+                                        "<option value='Discarded'>Discarded</option>" +
+                                        "<option value='Routetoemail'>Route to email</option>" +
+                                        "</select>";
+                                    $('#' + data.rTranID).val(data.rIncCategory);
+                                }
+                                else {
+                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        "<option value='Unread'>Unread</option>" +
+                                        "<option value='Read'>Read</option>" +
+                                        "<option value='Important'>Important</option>" +
+                                        "<option value='Done'>Done</option>" +
+                                        "<option value='Discarded'>Discarded</option>" +
+                                        "<option value='Routetoemail'>Route to email</option>" +
+                                        "</select>";
+                                }
+
+                                return ReturnHTML;
+                            }
+                        }
 
 
                     ]
@@ -200,12 +202,14 @@ function getIncidentDetails() {
                     tblDT.column(13).visible(false);
                     //disbale company code
                     $('.companyCode').hide();
+                    $('.topBanner').hide();
                 }
                 else {
                     tblDT.button(0).enable(true);
                     tblDT.column(13).visible(true);
                     //enable company code
                     $('.companyCode').show();
+                    $('.topBanner').show();
                 }
 
 

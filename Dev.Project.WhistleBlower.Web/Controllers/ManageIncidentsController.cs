@@ -39,6 +39,25 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     objCM.CompanyValue = Cipher.Encrypt(objCM.CompanyValue, objCM.encPassword);
 
                     objIncidentsPageContent.objCompanyMasters = objCM;
+
+                    string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CompanyBanners/");
+                    if (System.IO.Directory.Exists(path))
+                    {
+                        string[] filePaths = Directory.GetFiles(path);
+                        string consolidPaths = "";
+                        foreach (string file in filePaths)
+                        {
+                            if (Path.GetFileName(file).Contains("CompanyTopBanner"))
+                            {
+                                //consolidPaths = path + Path.GetFileName(file);
+                                consolidPaths = "/IBTWImages/" + companyID + "/CompanyBanners/" + Path.GetFileName(file);
+                            }
+                        }
+
+                        objIncidentsPageContent.CompantTopBanners = consolidPaths;// String.Join(";", filePaths);
+
+                    }
+
                 }
 
                 if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
@@ -61,7 +80,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                                       Comments = r.Comments,
                                                       Phone = r.Phone,
                                                       AnonymousEmailID = r.AnonymousEmailID,
-                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN),
+                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && a.commentBy != WhistleContants.anonymousUserAccountType),
                                                       IncCategory = r.IncCategory
                                                   };
                         if (whistleBlowIncident == null)
@@ -148,7 +167,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                                       Comments = r.Comments,
                                                       Phone = r.Phone,
                                                       AnonymousEmailID = r.AnonymousEmailID,
-                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN),
+                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && a.commentBy == WhistleContants.anonymousUserAccountType),
                                                       IncCategory = r.IncCategory
                                                   };
                         if (whistleBlowIncident == null)
@@ -601,6 +620,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         public CompanyMaster objCompanyMasters { get; set; }
         public string CompanyValueNonEncrypt { get; set; }
         public List<WhistleIncidentWithHistoryCount> objWhistleBlowIncidents { get; set; }
+        public string CompantTopBanners { get; set; }
 
 
     }

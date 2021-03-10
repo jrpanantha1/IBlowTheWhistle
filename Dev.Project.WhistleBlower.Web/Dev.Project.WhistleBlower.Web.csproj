@@ -214,6 +214,9 @@
     <Content Include="assets\images\logo-light.png" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\social-card.png" />
+    <Content Include="assets\images\whistle-icon.png" />
+    <Content Include="assets\images\Whistle_728x90.jpg" />
+    <Content Include="assets\images\Whistle_728x90_Internalbanner.png" />
     <Content Include="assets\js\autosize.min.js" />
     <Content Include="assets\js\dataTables.responsive.min.js" />
     <Content Include="assets\js\form.min.js" />
@@ -231,6 +234,7 @@
     <Content Include="JQDatatables\datatables.min.css" />
     <Content Include="JQDatatables\datatables.min.js" />
     <Content Include="Pages\Admin.aspx" />
+    <Content Include="Pages\Banners.aspx" />
     <Content Include="Pages\Benefits.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Customers.aspx" />
@@ -279,6 +283,7 @@
     <Content Include="Scripts\PageScripts\ViewFormV1.js" />
     <Content Include="Scripts\PageScripts\ViewIncidents.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\QRCode\qrcode.js" />
     <Content Include="Scripts\Utility.js" />
     <Content Include="Scripts\Validation.js" />
     <Content Include="tempEmail.html" />
@@ -322,6 +327,13 @@
     </Compile>
     <Compile Include="Pages\Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Banners.aspx.cs">
+      <DependentUpon>Banners.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Banners.aspx.designer.cs">
+      <DependentUpon>Banners.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Benefits.aspx.cs">
       <DependentUpon>Benefits.aspx</DependentUpon>

@@ -65,7 +65,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
 
         [Authorize]
-        public IHttpActionResult PostUpdateCompany([FromBody]CompanyMaster companyDetails)
+        public IHttpActionResult PostUpdateCompany([FromBody] CompanyMasterObj companyDetails)
         {
             try
             {
@@ -79,14 +79,32 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     {
                         if (!companyDetails.CompanyLogo.Contains(@"/IBTWImages/"))
                         {
-                            //if (result.SubscriptionType == "")
-                            //{
+                            if (result.SubscriptionPlan != 1)
+                            {
+                                updatedURL = Utility.UploadCompanyImagefromBase64(companyDetails.CompanyLogo, companyID);
+                                if (!string.IsNullOrEmpty(companyDetails.CompanyTopBanner))
+                                {
+                                    Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
+                                }
+                                result.CompanyLogo = updatedURL;
+                            }
 
-                            //}
-                            updatedURL = Utility.UploadCompanyImagefromBase64(companyDetails.CompanyLogo, companyID);
-                            result.CompanyLogo = updatedURL;
                         }
                     }
+                    else if (!string.IsNullOrEmpty(companyDetails.CompanyTopBanner))
+                    {
+                        if (!companyDetails.CompanyTopBanner.Contains(@"/IBTWImages/"))
+                        {
+                            if (result.SubscriptionPlan != 1)
+                            {
+                                Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
+                                result.CompanyLogo = updatedURL;
+                            }
+
+                        }
+
+                    }
+
                     db.SaveChanges();
                     return Ok(updatedURL);
                 }
@@ -114,5 +132,26 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         {
             return db.CompanyMasters.Count(e => e.CompanyID == id) > 0;
         }
+    }
+    public partial class CompanyMasterObj
+    {
+        public System.Guid CURN { get; set; }
+        public long CompanyID { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanyKey { get; set; }
+        public string CompanyValue { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public string encPassword { get; set; }
+        public string Address { get; set; }
+        public string CRNumber { get; set; }
+        public string BusinessArea { get; set; }
+        public string ContactNumber { get; set; }
+        public Nullable<System.DateTime> JoinedDate { get; set; }
+        public string ContactEmail { get; set; }
+        public string LoginPassword { get; set; }
+        public string SubscriptionType { get; set; }
+        public string CompanyLogo { get; set; }
+        public string CompanyTopBanner { get; set; }
+        public Nullable<int> SubscriptionPlan { get; set; }
     }
 }

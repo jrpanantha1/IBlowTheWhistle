@@ -74,34 +74,34 @@
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                                     <li class="nav-item dropdown language-switcher">
-                                        <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-squared flag-icon-us"></i></a>
+                                        <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-us"></i>
+                                            <a href="#" class="dropdown-item" id="engItem">
+                                               <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
                                                 <span>English</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-th"></i>
+                                            <a href="#" class="dropdown-item" id="thaiItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-th"></i>--%>
                                                 <span>Thai</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-fr"></i>
+                                            <a href="#" class="dropdown-item" id="frenchItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-fr"></i>--%>
                                                 <span>French</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-es"></i>
+                                            <a href="#" class="dropdown-item" id="spanishItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-es"></i>--%>
                                                 <span>Spanish</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-ru"></i>
+                                            <a href="#" class="dropdown-item" id="russianItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-ru"></i>--%>
                                                 <span>Russian</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-kz"></i>
+                                            <a href="#" class="dropdown-item" id="kazItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-kz"></i>--%>
                                                 <span>Kazakh</span>
                                             </a>
-                                            <a href="#" class="dropdown-item">
-                                                <i class="flag-icon flag-icon-squared flag-icon-ar"></i>
+                                            <a href="#" class="dropdown-item" id="arabicItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-ar"></i>--%>
                                                 <span>Arabic</span>
                                             </a>
                                         </div>
@@ -115,7 +115,7 @@
                                             <!-- <img class="avatar avatar-xs" src="/assets/images/testimonial/02.jpg" alt="Arya Stark"> -->
                                             <div class="no-avatar avatar-xs d-inline-flex" id="divNoavatar">
                                                 <i class="icon-user" id="defualtComLogo"></i>
-                                                <img class="companyavatar avatar-xs d-inline-flex" src="/assets/images/LargeAvatar.png" id="customizedLogo" alt="" style="display: none !important;" />
+                                                <img style="height: 50px; width: 50px; align-content: center;" class="companyavatar avatar avatar-xs d-inline-flex" src="/assets/images/LargeAvatar.png" id="customizedLogo" alt="" style="display: none !important;" />
                                             </div>
                                             <!-- // remove this block if avatar available -->
                                         </a>
@@ -136,6 +136,10 @@
                                             <div class="dashboardMenu AdminAccountOnlymenu">
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>Dashboard</a>
+                                            </div>
+                                            <div class="dashboardMenu AdminAccountOnlymenu">
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/Pages/Banners.aspx"><i class="mr-3 icon-settings"></i>Banners</a>
                                             </div>
                                             <div class="preferencesMenu">
                                                 <div class="dropdown-divider"></div>

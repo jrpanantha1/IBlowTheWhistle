@@ -117,6 +117,10 @@
     <section class="section-content py-3" style="margin-top: 100px;">
         <div class="container">
             <div class="row justify-content-center">
+                <div class="col-12 topBanner" style="display: none">
+                    <a class="ancImgTopBanner" target="_blank" href="#">
+                        <img src="/assets/images/Whistle_728x90_Internalbanner.PNG" class="imgTopBanner" alt="horizontal banner" /></a>
+                </div>
                 <div class="col-12">
                     <div class="quote-box" style="margin-bottom: 10px;">
                         <div class="quote">

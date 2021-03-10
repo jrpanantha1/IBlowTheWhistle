@@ -34,6 +34,9 @@ function getCompanyProfile() {
                     $(".spanCompanyNameIcon").text(response.CompanyName);
                     $("#h1CompanyName").text(response.CompanyName);// display in View Incident and Reoprt Incodent top 
                 }
+                //update for QR code in banners page
+                var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
+                $("#txtQrCode").val(tarURL);
 
 
                 if (localStorage.getItem("AcctType") != "Admin") {

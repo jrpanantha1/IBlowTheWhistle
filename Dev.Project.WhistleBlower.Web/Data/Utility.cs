@@ -202,7 +202,37 @@ namespace Dev.Project.WhistleBlower.Web.Data
             }
             catch (Exception ex)
             {
+                return ex.Message;
+            }
+        }
+        public static string UploadCompanyTopBannerfromBase64(string base64, string companyID)
+        {
+            string imgPath = "";
+            try
+            {
+
+                var base64Data = Regex.Match(base64, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+                var binData = Convert.FromBase64String(base64Data);
+                string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CompanyBanners/");
+
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+
+                if (!string.IsNullOrEmpty(path))
+                {
+                    string fileType = GetFileExtension(base64);
+
+                    File.WriteAllBytes(path + "CompanyTopBanner" + "." + fileType + "", binData);
+                    imgPath = "";// "/IBTWImages/" + companyID + "/" + "CompanyTopBanner" + "." + fileType + "";
+
+                }
                 return imgPath;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
 

@@ -12,9 +12,10 @@ $(document).ready(function () {
 function updateCompanyProfile() {
 
     var companyData =
-      {
-          "CompanyLogo": ppBase64
-      }
+    {
+        "CompanyLogo": ppBase64,
+        "CompanyTopBanner": cbBase64
+    }
 
     $.ajax({
         url: '/api/CompanyMasters',
@@ -44,8 +45,23 @@ function updateCompanyProfile() {
 
 }
 
+
 var ppBase64 = "";
+var cbBase64 = "";
 function readFile(file, onLoadCallback) {
+    var fSize = (file.size) / 1024;
+    if (fSize < 600) {
+        var reader = new FileReader();
+        reader.onload = onLoadCallback;
+        reader.readAsDataURL(file);
+    } else {
+        $('.msgBox').text("Photo size max 600kb")
+        $('.msgBox').show(500);
+
+        return false;
+    }
+}
+function readBannerFile(file, onLoadCallback) {
     var fSize = (file.size) / 1024;
     if (fSize < 600) {
         var reader = new FileReader();
