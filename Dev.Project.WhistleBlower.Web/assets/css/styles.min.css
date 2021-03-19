@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -13751,7 +13751,8 @@ a.text-muted:hover {
     color: rgba(255,255,255,0.45);
     font-size: 0.85rem;
     background-color: #00122c;
-    border-top: 1px solid rgba(255,255,255,0.05)
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 30px;
 }
 
     .site-footer .nav-link {
@@ -14041,10 +14042,19 @@ label, .label {
 }
 
 
-.ancImgTopBanner img {
+.ancImgTopBanner img, .imgTopBanner {
     width: 100%;
     border-radius: 10px;
     margin: 25px 0;
+    height: 120px;
+}
+
+
+.accordion .ancImgTopBanner img, .imgTopBanner {
+    width: 70%;
+    border-radius: 10px;
+    margin: 25px 0;
+    height: 120px;
 }
 
 #tblViewIncidents_filter input {
@@ -14174,8 +14184,7 @@ label, .label {
 /*************************************Banner page ***************/
 
 .qr-code-generator {
-    width: auto;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
 }
 
     .qr-code-generator * {
@@ -14185,11 +14194,17 @@ label, .label {
     }
 
 #qrcode {
-    width: 128px;
-    height: 128px;
+    width: 250px !important;
+    height: 250px !important;
     margin: 0 auto;
     text-align: center;
 }
+
+
+    #qrcode canvas {
+        width: 250px !important;
+        height: 250px !important;
+    }
 
     #qrcode a {
         font-size: 0.8em;
@@ -14232,3 +14247,467 @@ label, .label {
         border: 2px solid #00B48F;
         font-weight: 500;
     }
+/* toaster*/
+.bs-example {
+    margin: 20;
+    position: relative;
+    z-index: -1;
+}
+
+
+.qr-code-txt {
+    float: left;
+}
+
+    .qr-code-txt p {
+        font-size: 130%;
+    }
+
+
+.qr-code-generator {
+    float: left;
+}
+
+
+.qrcontent-txt {
+    float: left;
+    margin: 50px 0 0 0;
+}
+
+.top-header h1 {
+    text-align: center;
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+.header-line {
+    text-align: center;
+    width: 100px;
+    border-bottom: 3px solid #00B48F;
+    margin: 0 auto 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 999px;
+}
+
+.top-header p {
+    font-size: 130%;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+
+
+
+/*****************************************/
+
+.myaccount-contanier {
+    margin-top: 150px;
+}
+
+.accordion {
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+}
+
+    .accordion .inner {
+        padding-left: 1em;
+        overflow: hidden;
+        display: none;
+        margin: 2em 0;
+    }
+
+    .accordion .accordion-list {
+        margin: 1em 0;
+    }
+
+        .accordion .accordion-list a.toggle {
+            width: 100%;
+            display: block;
+            background: url(../images/plus-icon.png)no-repeat right 15px center #fff;
+            background-size: 15px auto;
+            border: 1px solid #879CA7;
+            color: rgba(0,18,44,0.8);
+            padding: .25em .75em .3em 0.75em;
+            transition: background 0.3s ease;
+            font-size: 130%;
+        }
+
+            .accordion .accordion-list a.toggle:hover {
+                background: url(../images/plus-icon.png)no-repeat right 15px center #fff;
+                background-size: 15px auto;
+                border: 1px solid #00B48F;
+                color: #00B48F;
+            }
+
+            .accordion .accordion-list a.toggle:focus {
+                background: url(../images/minus-icon.png)no-repeat right 15px center #fff;
+                background-size: 20px auto;
+                border: 1px solid #00B48F;
+                color: #00B48F;
+            }
+
+
+    .accordion .avatar-change label {
+        margin: 8px 0 10px 0;
+        border-radius: 999px;
+    }
+
+    .accordion .avatar-change .btn-primary {
+        border-radius: 999px;
+    }
+
+
+
+/********** Social Media Icons *************/
+
+
+
+/* Wrapper */
+.social-media-icon .icon-button {
+    background-color: transparent;
+    border-radius: 2.6rem;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.3rem;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    margin: 0 5px;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 2.6rem;
+}
+
+    /* Circle */
+    .social-media-icon .icon-button span {
+        border-radius: 0;
+        display: block;
+        height: 0;
+        left: 50%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        width: 0;
+    }
+
+    .social-media-icon .icon-button:hover span {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 2.6rem;
+        margin: -1.3rem;
+    }
+
+    /* Icons */
+    .social-media-icon .icon-button i {
+        background: none;
+        color: white;
+        height: 2.6rem;
+        left: 0;
+        line-height: 2.6rem;
+        position: absolute;
+        top: 0;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+        width: 2.6rem;
+        z-index: 10;
+    }
+
+
+
+
+
+.twitter span {
+    background-color: #4099ff;
+}
+
+.facebook span {
+    background-color: #3B5998;
+}
+
+.google-plus span {
+    background-color: #db5a3c;
+}
+
+.tumblr span {
+    background-color: #34526f;
+}
+
+.instagram span {
+    background-color: #517fa4;
+}
+
+.youtube span {
+    background-color: #bb0000;
+}
+
+.pinterest span {
+    background-color: #cb2027;
+}
+
+
+
+.icon-button .icon-twitter {
+    color: #4099ff;
+}
+
+.icon-button .icon-facebook {
+    color: #3B5998;
+}
+
+.icon-button .icon-tumblr {
+    color: #34526f;
+}
+
+.icon-button .icon-google {
+    color: #db5a3c;
+}
+
+.icon-button .icon-instagram {
+    color: #517fa4;
+}
+
+.icon-button .icon-youtube {
+    color: #bb0000;
+}
+
+.icon-button .icon-pinterest {
+    color: #cb2027;
+}
+
+
+
+
+.icon-button:hover .icon-twitter,
+.icon-button:hover .icon-facebook,
+.icon-button:hover .icon-google,
+.icon-button:hover .icon-tumblr,
+.icon-button:hover .icon-instagram,
+.icon-button:hover .icon-youtube,
+.icon-button:hover .icon-pinterest {
+    color: white;
+}
+
+@media all and (max-width: 680px) {
+    .icon-button {
+        border-radius: 1.6rem;
+        font-size: 0.8rem;
+        height: 1.6rem;
+        line-height: 1.6rem;
+        width: 1.6rem;
+    }
+
+        .icon-button:hover span {
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 1.6rem;
+            margin: -0.8rem;
+        }
+
+        /* Icons */
+        .icon-button i {
+            height: 1.6rem;
+            line-height: 1.6rem;
+            width: 1.6rem;
+        }
+
+    body {
+        padding: 10px;
+    }
+
+    .pinterest {
+        display: none;
+    }
+}
+
+
+
+
+
+/****************************************** Toaster popup *************************************/
+
+i {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'toast' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.toast-icon-error:before {
+    content: "";
+}
+
+.toast-icon-info:before {
+    content: "";
+}
+
+.toast-icon-notice:before {
+    content: "";
+}
+
+.toast-icon-success:before {
+    content: "";
+}
+
+.toast-icon-warning:before {
+    content: "";
+}
+
+.toast-item-wrapper {
+    min-width: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .toast-item-wrapper i.toast-icon {
+        position: absolute;
+        top: 12px;
+        left: 0;
+        width: 50px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 2rem;
+        display: none;
+    }
+
+    .toast-item-wrapper .toast-close {
+        font-size: 1.2rem;
+        font-weight: bold;
+        position: absolute;
+        top: -5px;
+        right: 2px;
+        width: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .toast-item-wrapper.success {
+        background-color: #00B48F;
+        border: 1px solid #00B48F;
+    }
+
+    .toast-item-wrapper.error {
+        background-color: #ff7946;
+        border: 1px solid #f35818;
+    }
+
+    .toast-item-wrapper.warning {
+        background-color: #fff1c0;
+        border: 1px solid #f0c948;
+        color: #333;
+    }
+
+    .toast-item-wrapper.notice {
+        background-color: #48a9f8;
+        border: 1px solid #208ce4;
+    }
+
+    .toast-item-wrapper.info {
+        background-color: #7f97a3;
+        border: 1px solid #6b8699;
+    }
+
+    .toast-item-wrapper.toast-top-left {
+        left: 20px;
+        top: 20px;
+    }
+
+    .toast-item-wrapper.toast-top-right {
+        right: 20px;
+        top: 20px;
+    }
+
+    .toast-item-wrapper.toast-top-center {
+        margin: 0 auto;
+        top: 20px;
+    }
+
+    .toast-item-wrapper.toast-bottom-left {
+        left: 20px;
+        bottom: 20px;
+    }
+
+    .toast-item-wrapper.toast-bottom-right {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .toast-item-wrapper.toast-bottom-center {
+        margin: 0 auto;
+        bottom: 20px;
+    }
+
+    .toast-item-wrapper.fullscreen {
+        left: 20px;
+        right: 20px;
+        width: calc(100% - 40px);
+        padding-left: 15px !important;
+    }
+
+    .toast-item-wrapper p {
+        margin: 0;
+    }
+
+    .toast-item-wrapper .toast-message {
+        font-size: 0.87rem;
+    }
+
+    .toast-item-wrapper .toast-progress {
+        width: 0;
+        height: 3px;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .toast-item-wrapper.rtl {
+        direction: rtl;
+        text-align: right;
+    }
+
+        .toast-item-wrapper.rtl i.toast-icon {
+            left: auto;
+            right: 0;
+        }
+
+        .toast-item-wrapper.rtl .toast-close {
+            right: auto;
+            left: 0;
+            top: 0;
+        }
+
+        .toast-item-wrapper.rtl p {
+            text-align: right;
+        }
+
+        .toast-item-wrapper.rtl .toast-progress {
+            left: auto;
+            right: 0;
+        }

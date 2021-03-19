@@ -213,6 +213,8 @@
     <Content Include="assets\images\logo-eformulus.png" />
     <Content Include="assets\images\logo-light.png" />
     <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\minus-icon.png" />
+    <Content Include="assets\images\plus-icon.png" />
     <Content Include="assets\images\social-card.png" />
     <Content Include="assets\images\whistle-icon.png" />
     <Content Include="assets\images\Whistle_728x90.jpg" />
@@ -224,6 +226,7 @@
     <Content Include="assets\js\jquery.dataTables.js" />
     <Content Include="assets\js\jquery.dataTables.min.js" />
     <Content Include="assets\js\theme.min.js" />
+    <Content Include="assets\js\toast.script.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\ExcelIcon.png" />
     <Content Include="Images\IBTWBook.png" />
@@ -236,6 +239,7 @@
     <Content Include="Pages\Admin.aspx" />
     <Content Include="Pages\Banners.aspx" />
     <Content Include="Pages\Benefits.aspx" />
+    <Content Include="Pages\Casemanagement.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Customers.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
@@ -270,6 +274,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\PageScripts\Casemanagement.js" />
     <Content Include="Scripts\PageScripts\CompanyProfile.js" />
     <Content Include="Scripts\PageScripts\Dashboard.js" />
     <Content Include="Scripts\PageScripts\Home.js" />
@@ -284,6 +289,8 @@
     <Content Include="Scripts\PageScripts\ViewIncidents.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\QRCode\qrcode.js" />
+    <Content Include="Scripts\Toaster\4.5.2\bootstrap.min.js" />
+    <Content Include="Scripts\Toaster\popper.min.js" />
     <Content Include="Scripts\Utility.js" />
     <Content Include="Scripts\Validation.js" />
     <Content Include="tempEmail.html" />
@@ -297,9 +304,11 @@
     <Compile Include="Authorization\Startup.cs" />
     <Compile Include="Authorization\WhistleBlowerAuthorizationServerProvider.cs" />
     <Compile Include="Controllers\AnonymousResponseHistoriesController.cs" />
+    <Compile Include="Controllers\CaseManagementsController.cs" />
     <Compile Include="Controllers\CompanyMastersController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\ExchangeController.cs" />
+    <Compile Include="Controllers\FileUploaderController.cs" />
     <Compile Include="Controllers\IBTWProspectsController.cs" />
     <Compile Include="Controllers\LanguageDetailsController.cs" />
     <Compile Include="Controllers\ManageIncidentsController.cs" />
@@ -341,6 +350,13 @@
     </Compile>
     <Compile Include="Pages\Benefits.aspx.designer.cs">
       <DependentUpon>Benefits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Casemanagement.aspx.cs">
+      <DependentUpon>Casemanagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Casemanagement.aspx.designer.cs">
+      <DependentUpon>Casemanagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
@@ -503,6 +519,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CaseManagement\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WhistleBlowerDAL\WhistleBlowerDAL.csproj">

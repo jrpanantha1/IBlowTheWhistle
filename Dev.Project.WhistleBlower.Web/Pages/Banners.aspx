@@ -31,21 +31,27 @@
     <div class="container">
         <div class="row justify-content-center align-items-center py-10 langDirection">
             <div class="col-12">
-
-                <div class="col-12 topBanner">
+                <div class="col-xl-12 top-header">
+                    <h1>Banner</h1>
+                    <span class="header-line"></span>
+                    <p class="text-xl-center">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
+                <div class="col-xl-12 topBanner">
                     <a class="ancImgTopBanner" target="_blank" href="https://iblowthewhistle.com/Pages/Home.aspx?kWbf0wReXWoLMLDfQVvvNA==/ibZxSe+yi7kfMi41TWwllf/g==">
                         <img src="/IBTWImages/6dafd280-6980-4691-82f9-cf71633556b2/CompanyBanners/CompanyTopBanner.jpeg" class="imgTopBanner" alt="horizontal banner" />
 
                     </a>
                 </div>
 
-                <div class="col-12 qrcontent-txt">
-                    <div class="col-md-6">
-                    <h1>Create dynamic QR code <br />for reporting</h1>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <div class="col-xl-12 qrcontent-txt">
+                    <div class="col-xl-8 qr-code-txt">
+                        <h1>Create dynamic QR code
+                            <br />
+                            for reporting</h1>
+                        <p class="text-xl-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                         <button class="generate-qr-code">Generate QR Code to Report Incident</button>
                     </div>
-                    <div class="col-md-6 qr-code-generator">
+                    <div class="col-xl-4 qr-code-generator">
 
                         <input type="text" id="txtQrCode" class="qr-url" placeholder="URL or Text" style="display: none" />
                         <input type="number" class="qr-size" value="128" min="20" max="500" style="display: none" />

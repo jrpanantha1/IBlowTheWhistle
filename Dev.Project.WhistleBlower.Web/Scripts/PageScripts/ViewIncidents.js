@@ -49,16 +49,16 @@ function getIncidentDetails() {
 
                     if (localStorage.getItem("AcctType") == "Admin") {
 
-                        if (response.objCompanyMasters.SubscriptionPlan != null && response.objCompanyMasters.SubscriptionPlan != 1) {
+                        if (response.CompantTopBanners != null && response.CompantTopBanners != "") {
                             $('.imgTopBanner').attr("src", response.CompantTopBanners);
-                            $('.ancImgTopBanner').attr("href", tarURL);
-                            
                         }
                         else {
                             $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
                         }
+                        $('.ancImgTopBanner').attr("href", tarURL);
 
                     }
+
 
                     //else { $('.companyURLSection').show() }
                     $('.companyURLSection').show();

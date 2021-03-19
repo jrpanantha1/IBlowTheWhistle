@@ -54,7 +54,7 @@
                                         <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
-                                               <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
+                                                <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
                                                 <span>English</span>
                                             </a>
                                             <a href="#" class="dropdown-item" id="thaiItem">
@@ -113,16 +113,23 @@
                         <div class="col-md">
                             <p>&copy; 2021 I Blow The Whistle. All rights reserved.</p>
                         </div>
-                       
+
+                        <div class="col-md-auto social-media-icon">
+                            <a href="#" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>
+                            <a href="#" class="icon-button facebook"><i class="icon-facebook"></i><span></span></a>
+                            <a href="#" class="icon-button youtube"><i class="icon-youtube"></i><span></span></a>
+
+                        </div>
+
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Benefits.aspx">Benefits</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Customers.aspx">Customers</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Eligibility.aspx">Eligibility</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Explainer.aspx">Explainer</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Pricing.aspx">Pricing</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Legal.aspx">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Benefits">Benefits</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Customers">Customers</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Eligibility">Eligibility</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Explainer">Explainer</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/pricing">Pricing</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/terms">Legal</a></li>
                             </ul>
                         </div>
                         <!--end of col-->

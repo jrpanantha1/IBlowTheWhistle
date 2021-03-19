@@ -1,0 +1,190 @@
+﻿$(document).ready(function () {
+
+    if (localStorage.getItem("accessToken") != null) {
+    }
+    else {
+        window.location.href = "/Pages/Login.aspx";
+    }
+    getCaseDocuments();
+    getCaseManagementDetails();
+
+
+});
+function getCaseManagementDetails() {
+    var iurn = getUrlVars()["iURN"];
+    $('#ancSendResponse').attr("href", "Response.aspx? URN =" + iurn)
+    $('#spnIncID').text(iurn);
+
+    $.ajax({
+        url: '/api/CaseManagements?IURN=' + iurn,
+        method: 'GET',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+
+                var whistleResponse = response.whistleBlowIncidentObj;
+                var caseMngt = response.caseMngtColn;
+
+                if (whistleResponse != null) {
+                    $('#spnSubmissionDate').text(whistleResponse.SubmissionDateTime != null ? new Date(whistleResponse.SubmissionDateTime).toLocaleDateString() : "");
+                }
+                if (caseMngt != null) {
+                    constructCaseTimeLine(caseMngt);
+                }
+
+
+            }
+
+        },
+        error: function (response) {
+
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+
+
+function getCaseDocuments() {
+    var iurn = getUrlVars()["iURN"];
+
+    $.ajax({
+        url: '/api/FileUploader?IURN=' + iurn,
+        method: 'GET',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+                var caseDocHtml = "";
+                $('#divCaseDocuments').empty();
+
+                var arrFile = response.split(';');
+
+                caseDocHtml = "<ul class='list - group list - group - flush'>";
+                for (var i = 0; i < arrFile.length; i++) {
+                    var dd = i + 1;
+                    caseDocHtml += "<li class='list - group - item d - flex justify - content - between align - items - center flex - wrap'>" +
+                        "<i class='icon - file'></i> <a target='_blank' href=" + arrFile[i] + "> Click here</a></span>" +
+                        "</li>";
+                }
+
+                caseDocHtml += "</ul>";
+            }
+            $('#divCaseDocuments').append(caseDocHtml);
+
+        },
+        error: function (response) {
+
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+
+function validateCaseInfoControl() {
+    var flag = true;
+
+    if (!GetTextBoxEmptyValidation($('#txtMessage'))) {
+        flag = false;
+
+    }
+    return flag;
+}
+function updateCaseInformation() {
+
+    if (!validateCaseInfoControl()) {
+        return false;
+    }
+    var iurn = getUrlVars()["iURN"];
+
+    var dataResponse = {
+        "CaseInformation": $('#txtMessage').val(),
+        "IURN": iurn
+    };
+
+    $.ajax({
+        url: '/api/CaseManagements',
+        method: 'POST',
+        data: JSON.stringify(dataResponse),
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+                var items = response;
+                $('#txtMessage').val("");
+                getCaseManagementDetails();
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+function constructCaseTimeLine(objCaseColn) {
+
+    var caseHTL = "";
+    $('#divCaseTimeLine').empty();
+    caseHTL = " <ul class='timeline'> ";
+    for (var i = 0; i < objCaseColn.length; i++) {
+        var caseInfo = objCaseColn[i].CaseInformation;
+
+        caseHTL += "<li>" +
+            "<a target='_blank' href='#'>Case updated on </a>" +
+            "<a href='' class='float - right'>" + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString() + "</a>" +
+            "<p>" + caseInfo + "</p>" +
+            "</li>";
+    }
+
+    caseHTL += "</ul>";
+    $('#divCaseTimeLine').append(caseHTL);
+
+}
+
+function uploadCaseDocuments() {
+
+    var iurn = getUrlVars()["iURN"];
+
+    var data = new FormData();
+    jQuery.each(jQuery('#FileAttachmentDetails')[0].files, function (i, file) {
+        data.append('file-' + i, file);
+    });
+
+    $.ajax({
+        type: "POST",
+        url: '/api/FileUploader?iURN=' + iurn,
+        enctype: 'multipart/form-data',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: data,
+        success: function (data, textStatus, xhr) {
+            $("#FileAttachmentDetails").val(null);
+            getCaseDocuments();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(textStatus + ': ' + errorThrown);
+        }
+    });
+
+
+}

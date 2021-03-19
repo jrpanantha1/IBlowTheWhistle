@@ -32,7 +32,7 @@ function GetParameterfromUrl(name) {
     var url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-		results = regex.exec(url);
+        results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
@@ -45,9 +45,9 @@ function reSetConfirmation() {
     var psw = $('#txtPassword').val();
 
     var userData =
-		{
-		    "Password": psw
-		}
+    {
+        "Password": psw
+    }
 
     $.ajax({
         url: '/api/RegisteredUsers',
@@ -61,7 +61,12 @@ function reSetConfirmation() {
         },
         success: function (response) {
             if (response != "") {
-                alert(response);
+
+                $("#myToast").toast({ delay: 3000 });
+                $("#myToast").toast('show');
+                $('#txtPassword').val("");
+                $('#txtRePassword').val("");
+                // alert(response);
             }
         },
         error: function (response) {

@@ -44,13 +44,13 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     string degryptValue = Cipher.Decrypt(value, settingObj.SettingValue);
 
 
-                    IList<CompanyMaster> objCompany = db.CompanyMasters.Where(e => e.CompanyKey.ToString() == degryptKey && e.CompanyValue == degryptValue).ToList();
+                    var objCompany = db.CompanyMasters.Where(e => e.CompanyKey.ToString() == degryptKey && e.CompanyValue == degryptValue).FirstOrDefault();
                     if (objCompany == null)
                     {
                         return NotFound();
 
-
                     }
+                   
 
                     return Ok(objCompany);
                 }

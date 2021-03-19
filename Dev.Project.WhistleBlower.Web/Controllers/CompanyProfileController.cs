@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -30,7 +31,39 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 return NotFound();
             }
 
-            return Ok(result);
+
+            string CompanyTopBannerURl = "";
+
+            //get company top banners if any
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CompanyBanners/");
+            if (System.IO.Directory.Exists(path))
+            {
+                string[] filePaths = Directory.GetFiles(path);
+                string consolidPaths = "";
+                foreach (string file in filePaths)
+                {
+                    if (Path.GetFileName(file).Contains("CompanyTopBanner"))
+                    {
+                        consolidPaths = "/IBTWImages/" + companyID + "/CompanyBanners/" + Path.GetFileName(file);
+                    }
+                }
+                CompanyTopBannerURl = consolidPaths;// String.Join(";", filePaths);
+
+            }
+
+            List<CompanyMasterObj> objCompanyMaster = new List<CompanyMasterObj>();
+            objCompanyMaster.Add(new CompanyMasterObj
+            {
+                CURN = result.CURN,
+                CompanyID = result.CompanyID,
+                CompanyName = result.CompanyName,
+                CompanyLogo = result.CompanyLogo,
+                CompanyTopBanner = CompanyTopBannerURl,
+                CompanyValue = result.CompanyValue
+
+            });
+
+            return Ok(objCompanyMaster);
         }
 
         // GET: api/CompanyProfile

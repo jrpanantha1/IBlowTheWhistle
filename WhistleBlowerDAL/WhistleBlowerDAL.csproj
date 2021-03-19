@@ -84,6 +84,9 @@
     <Compile Include="AnonymousResponseHistory.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CaseManagement.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="CommunicationModeMaster.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>

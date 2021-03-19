@@ -17,5 +17,6 @@ namespace WhistleBlowerDAL
         public int LanguageID { get; set; }
         public string Name { get; set; }
         public string LanguageCode { get; set; }
+        public string DisplayText { get; set; }
     }
 }

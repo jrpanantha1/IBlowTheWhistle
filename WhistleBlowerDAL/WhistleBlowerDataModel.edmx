@@ -18,6 +18,19 @@
           <Property Name="ViewStatus" Type="bit" />
           <Property Name="commentBy" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="CaseManagement">
+          <Key>
+            <PropertyRef Name="CaseURN" />
+          </Key>
+          <Property Name="CaseURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CaseClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseInformation" Type="nvarchar" MaxLength="200" />
+          <Property Name="CaseUpdated" Type="datetime" />
+          <Property Name="CaseStatus" Type="bit" />
+        </EntityType>
         <EntityType Name="CommunicationModeMaster">
           <Key>
             <PropertyRef Name="CuID" />
@@ -129,6 +142,7 @@
           <Property Name="LanguageID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="LanguageCode" Type="nchar" MaxLength="10" />
+          <Property Name="DisplayText" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RegisteredUsers">
           <Key>
@@ -217,6 +231,7 @@
         </EntityType>
         <EntityContainer Name="eformulus_IBTW_DBModelStoreContainer">
           <EntitySet Name="AnonymousResponseHistory" EntityType="Self.AnonymousResponseHistory" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="CaseManagement" EntityType="Self.CaseManagement" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CommunicationModeMaster" EntityType="Self.CommunicationModeMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CompanyMaster" EntityType="Self.CompanyMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="eformulus_admin" store:Type="Tables" />
@@ -259,6 +274,7 @@
           <EntitySet Name="WhistleBlowIncidents" EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" />
           <EntitySet Name="CompanyMasters" EntityType="eformulus_IBTW_DBModel.CompanyMaster" />
           <EntitySet Name="SubscriptionPlans" EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" />
+          <EntitySet Name="CaseManagements" EntityType="eformulus_IBTW_DBModel.CaseManagement" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
           <Key>
@@ -316,6 +332,7 @@
           <Property Name="LanguageID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LanguageCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DisplayText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -461,6 +478,19 @@
           <Property Name="SubscriptionPlan1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="CaseManagement">
+          <Key>
+            <PropertyRef Name="CaseURN" />
+          </Key>
+          <Property Name="CaseURN" Type="Guid" Nullable="false" />
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="RegUserID" Type="Guid" Nullable="false" />
+          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
+          <Property Name="CaseClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseInformation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CaseUpdated" Type="DateTime" Precision="3" />
+          <Property Name="CaseStatus" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -531,6 +561,7 @@
           <EntitySetMapping Name="LanguageMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.LanguageMaster">
               <MappingFragment StoreEntitySet="LanguageMaster">
+                <ScalarProperty Name="DisplayText" ColumnName="DisplayText" />
                 <ScalarProperty Name="LanguageCode" ColumnName="LanguageCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
@@ -688,6 +719,20 @@
                 <ScalarProperty Name="SubscriptionPlan1" ColumnName="SubscriptionPlan" />
                 <ScalarProperty Name="SubPlanID" ColumnName="SubPlanID" />
                 <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseManagements">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CaseManagement">
+              <MappingFragment StoreEntitySet="CaseManagement">
+                <ScalarProperty Name="CaseStatus" ColumnName="CaseStatus" />
+                <ScalarProperty Name="CaseUpdated" ColumnName="CaseUpdated" />
+                <ScalarProperty Name="CaseInformation" ColumnName="CaseInformation" />
+                <ScalarProperty Name="CaseClusterID" ColumnName="CaseClusterID" />
+                <ScalarProperty Name="CompanyURN" ColumnName="CompanyURN" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+                <ScalarProperty Name="CaseURN" ColumnName="CaseURN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
