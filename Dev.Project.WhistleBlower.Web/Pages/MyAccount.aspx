@@ -144,7 +144,7 @@
 
         $('#topBannerAttachmentBtn').on('change', function () {
             readBannerFile(this.files[0], function (e) {
-                $('.topBanner').attr("src", e.target.result);
+                $('.imgTopBanner').attr("src", e.target.result);
                 cbBase64 = e.target.result;
             });
         });

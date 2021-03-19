@@ -157,6 +157,24 @@
                     height: 20px;
                     z-index: 400;
                 }
+
+        .CaseDocfa-ul {
+            list-style-type: none;
+            margin-left: 2.5em;
+            padding-left: 0;
+        }
+
+            .CaseDocfa-ul > li {
+                position: relative;
+            }
+
+        .casefa-li {
+            left: 1em;
+            position: absolute;
+            text-align: center;
+            width: 0em;
+            line-height: inherit;
+        }
     </style>
     <section class="section-split">
         <div class="container-fluid">

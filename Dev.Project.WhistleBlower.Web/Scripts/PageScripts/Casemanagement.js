@@ -12,7 +12,7 @@
 });
 function getCaseManagementDetails() {
     var iurn = getUrlVars()["iURN"];
-    $('#ancSendResponse').attr("href", "Response.aspx? URN =" + iurn)
+    $('#ancSendResponse').attr("href", "Response.aspx?iURN=" + iurn)
     $('#spnIncID').text(iurn);
 
     $.ajax({
@@ -70,15 +70,18 @@ function getCaseDocuments() {
 
                 var arrFile = response.split(';');
 
-                caseDocHtml = "<ul class='list - group list - group - flush'>";
-                for (var i = 0; i < arrFile.length; i++) {
-                    var dd = i + 1;
-                    caseDocHtml += "<li class='list - group - item d - flex justify - content - between align - items - center flex - wrap'>" +
-                        "<i class='icon - file'></i> <a target='_blank' href=" + arrFile[i] + "> Click here</a></span>" +
-                        "</li>";
-                }
+                //caseDocHtml = "<ul class='list - group list - group - flush'>";
+                caseDocHtml = " <ol class='CaseDocfa-ul'>";
 
-                caseDocHtml += "</ul>";
+                for (var i = 0; i < arrFile.length; i++) {
+                    var dRow = i + 1;
+                    var last = arrFile[i].substring(arrFile[i].lastIndexOf("/") + 1, arrFile[i].length);
+
+                    caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "</li></a>";
+
+                }
+                caseDocHtml += "</ol >";
+
             }
             $('#divCaseDocuments').append(caseDocHtml);
 
