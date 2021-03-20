@@ -75,10 +75,12 @@ function getCaseDocuments() {
 
                 for (var i = 0; i < arrFile.length; i++) {
                     var dRow = i + 1;
-                    var last = arrFile[i].substring(arrFile[i].lastIndexOf("/") + 1, arrFile[i].length);
+                    if (arrFile[i] != null && arrFile[i] != "") {
 
-                    caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "</li></a>";
+                        var last = arrFile[i].substring(arrFile[i].lastIndexOf("/") + 1, arrFile[i].length);
 
+                        caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "</li></a>";
+                    }
                 }
                 caseDocHtml += "</ol >";
 
