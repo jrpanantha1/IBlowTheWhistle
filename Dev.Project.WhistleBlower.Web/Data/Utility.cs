@@ -194,6 +194,11 @@ namespace Dev.Project.WhistleBlower.Web.Data
                 {
                     string fileType = GetFileExtension(base64);
 
+                    if (File.Exists(path + "CompanyLogo" + "." + fileType))
+                    {
+                        File.Delete(path + "CompanyLogo" + "." + fileType);
+                    }
+
                     File.WriteAllBytes(path + "CompanyLogo" + "." + fileType + "", binData);
                     imgPath = "/IBTWImages/" + companyID + "/" + "CompanyLogo" + "." + fileType + "";
 
@@ -220,9 +225,16 @@ namespace Dev.Project.WhistleBlower.Web.Data
                     System.IO.Directory.CreateDirectory(path);
                 }
 
+
+
                 if (!string.IsNullOrEmpty(path))
                 {
                     string fileType = GetFileExtension(base64);
+
+                    if (File.Exists(path + "CompanyTopBanner" + "." + fileType))
+                    {
+                        File.Delete(path + "CompanyTopBanner" + "." + fileType);
+                    }
 
                     File.WriteAllBytes(path + "CompanyTopBanner" + "." + fileType + "", binData);
                     imgPath = "";// "/IBTWImages/" + companyID + "/" + "CompanyTopBanner" + "." + fileType + "";

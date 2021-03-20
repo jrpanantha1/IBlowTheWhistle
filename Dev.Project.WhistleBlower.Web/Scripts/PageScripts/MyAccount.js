@@ -30,6 +30,12 @@ function getCompanyDetails() {
                     else {
                         $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
                     }
+                    if (response[0].CompanyLogo != null && response[0].CompanyLogo != "") {
+                        $('.comavatar').attr("src", response[0].CompanyLogo);
+                    }
+                    else {
+                        $('.comavatar').attr("src", "/assets/images/LargeAvatar.png");
+                    }
                 }
             }
 
@@ -65,8 +71,18 @@ function updateCompanyProfile() {
             if (response != null && response != "") {
                 $('#defualtComLogo').hide();
                 $('#customizedLogo').show();
-                $('.companyavatar').attr("src", response)
+                $('.companyavatar').attr("src", response);
+            }
 
+            if (ppBase64 != "") {
+                showSuccessMessage("Profile picture updated successfully.");
+                ppBase64 = "";
+
+            }
+            else {
+
+                showSuccessMessage("Top banner updated successfully.");
+                cbBase64 = "";
             }
         },
         error: function (response) {

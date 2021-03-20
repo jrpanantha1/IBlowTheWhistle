@@ -50,7 +50,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         return NotFound();
 
                     }
-                   
+
 
                     return Ok(objCompany);
                 }
@@ -82,10 +82,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             if (result.SubscriptionPlan != 1)
                             {
                                 updatedURL = Utility.UploadCompanyImagefromBase64(companyDetails.CompanyLogo, companyID);
-                                if (!string.IsNullOrEmpty(companyDetails.CompanyTopBanner))
-                                {
-                                    Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
-                                }
+                                //if (!string.IsNullOrEmpty(companyDetails.CompanyTopBanner))
+                                //{
+                                //    updatedURL = Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
+                                //}
                                 result.CompanyLogo = updatedURL;
                             }
 
@@ -97,8 +97,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         {
                             if (result.SubscriptionPlan != 1)
                             {
-                                Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
-                                result.CompanyLogo = updatedURL;
+                                updatedURL = Utility.UploadCompanyTopBannerfromBase64(companyDetails.CompanyTopBanner, companyID);
                             }
 
                         }

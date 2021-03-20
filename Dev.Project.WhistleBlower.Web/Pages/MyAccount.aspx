@@ -71,7 +71,7 @@
                                             <div class="d-flex justify-content-center align-items-center pb-3 inner-2">
 
                                                 <!-- // no avatar -->
-                                                <img class="imgTopBanner" src="/assets/images/Whistle_728x90_Internalbanner.PNG" alt="" onclick="addToast()" />
+                                                <img class="imgTopBanner" src="/assets/images/Whistle_728x90_Internalbanner.PNG" alt="" />
                                                 `<br />
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
@@ -168,8 +168,8 @@
 
 
 
-        function addToast() {
-            $.Toast("test", "this is a test message.", "success", {
+        function showSuccessMessage(strMessage) {
+            $.Toast("Success", strMessage, "success", {
                 //has_icon: true,
                 has_close_btn: true,
                 stack: true,
