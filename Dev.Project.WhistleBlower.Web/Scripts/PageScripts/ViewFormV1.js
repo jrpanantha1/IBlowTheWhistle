@@ -33,7 +33,7 @@ function loadFormDetails(iURN) {
                 $('.spanTraxDate').text(IncResponse.SubmissionDateTime.toLocaleString());
 
                 $('#IsReportable').val(IncResponse.IsReportable == true ? "Yes" : "No");
-                $('#SupportingEvidence').val(IncResponse.SupportingEvidence == true ? "Yes" : "No");
+
                 $('#HaveWitness').val(IncResponse.HaveWitness == true ? "Yes" : "No");
                 IncResponse.HaveWitness == true ? $('#collapseHaveWitness').show() : $('#collapseHaveWitness').hide();
                 $('#FileAttachment').val(IncResponse.FileAttachment == true ? "Yes" : "No");
@@ -41,13 +41,23 @@ function loadFormDetails(iURN) {
                 $('#comments').text(IncResponse.Comments);
 
                 if (IncResponse.SupportingEvidence == true) {
+                    $('#SupportingEvidence').val("Yes");
+                    $('.collapseSupportingEvidence').show();
+                }
+                else {
+                    $('#SupportingEvidence').val("No");
+                    $('.collapseSupportingEvidence').hide();
+                }
+
+
+                if (IncResponse.SupportingEvidence == true) {
                     $('#EvidenceDetails').text(IncResponse.EvidenceDetails);
                 } else
-                    $('#EvidenceDetails').hide();
+                    $('#collapseSupportingEvidence').hide();
 
                 $('#EvidenceCanBeUsedForInvestigation').prop('checked', true);
                 $('#customCheck1').prop('checked', true);
-                if (IncResponse.SupportingDocuments != "") {
+                if (IncResponse.SupportingDocuments != null && IncResponse.SupportingDocuments != "") {
 
                     var filesPaths = IncResponse.SupportingDocuments;
                     var arr = filesPaths.split(';');

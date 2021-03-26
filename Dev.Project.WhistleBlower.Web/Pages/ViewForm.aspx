@@ -51,12 +51,12 @@
                             </select>
                         </div>
                         <!-- end of form group -->
-                        <div class="form-group" id="collapseSupportingEvidence" name="collapseSupportingEvidence">
+                        <div class="form-group collapseSupportingEvidence" id="collapseSupportingEvidence" name="collapseSupportingEvidence">
                             <label id="lblEvidenceDetails"></label>
                             <textarea id="EvidenceDetails" class="form-control disableControls" rows="6" placeholder="Evidence details"></textarea>
                         </div>
                         <!-- end of form group -->
-                        <div class="form-group">
+                        <div class="form-group collapseSupportingEvidence">
                             <label id="lblFileAttachment"></label>
                             <select class="custom-select disableControls" id="FileAttachment" name="FileAttachment">
                                 <option selected disabled value="" class="optPleaseSelect"></option>
@@ -65,7 +65,7 @@
                             </select>
                         </div>
                         <!-- end of form group -->
-                        <div class="form-group" id="collapseFileAttachment" name="collapseFileAttachment">
+                        <div class="form-group collapseSupportingEvidence" id="collapseFileAttachment" name="collapseFileAttachment">
                             <label id="lblBrowseText" class="sr-only"></label>
                             <a href="#">View Documents</a>
                             <div id="divAttachements">

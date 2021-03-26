@@ -70,7 +70,7 @@ function getCompanyNumber() {
         dataType: 'json',
         success: function (response) {
             if (response != "") {
-                $('#CompanyURN').val(response[0].CompanyValue);
+                $('#CompanyURN').val(response.CompanyValue);
             }
 
         },

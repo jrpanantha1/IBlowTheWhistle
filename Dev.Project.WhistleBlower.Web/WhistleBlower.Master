@@ -115,9 +115,9 @@
                         </div>
 
                         <div class="col-md-auto social-media-icon">
-                            <a href="#" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>
-                            <a href="#" class="icon-button facebook"><i class="icon-facebook"></i><span></span></a>
-                            <a href="#" class="icon-button youtube"><i class="icon-youtube"></i><span></span></a>
+                            <a target="_blank" href="https://twitter.com/Iblowthewhistl1" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>
+                            <a target="_blank" href="https://www.facebook.com/IBlowTheWhistle" class="icon-button facebook"><i class="icon-facebook"></i><span></span></a>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCCcMaldr88LJ9xR8Et9J1XA" class="icon-button youtube"><i class="icon-youtube"></i><span></span></a>
 
                         </div>
 

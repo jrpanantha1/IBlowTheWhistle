@@ -151,8 +151,8 @@ function constructCaseTimeLine(objCaseColn) {
         var caseInfo = objCaseColn[i].CaseInformation;
 
         caseHTL += "<li>" +
-            "<a target='_blank' href='#'>Case updated on </a>" +
-            "<a href='' class='float - right'>" + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString() + "</a>" +
+            "<a  href='#' style='cursor:default'>Case updated on </a>" +
+            "<a  href='#' style='cursor:default' class='float - right'>" + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString() + "</a>" +
             "<p>" + caseInfo + "</p>" +
             "</li>";
     }
@@ -162,8 +162,23 @@ function constructCaseTimeLine(objCaseColn) {
 
 }
 
+function CaseDocumentValidation() {
+    var caseFileControl = $('#FileAttachmentDetails');
+
+    if (caseFileControl.val() == null || caseFileControl.val() == "") {
+        flag = false;
+        caseFileControl.addClass('error');
+    }
+    else {
+        caseFileControl.removeClass('error');
+    }
+}
+
 function uploadCaseDocuments() {
 
+    if (CaseDocumentValidation()) {
+        return false;
+    }
     var iurn = getUrlVars()["iURN"];
 
     var data = new FormData();

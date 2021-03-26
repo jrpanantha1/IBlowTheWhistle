@@ -133,7 +133,7 @@
                         <!-- end of form group -->
                         <div class="form-group">
                             <label for="comments" id="lblComments"></label>
-                            <textarea id="comments" class="form-control" rows="6" placeholder="Incident Details"></textarea>
+                            <textarea id="comments" class="form-control" rows="6" placeholder="Concern Details"></textarea>
                         </div>
                         <!-- end of form group -->
                         <div class="form-group">
@@ -145,12 +145,12 @@
                             </select>
                         </div>
                         <!-- end of form group -->
-                        <div class="form-group collapse" id="collapseSupportingEvidence" name="collapseSupportingEvidence">
+                        <div class="form-group collapse collapseSupportingEvidence" id="collapseSupportingEvidence" name="collapseSupportingEvidence">
                             <label id="lblEvidenceDetails"></label>
                             <textarea id="EvidenceDetails" class="form-control" rows="6" placeholder="Evidence details"></textarea>
                         </div>
                         <!-- end of form group -->
-                        <div class="form-group">
+                        <div class="form-group collapse collapseSupportingEvidence">
                             <label id="lblFileAttachment"></label>
                             <select class="custom-select" id="FileAttachment" name="FileAttachment">
                                 <option selected disabled value="" class="optPleaseSelect"></option>
@@ -175,7 +175,10 @@
                         </div>
                         <!-- end of form group -->
                         <div class="collapse" id="collapseHaveWitness" name="collapseHaveWitness">
-
+                            <!-- end of form group -->
+                            <div class="col-12 form-group">
+                                <button class="btn btn-sm btn-block btn-success btn-clone" type="button"><i class="icon-plus"></i>Add more witness</button>
+                            </div>
                             <div class="witness clone-witness">
                                 <div class="form-row">
                                     <div class="col form-group">
@@ -199,10 +202,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- end of form group -->
-                            <div class="col-12 form-group">
-                                <button class="btn btn-sm btn-block btn-success btn-clone" type="button"><i class="icon-plus"></i>Add more witness</button>
-                            </div>
+
 
 
                         </div>
@@ -220,10 +220,10 @@
                         <div class="form-group collapse" id="collapseUpdatedOnIncident" name="collapseUpdatedOnIncident">
                             <label for="UpdatedOnIncidentMethod">How would you like to be updated on your report?</label>
                             <select class="custom-select" id="UpdatedOnIncidentMethod">
-                                <option selected disabled value="">Please select</option>
+                                <option disabled value="">Please select</option>
                                 <option value="Email">By Email</option>
                                 <option value="Phone">By Phone</option>
-                                <option value="Anonymous">Anonymous</option>
+                                <option selected value="Anonymous">Anonymous</option>
                             </select>
                         </div>
                         <!-- end of form group -->

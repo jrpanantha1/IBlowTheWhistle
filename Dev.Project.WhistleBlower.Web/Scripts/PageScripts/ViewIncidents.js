@@ -47,20 +47,18 @@ function getIncidentDetails() {
                     $("#txtCompanyLink").val(tarURL);
 
 
-                    if (localStorage.getItem("AcctType") == "Admin") {
+                    //if (localStorage.getItem("AcctType") == "Admin") {
+                    //}
 
-                        if (response.CompantTopBanners != null && response.CompantTopBanners != "") {
-                            $('.imgTopBanner').attr("src", response.CompantTopBanners);
-                        }
-                        else {
-                            $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
-                        }
-                        $('.ancImgTopBanner').attr("href", tarURL);
-
+                    //show top banner if available
+                    if (response.CompantTopBanners != null && response.CompantTopBanners != "") {
+                        $('.imgTopBanner').attr("src", response.CompantTopBanners);
                     }
-
-
-                    //else { $('.companyURLSection').show() }
+                    else {
+                        $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                    }
+                    $('.ancImgTopBanner').attr("href", tarURL);
+                    $('.topBanner').show();
                     $('.companyURLSection').show();
 
 
@@ -202,14 +200,14 @@ function getIncidentDetails() {
                     tblDT.column(13).visible(false);
                     //disbale company code
                     $('.companyCode').hide();
-                    $('.topBanner').hide();
+                    // $('.topBanner').hide();
                 }
                 else {
                     tblDT.button(0).enable(true);
                     tblDT.column(13).visible(true);
                     //enable company code
                     $('.companyCode').show();
-                    $('.topBanner').show();
+                    //$('.topBanner').show();
                 }
 
 

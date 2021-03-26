@@ -150,7 +150,7 @@
                                     <th>#</th>
                                     <th class="d-none">Tran ID</th>
                                     <th>Evidence Details</th>
-                                    <th>Comments</th>
+                                    <th>Concern Details</th>
                                     <th class="d-none">Is Reportable</th>
                                     <th class="d-none">Supporting Evidence?</th>
                                     <th class="d-none">Have witnesses?</th>

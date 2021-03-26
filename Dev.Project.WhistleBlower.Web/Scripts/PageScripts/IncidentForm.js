@@ -8,7 +8,7 @@
         window.location.href = "/Pages/Home.aspx";
     }
 
-    
+
 });
 
 
@@ -65,8 +65,16 @@ function IncidentFormValidation() {
     }
     else if (!dropdownYesValidateText($('#SupportingEvidence'), $('#EvidenceDetails'))) {
         flag = false;
+
+        if (!GetDropdownSelectedIndexValidation($('#FileAttachment'))) {
+            flag = false;
+        }
+
     }
 
+    if (!GetTextBoxEmptyValidation($('#comments'))) {
+        flag = false;
+    }
 
 
 
@@ -175,9 +183,6 @@ function IncidentFormValidation() {
     }
 
 
-    if (!GetDropdownSelectedIndexValidation($('#FileAttachment'))) {
-        flag = false;
-    }
 
     return flag;
 
@@ -203,12 +208,12 @@ function submitIncidentDetails() {
     }
     var WhistleBlowData =
     {
-        "IsReportable": $('#IsReportable').val() == "No" ? 0 : 1,
-        "SupportingEvidence": $('#SupportingEvidence').val() == "No" ? 0 : 1,
+        "IsReportable": $('#IsReportable').val() == "Yes" ? 1 : 0,
+        "SupportingEvidence": $('#SupportingEvidence').val() == "Yes" ? 1 : 0,
         "EvidenceDetails": $('#EvidenceDetails').val(),
-        "FileAttachment": $('#FileAttachment').val() == "No" ? 0 : 1,
-        "HaveWitness": $('#HaveWitness').val() == "No" ? 0 : 1,
-        "UpdatedOnIncident": $('#UpdatedOnIncident').val() == "No" ? 0 : 1,
+        "FileAttachment": $('#FileAttachment').val() == "Yes" ? 1 : 0,
+        "HaveWitness": $('#HaveWitness').val() == "Yes" ? 1 : 0,
+        "UpdatedOnIncident": $('#UpdatedOnIncident').val() == "Yes" ? 1 : 0,
         "UpdatedOnIncidentMethod": updateMethodNumber,
         "Email": $('#UpdatedOnIncidentMethodEmail').val(),
         "Phone": $('#UpdatedOnIncidentMethodPhone').val(),
