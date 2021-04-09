@@ -30,7 +30,7 @@
                     <div class="form-inline justify-content-center mt-5 mb-4">
                         <label class="sr-only" for="CompanyURN">CompanyURN</label>
                         <input id="CompanyURN" type="text" required placeholder="CompanyURN i.e. NG123456" class="form-control form-control-lg w-50" />
-                        <button type="submit" onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn btn-lg btn-primary">Report incident without risk</button>
+                        <button type="submit" onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn btn-lg btn-primary">Click here</button><span>report incident without risk</span>
 
                     </div>
                     <!--end of form inline -->

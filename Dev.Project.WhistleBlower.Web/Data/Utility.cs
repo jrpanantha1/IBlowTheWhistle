@@ -107,7 +107,7 @@ namespace Dev.Project.WhistleBlower.Web.Data
                 objeto_mail.Body = mailBody;
                 client.Send(objeto_mail);
             }
-            catch (Exception) { }
+            catch (Exception ex) { throw ex.InnerException; }
         }
         public static string GetEmailTemplate(string tempID)
         {
