@@ -274,6 +274,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\PageScripts\Banner.js" />
     <Content Include="Scripts\PageScripts\Casemanagement.js" />
     <Content Include="Scripts\PageScripts\CompanyProfile.js" />
     <Content Include="Scripts\PageScripts\Dashboard.js" />

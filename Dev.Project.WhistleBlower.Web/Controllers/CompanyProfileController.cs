@@ -59,7 +59,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 CompanyName = result.CompanyName,
                 CompanyLogo = result.CompanyLogo,
                 CompanyTopBanner = CompanyTopBannerURl,
-                CompanyValue = result.CompanyValue
+                CompanyValue = Cipher.Encrypt(result.CompanyValue, result.encPassword),
+                CompanyKey = Cipher.Encrypt(result.CompanyKey, result.encPassword)
 
             });
 

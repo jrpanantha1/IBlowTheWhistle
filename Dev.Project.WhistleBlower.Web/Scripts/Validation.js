@@ -144,7 +144,8 @@ function getUrlVars() {
     for (var i = 0; i < hashes.length; i++) {
         hash = hashes[i].split('=');
         vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
+        vars[hash[0]] = hash[1].replace(/#/, "");
     }
+
     return vars;
 }

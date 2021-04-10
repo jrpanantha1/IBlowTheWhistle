@@ -39,9 +39,12 @@ function getCompanyProfile() {
                 $("#txtQrCode").val(tarURL);
 
 
-                if (localStorage.getItem("AcctType") != "Admin") {
+                if (localStorage.getItem("AcctType") != "Admin" || response.SubscriptionPlan == 1) {
                     $('.AdminAccountOnlymenu').hide();
                 }
+                //update hidden key for feature ref
+                $('#hdnSusPlanCode').val(response.SubscriptionPlan);
+
             }
 
         },

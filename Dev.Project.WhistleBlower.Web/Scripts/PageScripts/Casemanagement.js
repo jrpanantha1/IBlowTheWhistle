@@ -112,6 +112,7 @@ function updateCaseInformation() {
         return false;
     }
     var iurn = getUrlVars()["iURN"];
+ 
 
     var dataResponse = {
         "CaseInformation": $('#txtMessage').val(),

@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <script src="/Scripts/PageScripts/Banner.js"></script>
     <script src="/Scripts/QRCode/qrcode.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -37,8 +38,8 @@
                     <p class="text-xl-center">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
                 <div class="col-xl-12 topBanner">
-                    <a class="ancImgTopBanner" target="_blank" href="https://iblowthewhistle.com/Pages/Home.aspx?kWbf0wReXWoLMLDfQVvvNA==/ibZxSe+yi7kfMi41TWwllf/g==">
-                        <img src="/IBTWImages/6dafd280-6980-4691-82f9-cf71633556b2/CompanyBanners/CompanyTopBanner.jpeg" class="imgTopBanner" alt="horizontal banner" />
+                    <a class="ancImgTopBanner" target="_blank" href="#">
+                        <img class="imgTopBanner" alt="horizontal banner" />
 
                     </a>
                 </div>

@@ -77,7 +77,7 @@
                                         <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
-                                               <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
+                                                <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
                                                 <span>English</span>
                                             </a>
                                             <a href="#" class="dropdown-item" id="thaiItem">
@@ -133,11 +133,11 @@
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/MyAccount.aspx"><i class="mr-3 icon-settings"></i>Account</a>
                                             </div>
-                                            <div class="dashboardMenu AdminAccountOnlymenu">
+                                            <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>Dashboard</a>
                                             </div>
-                                            <div class="dashboardMenu AdminAccountOnlymenu">
+                                            <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/Banners.aspx"><i class="mr-3 icon-settings"></i>Banners</a>
                                             </div>
@@ -191,6 +191,8 @@
             <!-- // Footer -->
 
         </div>
+        <input type="hidden" id="hdnAcctType" />
+        <input type="hidden" id="hdnSusPlanCode" />
     </form>
 </body>
 </html>
