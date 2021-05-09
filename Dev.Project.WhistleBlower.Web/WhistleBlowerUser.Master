@@ -19,6 +19,7 @@
     <script src="/Scripts/bootstrap.min.js" async defer></script>
     <script src="/assets/js/theme.min.js" async defer></script>
     <script src="/assets/js/form.validate.min.js"></script>
+    <script src="/assets/js/toast.script.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" rel="stylesheet" />
     <link href="/assets/css/styles.min.css" rel="stylesheet" />
     <script src="/Scripts/Utility.js"></script>
@@ -135,7 +136,7 @@
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>Dashboard</a>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>KPI Reports</a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
@@ -176,13 +177,26 @@
                         <div class="col-md">
                             <p>&copy; 2020 I Blow The Whistle. All rights reserved.</p>
                         </div>
+                        <div class="col-md-auto social-media-icon">
+                            <a target="_blank" href="https://twitter.com/Iblowthewhistl1" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>
+                            <a target="_blank" href="https://www.facebook.com/IBlowTheWhistle" class="icon-button facebook"><i class="icon-facebook"></i><span></span></a>
+                            <a target="_blank" href="https://www.youtube.com/channel/UCCcMaldr88LJ9xR8Et9J1XA" class="icon-button youtube"><i class="icon-youtube"></i><span></span></a>
+
+                        </div>
+
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a class="nav-link" href="/Pages/Legal.aspx">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Benefits">Benefits</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Customers">Customers</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Eligibility">Eligibility</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Explainer">Explainer</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/pricing">Pricing</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/terms">Legal</a></li>
                             </ul>
                         </div>
                         <!--end of col-->
+
                     </div>
                     <!--end of row-->
                 </div>

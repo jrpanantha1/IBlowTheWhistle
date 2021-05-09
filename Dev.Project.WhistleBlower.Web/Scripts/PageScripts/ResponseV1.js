@@ -175,7 +175,8 @@ function sendResponse() {
         success: function (response) {
             if (response != null && response != "") {
                 var items = response;
-                $('#divSuccess').show();
+                showSuccessMessage("Your response captured.");
+                //$('#divSuccess').show();
                 showHistroy(items);
                 $('#txtMessage').val("");
 

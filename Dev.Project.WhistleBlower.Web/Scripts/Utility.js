@@ -103,3 +103,15 @@ function menuEnableDisable() {
         }
     }
 }
+function showSuccessMessage(strMessage) {
+    $.Toast("Success", strMessage, "success", {
+        //has_icon: true,
+        has_close_btn: true,
+        stack: true,
+        fullscreen: true,
+        timeout: 8000,
+        sticky: false,
+        has_progress: true,
+        rtl: false,
+    });
+}

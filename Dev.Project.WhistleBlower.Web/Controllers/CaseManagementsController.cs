@@ -95,15 +95,37 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             {
                 return BadRequest("Invalid Request");
             }
-            CaseManagement objCase = new CaseManagement();
-            objCase.CaseURN = Guid.NewGuid();
-            objCase.IURN = caseManagement.IURN;
-            objCase.CompanyURN = new Guid(companyID);
-            objCase.RegUserID = new Guid(regUserID);
-            objCase.CaseInformation = caseManagement.CaseInformation;
-            objCase.CaseUpdated = System.DateTime.Now;
 
-            db.CaseManagements.Add(objCase);
+            var caseInfo = db.CaseManagements.FirstOrDefault(d => d.IURN.ToString() == caseManagement.IURN.ToString());
+            if (caseInfo == null)
+            {
+
+                CaseManagement objCase = new CaseManagement();
+                objCase.CaseURN = Guid.NewGuid();
+                objCase.IURN = caseManagement.IURN;
+                objCase.CompanyURN = new Guid(companyID);
+                objCase.RegUserID = new Guid(regUserID);
+                objCase.CaseInformation = caseManagement.CaseInformation;
+                objCase.CaseUpdated = System.DateTime.Now;
+
+                db.CaseManagements.Add(objCase);
+            }
+            else
+            {
+                string currentCaseStatment = caseInfo.CaseInformation;
+                if (currentCaseStatment.ToString().Trim() != caseManagement.CaseInformation.ToString().Trim())
+                {
+                    CaseManagement objCase = new CaseManagement();
+                    objCase.CaseURN = Guid.NewGuid();
+                    objCase.IURN = caseManagement.IURN;
+                    objCase.CompanyURN = new Guid(companyID);
+                    objCase.RegUserID = new Guid(regUserID);
+                    objCase.CaseInformation = caseManagement.CaseInformation;
+                    objCase.CaseUpdated = System.DateTime.Now;
+
+                    db.CaseManagements.Add(objCase);
+                }
+            }
 
             try
             {

@@ -219,7 +219,7 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <h6 class="mb-0">Case Transation Number</h6>
+                                                            <h6 class="mb-0">Case Transaction Number</h6>
                                                         </div>
                                                         <div class="col-sm-8 text-secondary">
                                                             <span id="spnIncID"></span>

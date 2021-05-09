@@ -94,7 +94,7 @@ function getIncidentDetails() {
                     "bDestroy": true,
                     "bProcessing": true,
                     "columnDefs": [
-                        { targets: [0, 2, 3, 11, 12, 13], visible: true },
+                        { targets: [0, 3, 11, 12, 13], visible: true },
                         { targets: '_all', visible: false }
                     ],
                     dom: 'Bfrtip',
@@ -145,11 +145,16 @@ function getIncidentDetails() {
                             "data": function (data, type, row, meta) {
                                 var ReturnHTML = '';
                                 // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
+                                var readStatus = 0;
+                                if (data.rIncCategory == 'null' || data.rIncCategory == null) {
+                                    readStatus = 1;
+                                }
+
                                 if (data.hisCount == "0") {
-                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
+                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
                                 }
                                 else {
-                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
+                                    ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>"
                                 }
                                 return ReturnHTML;
                             }
@@ -228,6 +233,7 @@ function getIncidentDetails() {
                         },
                         success: function (response) {
                             if (response != null && response == "Success") {
+                                updateCaseInformationOnStatusChange(selectedID, ddlSelectedValue);
                                 location.reload();
                             }
                         },
@@ -260,6 +266,35 @@ function getIncidentDetails() {
     })
 }
 
+function updateCaseInformationOnStatusChange(iurn, SelectedValue) {
+
+
+    var dataResponse = {
+        "CaseInformation": "Case status changed to " + SelectedValue,
+        "IURN": iurn
+    };
+
+    $.ajax({
+        url: '/api/CaseManagements',
+        method: 'POST',
+        data: JSON.stringify(dataResponse),
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
 
 function copyCompanyLink() {
     var copyText = document.getElementById("txtCompanyLink");

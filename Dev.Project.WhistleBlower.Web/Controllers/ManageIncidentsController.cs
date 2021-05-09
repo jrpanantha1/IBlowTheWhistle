@@ -466,8 +466,13 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 var whistleBlowIncident = db.WhistleBlowIncidents.FirstOrDefault(d => d.IURN.ToString() == IURN);
                 if (whistleBlowIncident != null)
                 {
-                    whistleBlowIncident.IncCategory = status;
-                    db.SaveChanges();
+                    string currrentStatus = whistleBlowIncident.IncCategory;
+                    if (currrentStatus != status)
+                    {
+                        whistleBlowIncident.IncCategory = status;
+                        db.SaveChanges();
+                    }
+
                 }
                 return Ok("Success");
             }

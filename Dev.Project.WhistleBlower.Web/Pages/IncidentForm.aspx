@@ -62,7 +62,7 @@
                 <div class="modal-body text-center">
                     <div id="texttocopy">
                         <h3 class="modal-title mb-3" id="successInfo">Your incident has been confirmed.</h3>
-                        <p class="text-center">Please note this transation id for future reference.</p>
+                        <p class="text-center">Please note this transaction id for future reference.</p>
                         <p class="text-center">
                             <strong>Transaction ID : </strong><span id="trxID"></span>
                             <input type="text" id="txtTran" class="hiddenControl" />

@@ -71,14 +71,14 @@
             }
 
         .divTopSection1 {
-            width: 15%;
+            min-width: 6%;
             float: left;
             text-align: left;
             padding: 10px;
         }
 
         .divTopSection2 {
-            width: 35%;
+            min-width: 35%;
             float: left;
             text-align: left;
             padding: 10px;
@@ -125,11 +125,10 @@
                     <div class="quote-box" style="margin-bottom: 10px;">
                         <div class="quote">
                             <blockquote>
-                                <div class="divTopSection1">Company Name</div>
+                                <div class="divTopSection1">Name</div>
                                 <div class="divTopSection2"><span id="spanCompany"></span></div>
-                                <div class="divTopSection1 companyCode" style="display: none">Company Code</div>
+                                <div class="divTopSection1 companyCode" style="display: none">Code</div>
                                 <div class="divTopSection2 companyCode" style="display: none"><span id="spanCode"></span></div>
-
                             </blockquote>
                         </div>
                         <div class="name companyURLSection" style="display: none">
@@ -164,29 +163,31 @@
                                         <div class="dropdown">
                                             <!-- Toggle -->
                                             <a href="#" class="dropdown-toggle" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="icon-filter mr-2"></i>Category
+                                                <i class="icon-filter mr-2"></i>All
                                             </a>
                                             <!-- Menu -->
 
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownFilter" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(82px, 21px, 0px);">
-                                                <a class="dropdown-item" href="#!">
+                                                <a class="dropdown-item active" href="#!">
                                                     <i class="icon-corner-up-left mr-2"></i>All
                                                 </a>
                                                 <a class="dropdown-item" href="#!">
-                                                    <i class="icon-message-circle mr-2"></i>New
-
+                                                    <i class="icon-message-circle mr-2"></i>Unread
                                                 </a>
                                                 <a class="dropdown-item" href="#!">
-                                                    <i class="icon-eye mr-2"></i>Open
+                                                    <i class="icon-eye mr-2"></i>Read
                                                 </a>
                                                 <a class="dropdown-item" href="#!">
-                                                    <i class="icon-trending-up mr-2"></i>Resource
+                                                    <i class="icon-trending-up mr-2"></i>Important
                                                 </a>
                                                 <a class="dropdown-item" href="#!">
-                                                    <i class="icon-zap mr-2"></i>In Progress
+                                                    <i class="icon-zap mr-2"></i>Done
                                                 </a>
                                                 <a class="dropdown-item" href="#!">
-                                                    <i class="icon-zap mr-2"></i>Closed
+                                                    <i class="icon-zap mr-2"></i>Discarded
+                                                </a>
+                                                <a class="dropdown-item" href="#!">
+                                                    <i class="icon-zap mr-2"></i>Route to email
                                                 </a>
                                             </div>
                                         </div>

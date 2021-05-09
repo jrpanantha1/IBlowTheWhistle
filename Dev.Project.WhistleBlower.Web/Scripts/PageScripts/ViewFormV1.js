@@ -9,6 +9,12 @@
         window.location.href = "/Pages/Login.aspx";
     }
     menuEnableDisable();//ref Utility.js
+
+
+
+});
+$(window).on('load', function () {
+    updateReadStatus();
 });
 
 function loadFormDetails(iURN) {
@@ -147,4 +153,65 @@ function dataURLtoFile(dataurl, filename) {
     }
 
     return new File([u8arr], { type: mime });
+}
+
+function updateReadStatus() {
+
+    var selectedID = getUrlVars()["vs"]
+    if (selectedID == 1) {
+
+        var ddlSelectedValue = 'Read';
+        var iurnID = getUrlVars()["iURN"];
+
+        $.ajax({
+            url: '/api/ManageIncidents?IURN=' + iurnID + '&status=' + ddlSelectedValue + '',
+            method: 'PUT',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+            },
+            success: function (response) {
+                if (response != null && response == "Success") {
+                    updateCaseInformation(iurnID);
+                }
+            },
+            error: function (response) {
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+}
+function updateCaseInformation(iurn) {
+
+
+    var dataResponse = {
+        "CaseInformation": "Case Opened",
+        "IURN": iurn
+    };
+
+    $.ajax({
+        url: '/api/CaseManagements',
+        method: 'POST',
+        data: JSON.stringify(dataResponse),
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
 }

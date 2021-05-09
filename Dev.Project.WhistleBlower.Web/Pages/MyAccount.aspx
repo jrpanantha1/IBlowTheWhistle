@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <script src="/Scripts/PageScripts/MyAccount.js"></script>
-    <script src="/assets/js/toast.script.js"></script>
+
     <style type="text/css">
         .file-attachment-btn-label {
             position: absolute;
@@ -166,19 +166,6 @@
             }
         });
 
-
-
-        function showSuccessMessage(strMessage) {
-            $.Toast("Success", strMessage, "success", {
-                //has_icon: true,
-                has_close_btn: true,
-                stack: true,
-                fullscreen: true,
-                timeout: 8000,
-                sticky: false,
-                has_progress: true,
-                rtl: false,
-            });
-        }
+      
     </script>
 </asp:Content>

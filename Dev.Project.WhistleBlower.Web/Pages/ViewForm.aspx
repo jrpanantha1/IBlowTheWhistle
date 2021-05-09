@@ -175,7 +175,7 @@
                     <!-- end of div -->
 
                     <p class="text-muted text-center" id="lblIdentityNeverRevel"><i class="icon-lock mr-1"></i></p>
-                    <p class="text-muted text-center">Transation Ref ID: <strong><span class='spanTraxID'></span></strong></p>
+                    <p class="text-muted text-center">Transaction Ref ID: <strong><span class='spanTraxID'></span></strong></p>
                     <p class="text-muted text-center">Submission Date Time : <strong><span class='spanTraxDate'></span></strong></p>
                 </div>
                 <!--end of col-->
