@@ -14,12 +14,19 @@
     <section id="reportFraud" class="section-hero">
         <div class="container">
             <div class="row justify-content-center align-items-center py-10 langDirection">
+                <div class="topBanner">
+                    <a class="ancImgTopBanner" target="_blank" href="#">
+                        <img class="imgTopBanner" alt="horizontal banner" />
+
+                    </a>
+                </div>
                 <div class="col-lg-10 col-xl-8">
+
                     <div class="text-center">
-                        <h1 class="display-3" style="color: #00B48F" id="h1CompanyName"></h1>
+                        <h1 class="display-5" style="color: #00B48F" id="h1CompanyName"></h1>
                     </div>
                     <div class="text-center">
-                        <h2 class="display-4" id="ReportIncident"></h2>
+                        <h2 class="display-5" id="ReportIncident"></h2>
                         <p class="lead" id="pAreYouWhistleBlower"></p>
                     </div>
                     <!-- end of text-center -->

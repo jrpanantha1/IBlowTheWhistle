@@ -312,6 +312,7 @@
     <Compile Include="Controllers\FileUploaderController.cs" />
     <Compile Include="Controllers\IBTWProspectsController.cs" />
     <Compile Include="Controllers\LanguageDetailsController.cs" />
+    <Compile Include="Controllers\LanguageMastersController.cs" />
     <Compile Include="Controllers\ManageIncidentsController.cs" />
     <Compile Include="Controllers\RegisteredUsersController.cs" />
     <Compile Include="Controllers\ResponseLanguagesController.cs" />

@@ -208,12 +208,23 @@ function getIncidentDetails() {
                     // $('.topBanner').hide();
                 }
                 else {
-                    tblDT.button(0).enable(true);
-                    tblDT.column(13).visible(true);
+                    //if freemium then disbale
+                    if ($('#hdnSusPlanCode').val() == "1") {
+                        tblDT.buttons().disable();
+                        tblDT.column(13).visible(false);// category coln
+
+                    }
+                    else {
+                        tblDT.column(13).visible(true);
+                    }
+
+                    //tblDT.button(0).enable(true);
+
                     //enable company code
                     $('.companyCode').show();
                     //$('.topBanner').show();
                 }
+
 
 
 

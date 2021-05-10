@@ -14,9 +14,14 @@
     <section class="py-10">
         <div class="container">
             <div class="row justify-content-center">
+                <div class="topBanner">
+                    <a class="ancImgTopBanner" target="_blank" href="#">
+                        <img class="imgTopBanner" alt="horizontal banner" />
+                    </a>
+                </div>
                 <div class="col-lg-10 col-xl-8">
                     <header class="text-center mb-6">
-                        <h1 class="display-3" id="formTitle"></h1>
+                        <h1 class="display-5" id="formTitle"></h1>
                         <p class="lead" id="formShortNote"></p>
                     </header>
                     <!-- end of header -->

@@ -1,5 +1,166 @@
 ﻿$(document).ready(function () {
 
+    getLanguageMaster();
+
+
+
+    applyLangClickEvent();
+
+});
+function applyLangClickEvent() {
+    $(".ddlLanguage a").click(function () {
+
+        var selectedLangClassName = $("#dropdownLanguage i").attr("class");
+        $("#dropdownLanguage i").removeClass();
+        var lanCode = 1;
+
+        $(".ddlLanguage a").removeClass("selected-item");
+        $(this).addClass("selected-item");
+
+        switch ($(this).find("span").text()) {
+
+            case "English":
+                lanCode = 1;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
+                $("#dropdownLanguage").text("US");
+                break;
+            //Thai
+            case "ไทย":
+                lanCode = 2;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-th");
+                $("#dropdownLanguage").text("TH");
+                break;
+            //French
+            case "Française":
+                lanCode = 3;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-fr");
+                $("#dropdownLanguage").text("FR");
+                break;
+            //Spanish
+            case "Espagnole":
+                lanCode = 4;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-es");
+                $("#dropdownLanguage").text("ES");
+                break;
+            //Russian
+            case "русский":
+                lanCode = 5;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ru");
+                $("#dropdownLanguage").text("RU");
+                break;
+            //Kazakh
+            case "Қазақ":
+                lanCode = 6;
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $("#dropdownLanguage").text("KZ");
+                break;
+            //Arabic
+            case "عربى":
+                lanCode = 7;
+                //$(".langDirection").css("direction", "ltr");
+                $(".langDirection").css("text-align", "left");
+
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ar");
+                $("#dropdownLanguage").text("AR");
+                break;
+
+            //Chinese
+            case "中文":
+                lanCode = 8;
+                $("#dropdownLanguage").text("Cn");
+                break;
+
+            //Hindi
+            case "हिन्दी":
+                lanCode = 9;
+                $("#dropdownLanguage").text("Hi");
+                break;
+
+            //Urdu
+            case "اردو":
+                lanCode = 10;
+                $("#dropdownLanguage").text("Ur");
+                break;
+
+            //Malay
+            case "Bahasa Melayu":
+                lanCode = 11;
+                $("#dropdownLanguage").text("Ms");
+                break;
+
+            default:
+                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
+                lanCode = 1;
+                $("#dropdownLanguage").text("US");
+                break;
+
+        }
+        // sessionStorage.setItem("iBlowLanguage", $(this).find("span").text());
+        sessionStorage.setItem("iBlowLanguage", lanCode);
+        sessionStorage.setItem("lngSelectedItemTick", $(this).attr("id"));
+        location.reload();
+
+    });
+}
+function applyLanguageOnDemand(sLang) {
+    $("#dropdownLanguage i").removeClass();
+    switch (sLang) {
+
+        case "English":
+            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
+            break;
+
+        case "Arabic":
+            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ar");
+            break;
+
+        default:
+            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
+            break;
+
+    }
+}
+
+function getLanguageMaster() {
+
+
+    $.ajax({
+        url: '/api/LanguageMasters',
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            constructLanguageDropdown(response);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+function constructLanguageDropdown(objLangMaster) {
+    var langHtmlString = "";
+    var langMasterCount = objLangMaster.length;
+    $('.ddlLanguage').empty();
+    for (var i = 0; i < langMasterCount; i++) {
+
+        langHtmlString += '<a href="#"class="dropdown-item" id="lngID' + i + '" > <span>' + objLangMaster[i].DisplayText + '</span></a>';
+
+    }
+
+    $('.ddlLanguage').append(langHtmlString);
+    applySelectedItemTick();
+    applyLangClickEvent();
+
+}
+
+function applySelectedItemTick() {
+
     if (sessionStorage.getItem("iBlowLanguage") != null) {
         $("#dropdownLanguage i").removeClass();
         var sLang = sessionStorage.getItem("iBlowLanguage").toString();
@@ -48,6 +209,26 @@
                 $("#dropdownLanguage").text("AR");
                 break;
 
+            case "8":
+                // $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $("#dropdownLanguage").text("Cn");
+                break;
+
+            case "9":
+                // $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $("#dropdownLanguage").text("Hi");
+                break;
+
+            case "10":
+                // $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $("#dropdownLanguage").text("Ur");
+                break;
+
+            case "11":
+                // $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $("#dropdownLanguage").text("Ms");
+                break;
+
             default:
                 //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
                 $("#dropdownLanguage").text("US");
@@ -58,94 +239,5 @@
     }
     else {
         $("#dropdownLanguage").text("US");
-    }
-    $(".ddlLanguage a").click(function () {
-
-        var selectedLangClassName = $("#dropdownLanguage i").attr("class");
-        $("#dropdownLanguage i").removeClass();
-        var lanCode = 1;
-
-        $(".ddlLanguage a").removeClass("selected-item");
-        $(this).addClass("selected-item");
-
-        switch ($(this).find("span").text()) {
-
-            case "English":
-                lanCode = 1;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-                $("#dropdownLanguage").text("US");
-                break;
-
-            case "Thai":
-                lanCode = 2;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-th");
-                $("#dropdownLanguage").text("TH");
-                break;
-
-            case "French":
-                lanCode = 3;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-fr");
-                $("#dropdownLanguage").text("FR");
-                break;
-
-            case "Spanish":
-                lanCode = 4;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-es");
-                $("#dropdownLanguage").text("ES");
-                break;
-
-            case "Russian":
-                lanCode = 5;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ru");
-                $("#dropdownLanguage").text("RU");
-                break;
-
-            case "Kazakh":
-                lanCode = 6;
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
-                $("#dropdownLanguage").text("KZ");
-                break;
-
-            case "Arabic":
-                lanCode = 7;
-                //$(".langDirection").css("direction", "ltr");
-                $(".langDirection").css("text-align", "left");
-
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ar");
-                $("#dropdownLanguage").text("AR");
-                break;
-
-            default:
-                //$("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-                $("#dropdownLanguage").text("US");
-                break;
-
-        }
-        // sessionStorage.setItem("iBlowLanguage", $(this).find("span").text());
-        sessionStorage.setItem("iBlowLanguage", lanCode);
-        sessionStorage.setItem("lngSelectedItemTick", $(this).attr("id"));
-        location.reload();
-
-    });
-
-
-
-});
-function applyLanguageOnDemand(sLang) {
-    $("#dropdownLanguage i").removeClass();
-    switch (sLang) {
-
-        case "English":
-            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-            break;
-
-        case "Arabic":
-            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ar");
-            break;
-
-        default:
-            $("#dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-            break;
-
     }
 }
