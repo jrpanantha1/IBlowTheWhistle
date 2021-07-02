@@ -7,6 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <script src="/Scripts/PageScripts/MyAccount.js"></script>
 
+
     <style type="text/css">
         .file-attachment-btn-label {
             position: absolute;
@@ -28,7 +29,7 @@
                                 <div class="col-xl-12 top-header">
                                     <h1>My Account</h1>
                                     <span class="header-line"></span>
-                                    <p class="text-xl-center">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p class="text-xl-center">My Account is the central customer dashboard in I Blow The Whistle. Customers can change company avatars, banners, view past orders and payment details.</p>
                                 </div>
 
                                 <ul class="accordion">
@@ -71,15 +72,15 @@
                                             <div class="d-flex justify-content-center align-items-center pb-3 inner-2">
 
                                                 <!-- // no avatar -->
-                                                <img class="imgTopBanner" src="/assets/images/Whistle_728x90_Internalbanner.PNG" alt="" />
-                                                `<br />
+                                                <img class="imgTopBanner" src="/assets/images/WhistleDefaultTopBanner.PNG" alt="" />
+                                                <br />
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
                                                     <label class="btn btn-sm btn-dark file-attachment-btn" for="topBannerAttachmentBtn">
                                                         Select Top Banner
                                                       <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     </label>
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary p-4" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
 
                                                 </div>
                                                 <!--end of avatar change-->
@@ -94,26 +95,61 @@
                                         </div>
                                     </li>
 
-                                    <li class="accordion-list" style="display: none">
-                                        <a class="toggle" href="#">Item 3</a>
-                                        <p class="inner">
-                                            Let's make a nice big leafy tree. You have to make those little noises or it won't work. Let's put some happy little clouds in our world. We don't really know where this goes - and I'm not sure we really care. When you do it your way you can go anywhere you choose. No worries. No cares. Just float and wait for the wind to blow you around.
-                                        </p>
+                                    <li class="accordion-list">
+                                        <a class="toggle" href="#">Preferred Language</a>
+                                        <div class="inner intro mb-4" style="height: auto; min-height: 400px;">
+                                            <p class="inner">
+                                                Let's make a nice big leafy tree. You have to make those little noises or it won't work. Let's put some happy little clouds in our world. We don't really know where this goes - and I'm not sure we really care. When you do it your way you can go anywhere you choose. No worries. No cares. Just float and wait for the wind to blow you around.
+                                            </p>
+                                            <div class="d-flex justify-content-center align-items-center pb-3 inner-2">
+
+                                                <div class="nav-item dropdown language-switcher">
+                                                    <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
+                                                    <label>
+                                                        Select Preferred Language                                                    
+                                                    </label>
+                                                    <a class="nav-link icon dropdown-toggle avatar-sm d-inline-flex dropdownLanguage" href="#" style="border: 2px solid #999; padding-left: 10px; border-radius: 50%" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                                                    <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
+                                                        <a href="#" class="dropdown-item" id="engItem">
+                                                            <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
+                                                            <span>English</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="thaiItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-th"></i>--%>
+                                                            <span>Thai</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="frenchItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-fr"></i>--%>
+                                                            <span>French</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="spanishItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-es"></i>--%>
+                                                            <span>Spanish</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="russianItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-ru"></i>--%>
+                                                            <span>Russian</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="kazItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-kz"></i>--%>
+                                                            <span>Kazakh</span>
+                                                        </a>
+                                                        <a href="#" class="dropdown-item" id="arabicItem">
+                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-ar"></i>--%>
+                                                            <span>Arabic</span>
+                                                        </a>
+                                                    </div>
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Language" onclick="updateCompanyProfile();" id="btnUpdateLanguage" />
+
+                                                </div>
+                                                <!--end of avatar change-->
+                                                <!--end of flex-->
+
+                                            </div>
+                                        </div>
                                     </li>
 
-                                    <li class="accordion-list" style="display: none">
-                                        <a class="toggle" href="#">Item 4</a>
-                                        <p class="inner">
-                                            Let's make a nice big leafy tree. You have to make those little noises or it won't work. Let's put some happy little clouds in our world. We don't really know where this goes - and I'm not sure we really care. When you do it your way you can go anywhere you choose. No worries. No cares. Just float and wait for the wind to blow you around.
-                                        </p>
-                                    </li>
                                 </ul>
-
-
-
-
-
-
 
                             </div>
                             <!--end of col-->
@@ -166,6 +202,6 @@
             }
         });
 
-      
+
     </script>
 </asp:Content>

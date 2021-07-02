@@ -27,5 +27,6 @@ namespace Dev.Project.WhistleBlower.Web.Models
         public string WitnessEmail { get; set; }
         public string WitnessPhone { get; set; }
         public Nullable<System.DateTime> WitnessModifiedDate { get; set; }
+        public string ReportedLanguageID { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-
-    if (sessionStorage.getItem('accessToken') != null) {
+    debugger;
+    if (localStorage.getItem('accessToken') != null) {
         getLabelDetails();//ref Utility.js; load multilingual label information from DB
         getCompanyProfile();
     }
@@ -27,6 +27,13 @@ function getCompanyProfile() {
 
                 if (response.CompanyName != null && response.CompanyName != "") {
                     $("#h1CompanyName").text(response.CompanyName);// display in View Incident and Reoprt Incodent top 
+                }
+                if (localStorage.getItem("AcctType") == "Admin") {
+                    $('#btnGoHome').hide();
+                    $('#btnGoClose').show();
+                    $('.UpdatedOnIncidentDisableForAdmin').hide();
+                    $('#collapseUpdatedOnIncident').hide();
+                    $('.signIn').hide();
                 }
 
             }
@@ -83,46 +90,50 @@ function IncidentFormValidation() {
     var emailElm = $('#UpdatedOnIncidentMethodEmail');
     var phoneElm = $('#UpdatedOnIncidentMethodPhone');
 
-    if (incElm.val() == null || incElm.find(":selected").index() == 0 || incElm.val() == "") {
-        flag = false;
-        incElm.addClass('error');
-    }
-    else if (incElm.val() == null || incElm.find(":selected").index() == 2 || incElm.val() == "") {
-        incElm.removeClass('error');
-        incElmMethod.removeClass('error');
-        emailElm.removeClass('error');
-        phoneElm.removeClass('error');
-    }
-    else {
-        incElm.removeClass('error');
+    if (localStorage.getItem("AcctType") != "Admin") {
 
-
-        if (incElmMethod.val() == null || incElmMethod.find(":selected").index() == 0 || incElmMethod.val() == "") {
+        if (incElm.val() == null || incElm.find(":selected").index() == 0 || incElm.val() == "") {
             flag = false;
-            incElmMethod.addClass('error');
+            incElm.addClass('error');
+        }
+        else if (incElm.val() == null || incElm.find(":selected").index() == 2 || incElm.val() == "") {
+            incElm.removeClass('error');
+            incElmMethod.removeClass('error');
+            emailElm.removeClass('error');
+            phoneElm.removeClass('error');
         }
         else {
-            incElmMethod.removeClass('error');
-            if (incElmMethod.find(":selected").index() == 1) {
+            incElm.removeClass('error');
 
-                if (emailElm.val() == null || emailElm.val() == "") {
-                    flag = false;
-                    emailElm.addClass('error');
+
+            if (incElmMethod.val() == null || incElmMethod.find(":selected").index() == 0 || incElmMethod.val() == "") {
+                flag = false;
+                incElmMethod.addClass('error');
+            }
+            else {
+                incElmMethod.removeClass('error');
+                if (incElmMethod.find(":selected").index() == 1) {
+
+                    if (emailElm.val() == null || emailElm.val() == "") {
+                        flag = false;
+                        emailElm.addClass('error');
+                    }
+                    else {
+                        emailElm.removeClass('error');
+                    }
                 }
-                else {
-                    emailElm.removeClass('error');
+                if (incElmMethod.find(":selected").index() == 2) {
+
+                    if (phoneElm.val() == null || phoneElm.val() == "") {
+                        flag = false;
+                        phoneElm.addClass('error');
+                    }
+                    else {
+                        phoneElm.removeClass('error');
+                    }
                 }
             }
-            if (incElmMethod.find(":selected").index() == 2) {
 
-                if (phoneElm.val() == null || phoneElm.val() == "") {
-                    flag = false;
-                    phoneElm.addClass('error');
-                }
-                else {
-                    phoneElm.removeClass('error');
-                }
-            }
         }
     }
 
@@ -224,7 +235,8 @@ function submitIncidentDetails() {
         "SupportingDocuments2": CompanyLogoBase642,
         "WitnessFullName": $('#WitnessFullName').val(),
         "WitnessEmail": $('#WitnessEmail').val(),
-        "WitnessPhone": $('#WitnessPhone').val()
+        "WitnessPhone": $('#WitnessPhone').val(),
+        "ReportedLanguageID": sessionStorage.getItem("iBlowLanguage")
     }
     var objWitnessDataColn = [];
 
@@ -265,7 +277,7 @@ function submitIncidentDetails() {
         data: strFinalData, //JSON.stringify(WhistleBlowData),
         async: false,
         headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         },
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
@@ -287,6 +299,14 @@ function submitIncidentDetails() {
                 }
 
                 $('#AnonymousModal').modal('show');
+                if (localStorage.getItem("AcctType") != "Admin") {
+                    $('#btnGoHome').show();
+                    $('#btnGoClose').hide();
+                }
+                else {
+                    $('#btnGoHome').hide();
+                    $('#btnGoClose').show();
+                }
             }
         },
         error: function (response) {

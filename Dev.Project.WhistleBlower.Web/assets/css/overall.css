@@ -1,0 +1,220 @@
+﻿/****************************************** Banner ***********************************************/
+
+.bannername {
+    background-color: #333;
+    color: #fff;
+    font-size: 20px;
+    padding: 20px 20px 20px 20px;
+    margin: 0 0 30px 0;
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+
+    .bannername .bannertitletxt {
+        float: left;
+        width: auto;
+        margin-top: 4px;
+        margin-right: 5px;
+    }
+
+    .bannername input {
+        float: left;
+        width: 86%;
+        border: 1px solid #333;
+        background: #fff;
+        border-radius: 6px;
+        padding: 6px 6px;
+        font-size: 15px;
+        margin: 0 5px;
+    }
+
+
+    .bannername .icon-clipboard {
+        margin-top: 8px;
+        float: left;
+        position: relative;
+        z-index: 99;
+    }
+
+.banner-container {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+
+.bannerimg-1, .bannerimg-2 {
+    width: 100%;
+    float: left;
+    margin: 0 0 20px 0;
+}
+
+    .bannerimg-1 img, .bannerimg-2 img {
+        width: 100%;
+        float: left;
+    }
+
+    .bannerimg-1 p, .bannerimg-2 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+
+.bannerimg-3 {
+    width: 250px;
+    float: left;
+    margin: 0 30px 20px 0;
+    height: 250px;
+}
+
+    .bannerimg-3 img {
+        width: 100%;
+        float: left;
+        height: 100%;
+    }
+
+    .bannerimg-3 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+.bannerimg-4 {
+    width: auto;
+    float: left;
+    margin: 0 30px 20px 0;
+    height: 250px;
+}
+
+    .bannerimg-4 img {
+        width: 100%;
+        float: left;
+        height: 100%;
+    }
+
+    .bannerimg-4 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+.bannerimg-5 {
+    width: auto;
+    float: left;
+    margin: 30px 30px 20px 0;
+    height: auto;
+}
+
+    .bannerimg-5 img {
+        width: 100%;
+        float: left;
+        height: 100%;
+    }
+
+    .bannerimg-5 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+.bannerimg-6 {
+    width: auto;
+    float: left;
+    margin: 30px 30px 20px 0;
+    height: auto;
+}
+
+    .bannerimg-6 img {
+        width: 100%;
+        float: left;
+        height: 100%;
+    }
+
+    .bannerimg-6 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+.bannerimg-7 {
+    width: auto;
+    float: left;
+    margin: 30px 0 0 0;
+    height: auto;
+}
+
+    .bannerimg-7 img {
+        width: 100%;
+        float: left;
+        height: 100%;
+    }
+
+    .bannerimg-7 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+
+
+.bannerimg-8 {
+    width: auto;
+    float: left;
+    margin: 20px 0 20px 0;
+    height: 90px;
+}
+
+    .bannerimg-8 img {
+        width: 180px;
+        float: left;
+        height: 350px;
+    }
+
+    .bannerimg-8 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+.bannerimg-9 {
+    width: auto;
+    float: left;
+    margin: 0 0 20px 0;
+}
+
+    .bannerimg-9 img {
+        width: auto;
+        float: left;
+    }
+
+    .bannerimg-9 p {
+        width: 100%;
+        float: left;
+        color: #000;
+    }
+
+
+
+#btnSaveasImage {
+    border: 1px solid #00B48F;
+    padding: 0 10px 3px 10px;
+    color: #fff;
+    background: #00B48F;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 10px !important;
+}
+
+
+    #btnSaveasImage:hover {
+        border: 1px solid #00B48F;
+        color: #00B48F;
+        background: #fff;
+    }

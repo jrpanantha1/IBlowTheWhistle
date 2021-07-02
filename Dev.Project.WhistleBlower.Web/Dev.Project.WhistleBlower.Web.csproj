@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -201,12 +201,15 @@
   <ItemGroup>
     <Content Include="assets\css\bootstrap-responsive.min.css" />
     <Content Include="assets\css\jquery.dataTables.css" />
+    <Content Include="assets\css\overall.css" />
     <Content Include="assets\css\styles.min.css" />
     <Content Include="assets\fonts\feather.svg" />
     <Content Include="assets\images\avatar-woman.jpg" />
+    <Content Include="assets\images\avatar7.png" />
     <Content Include="assets\images\bg--hero.jpg" />
     <Content Include="assets\images\default-profile_01.png" />
     <Content Include="assets\images\happywoman.jpg" />
+    <Content Include="assets\images\IblowTheWhistleCustomerBanner.png" />
     <Content Include="assets\images\laptop-woman.jpg" />
     <Content Include="assets\images\LargeAvatar.png" />
     <Content Include="assets\images\logo-eformulus-light.png" />
@@ -217,8 +220,16 @@
     <Content Include="assets\images\plus-icon.png" />
     <Content Include="assets\images\social-card.png" />
     <Content Include="assets\images\whistle-icon.png" />
+    <Content Include="assets\images\WhistleDefaultTopBanner.png" />
     <Content Include="assets\images\Whistle_728x90.jpg" />
-    <Content Include="assets\images\Whistle_728x90_Internalbanner.png" />
+    <Content Include="assets\images\Whistle_Long.jpg" />
+    <Content Include="assets\images\Whistle_Long_Internalbanner.png" />
+    <Content Include="assets\images\Whistle_MediumSquare.jpg" />
+    <Content Include="assets\images\Whistle_Rect.jpg" />
+    <Content Include="assets\images\Whistle_small.jpg" />
+    <Content Include="assets\images\Whistle_Small_Square.jpg" />
+    <Content Include="assets\images\Whistle_SquareLarge.jpg" />
+    <Content Include="assets\images\Whistle_Tall.jpg" />
     <Content Include="assets\js\autosize.min.js" />
     <Content Include="assets\js\dataTables.responsive.min.js" />
     <Content Include="assets\js\form.min.js" />
@@ -229,11 +240,20 @@
     <Content Include="assets\js\toast.script.js" />
     <Content Include="Global.asax" />
     <Content Include="Images\ExcelIcon.png" />
+    <Content Include="Images\IblowTheWhistleCustomerBanner.png" />
     <Content Include="Images\IBTWBook.png" />
     <Content Include="Images\PricingStructure.jpg" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
+    <Content Include="Images\Whistle_Long.jpg" />
+    <Content Include="Images\Whistle_Long_Internalbanner.png" />
+    <Content Include="Images\Whistle_MediumSquare.jpg" />
+    <Content Include="Images\Whistle_Rect.jpg" />
+    <Content Include="Images\Whistle_small.jpg" />
+    <Content Include="Images\Whistle_Small_Square.jpg" />
+    <Content Include="Images\Whistle_SquareLarge.jpg" />
+    <Content Include="Images\Whistle_Tall.jpg" />
     <Content Include="JQDatatables\datatables.min.css" />
     <Content Include="JQDatatables\datatables.min.js" />
     <Content Include="Pages\Admin.aspx" />
@@ -289,6 +309,7 @@
     <Content Include="Scripts\PageScripts\ViewFormV1.js" />
     <Content Include="Scripts\PageScripts\ViewIncidents.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\QRCode\jquery.qrcode.js" />
     <Content Include="Scripts\QRCode\qrcode.js" />
     <Content Include="Scripts\Toaster\4.5.2\bootstrap.min.js" />
     <Content Include="Scripts\Toaster\popper.min.js" />
@@ -306,6 +327,7 @@
     <Compile Include="Authorization\WhistleBlowerAuthorizationServerProvider.cs" />
     <Compile Include="Controllers\AnonymousResponseHistoriesController.cs" />
     <Compile Include="Controllers\CaseManagementsController.cs" />
+    <Compile Include="Controllers\CasePreActionMastersController.cs" />
     <Compile Include="Controllers\CompanyMastersController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\ExchangeController.cs" />
@@ -318,6 +340,7 @@
     <Compile Include="Controllers\ResponseLanguagesController.cs" />
     <Compile Include="Controllers\TestAPIController.cs" />
     <Compile Include="Controllers\ViewDashboardController.cs" />
+    <Compile Include="Controllers\ViewIncidentsLanguagesController.cs" />
     <Compile Include="Data\Cipher.cs" />
     <Compile Include="Data\IncDashboard.cs" />
     <Compile Include="Data\IncidentConfirmation.cs" />
@@ -558,8 +581,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.0.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

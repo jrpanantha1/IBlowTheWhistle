@@ -56,6 +56,7 @@
     <script type="text/javascript">
         function clearSession() {
             sessionStorage.clear();
+            localStorage.clear();
             sessionStorage.removeItem("accessToken");
             window.location.href = "/";
         }
@@ -74,8 +75,11 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item">
+                                        <a onclick="location.reload();return false;" href="#" title="Refresh" class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
+                                    </li>
                                     <li class="nav-item dropdown language-switcher">
-                                        <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
                                                 <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
@@ -136,24 +140,26 @@
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-settings"></i>KPI Reports</a>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>KPI Reports</a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Banners.aspx"><i class="mr-3 icon-settings"></i>Banners</a>
+                                                <a class="dropdown-item" href="/Pages/Banners.aspx"><i class="mr-3 icon-image"></i>Banners</a>
+                                            </div>
+                                            <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/Pages/IncidentForm.aspx"><i class="mr-3 icon-file-plus"></i>Capture Own Incidents</a>
                                             </div>
                                             <div class="preferencesMenu">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/ResetPassword.aspx"><i class="mr-3 icon-settings"></i>Reset Password</a>
+                                                <a class="dropdown-item" href="/Pages/ResetPassword.aspx"><i class="mr-3 icon-command"></i>Reset Password</a>
                                             </div>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-power"></i>Sign Out</a>
+                                            <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-log-out"></i>Sign Out</a>
                                         </div>
                                         <!--end of dropdown menu-->
                                     </li>
-                                    <li class="nav-item" style="display: none">
-                                        <a href="/Pages/IncidentForm.aspx?F2aKFRGgdTcUQrtihBoXaw==/MxuIhQrz2uCRfhpn/Mx2tw==" class="btn btn-sm btn-primary d-block d-lg-inline-block smooth-scroll"><i class="icon-plus mr-2"></i>Report Incident</a>
-                                    </li>
+
                                 </ul>
                             </div>
                             <!--end nav collapse-->
@@ -175,7 +181,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col-md">
-                            <p>&copy; 2020 I Blow The Whistle. All rights reserved.</p>
+                            <p>&copy; 2021 I Blow The Whistle. All rights reserved.</p>
                         </div>
                         <div class="col-md-auto social-media-icon">
                             <a target="_blank" href="https://twitter.com/Iblowthewhistl1" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>

@@ -217,7 +217,7 @@ function loadLanguageDetails() {
                 $('#btSend').text(response[0].Submit);
                 $('#btnClose').text(response[0].Close);
                 $('#successMessage').text(response[0].SuccessMessage);
-                $('#leaveComment').text(response[0].Leavecomment);
+                $('#txtMessage').attr("placeholder", response[0].Leavecomment);
                 anonymousText = response[0].AnonymousUser;
             }
         },
@@ -247,10 +247,11 @@ function getBannerDetails() {
 
                 }
                 else {
-                    $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                    $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
                 var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
+                $('.topBanner').show();
             }
 
         },

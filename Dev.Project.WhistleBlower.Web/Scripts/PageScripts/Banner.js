@@ -22,15 +22,20 @@ function getBannerDetails() {
         success: function (response) {
             if (response != null && response != "") {
                 if (localStorage.getItem("AcctType") == "Admin") {
+
                     if (response[0].CompanyTopBanner != null && response[0].CompanyTopBanner != "") {
                         $('.imgTopBanner').attr("src", response[0].CompanyTopBanner);
-
                     }
                     else {
-                        $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                        $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                     }
                     var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                    //copy to clipboard
+                    var bannerValue = "<a target='_blank' href='" + tarURL + "'><img class='imgTopBanner' src='/assets/images/WhistleDefaultTopBanner.PNG' alt='horizontal banner' /></a>";
+                    $('#txtBannerText').val(bannerValue);
+
                     $('.ancImgTopBanner').attr("href", tarURL);
+                    
                 }
             }
 
@@ -42,4 +47,13 @@ function getBannerDetails() {
             alert(response.responseText);
         }
     });
+}
+function copyBannerLink() {
+    var copyText = document.getElementById("txtBannerText");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+    var tooltip = document.getElementById("myTooltipPass");
+    tooltip.innerHTML = "Copied";
 }

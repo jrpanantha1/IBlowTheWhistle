@@ -6,6 +6,7 @@
         window.location.href = "/Pages/Login.aspx";
     }
     getCaseDocuments();
+    loadCasePreActionMaster();
     getCaseManagementDetails();
 
 
@@ -31,7 +32,10 @@ function getCaseManagementDetails() {
                 var caseMngt = response.caseMngtColn;
 
                 if (whistleResponse != null) {
-                    $('#spnSubmissionDate').text(whistleResponse.SubmissionDateTime != null ? new Date(whistleResponse.SubmissionDateTime).toLocaleDateString() : "");
+                    $('#spnSubmissionDate').text(whistleResponse.SubmissionDateTime != null ? new Date(whistleResponse.SubmissionDateTime).toLocaleDateString('en-US', { hour: 'numeric', hour12: true }) : "");
+                }
+                if (caseMngt != null) {
+                    $('#spnLastModifiyDate').text(new Date(caseMngt[0].CaseUpdated).toLocaleDateString() != null ? new Date(caseMngt[0].CaseUpdated).toLocaleDateString('en-US', { hour: 'numeric', hour12: true }) : "");
                 }
                 if (caseMngt != null) {
                     constructCaseTimeLine(caseMngt);
@@ -49,7 +53,39 @@ function getCaseManagementDetails() {
         }
     });
 }
+function loadCasePreActionMaster() {
+    var lanCode = 1;
+    if (sessionStorage.getItem("iBlowLanguage") != null) {
+        lanCode = sessionStorage.getItem("iBlowLanguage").toString();
+    }
 
+    $.ajax({
+        url: '/api/CasePreActionMasters?langID=' + Number(lanCode),
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        //async: false,
+        success: function (response) {
+            if (response != "") {
+                //$('#formTitle').text(response[0].FormTitle);
+                var PreLength = response.length;
+                $('#ddlCasePre').empty();
+                for (var i = 0; i < PreLength; i++) {
+                    $('#ddlCasePre').append(new Option(response[i].PreAction, response[i].PreAction));
+                }
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
 
 function getCaseDocuments() {
     var iurn = getUrlVars()["iURN"];
@@ -106,16 +142,27 @@ function validateCaseInfoControl() {
     }
     return flag;
 }
-function updateCaseInformation() {
+function validateSelectCaseTemplate() {
+    var flag = true;
 
-    if (!validateCaseInfoControl()) {
-        return false;
+    if (!GetDropdownListBoxValidation($('#ddlCasePre'))) {
+        flag = false;
+
     }
+    return flag;
+}
+function updateCaseInformation(updateString) {
+
+    if (updateString == "") {
+        if (!validateCaseInfoControl()) {
+            return false;
+        }
+    }
+
     var iurn = getUrlVars()["iURN"];
- 
 
     var dataResponse = {
-        "CaseInformation": $('#txtMessage').val(),
+        "CaseInformation": updateString == "" ? $('#txtMessage').val() : updateString,
         "IURN": iurn
     };
 
@@ -146,20 +193,71 @@ function updateCaseInformation() {
 function constructCaseTimeLine(objCaseColn) {
 
     var caseHTL = "";
-    $('#divCaseTimeLine').empty();
+    $('#wrapper').empty();
+
     caseHTL = " <ul class='timeline'> ";
+    caseHTL = "";
+
+    caseHTL += "<div class='scrollbar' id='style-7'>" +
+        "<div class='force - overflow'>" +
+        "<div class='latupdtcont'>" +
+        "<ul class='latupdt'>";
+
     for (var i = 0; i < objCaseColn.length; i++) {
         var caseInfo = objCaseColn[i].CaseInformation;
 
-        caseHTL += "<li>" +
-            "<a  href='#' style='cursor:default'>Case updated on </a>" +
-            "<a  href='#' style='cursor:default' class='float - right'>" + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString() + "</a>" +
-            "<p>" + caseInfo + "</p>" +
-            "</li>";
+        var colorCode = "";
+
+
+        //else if (caseInfo == "Case Opened") {
+        //    colorCode = 'incidenttype2';
+        //}
+
+        //caseHTL += "<li>" +
+        //    "<a  href='#' style='cursor:default'>Case updated on </a>" +
+        //    "<a  href='#' style='cursor:default' class='float - right'>" + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString('en-US', { hour: 'numeric', hour12: true }) + "</a>" +
+        //    "<p class='" + colorCode + "'>" + caseInfo + "</p>" +
+        //    "</li>";
+
+        if (caseInfo == "Case Opened" || caseInfo == "Case status changed to Read") {
+            colorCode = 'luread';
+        }
+        else if (caseInfo == "Case status changed to Discarded") {
+            colorCode = 'disc';
+        }
+        else if (caseInfo == "Case status changed to Important") {
+            colorCode = 'luimp';
+        }
+        else if (caseInfo == "Case status changed to Done") {
+            colorCode = 'done';
+        }
+        else if (caseInfo == "Case status changed to Route to email") {
+            colorCode = 'rtm';
+        }
+        else if (caseInfo.indexOf("New") >= 0 ) {
+            colorCode = 'latnewInc';
+        }
+        else {
+            if (caseInfo.indexOf(".") >= 0) {
+                colorCode = 'latupdoc';
+            }
+            else
+                colorCode = 'latuplink';
+
+        }
+        //
+
+        caseHTL += " <li class='" + colorCode + "'> <p>Case updated on " + new Date(objCaseColn[i].CaseUpdated).toLocaleDateString('en-US', { hour: 'numeric', hour12: true }) + "</p> <span>" + caseInfo + "</span></li>";
+
     }
 
-    caseHTL += "</ul>";
-    $('#divCaseTimeLine').append(caseHTL);
+    caseHTL += "</ul></div ></div ></div >";
+
+
+
+
+
+    $('#wrapper').append(caseHTL);
 
 }
 
@@ -199,8 +297,10 @@ function uploadCaseDocuments() {
         cache: false,
         data: data,
         success: function (data, textStatus, xhr) {
-            $("#FileAttachmentDetails").val(null);
+
             getCaseDocuments();
+            updateCaseDocumentUploadInformation();
+            $("#FileAttachmentDetails").val(null);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert(textStatus + ': ' + errorThrown);
@@ -208,4 +308,9 @@ function uploadCaseDocuments() {
     });
 
 
+}
+function updateCaseDocumentUploadInformation() {
+    jQuery.each(jQuery('#FileAttachmentDetails')[0].files, function (i, file) {
+        updateCaseInformation("The file " + file.name + " has been added");
+    });
 }

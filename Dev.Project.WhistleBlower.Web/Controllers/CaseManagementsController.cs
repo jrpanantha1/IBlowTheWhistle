@@ -96,7 +96,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 return BadRequest("Invalid Request");
             }
 
-            var caseInfo = db.CaseManagements.FirstOrDefault(d => d.IURN.ToString() == caseManagement.IURN.ToString());
+            var caseInfo = db.CaseManagements.FirstOrDefault(d => d.IURN.ToString() == caseManagement.IURN.ToString() && d.CaseInformation == "Case Opened");
             if (caseInfo == null)
             {
 
@@ -110,7 +110,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
                 db.CaseManagements.Add(objCase);
             }
-            else
+            else if (caseManagement.CaseInformation != "Case Opened")
             {
                 string currentCaseStatment = caseInfo.CaseInformation;
                 if (currentCaseStatment.ToString().Trim() != caseManagement.CaseInformation.ToString().Trim())

@@ -47,5 +47,15 @@ namespace WhistleBlowerDAL
         public string SubmissionDateTime { get; set; }
         public string SubmissionModifiedDate { get; set; }
         public string SupportingDocuments { get; set; }
+        public string AnonymousUpdate { get; set; }
+        public string ByEmailUpdate { get; set; }
+        public string ByPhoneUpdate { get; set; }
+        public string ConcernDetailsPHT { get; set; }
+        public string EvidenceDetailsPHT { get; set; }
+        public string HowWouldUpdated { get; set; }
+        public string CloseBtn { get; set; }
+        public string ViewDocumentsLnk { get; set; }
+        public string EmailAddresslbl { get; set; }
+        public string Phonelbl { get; set; }
     }
 }

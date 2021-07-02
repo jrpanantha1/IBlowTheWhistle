@@ -45,6 +45,8 @@ function loadFormDetails(iURN) {
                 IncResponse.HaveWitness == true ? $('#collapseHaveWitness').show() : $('#collapseHaveWitness').hide();
                 $('#FileAttachment').val(IncResponse.FileAttachment == true ? "Yes" : "No");
                 $('#UpdatedOnIncident').val(IncResponse.UpdatedOnIncident == true ? "Yes" : "No");
+                IncResponse.UpdatedOnIncident == true ? $('#collapseUpdatedOnIncident').show() : $('#collapseUpdatedOnIncident').hide();
+                $('#UpdatedOnIncidentMethod').val(IncResponse.UpdatedOnIncidentMethod == "1" ? "Email" : IncResponse.UpdatedOnIncidentMethod == "2" ? "Phone" : "Anonymous");
                 $('#comments').text(IncResponse.Comments);
 
                 if (IncResponse.SupportingEvidence == true) {
@@ -64,6 +66,7 @@ function loadFormDetails(iURN) {
 
                 $('#EvidenceCanBeUsedForInvestigation').prop('checked', true);
                 $('#customCheck1').prop('checked', true);
+
                 if (IncResponse.SupportingDocuments != null && IncResponse.SupportingDocuments != "") {
 
                     var filesPaths = IncResponse.SupportingDocuments;
@@ -77,8 +80,16 @@ function loadFormDetails(iURN) {
 
 
                 }
-                else
-                    $('.avatar').attr("style", "display:none")
+                //else
+                //$('.avatar').attr("style", "display:none")
+
+                if (localStorage.getItem("AcctType") != "Admin") {
+                    if (IncResponse.ReportedLanguageID != "") {
+                        sessionStorage.setItem("iBlowLanguage", IncResponse.ReportedLanguageID);
+                        changeSelectedLanguageonBar(IncResponse.ReportedLanguageID);
+                        getLabelDetails();
+                    }
+                }
 
             }
             //Witness details section start here
@@ -234,10 +245,11 @@ function getBannerDetails() {
 
                 }
                 else {
-                    $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                    $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
                 var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
+                $('.topBanner').show();
             }
 
         },
@@ -248,4 +260,69 @@ function getBannerDetails() {
             alert(response.responseText);
         }
     });
+}
+
+function changeSelectedLanguageonBar(languageText) {
+
+    switch (languageText) {
+
+        case "1": //English
+            lanCode = 1;
+            $("#dropdownLanguage").text("EN");
+            break;
+        //Thai
+        case "2":
+            $("#dropdownLanguage").text("TH");
+            break;
+        //French
+        case "3":
+            $("#dropdownLanguage").text("FR");
+            break;
+        //Spanish
+        case "4":
+            $("#dropdownLanguage").text("ES");
+            break;
+        //Russian
+        case "5":
+            $("#dropdownLanguage").text("RU");
+            break;
+        //Kazakh
+        case "6":
+            $("#dropdownLanguage").text("KZ");
+            break;
+        //Arabic
+        case "7":
+            $(".langDirection").css("direction", "ltr");
+            $(".langDirection").css("text-align", "left");
+
+            $("#dropdownLanguage").text("AR");
+            break;
+
+        //Chinese
+        case "8":
+            $("#dropdownLanguage").text("CN");
+            break;
+
+        //Hindi
+        case "9":
+            $("#dropdownLanguage").text("HI");
+            break;
+
+        //Urdu
+        case "10":
+            $(".langDirection").css("direction", "ltr");
+            $(".langDirection").css("text-align", "left");
+            $("#dropdownLanguage").text("UR");
+            break;
+
+        //Malay
+        case "11":
+            $("#dropdownLanguage").text("MS");
+            break;
+
+        default:
+
+            $("#dropdownLanguage").text("EN");
+            break;
+    }
 }

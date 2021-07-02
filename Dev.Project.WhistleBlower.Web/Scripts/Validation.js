@@ -61,6 +61,17 @@ function GetDropdownSelectedIndexValidation(elm) {
     }
     return flag;
 }
+function GetDropdownListBoxValidation(elm) {
+    var flag = true;
+    if (elm.val() == null || elm.val() == "") {
+        flag = false;
+        elm.addClass('error');
+    }
+    else {
+        elm.removeClass('error');
+    }
+    return flag;
+}
 function dropdownYesValidateText(elm, validateElm) {
     var flag = true;
     if (elm.find(":selected").index() == 1) {

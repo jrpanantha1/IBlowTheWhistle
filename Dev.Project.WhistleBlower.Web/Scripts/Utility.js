@@ -1,12 +1,27 @@
-﻿function SendEmailNotification() {
+﻿
+function enquryFormValidation() {
+    var flag = true;
+
+    if (!GetTextBoxEmptyValidation($('#firstName'))) {
+        flag = false;
+    }
+    if (!GetTextBoxEmptyValidation($('#lastName'))) {
+        flag = false;
+    }
+    if (!GetTextBoxEmptyValidation($('#email'))) {
+        flag = false;
+    }
+
+}
+function SendEmailNotification() {
 
 
     var enqData =
-		{
-		    "emailAddress": $('#email').val(),
-		    "firstName": $('#firstName').val(),
-		    "lastName": $('#lastName').val(),
-		}
+    {
+        "emailAddress": $('#email').val(),
+        "firstName": $('#firstName').val(),
+        "lastName": $('#lastName').val(),
+    }
 
     $.ajax({
         url: '/api/Exchange',
@@ -52,6 +67,7 @@ function getLabelDetails() {
                 $('#lblIsReportable').text(response[0].IsReportable);
                 $('#lblSupportingEvidence').text(response[0].SupportingEvidence);
                 $('#lblEvidenceDetails').text(response[0].EvidenceDetails);
+                $('#EvidenceDetails').attr("placeholder", response[0].EvidenceDetailsPHT);
                 $('#lblFileAttachment').text(response[0].DoyouhaveanyDocument);
                 $('#lblBrowseText').text(response[0].BrowseText);
                 $('#lblHaveWitness').text(response[0].HaveWitness);
@@ -65,18 +81,30 @@ function getLabelDetails() {
 
 
                 $('#lblUpdatedOnIncident').text(response[0].UpdatedOnIncident);
+                $('#lblHowWouldUpdate').text(response[0].HowWouldUpdated);
                 $('#lblAckPolicy').text(response[0].AckPolicy);
                 $('#lblIdentityNeverRevel').text(response[0].IdentityNeverRevel);
                 $('#lblComments').text(response[0].Comments);
+                $('#comments').attr("placeholder", response[0].ConcernDetailsPHT);
 
                 $('#pAreYouWhistleBlower').text(response[0].AreYouWhistleBlower);
                 $('#lblComments').text(response[0].Comments);
                 $('#lblAuthrizeDeclaration').text(response[0].AuthrizeDeclaration);
 
+                $('#lblEmailAddress').text(response[0].EmailAddresslbl);
+                $('#lblPhone').text(response[0].Phonelbl);
+
                 $('.optPleaseSelect').text(response[0].PleaseSelect);
                 $('.optYes').text(response[0].Yes);
                 $('.optNo').text(response[0].No);
                 $('#btnSubmit').text(response[0].ReportIncident);
+
+                $('.optByEmail').text(response[0].ByEmailUpdate);
+                $('.optByPhone').text(response[0].ByPhoneUpdate);
+                $('.optByAnonymous').text(response[0].AnonymousUpdate);
+                $('.ancViewDoc').text(response[0].ViewDocumentsLnk);
+
+                $('#btnClose').text(response[0].CloseBtn);
 
             }
         },

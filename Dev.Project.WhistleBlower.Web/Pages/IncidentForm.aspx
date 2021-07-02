@@ -101,7 +101,8 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-block btn-sm btn-info" onclick="window.location.href='/Pages/Home.aspx';">Go to Home</button>
+                    <button type="button" id="btnGoHome" class="btn btn-block btn-sm btn-info" onclick="window.location.href='/Pages/Home.aspx';">Go to Home</button>
+                    <button type="button" id="btnGoClose" class="btn btn-block btn-sm btn-info" onclick="$('#AnonymousModal').modal('hide');location.reload();return false;" style="display: none">Close</button>
                 </div>
             </div>
         </div>
@@ -133,7 +134,7 @@
                         <!-- end of form group -->
                         <div class="form-group">
                             <label for="comments" id="lblComments"></label>
-                            <textarea id="comments" class="form-control" rows="6" placeholder="Concern Details"></textarea>
+                            <textarea id="comments" class="form-control" rows="6"></textarea>
                         </div>
                         <!-- end of form group -->
                         <div class="form-group">
@@ -147,7 +148,7 @@
                         <!-- end of form group -->
                         <div class="form-group collapse collapseSupportingEvidence" id="collapseSupportingEvidence" name="collapseSupportingEvidence">
                             <label id="lblEvidenceDetails"></label>
-                            <textarea id="EvidenceDetails" class="form-control" rows="6" placeholder="Evidence details"></textarea>
+                            <textarea id="EvidenceDetails" class="form-control" rows="6"></textarea>
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse collapseSupportingEvidence">
@@ -177,7 +178,7 @@
                         <div class="collapse" id="collapseHaveWitness" name="collapseHaveWitness">
                             <!-- end of form group -->
                             <div class="col-12 form-group">
-                                <button class="btn btn-sm btn-block btn-success btn-clone" type="button"><i class="icon-plus"></i>Add more witness</button>
+                                <button class="btn btn-sm btn-block btn-success btn-clone" type="button"><i class="icon-plus"></i></button>
                             </div>
                             <div class="witness clone-witness">
                                 <div class="form-row">
@@ -208,7 +209,7 @@
                         </div>
 
                         <!-- end collapse witness -->
-                        <div class="form-group">
+                        <div class="form-group UpdatedOnIncidentDisableForAdmin">
                             <label id="lblUpdatedOnIncident"></label>
                             <select class="custom-select" id="UpdatedOnIncident" name="UpdatedOnIncident">
                                 <option selected disabled value="" class="optPleaseSelect"></option>
@@ -218,22 +219,22 @@
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncident" name="collapseUpdatedOnIncident">
-                            <label for="UpdatedOnIncidentMethod">How would you like to be updated on your report?</label>
+                            <label for="UpdatedOnIncidentMethod" id="lblHowWouldUpdate"></label>
                             <select class="custom-select" id="UpdatedOnIncidentMethod">
-                                <option disabled value="">Please select</option>
-                                <option value="Email">By Email</option>
-                                <option value="Phone">By Phone</option>
-                                <option selected value="Anonymous">Anonymous</option>
+                                <option disabled value="" class="optPleaseSelect"></option>
+                                <option value="Email" class="optByEmail"></option>
+                                <option value="Phone" class="optByPhone"></option>
+                                <option selected value="Anonymous" class="optByAnonymous"></option>
                             </select>
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncidentMethodEmail" name="collapseUpdatedOnIncidentMethodEmail">
-                            <label for="UpdatedOnIncidentMethodEmail">Email Address</label>
+                            <label for="UpdatedOnIncidentMethodEmail" id="lblEmailAddress"></label>
                             <input id="UpdatedOnIncidentMethodEmail" type="email" class="form-control" placeholder="arya.stark@winterfell.com" />
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncidentMethodPhone" name="collapseUpdatedOnIncidentMethodPhone">
-                            <label for="UpdatedOnIncidentMethodPhone">Phone</label>
+                            <label for="UpdatedOnIncidentMethodPhone" id="lblPhone"></label>
                             <input id="UpdatedOnIncidentMethodPhone" type="text" class="form-control" placeholder="0123456789" />
                         </div>
                         <!-- end of form group -->

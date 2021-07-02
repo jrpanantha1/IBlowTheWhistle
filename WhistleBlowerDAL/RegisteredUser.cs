@@ -27,5 +27,6 @@ namespace WhistleBlowerDAL
         public string Country { get; set; }
         public Nullable<bool> ActivationStatus { get; set; }
         public string AcctType { get; set; }
+        public Nullable<int> PreferredLanguage { get; set; }
     }
 }

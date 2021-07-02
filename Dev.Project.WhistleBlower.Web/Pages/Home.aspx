@@ -12,6 +12,9 @@
         $(document).ready(function () {
             sessionStorage.clear();
         });
+        window.onload = function () {
+            document.getElementById("CompanyURN").focus();
+        };
     </script>
     <script src="/Scripts/PageScripts/Home.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -22,17 +25,20 @@
     <section id="reportFraud" class="section-hero">
         <img src="/assets/images/bg--hero.jpg" alt="" class="bg-image hero">
         <div class="container">
-            <div class="row justify-content-center align-items-center height-100 py-10 py-lg-0">
-                <div class="col-lg-10 col-xl-9 text-center">
-                    <h1 class="display-2">I Blow The Whistle</h1>
-                    <p class="lead">We help your company understand your Employees Critical Concerns with Total Anonymity.  We connect the concerns of your employees with the right people within the organization that needs to hear those concerns.</p>
+            <div class="row justify-content-center align-items-center height-60 py-10 py-lg-0">
+                <div class="col-lg-10 col-xl-9 text-center hero-text">
+                    <h2 class="display-5">Report concerns without risk</h2>
+                    
 
-                    <div class="form-inline justify-content-center mt-5 mb-4">
+                    <div class="form-inline justify-content-center mb-4">
                         <label class="sr-only" for="CompanyURN">CompanyURN</label>
                         <input id="CompanyURN" type="text" required placeholder="CompanyURN i.e. NG123456" class="form-control form-control-lg w-50" />
-                        <button type="submit" onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn btn-lg btn-primary">Click here</button><span>report incident without risk</span>
+                        <button type="submit" onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn btn-lg btn-primary">Click here</button>
+                        <div class="clearfix"></div>
+                        
 
                     </div>
+                    <p class="lead">We help your company understand your Employees Critical Concerns with Total Anonymity.  We connect the concerns of your employees with the right people within the organization that needs to hear those concerns.</p>
                     <!--end of form inline -->
 
                     <p class="text-muted"><i class="icon-lock mr-1"></i>Your identity is protected by 2048 bit inscription and SHA-2 security protocols.</p>
@@ -44,11 +50,11 @@
         <!--end of container-->
     </section>
     <!-- // Section: Hero -->
-    <section id="highlights" class="py-10 bg-light">
+    <section id="highlights" class="py-5 bg-light">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-10 col-xl-9 text-center">
-                    <h2 class="display-4">Everything you need to know about whistleblowing</h2>
+                    <h2 class="display-5">Everything you need to know about whistleblowing</h2>
                     <p class="lead">If you experience an instance of incident or you have been scammed by a company you work with or a company you have worked for, you can expose them risk free with our website. Spread the word and make sure that others do not get taken advantage of. Rather than having a company pursue legal action against you for publishing the report, get the news out with an anonymous tip!</p>
                 </div>
                 <!--end of col-->
@@ -190,7 +196,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="form-group">
                         <label for="button">&nbsp;</label>
-                        <button id="button" type="submit" class="btn btn-block btn-primary" onclick="SendEmailNotification();return false;">Send</button>
+                        <button id="button" type="submit" class="btn btn-block btn-primary" onclick="if (enquryFormValidation()) { SendEmailNotification(); };return false;">Send</button>
                     </div>
                 </div>
                 <!--end of col-->

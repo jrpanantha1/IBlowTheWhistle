@@ -87,6 +87,9 @@
     <Compile Include="CaseManagement.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CasePreActionMaster.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="CommunicationModeMaster.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
@@ -120,6 +123,9 @@
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SubscriptionPlan.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewIncidentsLanguage.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WhistleBlowerDataModel.Context.cs">

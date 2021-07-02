@@ -32,7 +32,7 @@ function validateCompanyKey() {
 
         success: function (response) {
 
-            sessionStorage.setItem("accessToken", response.access_token);
+            localStorage.setItem("accessToken", response.access_token);
             window.location.href = "/Pages/IncidentForm.aspx";
 
         },

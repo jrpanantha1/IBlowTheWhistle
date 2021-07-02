@@ -14,15 +14,16 @@
     <section class="py-10">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="topBanner">
-                    <a class="ancImgTopBanner" target="_blank" href="#">
-                        <img class="imgTopBanner" alt="horizontal banner" />
-                    </a>
-                </div>
-                <div class="col-lg-10 col-xl-8">
-                    <header class="text-center mb-6">
-                        <h1 class="display-5" id="formTitle"></h1>
-                        <p class="lead" id="formShortNote"></p>
+
+                <div class="col-12 col-10">
+                    <div class="topBanner" style="display: none">
+                        <a class="ancImgTopBanner" target="_blank" href="#">
+                            <img class="imgTopBanner" alt="horizontal banner" />
+                        </a>
+                    </div>
+                    <header class="text-center mb-2">
+                        <h1 class="display-5 langDirection" id="formTitle"></h1>
+                        <p class="lead langDirection" id="formShortNote"></p>
                     </header>
                     <!-- end of header -->
                     <div class="card shadow-sm">
@@ -54,8 +55,8 @@
                                     <!-- Label -->
                                     <label class="sr-only" id="leaveComment"></label>
                                     <!-- Textarea -->
-                                    <textarea class="form-control" id="txtMessage" data-toggle="autosize" rows="2" placeholder="Leave a comment" required></textarea>
-                                    <div class="txtMessage invalid-feedback">
+                                    <textarea class="form-control langDirection" id="txtMessage" data-toggle="autosize" rows="2" placeholder="Leave a comment" required></textarea>
+                                    <div class="txtMessage invalid-feedback langDirection">
                                         Please provide a comment.                                       
                                     </div>
 
@@ -63,8 +64,8 @@
                                 </div>
                                 <div class="col-auto align-self-end">
                                     <!-- Icons -->
-                                    <button id="button" type="submit" onclick="sendResponse(); return false;" class="btn btn-xs btn-primary"><span id="btSend"></span></button>
-                                    <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-outline-danger"><span id="btClose"></span></button>
+                                    <button id="button" type="submit" onclick="sendResponse(); return false;" class="btn btn-xs btn-primary langDirection"><span id="btSend"></span></button>
+                                    <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
 
                                 </div>
                             </div>

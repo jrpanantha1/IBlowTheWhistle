@@ -30,6 +30,7 @@ namespace Dev.Project.WhistleBlower.Web.Data
         public Nullable<System.DateTime> WitnessModifiedDateTime { get; set; }
         public string SupportingDocuments1 { get; set; }
         public string SupportingDocuments2 { get; set; }
+        public string ReportedLanguageID { get; set; }
 
 
     }

@@ -37,6 +37,16 @@
             border: 1px solid red;
         }
     </style>
+    <script type="text/javascript">
+        function checkandredirect() {
+            if (localStorage.getItem("AcctType") == "Admin") {
+                window.location.href = "/Pages/ViewIncidents.aspx";
+            }
+            else {
+                window.location.href = "/Pages/Home.aspx";
+            }
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -45,13 +55,13 @@
                 <div class="site-nav navbar-light fixed-top">
                     <div class="container-fluid px-md-5">
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="/Pages/Home.aspx">
+                            <a class="navbar-brand" href="#" onclick="checkandredirect();return false;">
                                 <img alt="I Blow The Whistle" src="/assets/images/logo.png" class="logo"></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                                     <li class="nav-item dropdown language-switcher">
-                                        <a class="nav-link icon dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
                                                 <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
@@ -92,7 +102,7 @@
                                 </ul>
                             </div>
                             <!--end nav collapse-->
-                            <a href="/Pages/Join.aspx" class="btn btn-sm btn-outline-dark">Join</a>
+                            <a style="display: none" href="/Pages/Join.aspx" class="btn btn-sm btn-outline-dark">Sign Up</a>
                         </nav>
                         <!--end of navbar-->
                     </div>

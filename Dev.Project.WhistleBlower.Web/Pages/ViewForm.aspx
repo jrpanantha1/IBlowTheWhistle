@@ -14,13 +14,13 @@
     <section id="reportFraud" class="section-hero">
         <div class="container">
             <div class="row justify-content-center align-items-center py-10 langDirection">
-                <div class="topBanner">
+                <div class="col-12 topBanner" style="display: none">
                     <a class="ancImgTopBanner" target="_blank" href="#">
-                        <img class="imgTopBanner" alt="horizontal banner" />
+                        <img class="imgTopBanner" alt="horizontal banner" src="" />
 
                     </a>
                 </div>
-                <div class="col-lg-10 col-xl-8">
+                <div class="col-12">
 
                     <div class="text-center">
                         <h1 class="display-5" style="color: #00B48F" id="h1CompanyName"></h1>
@@ -74,7 +74,7 @@
                         <!-- end of form group -->
                         <div class="form-group collapseSupportingEvidence" id="collapseFileAttachment" name="collapseFileAttachment">
                             <label id="lblBrowseText" class="sr-only"></label>
-                            <a href="#">View Documents</a>
+                            <a href="#" class="ancViewDoc"></a>
                             <div id="divAttachements">
                             </div>
 
@@ -125,22 +125,22 @@
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncident" name="collapseUpdatedOnIncident">
-                            <label for="UpdatedOnIncidentMethod">How would you like to be updated on your report?</label>
+                            <label for="UpdatedOnIncidentMethod" id="lblHowWouldUpdate"></label>
                             <select class="custom-select disableControls" id="UpdatedOnIncidentMethod">
-                                <option selected disabled value="">Please select</option>
-                                <option value="Email">By Email</option>
-                                <option value="Phone">By Phone</option>
-                                <option value="Anonymous">Anonymous</option>
+                                <option selected disabled value="" class="optPleaseSelect"></option>
+                                <option value="Email" class="optByEmail"></option>
+                                <option value="Phone" class="optByPhone"></option>
+                                <option value="Anonymous" class="optByAnonymous"></option>
                             </select>
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncidentMethodEmail" name="collapseUpdatedOnIncidentMethodEmail">
-                            <label for="UpdatedOnIncidentMethodEmail">Email Address</label>
+                            <label for="UpdatedOnIncidentMethodEmail" id="lblEmailAddress"></label>
                             <input id="UpdatedOnIncidentMethodEmail" disabled type="email" class="form-control disableControls" placeholder="arya.stark@winterfell.com" />
                         </div>
                         <!-- end of form group -->
                         <div class="form-group collapse" id="collapseUpdatedOnIncidentMethodPhone" name="collapseUpdatedOnIncidentMethodPhone">
-                            <label for="UpdatedOnIncidentMethodPhone">Phone</label>
+                            <label for="UpdatedOnIncidentMethodPhone" id="lblPhone"></label>
                             <input id="UpdatedOnIncidentMethodPhone" type="text" disabled class="form-control disableControls" placeholder="0123456789" />
                         </div>
                         <!-- end of form group -->
@@ -175,7 +175,7 @@
 
                         <!--end of custom-checkbox -->
                         <div class="form-group my-4">
-                            <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-block btn-primary">Close</button>
+                            <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-block btn-primary"></button>
                         </div>
                         <!-- end of form group -->
                     </div>

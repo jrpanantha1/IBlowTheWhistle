@@ -32,5 +32,6 @@ namespace WhistleBlowerDAL
         public string SupportingDocuments { get; set; }
         public string AnonymousEmailID { get; set; }
         public string IncCategory { get; set; }
+        public Nullable<int> ReportedLanguageID { get; set; }
     }
 }

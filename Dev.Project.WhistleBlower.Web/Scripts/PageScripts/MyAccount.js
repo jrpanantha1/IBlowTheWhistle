@@ -28,7 +28,7 @@ function getCompanyDetails() {
                         $('.imgTopBanner').attr("src", response[0].CompanyTopBanner);
                     }
                     else {
-                        $('.imgTopBanner').attr("src", "/assets/images/Whistle_728x90_Internalbanner.PNG");
+                        $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                     }
                     if (response[0].CompanyLogo != null && response[0].CompanyLogo != "") {
                         $('.comavatar').attr("src", response[0].CompanyLogo);

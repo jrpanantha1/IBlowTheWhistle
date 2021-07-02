@@ -220,6 +220,159 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             return NotFound();
 
         }
+
+        [ResponseType(typeof(WhistleBlowIncident))]
+        [Authorize]
+        public IHttpActionResult GetWhistleBlowIncidentByIncCategory(string IncCategory, string SearchID)
+        {
+            string emailID = User.Identity.Name;
+            IncidentsPageContent objIncidentsPageContent = new IncidentsPageContent();
+
+            try
+            {
+                string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+                string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
+                var objCM = db.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == companyID);
+                if (objCM != null)
+                {
+                    objCM.CompanyKey = Cipher.Encrypt(objCM.CompanyKey, objCM.encPassword);
+                    objIncidentsPageContent.CompanyValueNonEncrypt = objCM.CompanyValue;
+                    objCM.CompanyValue = Cipher.Encrypt(objCM.CompanyValue, objCM.encPassword);
+
+                    objIncidentsPageContent.objCompanyMasters = objCM;
+
+                    string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CompanyBanners/");
+                    if (System.IO.Directory.Exists(path))
+                    {
+                        string[] filePaths = Directory.GetFiles(path);
+                        string consolidPaths = "";
+                        foreach (string file in filePaths)
+                        {
+                            if (Path.GetFileName(file).Contains("CompanyTopBanner"))
+                            {
+                                //consolidPaths = path + Path.GetFileName(file);
+                                consolidPaths = "/IBTWImages/" + companyID + "/CompanyBanners/" + Path.GetFileName(file);
+                            }
+                        }
+
+                        objIncidentsPageContent.CompantTopBanners = consolidPaths;// String.Join(";", filePaths);
+
+                    }
+
+                }
+
+                if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
+                {
+                    if (companyID != "")
+                    {
+                        var decryptEmailID = Cipher.Encrypt(emailID, objCM.encPassword);
+
+                        var whistleBlowIncident = from r in db.WhistleBlowIncidents
+                                     .Where(d => AccType == WhistleContants.anonymousUserAccountType ? d.AnonymousEmailID == decryptEmailID : d.Email == decryptEmailID).OrderByDescending(s => s.SubmissionDateTime)
+                                                  select new
+                                                  {
+                                                      IURN = r.IURN,
+                                                      IsReportable = r.IsReportable,
+                                                      SupportingEvidence = r.SupportingEvidence,
+                                                      HaveWitness = r.HaveWitness,
+                                                      UpdatedOnIncident = r.UpdatedOnIncident,
+                                                      SubmissionDateTime = r.SubmissionDateTime,
+                                                      EvidenceDetails = r.EvidenceDetails,
+                                                      Comments = r.Comments,
+                                                      Phone = r.Phone,
+                                                      AnonymousEmailID = r.AnonymousEmailID,
+                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && a.commentBy != WhistleContants.anonymousUserAccountType),
+                                                      IncCategory = r.IncCategory
+                                                  };
+                        if (whistleBlowIncident == null)
+                        {
+                            return NotFound();
+                        }
+                        List<WhistleIncidentWithHistoryCount> whictleIncObj = new List<WhistleIncidentWithHistoryCount>();
+                        foreach (var item in whistleBlowIncident)
+                        {
+                            whictleIncObj.Add(new WhistleIncidentWithHistoryCount
+                            {
+                                IURN = item.IURN,
+                                IsReportable = item.IsReportable,
+                                SupportingEvidence = item.SupportingEvidence,
+                                HaveWitness = item.HaveWitness,
+                                UpdatedOnIncident = item.UpdatedOnIncident,
+                                SubmissionDateTime = item.SubmissionDateTime,
+                                EvidenceDetails = item.EvidenceDetails != "" ? Cipher.Decrypt(item.EvidenceDetails, objCM.encPassword) : "",
+                                Comments = item.Comments != "" ? Cipher.Decrypt(item.Comments, objCM.encPassword) : "",
+                                Phone = item.Phone != "" ? Cipher.Decrypt(item.Phone, objCM.encPassword) : "",
+                                AnonymousEmailID = item.AnonymousEmailID != "" ? Cipher.Decrypt(item.AnonymousEmailID, objCM.encPassword) : "",
+                                HistoryCount = item.Count.ToString(),
+                                IncCategory = item.IncCategory
+                            });
+                        }
+
+                        objIncidentsPageContent.objWhistleBlowIncidents = whictleIncObj;
+                        return Ok(objIncidentsPageContent);
+                    }
+                }
+                else if (AccType == WhistleContants.AdminUserAccountType)
+                {
+                    if (companyID != "")
+                    {
+
+
+                        var whistleBlowIncident = from r in db.WhistleBlowIncidents
+                                      .Where(d => d.CompanyID.ToString() == companyID && d.IncCategory == IncCategory).OrderByDescending(s => s.SubmissionDateTime)
+                                                  select new
+                                                  {
+                                                      IURN = r.IURN,
+                                                      IsReportable = r.IsReportable,
+                                                      SupportingEvidence = r.SupportingEvidence,
+                                                      HaveWitness = r.HaveWitness,
+                                                      UpdatedOnIncident = r.UpdatedOnIncident,
+                                                      SubmissionDateTime = r.SubmissionDateTime,
+                                                      EvidenceDetails = r.EvidenceDetails,
+                                                      Comments = r.Comments,
+                                                      Phone = r.Phone,
+                                                      AnonymousEmailID = r.AnonymousEmailID,
+                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && a.commentBy == WhistleContants.anonymousUserAccountType),
+                                                      IncCategory = r.IncCategory
+                                                  };
+                        if (whistleBlowIncident == null)
+                        {
+                            return NotFound();
+                        }
+                        List<WhistleIncidentWithHistoryCount> whictleIncObj = new List<WhistleIncidentWithHistoryCount>();
+                        foreach (var item in whistleBlowIncident)
+                        {
+                            whictleIncObj.Add(new WhistleIncidentWithHistoryCount
+                            {
+                                IURN = item.IURN,
+                                IsReportable = item.IsReportable,
+                                SupportingEvidence = item.SupportingEvidence,
+                                HaveWitness = item.HaveWitness,
+                                UpdatedOnIncident = item.UpdatedOnIncident,
+                                SubmissionDateTime = item.SubmissionDateTime,
+                                EvidenceDetails = item.EvidenceDetails != "" ? Cipher.Decrypt(item.EvidenceDetails, objCM.encPassword) : "",
+                                Comments = item.Comments != "" ? Cipher.Decrypt(item.Comments, objCM.encPassword) : "",
+                                Phone = item.Phone != "" ? Cipher.Decrypt(item.Phone, objCM.encPassword) : "",
+                                AnonymousEmailID = item.AnonymousEmailID != "" ? Cipher.Decrypt(item.AnonymousEmailID, objCM.encPassword) : "",
+                                HistoryCount = item.Count.ToString(),
+                                IncCategory = item.IncCategory
+                            });
+                        }
+
+
+                        objIncidentsPageContent.objWhistleBlowIncidents = whictleIncObj;
+                        return Ok(objIncidentsPageContent);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return NotFound();
+
+        }
+
         [ResponseType(typeof(WhistleViewForm))]
         [Authorize]
         public IHttpActionResult GetWhistleBlowIncidentByIURN(string IURN)
@@ -246,6 +399,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 WhistleViewForm.HaveWitness = whistleBlowIncident[0].HaveWitness;
                 WhistleViewForm.FileAttachment = whistleBlowIncident[0].FileAttachment;
                 WhistleViewForm.UpdatedOnIncident = whistleBlowIncident[0].UpdatedOnIncident;
+                WhistleViewForm.ReportedLanguageID = whistleBlowIncident[0].ReportedLanguageID != null ? whistleBlowIncident[0].ReportedLanguageID.ToString() : "1";
 
                 //WhistleViewForm.SupportingDocuments = whistleBlowIncident[0].SupportingDocuments != null && whistleBlowIncident[0].SupportingDocuments != "" ? Cipher.Decrypt(whistleBlowIncident[0].SupportingDocuments, encPassword) : "";
 
@@ -297,6 +451,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             //return Ok(WhistleViewForm);
 
         }
+
+
         [Authorize]
         public IHttpActionResult PostIncidents(Object objData)
         {
@@ -341,6 +497,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             objWhistleBlow.FileAttachment = WhistleBlowDetail.FileAttachment;
                             objWhistleBlow.HaveWitness = WhistleBlowDetail.HaveWitness;
                             objWhistleBlow.UpdatedOnIncident = WhistleBlowDetail.UpdatedOnIncident;
+                            objWhistleBlow.ReportedLanguageID = WhistleBlowDetail.ReportedLanguageID != null && WhistleBlowDetail.ReportedLanguageID != "" ? Convert.ToInt32(WhistleBlowDetail.ReportedLanguageID) : 1;
+                            objWhistleBlow.IncCategory = "Unread";
 
                             string AnonymousEmailID = "";
                             if (WhistleBlowDetail.UpdatedOnIncidentMethod == 3)//3 means Anonymous update progress
@@ -385,6 +543,9 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             Entities.WhistleBlowIncidents.Add(objWhistleBlow);
                             Entities.SaveChanges();
 
+
+
+
                             //insert witness detaiuls here
                             foreach (var item in witnessDetailsJson)
                             {
@@ -405,6 +566,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             }
 
                             RegisteredUser objRegisteredUser = new RegisteredUser();
+                            string strRegUserID = "";
                             if (WhistleBlowDetail.Email != null && WhistleBlowDetail.Email != "")//update progress by email given
                             {
                                 objRegisteredUser = new RegisteredUser();
@@ -414,6 +576,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 {
                                     objRegisteredUser.CompanyID = new Guid(companyID);
                                     Guid RegUserID = Guid.NewGuid();
+                                    strRegUserID = RegUserID.ToString();
                                     objRegisteredUser.RegUserID = RegUserID;
                                     objRegisteredUser.Email = AnonymousEmailID = WhistleBlowDetail.Email;
                                     objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(10, 2);// WhistleContants.userPassword;
@@ -429,6 +592,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 objRegisteredUser = new RegisteredUser();
                                 objRegisteredUser.CompanyID = new Guid(companyID);
                                 Guid RegUserID = Guid.NewGuid();
+                                strRegUserID = RegUserID.ToString();
                                 objRegisteredUser.RegUserID = RegUserID;
                                 objRegisteredUser.Email = AnonymousEmailID; //Utility.getRandomEmail() + "@ibtw.com";
                                 objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(10, 2); //WhistleContants.userPassword;
@@ -437,6 +601,24 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 Entities.SaveChanges();
 
                             }
+
+                            //Add default entry into case  management for this created Incident URN
+
+                            var caseInfo = db.CaseManagements.FirstOrDefault(d => d.IURN == IncidentIURN);
+                            if (caseInfo == null)
+                            {
+
+                                CaseManagement objCase = new CaseManagement();
+                                objCase.CaseURN = Guid.NewGuid();
+                                objCase.IURN = IncidentIURN;
+                                objCase.CompanyURN = new Guid(companyID);
+                                objCase.RegUserID = new Guid(strRegUserID);
+                                objCase.CaseInformation = WhistleBlowDetail.HaveWitness == true ? "New incident has been registered with witness" : "New incident has been registered without witness";
+                                objCase.CaseUpdated = System.DateTime.Now;
+                                db.CaseManagements.Add(objCase);
+                                db.SaveChanges();
+                            }
+
                             returnObj = new List<SuccessClass>
                             {
                                 new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = AnonyPassword }
