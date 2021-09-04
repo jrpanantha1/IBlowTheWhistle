@@ -102,7 +102,7 @@
             min-height: 68vh;
             transition: .5s;
             position: relative;
-            background: #F3F4F3;
+            background: #fff;
             margin: 0;
             z-index: 22;
             border-radius: 0px;
@@ -116,7 +116,6 @@
                 right: 0;
                 height: 160px;
                 z-index: -1;
-                background: #00B48F;
                 content: '';
                 border-radius: 0px;
                 left: 0;
@@ -129,16 +128,38 @@
         .f_w_700 {
             font-weight: 700;
         }
+
+        .dashboardcontent .page_title_box {
+            text-align: center;
+            width: 100%;
+        }
+
+        .dashboardcontent .page_title_left {
+            text-align: center;
+            width: 100%;
+        }
+
+        .header-sm-title {
+            text-align: center;
+            font-size: 2.5vw;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js" async defer></script>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
-    <div id="right-panel" class="right-panel main_content" style="margin-top: 200px;">
+    <div id="right-panel" class="right-panel main_content" style="margin-top: 150px;">
         <div class="dashboardcontent pb-0 main_content_iner overly_inner ">
             <div class="page_title_box d-flex align-items-center justify-content-between">
                 <div class="page_title_left">
-                    <h3 class="f_s_30 f_w_700 text_white">Whistle Dashboard</h3>
-                </div>
+                    <h3 class="header-sm-title">Reports Dashboard</h3>
 
+                </div>
+                <a href="#" onclick="generatePDF(); return false;">
+                    <img src="/Images/PDFIcon.png" style="float: right" /></a>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">

@@ -7,6 +7,7 @@ $(document).ready(function () {
         window.location.href = "/Pages/Login.aspx";
     }
     getCompanyProfile();
+    getUserProfileDetails();
 
 });
 
@@ -35,16 +36,45 @@ function getCompanyProfile() {
                     $("#h1CompanyName").text(response.CompanyName);// display in View Incident and Reoprt Incodent top 
                 }
                 //update for QR code in banners page
-                var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
+                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
                 $("#txtQrCode").val(tarURL);
 
-
-                if (localStorage.getItem("AcctType") != "Admin" || response.SubscriptionPlan == 1) {
+                //if (localStorage.getItem("AcctType") != "Admin" || response.SubscriptionPlan == 1) {
+                if (localStorage.getItem("AcctType") != "Admin") {
                     $('.AdminAccountOnlymenu').hide();
                 }
                 //update hidden key for feature ref
                 $('#hdnSusPlanCode').val(response.SubscriptionPlan);
 
+            }
+
+        },
+        error: function (response) {
+
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+
+function getUserProfileDetails() {
+    $.ajax({
+        url: '/api/RegisteredUsers',
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function (response) {
+            if (response != "") {
+                var fName = response[0].FirstName != null && response[0].FirstName != "" ? response[0].FirstName : "";
+                var lName = response[0].LastName != null && response[0].LastName != "" ? response[0].LastName : "";
+                var uName = fName + " " + lName;
+                $(".usernametxt").text(uName);
+                $("#hdnLoggedUserName").val(uName);
             }
 
         },

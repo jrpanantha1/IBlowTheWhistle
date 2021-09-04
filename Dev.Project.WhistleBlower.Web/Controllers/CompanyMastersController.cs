@@ -62,8 +62,47 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 return NotFound();
             }
         }
+        [Authorize]
+        [ResponseType(typeof(CompanyMaster))]
+        public IHttpActionResult GetCompanyMaster(string companyID)
+        {
+            try
+            {
+                var objCM = db.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == companyID);
+                if (objCM != null)
+                {
+                    objCM.CompanyKey = Cipher.Encrypt(objCM.CompanyKey, objCM.encPassword);
+                    objCM.CompanyValue = Cipher.Encrypt(objCM.CompanyValue, objCM.encPassword);
+
+                }
+                return Ok(objCM);
+            }
+            catch (Exception)
+            {
+
+                return Ok("error");
+            }
 
 
+        }
+        [Authorize]
+        [ResponseType(typeof(CompanyMaster))]
+        public IHttpActionResult GetCompanyMaster()
+        {
+            try
+            {
+                var objCompany = db.CompanyMasters.ToList();
+                if (objCompany == null)
+                {
+                    return NotFound();
+                }
+                return Ok(objCompany);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
         [Authorize]
         public IHttpActionResult PostUpdateCompany([FromBody] CompanyMasterObj companyDetails)
         {

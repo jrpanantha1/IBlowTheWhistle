@@ -24,7 +24,7 @@
           </Key>
           <Property Name="CaseURN" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RegUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegUserID" Type="uniqueidentifier" />
           <Property Name="CompanyURN" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CaseClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CaseInformation" Type="nvarchar" MaxLength="200" />
@@ -323,11 +323,11 @@
           <EntitySet Name="IBTWProspects" EntityType="eformulus_IBTW_DBModel.IBTWProspect" />
           <EntitySet Name="CompanyMasters" EntityType="eformulus_IBTW_DBModel.CompanyMaster" />
           <EntitySet Name="SubscriptionPlans" EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" />
-          <EntitySet Name="CaseManagements" EntityType="eformulus_IBTW_DBModel.CaseManagement" />
           <EntitySet Name="WhistleBlowIncidents" EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" />
           <EntitySet Name="LanguageDetails" EntityType="eformulus_IBTW_DBModel.LanguageDetail" />
           <EntitySet Name="ViewIncidentsLanguages" EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" />
           <EntitySet Name="CasePreActionMasters" EntityType="eformulus_IBTW_DBModel.CasePreActionMaster" />
+          <EntitySet Name="CaseManagements" EntityType="eformulus_IBTW_DBModel.CaseManagement" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
           <Key>
@@ -471,19 +471,6 @@
           <Property Name="SubscriptionPlan1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="CaseManagement">
-          <Key>
-            <PropertyRef Name="CaseURN" />
-          </Key>
-          <Property Name="CaseURN" Type="Guid" Nullable="false" />
-          <Property Name="IURN" Type="Guid" Nullable="false" />
-          <Property Name="RegUserID" Type="Guid" Nullable="false" />
-          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
-          <Property Name="CaseClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseInformation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CaseUpdated" Type="DateTime" Precision="3" />
-          <Property Name="CaseStatus" Type="Boolean" />
-        </EntityType>
         <EntityType Name="WhistleBlowIncident">
           <Key>
             <PropertyRef Name="IURN" />
@@ -592,6 +579,19 @@
           <Property Name="PreAction" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PreActionBrief" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CaseManagement">
+          <Key>
+            <PropertyRef Name="CaseURN" />
+          </Key>
+          <Property Name="CaseURN" Type="Guid" Nullable="false" />
+          <Property Name="IURN" Type="Guid" Nullable="false" />
+          <Property Name="RegUserID" Type="Guid" />
+          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
+          <Property Name="CaseClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseInformation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CaseUpdated" Type="DateTime" Precision="3" />
+          <Property Name="CaseStatus" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -762,20 +762,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CaseManagements">
-            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CaseManagement">
-              <MappingFragment StoreEntitySet="CaseManagement">
-                <ScalarProperty Name="CaseStatus" ColumnName="CaseStatus" />
-                <ScalarProperty Name="CaseUpdated" ColumnName="CaseUpdated" />
-                <ScalarProperty Name="CaseInformation" ColumnName="CaseInformation" />
-                <ScalarProperty Name="CaseClusterID" ColumnName="CaseClusterID" />
-                <ScalarProperty Name="CompanyURN" ColumnName="CompanyURN" />
-                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
-                <ScalarProperty Name="IURN" ColumnName="IURN" />
-                <ScalarProperty Name="CaseURN" ColumnName="CaseURN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WhistleBlowIncidents">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.WhistleBlowIncident">
               <MappingFragment StoreEntitySet="WhistleBlowIncidents">
@@ -886,6 +872,20 @@
                 <ScalarProperty Name="PreClusterID" ColumnName="PreClusterID" />
                 <ScalarProperty Name="CURN" ColumnName="CURN" />
                 <ScalarProperty Name="CPURN" ColumnName="CPURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseManagements">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CaseManagement">
+              <MappingFragment StoreEntitySet="CaseManagement">
+                <ScalarProperty Name="CaseStatus" ColumnName="CaseStatus" />
+                <ScalarProperty Name="CaseUpdated" ColumnName="CaseUpdated" />
+                <ScalarProperty Name="CaseInformation" ColumnName="CaseInformation" />
+                <ScalarProperty Name="CaseClusterID" ColumnName="CaseClusterID" />
+                <ScalarProperty Name="CompanyURN" ColumnName="CompanyURN" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+                <ScalarProperty Name="IURN" ColumnName="IURN" />
+                <ScalarProperty Name="CaseURN" ColumnName="CaseURN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

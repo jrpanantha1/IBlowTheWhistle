@@ -12,6 +12,11 @@ function Validation() {
 }
 function validateCompanyKey() {
 
+    //clear all storage is its come from home screen
+    sessionStorage.clear();
+    localStorage.clear();
+    sessionStorage.removeItem("accessToken");
+
     var comValue = $('#CompanyURN').val();
     var comKey = "";
 
@@ -46,7 +51,7 @@ function validateCompanyKey() {
             else {
                 alert('Complany ID is not Valid/ Invalid User Name and Password');
             }
-            window.location.href = "/Pages/Home.aspx";
+            window.location.href = "/Pages/Default.aspx";
 
         },
         failure: function (response) {

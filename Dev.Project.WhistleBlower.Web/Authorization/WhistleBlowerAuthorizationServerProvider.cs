@@ -87,7 +87,7 @@ namespace Dev.Project.WhistleBlower.Web.Authorization
                     if (context.UserName != "" && context.Password != "")
                     {
                         RegisteredUser GetUserDetails = Utility.GetRegistredUserDetails(context.UserName);
-                        if (GetUserDetails.Email == context.UserName)
+                        if (GetUserDetails.Email.Trim().ToLower() == context.UserName.Trim().ToLower())
                         {
                             if (GetUserDetails.Password == context.Password)
                             {

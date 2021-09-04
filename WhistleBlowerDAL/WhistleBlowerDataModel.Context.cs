@@ -37,10 +37,10 @@ namespace WhistleBlowerDAL
         public virtual DbSet<IBTWProspect> IBTWProspects { get; set; }
         public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
         public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
-        public virtual DbSet<CaseManagement> CaseManagements { get; set; }
         public virtual DbSet<WhistleBlowIncident> WhistleBlowIncidents { get; set; }
         public virtual DbSet<LanguageDetail> LanguageDetails { get; set; }
         public virtual DbSet<ViewIncidentsLanguage> ViewIncidentsLanguages { get; set; }
         public virtual DbSet<CasePreActionMaster> CasePreActionMasters { get; set; }
+        public virtual DbSet<CaseManagement> CaseManagements { get; set; }
     }
 }

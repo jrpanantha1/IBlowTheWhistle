@@ -20,7 +20,7 @@
 
     .bannername input {
         float: left;
-        width: 86%;
+        width: 80%;
         border: 1px solid #333;
         background: #fff;
         border-radius: 6px;
@@ -167,7 +167,8 @@
     width: auto;
     float: left;
     margin: 20px 0 20px 0;
-    height: 90px;
+    height: auto;
+    /*height: 90px; pandiya*/
 }
 
     .bannerimg-8 img {

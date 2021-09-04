@@ -219,22 +219,22 @@ function constructCaseTimeLine(objCaseColn) {
         //    "<p class='" + colorCode + "'>" + caseInfo + "</p>" +
         //    "</li>";
 
-        if (caseInfo == "Case Opened" || caseInfo == "Case status changed to Read") {
+        if (caseInfo == "Case Opened" || caseInfo.includes("Read")) {
             colorCode = 'luread';
         }
-        else if (caseInfo == "Case status changed to Discarded") {
+        else if (caseInfo.includes("Discarded")) {
             colorCode = 'disc';
         }
-        else if (caseInfo == "Case status changed to Important") {
+        else if (caseInfo.includes("Important")) {
             colorCode = 'luimp';
         }
-        else if (caseInfo == "Case status changed to Done") {
+        else if (caseInfo.includes("Done")) {
             colorCode = 'done';
         }
-        else if (caseInfo == "Case status changed to Route to email") {
+        else if (caseInfo.includes("Route to email")) {
             colorCode = 'rtm';
         }
-        else if (caseInfo.indexOf("New") >= 0 ) {
+        else if (caseInfo.indexOf("New") >= 0) {
             colorCode = 'latnewInc';
         }
         else {

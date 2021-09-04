@@ -5,7 +5,7 @@
         getCompanyProfile();
     }
     else {
-        window.location.href = "/Pages/Home.aspx";
+        window.location.href = "/Pages/Default.aspx";
     }
 
 
@@ -230,9 +230,9 @@ function submitIncidentDetails() {
         "Phone": $('#UpdatedOnIncidentMethodPhone').val(),
         "EvidenceCanBeUsedForInvestigation": true,
         "Comments": $('#comments').val(),
-        "SupportingDocuments": CompanyLogoBase64,
-        "SupportingDocuments1": CompanyLogoBase641,
-        "SupportingDocuments2": CompanyLogoBase642,
+        "SupportingDocuments": "",
+        "SupportingDocuments1": "",
+        "SupportingDocuments2": "",
         "WitnessFullName": $('#WitnessFullName').val(),
         "WitnessEmail": $('#WitnessEmail').val(),
         "WitnessPhone": $('#WitnessPhone').val(),
@@ -284,28 +284,15 @@ function submitIncidentDetails() {
         success: function (response) {
             if (response != null && response != "") {
 
-                if (response[0].TransactionID != "") {
-                    $('#trxID').text(response[0].TransactionID);
-                    $('#annoymouslogin').hide();
-                    $('#txtTran').val(response[0].TransactionID);
-                }
-                if (response[0].AnonymousUserName != "" && response[0].AnonymousPassowrd != "") {
-                    $('#spanUserName').text(response[0].AnonymousUserName);
-                    $('#txtUname').val(response[0].AnonymousUserName);
-                    $('#spanPassword').text(response[0].AnonymousPassowrd);
-                    $('#txtPass').val(response[0].AnonymousPassowrd);
-                    $('#annoymouslogin').show();
+                var successTranxID = response[0].TransactionID;
 
-                }
-
-                $('#AnonymousModal').modal('show');
-                if (localStorage.getItem("AcctType") != "Admin") {
-                    $('#btnGoHome').show();
-                    $('#btnGoClose').hide();
+                var IncFileControl = $('#FileAttachmentDetails');
+                if (IncFileControl.val() != null || IncFileControl.val() != "") {
+                    uploadIncidentDocuments(successTranxID, response);
                 }
                 else {
-                    $('#btnGoHome').hide();
-                    $('#btnGoClose').show();
+
+                    finalProcess(successTranxID, response);
                 }
             }
         },
@@ -317,7 +304,61 @@ function submitIncidentDetails() {
         }
     });
 }
+function finalProcess(successTranxID, response) {
+    if (successTranxID != "") {
+        $('#trxID').text(successTranxID);
+        $('#annoymouslogin').hide();
+        $('#txtTran').val(successTranxID);
+    }
+    if (response[0].AnonymousUserName != "" && response[0].AnonymousPassowrd != "") {
+        $('#spanUserName').text(response[0].AnonymousUserName);
+        $('#txtUname').val(response[0].AnonymousUserName);
+        $('#spanPassword').text(response[0].AnonymousPassowrd);
+        $('#txtPass').val(response[0].AnonymousPassowrd);
+        $('#annoymouslogin').show();
+    }
 
+    $('#AnonymousModal').modal('show');
+    if (localStorage.getItem("AcctType") != "Admin") {
+        $('#btnGoHome').show();
+        $('#btnGoClose').hide();
+    }
+    else {
+        $('#btnGoHome').hide();
+        $('#btnGoClose').show();
+    }
+}
+function uploadIncidentDocuments(tranxIURN, response) {
+
+    var iurn = tranxIURN;
+
+    var data = new FormData();
+    jQuery.each(jQuery('#FileAttachmentDetails')[0].files, function (i, file) {
+        data.append('file-' + i, file);
+    });
+
+    $.ajax({
+        type: "POST",
+        url: '/api/FileUploader?iURN=' + iurn + '&IncDoc=true',
+        enctype: 'multipart/form-data',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: data,
+        success: function (data, textStatus, xhr) {
+            $("#FileAttachmentDetails").val(null);
+            finalProcess(tranxIURN, response);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(textStatus + ': ' + errorThrown);
+        }
+    });
+
+
+}
 function myFunctionUserName() {
 
     var copyText = document.getElementById("txtUname");

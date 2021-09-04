@@ -10,7 +10,7 @@ namespace Dev.Project.WhistleBlower.Web.Data
     {
         public const string encryptionKey = "Whistle!2@3#4$";
         // public const string CaptchaKey = "6LfpuGwUAAAAADKyN4TDJYkANzBieUD7_SfkzEL5";//Development
-        public static string googleCAPTCHAKey =  WebConfigurationManager.AppSettings["CAPTCHAKey"].ToString();
+        public static string googleCAPTCHAKey = WebConfigurationManager.AppSettings["CAPTCHAKey"].ToString();
 
         //public const string CaptchaKey = "6LdIoOYUAAAAAHY5zoDMehujAIpADpDPNAJuYdei";//Staging;
 
@@ -18,6 +18,8 @@ namespace Dev.Project.WhistleBlower.Web.Data
         public const string anonymousUserAccountType = "Anonymous User";
         public const string AdminUserAccountType = "Admin";
         public const string normalUserAccountType = "User";
+        public const int PasswordLength = 12;
+        public const int PasswordNumericCharLength = 2;
         #endregion
     }
 }

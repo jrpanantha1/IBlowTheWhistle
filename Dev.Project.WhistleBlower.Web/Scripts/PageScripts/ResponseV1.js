@@ -3,12 +3,15 @@
     if (localStorage.getItem('accessToken') != null) {
         loadLanguageDetails();
         getResponseHistory();
+        getIncCaseDocuments();
     }
     else {
         window.location.href = "/Pages/Login.aspx";
     }
     menuEnableDisable();//ref Utility.js
     getBannerDetails();
+
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function getResponseHistory() {
@@ -56,7 +59,8 @@ function showHistroy(items) {
         var resDate = new Date(items[i].ResponseDate).toLocaleString();
         var resMessage = items[i].Message != "" ? items[i].Message : "";
         var resCompanyName = items[i].companyName;
-        resCompanyLogo = items[i].companyLogo;
+
+        resCompanyLogo = items[i].companyLogo != null ? items[i].companyLogo : "/assets/images/LargeAvatar.png";
 
         if (items[i].commentBy == "Anonymous User") {
 
@@ -192,6 +196,83 @@ function sendResponse() {
     });
 
 }
+function uploadIncidentDocumentsinResponse() {
+
+    var iurn = getUrlVars()["iURN"];;
+
+    var data = new FormData();
+    jQuery.each(jQuery('#FileAttachmentDetails')[0].files, function (i, file) {
+        data.append('file-' + i, file);
+    });
+
+    $.ajax({
+        type: "POST",
+        url: '/api/FileUploader?iURN=' + iurn + '&IncDoc=true',
+        enctype: 'multipart/form-data',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: data,
+        success: function (data, textStatus, xhr) {
+            $("#FileAttachmentDetails").val(null);
+            getIncCaseDocuments();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(textStatus + ': ' + errorThrown);
+        }
+    });
+
+
+}
+
+function getIncCaseDocuments() {
+    var iurn = getUrlVars()["iURN"];
+
+    $.ajax({
+        url: '/api/FileUploader?IURN=' + iurn + '&IncDoc=true',
+        method: 'GET',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+                var caseDocHtml = "";
+                $('#divCaseDocuments').empty();
+
+                var arrFile = response.split(';');
+
+                //caseDocHtml = "<ul class='list - group list - group - flush'>";
+                caseDocHtml = " <ol class='CaseDocfa-ul'>";
+
+                for (var i = 0; i < arrFile.length; i++) {
+                    var dRow = i + 1;
+                    if (arrFile[i] != null && arrFile[i] != "") {
+
+                        var last = arrFile[i].substring(arrFile[i].lastIndexOf("/") + 1, arrFile[i].length);
+
+                        caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "<i sValue='" + arrFile[i] + "' id='icon-trash-2' style='float:right;padding:5px;' class='icon-trash-2 mx-2'></i></li></a>";
+                    }
+                }
+                caseDocHtml += "</ol >";
+
+            }
+            $('#divCaseDocuments').append(caseDocHtml);
+
+        },
+        error: function (response) {
+
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
 var anonymousText = "";
 function loadLanguageDetails() {
 
@@ -249,7 +330,7 @@ function getBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }
@@ -263,3 +344,52 @@ function getBannerDetails() {
         }
     });
 }
+$(document).ready(function () {
+    $(document).on('click', '#icon-trash-2',
+        function () {
+            var listValue = $(this).parent().parent().attr('href');
+            if (confirm("Are you sure want to delete?")) {
+                //alert(listValue);
+
+                $.ajax({
+                    url: '/api/FileUploader?delfilePath=' + listValue,
+                    method: 'DELETE',
+                    async: false,
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+                    },
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response != null && response != "") {
+                            //alert(response);
+                            getIncCaseDocuments();
+                        }
+                    },
+                    error: function (response) {
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+
+            return false;
+        });
+});
+
+
+function exportToPDF() {
+    var doc = new jsPDF();  //create jsPDF object
+    doc.fromHTML(document.getElementById("chartDiv"), // page element which you want to print as PDF
+        15,
+        15,
+        {
+            'width': 170  //set width
+        },
+        function (a) {
+            doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+        });
+}
+

@@ -51,7 +51,7 @@ function reSetConfirmation() {
 
     $.ajax({
         url: '/api/RegisteredUsers',
-        method: 'POST',
+        method: 'PUT',
         data: JSON.stringify(userData),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
@@ -62,8 +62,7 @@ function reSetConfirmation() {
         success: function (response) {
             if (response != "") {
 
-                $("#myToast").toast({ delay: 3000 });
-                $("#myToast").toast('show');
+                showSuccessMessage("password updated successfully.");
                 $('#txtPassword').val("");
                 $('#txtRePassword').val("");
                 // alert(response);

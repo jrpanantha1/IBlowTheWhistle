@@ -16,7 +16,7 @@ namespace WhistleBlowerDAL
     {
         public System.Guid CaseURN { get; set; }
         public System.Guid IURN { get; set; }
-        public System.Guid RegUserID { get; set; }
+        public Nullable<System.Guid> RegUserID { get; set; }
         public System.Guid CompanyURN { get; set; }
         public long CaseClusterID { get; set; }
         public string CaseInformation { get; set; }

@@ -74,7 +74,8 @@
                         <!-- end of form group -->
                         <div class="form-group collapseSupportingEvidence" id="collapseFileAttachment" name="collapseFileAttachment">
                             <label id="lblBrowseText" class="sr-only"></label>
-                            <a href="#" class="ancViewDoc"></a>
+                            <a class="ancViewDoc"></a>
+                            <hr />
                             <div id="divAttachements">
                             </div>
 

@@ -18,7 +18,7 @@ namespace Dev.Project.WhistleBlower.Web
             if (app.Context.Request.Url.LocalPath.EndsWith("/"))
             {
                 app.Context.RewritePath(
-                         string.Concat(app.Context.Request.Url.LocalPath, "Pages/Home.aspx"));
+                         string.Concat(app.Context.Request.Url.LocalPath, "Pages/Default.aspx"));
             }
         }
         void Application_Start(object sender, EventArgs e)

@@ -576,10 +576,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 {
                                     objRegisteredUser.CompanyID = new Guid(companyID);
                                     Guid RegUserID = Guid.NewGuid();
-                                    strRegUserID = RegUserID.ToString();
+                                    //strRegUserID = RegUserID.ToString();
                                     objRegisteredUser.RegUserID = RegUserID;
                                     objRegisteredUser.Email = AnonymousEmailID = WhistleBlowDetail.Email;
-                                    objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(10, 2);// WhistleContants.userPassword;
+                                    objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);// WhistleContants.userPassword;
                                     objRegisteredUser.AcctType = WhistleContants.normalUserAccountType;
                                     Entities.RegisteredUsers.Add(objRegisteredUser);
                                     Entities.SaveChanges();
@@ -592,10 +592,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 objRegisteredUser = new RegisteredUser();
                                 objRegisteredUser.CompanyID = new Guid(companyID);
                                 Guid RegUserID = Guid.NewGuid();
-                                strRegUserID = RegUserID.ToString();
+                                //strRegUserID = RegUserID.ToString();
                                 objRegisteredUser.RegUserID = RegUserID;
                                 objRegisteredUser.Email = AnonymousEmailID; //Utility.getRandomEmail() + "@ibtw.com";
-                                objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(10, 2); //WhistleContants.userPassword;
+                                objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength); //WhistleContants.userPassword;
                                 objRegisteredUser.AcctType = WhistleContants.anonymousUserAccountType;
                                 Entities.RegisteredUsers.Add(objRegisteredUser);
                                 Entities.SaveChanges();
@@ -603,7 +603,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             }
 
                             //Add default entry into case  management for this created Incident URN
-
+                            string emailID = User.Identity.Name;
+                            //var userInfo = db.RegisteredUsers.FirstOrDefault(d => d.Email == emailID);
                             var caseInfo = db.CaseManagements.FirstOrDefault(d => d.IURN == IncidentIURN);
                             if (caseInfo == null)
                             {
@@ -612,7 +613,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 objCase.CaseURN = Guid.NewGuid();
                                 objCase.IURN = IncidentIURN;
                                 objCase.CompanyURN = new Guid(companyID);
-                                objCase.RegUserID = new Guid(strRegUserID);
+                                //objCase.RegUserID = userInfo.RegUserID;
                                 objCase.CaseInformation = WhistleBlowDetail.HaveWitness == true ? "New incident has been registered with witness" : "New incident has been registered without witness";
                                 objCase.CaseUpdated = System.DateTime.Now;
                                 db.CaseManagements.Add(objCase);

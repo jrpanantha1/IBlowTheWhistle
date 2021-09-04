@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js" async defer></script>
     <script src="/Scripts/PageScripts/ResponseV1.js"></script>
     <style type="text/css">
         .error {
@@ -66,16 +67,35 @@
                                     <!-- Icons -->
                                     <button id="button" type="submit" onclick="sendResponse(); return false;" class="btn btn-xs btn-primary langDirection"><span id="btSend"></span></button>
                                     <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
-
+                                    <a href="#" onclick="exportToPDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export chat info to PDF'>
+                                        <img src="/Images/PDFIcon.png" /></a>
                                 </div>
+
                             </div>
                             <!-- end of row -->
-                            <div class="form-group my-4">
-                            </div>
+
+
+
+
+
                         </div>
                         <!-- end of card body -->
+
                     </div>
                     <!-- end of card -->
+                    <br />
+                    <div class="row">
+
+                        <div class="col-8" style="display: inline-flex; margin-bottom: 3px;">
+                            <input id="FileAttachmentDetails" name="FileAttachmentDetails" type="file" multiple="multiple" class="form-control form-control-file" />
+                            <button class="btn btn-outline-primary" onclick="uploadIncidentDocumentsinResponse();return false;">Upload</button>
+
+                        </div>
+
+
+                    </div>
+                    <div id="divCaseDocuments">
+                    </div>
                 </div>
                 <!--end of col-->
 
@@ -87,6 +107,7 @@
     </section>
     <!-- // Section: Report Incident -->
     <!-- Form Autosize -->
+    <div id="elementH"></div>
     <script src="/assets/js/autosize.min.js" async defer></script>
 
     <script>

@@ -60,8 +60,8 @@ function getIncidentDetails() {
 
                     $("#spanCompany").text(response.objCompanyMasters.CompanyName);
                     $(".spanCompanyNameIcon").text(response.objCompanyMasters.CompanyName);
-                    $("#spanCode").text(response.CompanyValueNonEncrypt);
-                    var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
+                    $("#spanCode").val(response.CompanyValueNonEncrypt);
+                    var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
                     $("#txtCompanyLink").val(tarURL);
 
 
@@ -124,7 +124,8 @@ function getIncidentDetails() {
                     dom: 'Bfrtip',
                     buttons: [{
                         extend: 'excel',
-                        text: 'Save as Excel',
+                        text: '<img src="/Images/ExcelIcon.png"></img>',
+                        titleAttr: 'Save as Excel',
                         title: 'Whistle Blow Incidents',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -254,15 +255,16 @@ function getIncidentDetails() {
                     // $('.topBanner').hide();
                 }
                 else {
-                    //if freemium then disbale
-                    if ($('#hdnSusPlanCode').val() == "1") {
-                        tblDT.buttons().disable();
-                        tblDT.column(13).visible(false);// category coln
+                    //if freemium then disbale. 
+                    // now no more freemium so enabling the column
+                    //if ($('#hdnSusPlanCode').val() == "1") {
+                    //    tblDT.buttons().disable();
+                    //    tblDT.column(13).visible(false);// category coln
 
-                    }
-                    else {
-                        tblDT.column(13).visible(true);
-                    }
+                    //}
+                    //else {
+                    //    tblDT.column(13).visible(true);
+                    //}
 
                     //tblDT.button(0).enable(true);
 
@@ -346,8 +348,8 @@ function getIncidentDetailsByIncCategory(incCategory) {
 
                     $("#spanCompany").text(response.objCompanyMasters.CompanyName);
                     $(".spanCompanyNameIcon").text(response.objCompanyMasters.CompanyName);
-                    $("#spanCode").text(response.CompanyValueNonEncrypt);
-                    var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
+                    $("#spanCode").val(response.CompanyValueNonEncrypt);
+                    var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
                     $("#txtCompanyLink").val(tarURL);
 
 
@@ -591,9 +593,16 @@ function getIncidentDetailsByIncCategory(incCategory) {
 
 function updateCaseInformationOnStatusChange(iurn, SelectedValue) {
 
+    var loggedUser = $('#hdnLoggedUserName').val().trim();
+    var textFormation = "Status changed by {" + loggedUser + "} to " + SelectedValue
+
+    //var dataResponse = {
+    //    "CaseInformation": "Case status changed to " + SelectedValue,
+    //    "IURN": iurn
+    //};
 
     var dataResponse = {
-        "CaseInformation": "Case status changed to " + SelectedValue,
+        "CaseInformation": textFormation,
         "IURN": iurn
     };
 
@@ -626,6 +635,16 @@ function copyCompanyLink() {
     document.execCommand("copy");
 
     var tooltip = document.getElementById("myTooltipPass");
+    tooltip.innerHTML = $('#hdnCopiedText').val();
+
+}
+function copyCompanyCode() {
+    var copyText = document.getElementById("spanCode");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+    var tooltip = document.getElementById("myTooltipComCode");
     tooltip.innerHTML = $('#hdnCopiedText').val();
 
 }

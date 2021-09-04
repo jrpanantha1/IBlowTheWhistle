@@ -12,6 +12,25 @@
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="manifest.json" />
+     <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/IblowthewhistleFavico/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/IblowthewhistleFavico/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/IblowthewhistleFavico/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/IblowthewhistleFavico/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/IblowthewhistleFavico/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/IblowthewhistleFavico/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/IblowthewhistleFavico/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/IblowthewhistleFavico/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/IblowthewhistleFavico/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/IblowthewhistleFavico/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/IblowthewhistleFavico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/IblowthewhistleFavico/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/IblowthewhistleFavico/favicon-16x16.png" />
+    <link rel="manifest" href="/IblowthewhistleFavico/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/IblowthewhistleFavico/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="icon.png" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -35,17 +54,9 @@
         <div class="navbar-dark fixed-top">
             <div class="container-fluid p-4">
                 <nav class="navbar navbar-expand">
-                    <a class="navbar-brand" href="Home.aspx">
+                    <a class="navbar-brand" href="Default.aspx">
                         <img alt="I Blow The Whistle" src="/assets/images/logo-light.png" class="logo d-lg-inline-block d-none"><img alt="I Blow The Whistle" src="/assets/images/logo.png" class="logo d-inline-block d-lg-none"></a>
                     <div id="navbarNav" class="collapse navbar-collapse justify-content-end">
-                        <ul class="navbar-nav align-items-center">
-                            <li class="nav-item d-none d-md-inline-block">
-                                <span class="mr-4 text-unstyled">Don't have an account?</span>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Pages/Join.aspx" class="btn btn-sm btn-outline-dark">Get Started</a>
-                            </li>
-                        </ul>
                     </div>
                     <!--end nav collapse-->
                 </nav>
@@ -100,9 +111,19 @@
                             <!--end of form-group-->
                         </form>
                         <!--end of form-->
+                        <ul class="navbar-nav align-items-center" style="display: flex; flex-direction: row">
+                            <li class="nav-item d-md-inline-block">
+                                <span class="mr-4 text-unstyled">Don't have an account?</span>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Pages/Join.aspx" class="btn btn-sm btn-outline-dark">Get Started</a>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
                 <!--end of col-->
+
             </div>
             <!--end of row-->
         </div>

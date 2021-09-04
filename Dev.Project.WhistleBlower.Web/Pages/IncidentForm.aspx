@@ -4,6 +4,7 @@
     Report A Fraud | I Blow The Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <link href="/assets/css/styles.min.css" rel="stylesheet" />
     <link href="/Scripts/DropZone/fancy_fileupload.css" rel="stylesheet" />
     <script src="/Scripts/PageScripts/IncidentForm.js"></script>
 
@@ -100,9 +101,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer border-0">
-                    <button type="button" id="btnGoHome" class="btn btn-block btn-sm btn-info" onclick="window.location.href='/Pages/Home.aspx';">Go to Home</button>
-                    <button type="button" id="btnGoClose" class="btn btn-block btn-sm btn-info" onclick="$('#AnonymousModal').modal('hide');location.reload();return false;" style="display: none">Close</button>
+                <div class="modal-footer border-0" style="margin: 0 auto;">
+                    <button type="button" id="btnGoHome" class="btn btn-lg btn-primary" onclick="window.location.href='/Pages/Default.aspx';">Go to Home</button>
+                    <button type="button" id="btnGoClose" class="btn btn-lg btn-primary" onclick="$('#AnonymousModal').modal('hide');location.reload();return false;" style="display: none">Close</button>
                 </div>
             </div>
         </div>

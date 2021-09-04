@@ -13,6 +13,24 @@
     <link rel="manifest" href="manifest.json" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/IblowthewhistleFavico/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/IblowthewhistleFavico/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/IblowthewhistleFavico/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/IblowthewhistleFavico/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/IblowthewhistleFavico/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/IblowthewhistleFavico/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/IblowthewhistleFavico/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/IblowthewhistleFavico/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/IblowthewhistleFavico/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/IblowthewhistleFavico/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/IblowthewhistleFavico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/IblowthewhistleFavico/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/IblowthewhistleFavico/favicon-16x16.png" />
+    <link rel="manifest" href="/IblowthewhistleFavico/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/IblowthewhistleFavico/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
     <!-- JS -->
     <script src="/Scripts/jquery-3.4.1.min.js"></script>
     <script src="/Scripts/popper.min.js" async defer></script>
@@ -22,6 +40,7 @@
     <script src="/assets/js/toast.script.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" rel="stylesheet" />
     <link href="/assets/css/styles.min.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/Utility.js"></script>
     <script src="/Scripts/PageScripts/languageChange.js"></script>
     <script src="/Scripts/PageScripts/CompanyProfile.js"></script>
@@ -75,8 +94,11 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item d-none">
+                                        <a href="https://info.iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll"><i style="font-size: 24px;" class="icon-dollar-sign mr-5"></i></a>
+                                    </li>
                                     <li class="nav-item">
-                                        <a onclick="location.reload();return false;" href="#" title="Refresh" class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
+                                        <a onclick="location.reload();return false;" href="#" data-toggle='tooltip' data-placement='left' data-original-title='Refresh' class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
                                     </li>
                                     <li class="nav-item dropdown language-switcher">
                                         <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
@@ -111,7 +133,7 @@
                                             </a>
                                         </div>
                                     </li>
-                                    <li class="nav-item dropdown">
+                                    <li class="nav-item dropdown usermainmenu">
 
 
 
@@ -128,7 +150,10 @@
                                             <a class="dropdown-item py-4 d-flex align-items-center" href="#">
                                                 <img style="height: 24px; width: 24px; align-content: center;" class="companyavatar avatar avatar-sm mr-3" src="/assets/images/default-profile_01.png" alt="Arya Stark" />
                                                 <div>
-                                                    <h6 class="mb-0 font-weight-normal"><span class='spanCompanyNameIcon'></span></h6>
+                                                    <h6 class="mb-0 font-weight-normal">
+                                                        <b class="usernametxt">David Smith</b>
+                                                        <span class='spanCompanyNameIcon'></span>
+                                                    </h6>
                                                     <span class="text-muted" /><span class='userEmail'></span>
                                                 </div>
                                                 <!--end of div-->
@@ -140,7 +165,7 @@
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>KPI Reports</a>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>Reports Dashbaord</a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
@@ -150,9 +175,9 @@
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/IncidentForm.aspx"><i class="mr-3 icon-file-plus"></i>Capture Own Incidents</a>
                                             </div>
-                                            <div class="preferencesMenu">
+                                            <div class="preferencesMenu AdminAccountOnlymenu">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/ResetPassword.aspx"><i class="mr-3 icon-command"></i>Reset Password</a>
+                                                <a class="dropdown-item" href="/Pages/ManageAdmin.aspx"><i class="mr-3 icon-settings"></i>Manage Admin</a>
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-log-out"></i>Sign Out</a>
@@ -193,12 +218,11 @@
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Benefits">Benefits</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Customers">Customers</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Eligibility">Eligibility</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Explainer">Explainer</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/pricing">Pricing</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/terms">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com">Information</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/benefits-2">Features</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/Support">Support</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/terms-conditions">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/products">Pricing</a></li>
                             </ul>
                         </div>
                         <!--end of col-->
@@ -213,6 +237,9 @@
         </div>
         <input type="hidden" id="hdnAcctType" />
         <input type="hidden" id="hdnSusPlanCode" />
+        <input type="hidden" id="hdnLoggedUserName" />
+
     </form>
+
 </body>
 </html>

@@ -50,7 +50,7 @@
                                 <!--end of form-group-->
                                 <div class="form-group">
                                     <input type="button" class="btn right  btn-sm btn-block btn-primary btn-reset" value="Reset" onclick="if (reSetValidation()) { reSetConfirmation(); }" id="btnRegister" />
-                                    <input type="button" class="btn right  btn-sm btn-block btn-primary btn-back" value="Back" id="btnBack" onclick="window.location.href = '/Pages/ViewIncidents.aspx'; return false;" />
+                                    <input type="button" class="btn right  btn-sm btn-block btn-primary btn-back" value="Back" id="btnBack" onclick="window.location.href = '/Pages/MyAccount.aspx'; return false;" />
                                 </div>
                                 <!--end of form-group-->
 

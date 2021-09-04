@@ -13,6 +13,23 @@
     <link rel="manifest" href="manifest.json" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/IblowthewhistleFavico/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/IblowthewhistleFavico/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/IblowthewhistleFavico/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/IblowthewhistleFavico/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/IblowthewhistleFavico/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/IblowthewhistleFavico/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/IblowthewhistleFavico/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/IblowthewhistleFavico/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/IblowthewhistleFavico/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/IblowthewhistleFavico/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/IblowthewhistleFavico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/IblowthewhistleFavico/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/IblowthewhistleFavico/favicon-16x16.png" />
+    <link rel="manifest" href="/IblowthewhistleFavico/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/IblowthewhistleFavico/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
     <!-- JS -->
     <script src="/Scripts/jquery-3.3.1.min.js"></script>
     <script src="/Scripts/popper.min.js" async defer></script>
@@ -31,10 +48,24 @@
         </asp:ContentPlaceHolder>
     </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+
+            });
+        </script>
     </asp:ContentPlaceHolder>
     <style>
         .error {
             border: 1px solid red;
+        }
+
+        .ddlLanguage {
+            background-color: #00a485;
+        }
+
+        .dropdown-item {
+            color: white;
         }
     </style>
     <script type="text/javascript">
@@ -43,7 +74,7 @@
                 window.location.href = "/Pages/ViewIncidents.aspx";
             }
             else {
-                window.location.href = "/Pages/Home.aspx";
+                window.location.href = "/Pages/Default.aspx";
             }
         }
     </script>
@@ -60,7 +91,11 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item UpdatedOnIncidentDisableForAdmin">
+                                        <a href="https://info.iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll">Pricing</a>
+                                    </li>
                                     <li class="nav-item dropdown language-switcher">
+
                                         <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
@@ -134,12 +169,11 @@
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Benefits">Benefits</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Customers">Customers</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Eligibility">Eligibility</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/Explainer">Explainer</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/pricing">Pricing</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="http://blog.iblowthewhistle.com/terms">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com">Information</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/benefits-2">Features</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/Support">Support</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/terms-conditions">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/products">Pricing</a></li>
                             </ul>
                         </div>
                         <!--end of col-->

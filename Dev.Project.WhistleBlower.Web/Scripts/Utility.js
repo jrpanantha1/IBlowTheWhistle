@@ -11,9 +11,11 @@ function enquryFormValidation() {
     if (!GetTextBoxEmptyValidation($('#email'))) {
         flag = false;
     }
-
+    if (flag) {
+        SendEmailEnquiryNotification();
+    }
 }
-function SendEmailNotification() {
+function SendEmailEnquiryNotification() {
 
 
     var enqData =

@@ -29,9 +29,10 @@ function getBannerDetails() {
                     else {
                         $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                     }
-                    var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                    var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                     //copy to clipboard
-                    var bannerValue = "<a target='_blank' href='" + tarURL + "'><img class='imgTopBanner' src='/assets/images/WhistleDefaultTopBanner.PNG' alt='horizontal banner' /></a>";
+                    //var bannerValue = "<a target='_blank' href='" + tarURL + "'><img class='imgTopBanner' src='/assets/images/WhistleDefaultTopBanner.PNG' alt='horizontal banner' /></a>";
+                    var bannerValue = "<a target='_blank' href='" + tarURL + "'></a>";
                     $('#txtBannerText').val(bannerValue);
 
                     $('.ancImgTopBanner').attr("href", tarURL);

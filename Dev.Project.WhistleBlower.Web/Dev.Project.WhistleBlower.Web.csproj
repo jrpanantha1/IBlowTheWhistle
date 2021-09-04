@@ -200,7 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\bootstrap-responsive.min.css" />
+    <Content Include="assets\css\css2.css" />
     <Content Include="assets\css\jquery.dataTables.css" />
+    <Content Include="assets\css\newstyle.css" />
     <Content Include="assets\css\overall.css" />
     <Content Include="assets\css\styles.min.css" />
     <Content Include="assets\fonts\feather.svg" />
@@ -230,6 +232,7 @@
     <Content Include="assets\images\Whistle_Small_Square.jpg" />
     <Content Include="assets\images\Whistle_SquareLarge.jpg" />
     <Content Include="assets\images\Whistle_Tall.jpg" />
+    <Content Include="assets\js\1a4a488850.js" />
     <Content Include="assets\js\autosize.min.js" />
     <Content Include="assets\js\dataTables.responsive.min.js" />
     <Content Include="assets\js\form.min.js" />
@@ -239,9 +242,43 @@
     <Content Include="assets\js\theme.min.js" />
     <Content Include="assets\js\toast.script.js" />
     <Content Include="Global.asax" />
+    <Content Include="IblowthewhistleFavico\android-icon-144x144.png" />
+    <Content Include="IblowthewhistleFavico\android-icon-192x192.png" />
+    <Content Include="IblowthewhistleFavico\android-icon-36x36.png" />
+    <Content Include="IblowthewhistleFavico\android-icon-48x48.png" />
+    <Content Include="IblowthewhistleFavico\android-icon-72x72.png" />
+    <Content Include="IblowthewhistleFavico\android-icon-96x96.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-114x114.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-120x120.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-144x144.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-152x152.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-180x180.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-57x57.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-60x60.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-72x72.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-76x76.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon-precomposed.png" />
+    <Content Include="IblowthewhistleFavico\apple-icon.png" />
+    <Content Include="IblowthewhistleFavico\browserconfig.xml" />
+    <Content Include="IblowthewhistleFavico\favicon-16x16.png" />
+    <Content Include="IblowthewhistleFavico\favicon-32x32.png" />
+    <Content Include="IblowthewhistleFavico\favicon-96x96.png" />
+    <Content Include="IblowthewhistleFavico\favicon.ico" />
+    <Content Include="IblowthewhistleFavico\ms-icon-144x144.png" />
+    <Content Include="IblowthewhistleFavico\ms-icon-150x150.png" />
+    <Content Include="IblowthewhistleFavico\ms-icon-310x310.png" />
+    <Content Include="IblowthewhistleFavico\ms-icon-70x70.png" />
     <Content Include="Images\ExcelIcon.png" />
     <Content Include="Images\IblowTheWhistleCustomerBanner.png" />
     <Content Include="Images\IBTWBook.png" />
+    <Content Include="Images\newHome\logo-light.png" />
+    <Content Include="Images\newHome\logo.png" />
+    <Content Include="Images\newHome\p1.jpg" />
+    <Content Include="Images\newHome\p2.jpg" />
+    <Content Include="Images\newHome\p3.jpg" />
+    <Content Include="Images\newHome\p4.jpg" />
+    <Content Include="Images\newHome\p5.jpg" />
+    <Content Include="Images\PDFIcon.png" />
     <Content Include="Images\PricingStructure.jpg" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
@@ -263,6 +300,7 @@
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Customers.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
+    <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Eligibility.aspx" />
     <Content Include="Pages\Explainer.aspx" />
     <Content Include="Pages\Home.aspx" />
@@ -270,6 +308,8 @@
     <Content Include="Pages\Join.aspx" />
     <Content Include="Pages\Legal.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\IBTWAdmin.aspx" />
+    <Content Include="Pages\ManageAdmin.aspx" />
     <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\Pricing.aspx" />
     <Content Include="Pages\ResetPassword.aspx" />
@@ -303,6 +343,8 @@
     <Content Include="Scripts\PageScripts\Join.js" />
     <Content Include="Scripts\PageScripts\languageChange.js" />
     <Content Include="Scripts\PageScripts\Login.js" />
+    <Content Include="Scripts\PageScripts\IBTWAdmin.js" />
+    <Content Include="Scripts\PageScripts\ManageAdmin.js" />
     <Content Include="Scripts\PageScripts\MyAccount.js" />
     <Content Include="Scripts\PageScripts\ResetPassword.js" />
     <Content Include="Scripts\PageScripts\ResponseV1.js" />
@@ -404,6 +446,13 @@
     <Compile Include="Pages\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eligibility.aspx.cs">
       <DependentUpon>Eligibility.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -452,6 +501,20 @@
     </Compile>
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IBTWAdmin.aspx.cs">
+      <DependentUpon>IBTWAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\IBTWAdmin.aspx.designer.cs">
+      <DependentUpon>IBTWAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ManageAdmin.aspx.cs">
+      <DependentUpon>ManageAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ManageAdmin.aspx.designer.cs">
+      <DependentUpon>ManageAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MyAccount.aspx.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
@@ -532,6 +595,7 @@
     <Content Include="assets\fonts\feather.ttf" />
     <Content Include="assets\fonts\feather.woff" />
     <Content Include="Images\IBTWGuidebook.pdf" />
+    <Content Include="IblowthewhistleFavico\manifest.json" />
     <None Include="Properties\PublishProfiles\eWhistlePublish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

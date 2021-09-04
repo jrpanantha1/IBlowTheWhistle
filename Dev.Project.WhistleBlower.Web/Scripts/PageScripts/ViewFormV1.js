@@ -70,13 +70,20 @@ function loadFormDetails(iURN) {
                 if (IncResponse.SupportingDocuments != null && IncResponse.SupportingDocuments != "") {
 
                     var filesPaths = IncResponse.SupportingDocuments;
+                    var caseDocHtml = " <ol class='CaseDocfa-ul'>";
+
                     var arr = filesPaths.split(';');
                     for (var i = 0; i < arr.length; i++) {
                         var dd = i + 1;
                         if (arr[i] != "") {
-                            $('#divAttachements').append("<a target='_blank' href=" + arr[i] + "> Document" + dd + "</a></br>");
+                            var fileName1 = arr[i].substring(arr[i].lastIndexOf("/") + 1, arr[i].length);
+
+                            caseDocHtml += "<a target='_blank' href='" + arr[i] + "' download=" + fileName1 + "><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dd + " - " + fileName1 + "</li></a>";
+                            //$('#divAttachements').append("<a target='_blank' href=" + arr[i] + " download=" + fileName1 + "> " + fileName1 + "</a></br>");
                         }
                     }
+                    caseDocHtml += "</ol >";
+                    $('#divAttachements').append(caseDocHtml);
 
 
                 }
@@ -247,7 +254,7 @@ function getBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://iblowthewhistle.com/Pages/Home.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }

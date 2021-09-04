@@ -3,10 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <meta http-equiv="Refresh" content="120" />
     <link href="/JQDatatables/datatables.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/JQDatatables/datatables.min.js"></script>
     <link href="/assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    
     <script src="/Scripts/PageScripts/ViewIncidents.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
@@ -186,7 +187,11 @@
             color: #ff0476 !important;
         }
 
-
+        #spanCode {
+            border-radius: 6px;
+            padding: 3px 3px 5px 12px;
+            border: 0;
+        }
 
         .CSSBadge {
             box-sizing: border-box;
@@ -217,6 +222,8 @@
             margin: 0;
             padding: 7px;
             font-size: 20px;
+            width: 100%;
+            float: left;
         }
 
         .name {
@@ -227,6 +234,9 @@
             font-size: 20px;
             padding: 20px;
             text-align: center;
+            width: 100%;
+            float: left;
+            margin-bottom: 20px;
         }
 
         /* Reset */
@@ -243,7 +253,7 @@
                 /*top: 25px;*/
                 content: " ";
                 display: block;
-               /* right: 50%;*/
+                /* right: 50%;*/
                 position: relative;
             }
 
@@ -264,7 +274,7 @@
         }
 
         .divTopSection4 {
-            min-width: 15%;
+            min-width: 29%;
             float: left;
             text-align: left;
             padding: 10px;
@@ -286,6 +296,22 @@
 
         table.dataTable thead th {
             border-right: 1px solid white !important;
+        }
+
+        .companyCode {
+            float: right;
+        }
+
+            .companyCode .companyCode {
+                float: left;
+            }
+
+        #companyCodelbl {
+            padding-right: 10px;
+            position: relative;
+            top: 2px;
+            color: #fff;
+            font-weight: normal;
         }
     </style>
     <script type="text/javascript">
@@ -311,16 +337,26 @@
                 <div class="col-12 contentarea">
                     <div class="quote-box" style="margin-bottom: 10px;">
                         <div class="quote">
-                            <blockquote>
-                                <div class="divTopSection1 langDirection"><span id="companyNamelbl"></span></div>
-                                <div class="divTopSection2 langDirection"><span id="spanCompany"></span></div>
-                                <div class="divTopSection1 companyCode langDirection" style="display: none"><span id="companyCodelbl"></span></div>
-                                <div class="divTopSection4 companyCode langDirection" style="display: none"><span id="spanCode"></span></div>
-                            </blockquote>
+
+                            <div class="divTopSection1 langDirection"><span id="companyNamelbl"></span></div>
+                            <div class="divTopSection2 langDirection"><span id="spanCompany"></span></div>
+
+                            <div class="divTopSection4 companyCode langDirection" style="display: none">
+
+                                <div class="cbtooltip" style="text-align: left">
+
+                                    <span id="companyCodelbl"></span>
+                                    <input type="text" id="spanCode" style="width: 145px;" />
+                                    <a onclick="copyCompanyCode();return false;" class="cbtooltiptextOriginal" style="cursor: pointer;" data-toggle='tooltip' data-placement='bottom' data-original-title=''><span class="cbtooltiptext" id="myTooltipComCode" data-toggle='tooltip' data-placement='bottom'></span>
+                                        <i class="icon-clipboard"></i></a>
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="name companyURLSection" style="display: none">
                             <div class="cbtooltip" style="text-align: left">
-                                <span id="companyURLlbl"></span>:<input type="text" id="txtCompanyLink" style="width: 80%;" />
+                                <span id="companyURLlbl"></span>:<input type="text" id="txtCompanyLink" style="width: 78%;" />
 
                                 <a onclick="copyCompanyLink();return false;" class="cbtooltiptextOriginal" style="cursor: pointer;" data-toggle='tooltip' data-placement='bottom' data-original-title=''><span class="cbtooltiptext" id="myTooltipPass" data-toggle='tooltip' data-placement='bottom'></span>
                                     <i class="icon-clipboard"></i></a>
@@ -330,63 +366,65 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table id="tblViewIncidents" style="width: 100%" class="table table-hover border-bottom mb-4">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th class="d-none langDirection">Tran ID</th>
-                                    <th class="d-none langDirection">Evidence Details</th>
-                                    <th><span id="spanConcernDetailsGrd"></span></th>
-                                    <th class="d-none langDirection">Is Reportable</th>
-                                    <th class="d-none langDirection">Supporting Evidence?</th>
-                                    <th class="d-none langDirection">Have witnesses?</th>
-                                    <th class="d-none langDirection">Update Progress? </th>
-                                    <th class="d-none langDirection">Contact Email</th>
-                                    <th class="d-none langDirection">Contact Phone</th>
-                                    <th class="d-none langDirection">Anonymous Email</th>
-                                    <th><span id="spanSubDateGrd"></span></th>
-                                    <th><span id="spanActionGrd"></span></th>
-                                    <th>
-                                        <div class="dropdown">
-                                            <!-- Toggle -->
-                                            <a href="#" class="dropdown-toggle" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="icon-filter mr-2"></i>All
-                                            </a>
-                                            <!-- Menu -->
+                        <div class="tableviewincidents" style="min-height: 400px;">
+                            <table id="tblViewIncidents" style="width: 100%" class="table table-hover border-bottom mb-4">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="d-none langDirection">Tran ID</th>
+                                        <th class="d-none langDirection">Evidence Details</th>
+                                        <th><span id="spanConcernDetailsGrd"></span></th>
+                                        <th class="d-none langDirection">Is Reportable</th>
+                                        <th class="d-none langDirection">Supporting Evidence?</th>
+                                        <th class="d-none langDirection">Have witnesses?</th>
+                                        <th class="d-none langDirection">Update Progress? </th>
+                                        <th class="d-none langDirection">Contact Email</th>
+                                        <th class="d-none langDirection">Contact Phone</th>
+                                        <th class="d-none langDirection">Anonymous Email</th>
+                                        <th><span id="spanSubDateGrd"></span></th>
+                                        <th><span id="spanActionGrd"></span></th>
+                                        <th>
+                                            <div class="dropdown">
+                                                <!-- Toggle -->
+                                                <a href="#" class="dropdown-toggle" id="dropdownFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="icon-filter mr-2"></i>All
+                                                </a>
+                                                <!-- Menu -->
 
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownFilter" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(82px, 21px, 0px);">
-                                                <a class="dropdown-item active incCategoryClick" selectedtext="All">
-                                                    <i class="icon-corner-up-left mr-2"></i>All
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype1" selectedtext="Unread">
-                                                    <i class="icon-message-circle mr-2"></i>Unread
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype2" selectedtext="Read">
-                                                    <i class="icon-eye mr-2"></i>Read
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype3" selectedtext="Important">
-                                                    <i class="icon-star mr-2"></i>Important
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype4" selectedtext="Done">
-                                                    <i class="icon-check-square mr-2"></i>Done
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype5" selectedtext="Discarded">
-                                                    <i class="icon-zap mr-2"></i>Discarded
-                                                </a>
-                                                <a class="dropdown-item incCategoryClick incidenttype6" selectedtext="Route to email">
-                                                    <i class="icon-mail mr-2"></i>Route to email
-                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownFilter" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(82px, 21px, 0px);">
+                                                    <a class="dropdown-item active incCategoryClick" selectedtext="All">
+                                                        <i class="icon-corner-up-left mr-2"></i>All
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype1" selectedtext="Unread">
+                                                        <i class="icon-message-circle mr-2"></i>Unread
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype2" selectedtext="Read">
+                                                        <i class="icon-eye mr-2"></i>Read
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype3" selectedtext="Important">
+                                                        <i class="icon-star mr-2"></i>Important
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype4" selectedtext="Done">
+                                                        <i class="icon-check-square mr-2"></i>Done
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype5" selectedtext="Discarded">
+                                                        <i class="icon-zap mr-2"></i>Discarded
+                                                    </a>
+                                                    <a class="dropdown-item incCategoryClick incidenttype6" selectedtext="Route to email">
+                                                        <i class="icon-mail mr-2"></i>Route to email
+                                                    </a>
+                                                </div>
+                                                <!--Select Drop Down Menu-->
+
+
+
                                             </div>
-                                            <!--Select Drop Down Menu-->
+                                        </th>
 
-
-
-                                        </div>
-                                    </th>
-
-                                </tr>
-                            </thead>
-                        </table>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                         <div class="statusmenu" style="display: none">
                             <details class="details-example">
                                 <summary>

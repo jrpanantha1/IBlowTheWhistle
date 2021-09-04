@@ -34,6 +34,29 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             return Ok(consolidPaths);
         }
         [Authorize]
+        public IHttpActionResult GetCaseDocuments(string iURN, bool IncDoc)
+        {
+            if (IncDoc != true)
+            {
+                return Ok("Invalid access");
+            }
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/" + iURN + "/");
+            string consolidPaths = "";
+
+            if (System.IO.Directory.Exists(path))
+            {
+                string[] filePaths = Directory.GetFiles(path);
+
+                foreach (string file in filePaths)
+                {
+                    consolidPaths += "/IBTWImages/" + companyID + "/" + iURN + "/" + Path.GetFileName(file) + ";";
+
+                }
+            }
+            return Ok(consolidPaths);
+        }
+        [Authorize]
         public IHttpActionResult PostUploadFiles(string iURN)
         {
             int iUploadedCnt = 0;
@@ -75,6 +98,86 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 //return "Upload Failed";
             }
             return Ok();
+        }
+        [Authorize]
+        public IHttpActionResult PostUploadFiles(string iURN, bool IncDoc)
+        {
+            int iUploadedCnt = 0;
+            if (IncDoc != true)
+            {
+                return Ok("Invalid access");
+            }
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+
+            string sPath = "";
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/" + iURN + "/");
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
+
+            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+
+            // CHECK THE FILE COUNT.
+            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+            {
+                System.Web.HttpPostedFile hpf = hfc[iCnt];
+
+                if (hpf.ContentLength > 0)
+                {
+                    // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+                    if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                    {
+                        // SAVE THE FILES IN THE FOLDER.
+                        hpf.SaveAs(path + Path.GetFileName(hpf.FileName));
+                        iUploadedCnt = iUploadedCnt + 1;
+                    }
+                }
+            }
+
+            // RETURN A MESSAGE.
+            if (iUploadedCnt > 0)
+            {
+                //return iUploadedCnt + " Files Uploaded Successfully";
+            }
+            else
+            {
+                //return "Upload Failed";
+            }
+            return Ok();
+        }
+
+        [Authorize]
+        public IHttpActionResult DELETEIncDocuments(string delfilePath)
+        {
+            string path = "";
+
+            int delLastIndx = delfilePath.LastIndexOf('/');
+
+            if (delLastIndx != -1)
+            {
+                string delFileDirInfo = delfilePath.Substring(0, delLastIndx);
+                delFileDirInfo = System.Web.Hosting.HostingEnvironment.MapPath(delFileDirInfo + "/");
+
+                string delFileNameInfo = delfilePath.Substring(delLastIndx + 1);
+
+                if (System.IO.Directory.Exists(delFileDirInfo))
+                {
+                    path = delFileDirInfo;
+
+                    if (File.Exists(Path.Combine(delFileDirInfo, delFileNameInfo)))
+                    {
+                        File.Delete(Path.Combine(delFileDirInfo, delFileNameInfo));
+                        return Ok("File Deleted");
+                    }
+                    else
+                        return Ok("file not found.");
+                }
+                else
+                    return Ok("Directory not found.");
+
+            }
+            return Ok("File Deleted");
         }
     }
 }

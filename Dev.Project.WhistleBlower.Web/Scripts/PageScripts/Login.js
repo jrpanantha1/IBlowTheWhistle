@@ -81,13 +81,14 @@ function authendicate() {
             }
             $('#lblError').show();
             onload();
+            grecaptcha.reset();
         },
         failure: function (response) {
-
+            grecaptcha.reset();
 
         },
         complete: function () {
-
+            grecaptcha.reset();
         }
     })
 

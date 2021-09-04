@@ -7,6 +7,21 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <script src="/Scripts/PageScripts/MyAccount.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            const dateTimeUtc = new Date();
+            document.querySelector(".js-TimeUtc").innerHTML = dateTimeUtc.toUTCString().split(" GMT")[0];
+
+            document.querySelector(".js-Selector").addEventListener("change", e => {
+                const dateTimeLocal = new Date(dateTimeUtc.getTime() + e.target.value * 3600 * 1000);
+                document.querySelector(".js-TimeLocal").innerHTML = dateTimeLocal.toUTCString().split(" GMT")[0];
+            });
+
+            const event = new Event("change");
+            document.querySelector(".js-Selector").dispatchEvent(event);
+        });
+
+    </script>
 
     <style type="text/css">
         .file-attachment-btn-label {
@@ -69,7 +84,7 @@
 
                                         <div class="inner intro mb-4">
 
-                                            <div class="d-flex justify-content-center align-items-center pb-3 inner-2">
+                                            <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
 
                                                 <!-- // no avatar -->
                                                 <img class="imgTopBanner" src="/assets/images/WhistleDefaultTopBanner.PNG" alt="" />
@@ -101,7 +116,7 @@
                                             <p class="inner">
                                                 Let's make a nice big leafy tree. You have to make those little noises or it won't work. Let's put some happy little clouds in our world. We don't really know where this goes - and I'm not sure we really care. When you do it your way you can go anywhere you choose. No worries. No cares. Just float and wait for the wind to blow you around.
                                             </p>
-                                            <div class="d-flex justify-content-center align-items-center pb-3 inner-2">
+                                            <div class="d-flex justify-content-center align-items-center pb-3 inner-2 ">
 
                                                 <div class="nav-item dropdown language-switcher">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
@@ -146,6 +161,69 @@
                                                 <!--end of flex-->
 
                                             </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion-list">
+                                        <a class="toggle" href="#">Preferred Timezone </a>
+
+                                        <div class="inner intro mb-4">
+                                            <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                                <p>
+                                                    <select class="js-Selector form-control">
+                                                        <option value="-12.0">(GMT -12:00)</option>
+                                                        <option value="-11.0">(GMT -11:00)</option>
+                                                        <option value="-10.0">(GMT -10:00)</option>
+                                                        <option value="-9.0">(GMT -9:00)</option>
+                                                        <option value="-8.0">(GMT -8:00))</option>
+                                                        <option value="-7.0">(GMT -7:00))</option>
+                                                        <option value="-6.0">(GMT -6:00)</option>
+                                                        <option value="-5.0">(GMT -5:00)</option>
+                                                        <option value="-4.0">(GMT -4:00)</option>
+                                                        <option value="-3.0">(GMT -3:00)</option>
+                                                        <option value="-2.0">(GMT -2:00)</option>
+                                                        <option value="-1.0">(GMT -1:00)</option>
+                                                        <option value="0.0">(GMT)</option>
+                                                        <option value="1.0">(GMT +1:00)</option>
+                                                        <option value="2.0" selected="selected">(GMT +2:00)</option>
+                                                        <option value="3.0">(GMT +3:00)</option>
+                                                        <option value="4.0">(GMT +4:00)</option>
+                                                        <option value="5.0">(GMT +5:00)</option>
+                                                        <option value="6.0">(GMT +6:00)</option>
+                                                        <option value="7.0">(GMT +7:00)</option>
+                                                        <option value="8.0">(GMT +8:00)</option>
+                                                        <option value="9.0">(GMT +9:00)</option>
+                                                        <option value="9.5">(GMT +9:30)</option>
+                                                        <option value="10.0">(GMT +10:00)</option>
+                                                        <option value="11.0">(GMT +11:00)</option>
+                                                        <option value="12.0">(GMT +12:00)</option>
+                                                    </select>
+                                                </p>
+                                                <ul>
+                                                    <li><strong>UTC time:</strong> <span class="js-TimeUtc">2017-06-05T19:41:03Z</span></li>
+                                                    <li><strong>Local time:</strong> <span class="js-TimeLocal"></span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+
+
+                                                <p>
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Time Zone" id="btnZone" />
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                    <li class="accordion-list">
+                                        <a class="toggle" href="#">Reset Password</a>
+
+                                        <div class="inner intro mb-4">
+
+                                            <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                                <div class="avatar-change ml-4">
+                                                    <a href="/Pages/ResetPassword.aspx">Click here</a>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </li>
 
@@ -201,6 +279,11 @@
                 $this.next().slideToggle(350);
             }
         });
+
+
+
+
+
 
 
     </script>

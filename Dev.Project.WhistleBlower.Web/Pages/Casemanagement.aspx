@@ -15,7 +15,7 @@
                         <div class="row m-0 justify-content-center align-items-center">
                             <div class="col-12 contentarea">
                                 <div class="col-xl-12 top-header mb-3">
-                                    <h1>Case Management</h1>
+                                    <h2>Case Tracking</h2>
                                     <span class="header-line"></span>
                                 </div>
 
@@ -84,7 +84,7 @@
                                                     <div class="panels">
                                                         <div class="panel" id="one-panel">
 
-                                                            <div class="container mt-3 mb-3">
+                                                            <div class="container mt-3 mb-3 onepaneltxt">
                                                                 <div class="row">
                                                                     <div class="col-9 ml-2">
                                                                         <!-- Textarea -->
@@ -101,12 +101,12 @@
 
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-9 ml-2">
-                                                                        <select name="preAction" id="ddlCasePre" size="5" multiple="multiple" class="form-control" style="margin-top: 5px;">
+                                                                    <div class="col-9 ml-2 case-select">
+                                                                        <select name="preAction" id="ddlCasePre" class="form-control">
                                                                         </select>
 
                                                                     </div>
-                                                                    <div class="col ml-2">
+                                                                    <div class="col ml-2 add-btn">
                                                                         <button id="btnAdd" style="position: absolute; bottom: 0; width: 100px;" type="submit" onclick="if(!validateSelectCaseTemplate()){return false;}updateCaseInformation($('#ddlCasePre option:selected').val()); return false;" class="btn btn-xs btn-primary"><span id="spanBtnAdd">Add</span></button>
                                                                     </div>
                                                                 </div>

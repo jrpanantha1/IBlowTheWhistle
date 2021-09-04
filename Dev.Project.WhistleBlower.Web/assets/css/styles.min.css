@@ -2299,7 +2299,7 @@ pre {
     display: block;
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
 }
 
     .table-responsive > .table-bordered {
@@ -4130,10 +4130,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
     .custom-select:focus {
-        border-color: #f0f3f7;
+        border-color: #c7ccd3 /*#f0f3f7*/;
         outline: 0;
         -webkit-box-shadow: 0;
-        box-shadow: 0
+        box-shadow: 0 #f0f3f7
     }
 
         .custom-select:focus::-ms-value {
@@ -13619,6 +13619,7 @@ a.text-muted:hover {
 }
 
     .dropdown-menu.ddlLanguage {
+        float: left;
         min-width: 20rem;
         -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
         box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
@@ -13897,7 +13898,8 @@ table.dataTable.no-footer {
 }
 
 .dataTables_wrapper .dataTables_filter {
-    margin-bottom: 1.25rem
+    /*margin-bottom: 1.25rem*/
+    /*pandiya*/
 }
 
     .dataTables_wrapper .dataTables_filter input {
@@ -14284,6 +14286,14 @@ label, .label {
     font-size: 5vw;
     font-weight: 700;
     line-height: 1.2;
+    margin-bottom: 0;
+}
+
+.top-header h2 {
+    text-align: center;
+    font-size: 2.5vw;
+    font-weight: 700;
+    line-height: 1.5;
     margin-bottom: 0;
 }
 
@@ -15180,18 +15190,18 @@ ul.latupdt > li {
  */
 #style-7::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
+    background-color: #eee;
     border-radius: 10px;
 }
 
 #style-7::-webkit-scrollbar {
     width: 10px;
-    background-color: #F5F5F5;
+    background-color: #eee;
 }
 
 #style-7::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(153,153,153)), color-stop(0.72, rgb(153,153,153)), color-stop(0.86, rgb(153,153,153)));
 }
 
 
@@ -15472,4 +15482,216 @@ blockquote {
 
 .wd100 {
     width: 150px;
+}
+
+.case-select {
+    margin-top: 25px;
+}
+
+    .case-select .form-control {
+        padding: .5rem .7rem .7rem .7rem;
+        cursor: pointer;
+    }
+
+.add-btn {
+    top: -1px;
+}
+
+.promotioncheck {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .promotioncheck input {
+        width: 22px;
+        height: 22px;
+    }
+
+    .promotioncheck span {
+        font-size: 18px;
+        line-height: 1.2;
+        position: relative;
+        top: -2px;
+        left: 5px;
+    }
+
+.sendbtn.form-group {
+    margin-top: -35px;
+}
+
+.divTopSection4 .cbtooltip {
+    text-align: right !important;
+}
+
+.usernametxt {
+    text-align: left;
+    margin-left: 0 !important;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-item .avatar {
+    height: 50px !important;
+    width: 50px !important;
+    align-content: center;
+    border: 1px solid #ccc;
+}
+
+@media screen and (min-width: 100px) and (max-width: 800px) {
+    .col-auto img {
+        width: 100% !important;
+    }
+
+    .divTopSection4 .cbtooltip {
+        text-align: left !important;
+    }
+
+    .btn-sm, .btn-group-sm > .btn {
+        padding: .5rem .7rem;
+        font-size: .7rem;
+    }
+
+    .name, .quote {
+        float: left;
+    }
+
+    #txtCompanyLink {
+        margin-left: 0;
+    }
+
+    #tblViewIncidents_wrapper div.dt-buttons {
+        float: left !important;
+        margin-top: 4px;
+    }
+
+    .avatar-dropdown {
+        display: none;
+    }
+
+    #navbarNav .nav-item.usermainmenu .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu.ddlLanguage {
+        margin-bottom: 20px;
+        margin-left: 20px !important;
+    }
+
+    .icon-refresh-ccw {
+        display: none;
+    }
+
+    #tblViewIncidents_filter {
+        width: calc(100vw - 75px);
+    }
+
+    #tblViewIncidents {
+        width: 900px !important;
+    }
+
+    .align-self-end {
+        width: 100%;
+    }
+
+    #button {
+        float: right;
+        margin-top: 5px;
+    }
+
+    #btnClose {
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+
+    .accordion-list .topbanner.d-flex {
+        display: table-cell !important;
+    }
+
+    .accordion .ancImgTopBanner img, .imgTopBanner {
+        width: 100%;
+    }
+
+    .p-4 {
+        padding: .5rem !important;
+    }
+
+    .avatar-change {
+        margin-left: 0 !important;
+    }
+
+    .file-attachment-btn {
+        width: 100%;
+    }
+
+    .resetpw-container {
+        padding: 50px 15px;
+    }
+
+    .bannerimg-4, .bannerimg-8, .bannerimg-9 {
+        margin-top: 25px !important;
+    }
+
+    .bannerimg-5, .bannerimg-6, .bannerimg-7 {
+        margin-top: 0 !important;
+    }
+
+    .qrcontent-txt {
+        /* margin: 300px 0 0 0 !important;*/
+    }
+
+    #one-panel .row {
+        display: table !important;
+        width: 100% !important;
+    }
+
+        #one-panel .row .col-9 {
+            max-width: 100% !important;
+        }
+
+    #button, #btnAdd {
+        position: relative !important;
+        float: right;
+        margin-top: 5px;
+    }
+
+    .top-header h2 {
+        font-size: 20px;
+    }
+
+    .divTopSection4 {
+        min-width: 100% !important;
+    }
+
+    .p-5 {
+        padding: 0.2rem !important
+    }
+}
+
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+
+    .col-auto img {
+        width: 75% !important;
+    }
+
+    .btn-sm, .btn-group-sm > .btn {
+        padding: .5rem .7rem;
+        font-size: .7rem;
+    }
+
+    .name, .quote {
+        float: left;
+    }
+
+    #txtCompanyLink {
+        margin-left: 0;
+    }
+
+    #tblViewIncidents_wrapper div.dt-buttons {
+        float: left !important;
+        margin-top: 4px;
+    }
 }
