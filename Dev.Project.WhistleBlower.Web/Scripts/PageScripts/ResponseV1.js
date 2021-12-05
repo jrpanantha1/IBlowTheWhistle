@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    debugger;
     if (localStorage.getItem('accessToken') != null) {
         loadLanguageDetails();
         getResponseHistory();
@@ -9,9 +9,17 @@
         window.location.href = "/Pages/Login.aspx";
     }
     menuEnableDisable();//ref Utility.js
-    getBannerDetails();
+    getResponseBannerDetails();
 
-    $('[data-toggle="tooltip"]').tooltip();
+    jQuery('[data-toggle="tooltip"]').tooltip();
+
+    if (isAdmin()) {
+        $('#ancSaveChatInfotoCaseMngt').show();
+    }
+    else {
+        $('#ancSaveChatInfotoCaseMngt').hide();
+    }
+
 });
 
 function getResponseHistory() {
@@ -110,8 +118,8 @@ function showHistroy(items) {
             chatHtml = chatHtml + '<div class="row">';
             chatHtml = chatHtml + '<div class="col-auto order-2">';
             chatHtml = chatHtml + '<!-- Avatar -->';
-            chatHtml = chatHtml + '<div class="no-avatar avatar-sm">';
-            chatHtml = chatHtml + '<img class="companyavatarResponse avatar" src="#" style="height: 50px; width: 50px; align - content: center;"/>';
+            chatHtml = chatHtml + '<div class="no-avatar avatar-sm"  >';
+            chatHtml = chatHtml + '<img class="companyavatarResponse avatar ignoreforPDF" src="#"  style="height: 50px; width: 50px; align - content: center;"/>';
             chatHtml = chatHtml + '</div>';
             chatHtml = chatHtml + ' </div>';
             chatHtml = chatHtml + '<div class="col mr-n2 order-1">';
@@ -278,8 +286,8 @@ function loadLanguageDetails() {
 
 
     var lanCode = 1;
-    if (sessionStorage.getItem("iBlowLanguage") != null) {
-        lanCode = sessionStorage.getItem("iBlowLanguage").toString();
+    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
+        lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
     }
 
     $.ajax({
@@ -311,7 +319,7 @@ function loadLanguageDetails() {
     });
 
 }
-function getBannerDetails() {
+function getResponseBannerDetails() {
     $.ajax({
         url: '/api/CompanyProfile/1',
         method: 'GET',
@@ -330,7 +338,7 @@ function getBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }
@@ -382,6 +390,49 @@ $(document).ready(function () {
 
 function exportToPDF() {
     var doc = new jsPDF();  //create jsPDF object
+
+    var divContents = $("#chartDiv").html();
+    var imgSRC = $('.ignoreforPDF img').attr('src');
+
+    var a = [];
+    var imagesArray = $(divContents).find("img").each(function (index) {
+        a[index] = $(this).html();
+    });
+    for (var i = 0; i < imagesArray.length; i++) {
+
+        var find = imagesArray[i].currentSrc;
+        find = find.substring(find.indexOf("/I"));
+        //var find = ffind;//"/IBTWImages/4e2162b8-51f5-41fa-8eed-f0a4569bcca5/CompanyLogo.png";
+        var re = new RegExp(find, 'g');
+
+        divContents = divContents.replace(re, '#');
+    }
+
+
+
+
+
+    doc.fromHTML(divContents, // page element which you want to print as PDF
+        15,
+        15,
+        {
+            'width': 170  //set width
+        },
+        function (a) {
+
+
+            var today = new Date();
+            var tDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+            doc.save("ChatInfo - " + tDate + ".pdf"); // save file name as HTML2PDF.pdf
+        });
+
+
+
+}
+
+function saveChatInfotoCaseMngt() {
+    var doc = new jsPDF();  //create jsPDF object
     doc.fromHTML(document.getElementById("chartDiv"), // page element which you want to print as PDF
         15,
         15,
@@ -389,7 +440,106 @@ function exportToPDF() {
             'width': 170  //set width
         },
         function (a) {
-            doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+
+
+            //var today = new Date();
+            //var tDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+            //var newName = "ChatInfo" + tDate + ".pdf";
+
+
+            var blob = doc.output('blob');
+            var formData = new FormData();
+            //formData.append('pdf', blob);
+            formData.append('pdf', blob);
+            uploadChatInfotoCaseTracking(formData);
+
         });
 }
+function uploadChatInfotoCaseTracking(ffdata) {
+    var iurn = getUrlVars()["iURN"];
+
+    $.ajax({
+        type: "POST",
+        url: '/api/FileUploader?iURN=' + iurn,
+        enctype: 'multipart/form-data',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: ffdata,
+        success: function (data, textStatus, xhr) {
+            updateCaseInformationOnStatusChange();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(textStatus + ': ' + errorThrown);
+        }
+    });
+}
+
+function getChatFileName() {
+
+    var returnName;
+    let date_ob = new Date();
+
+    // adjust 0 before single digit date
+    let date = ("0" + date_ob.getDate()).slice(-2);
+
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year = date_ob.getFullYear();
+
+    // current hours
+    let hours = date_ob.getHours();
+
+    // current minutes
+    let minutes = date_ob.getMinutes();
+
+    // current seconds
+    let seconds = date_ob.getSeconds();
+
+    // prints date & time in YYYY-MM-DD HH:MM:SS format
+    return returnName = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+}
+function updateCaseInformationOnStatusChange() {
+
+    var dd = getChatFileName();
+
+    var loggedUser = $('#hdnLoggedUserName').val().trim();
+    var textFormation = "Chat info uploaded by {" + loggedUser + "} File Name: Chat History - " + dd
+    var iurn = getUrlVars()["iURN"];
+
+
+    var dataResponse = {
+        "CaseInformation": textFormation,
+        "IURN": iurn
+    };
+
+    $.ajax({
+        url: '/api/CaseManagements',
+        method: 'POST',
+        data: JSON.stringify(dataResponse),
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "") {
+                showSuccessMessage("Chat information has been successfully saved into Case Tracking.");
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+
 

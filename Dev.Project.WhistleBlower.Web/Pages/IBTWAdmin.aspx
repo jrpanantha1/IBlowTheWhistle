@@ -57,6 +57,10 @@
                                             <label for="name">Full Name</label>
                                             <input id="txtFullName" class="form-control removeLater" placeholder="Arya Stark" type="text" />
                                         </div>
+                                         <div class="form-group">
+                                            <label for="name">Is Primary Account</label>
+                                           <input type="checkbox" id="chkIsPrimary" />
+                                        </div>
                                         <!--end of form-group-->
                                         <div class="form-group">
                                             <label for="email">Email Address</label>

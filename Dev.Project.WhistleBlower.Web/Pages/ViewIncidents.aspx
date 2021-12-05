@@ -4,11 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Refresh" content="120" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="/JQDatatables/datatables.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/JQDatatables/datatables.min.js"></script>
     <link href="/assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    
     <script src="/Scripts/PageScripts/ViewIncidents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <style>
@@ -188,9 +190,11 @@
         }
 
         #spanCode {
-            border-radius: 6px;
-            padding: 3px 3px 5px 12px;
+            padding: 0 10px;
+            margin-left: 10px;
+            border-radius: 5px;
             border: 0;
+            margin-left: 0;
         }
 
         .CSSBadge {
@@ -265,7 +269,8 @@
         }
 
         .divTopSection2 {
-            min-width: 60%;
+            /* min-width: 60%;*/
+            min-width: 48%;
             float: left;
             text-align: left;
             padding: 10px;
@@ -335,38 +340,45 @@
                         <img src="" class="imgTopBanner" alt="horizontal banner" /></a>
                 </div>
                 <div class="col-12 contentarea">
-                    <div class="quote-box" style="margin-bottom: 10px;">
-                        <div class="quote">
 
-                            <div class="divTopSection1 langDirection"><span id="companyNamelbl"></span></div>
-                            <div class="divTopSection2 langDirection"><span id="spanCompany"></span></div>
-
-                            <div class="divTopSection4 companyCode langDirection" style="display: none">
-
-                                <div class="cbtooltip" style="text-align: left">
-
-                                    <span id="companyCodelbl"></span>
-                                    <input type="text" id="spanCode" style="width: 145px;" />
-                                    <a onclick="copyCompanyCode();return false;" class="cbtooltiptextOriginal" style="cursor: pointer;" data-toggle='tooltip' data-placement='bottom' data-original-title=''><span class="cbtooltiptext" id="myTooltipComCode" data-toggle='tooltip' data-placement='bottom'></span>
-                                        <i class="icon-clipboard"></i></a>
-                                </div>
-                            </div>
-
-
+                    <!-- START HERE -->
+                    <div class="d-flex justify-content-between align-items-center bg-primary p-2 rounded-top">
+                        <div class="col-auto">
+                            <h5 id="companyNamelbl" class="m-0 mr-2"><span class="sr-only">Name </span></h5>
                         </div>
-                        <div class="name companyURLSection" style="display: none">
-                            <div class="cbtooltip" style="text-align: left">
-                                <span id="companyURLlbl"></span>:<input type="text" id="txtCompanyLink" style="width: 78%;" />
-
-                                <a onclick="copyCompanyLink();return false;" class="cbtooltiptextOriginal" style="cursor: pointer;" data-toggle='tooltip' data-placement='bottom' data-original-title=''><span class="cbtooltiptext" id="myTooltipPass" data-toggle='tooltip' data-placement='bottom'></span>
-                                    <i class="icon-clipboard"></i></a>
-
-                            </div>
+                        <div class="col mx-n3">
+                            <span id="spanCompany" class="text-white">Demo Company Bespoke</span>
+                        </div>
+                        <div class="col-auto">
+                            <span id="companyCodelbl" class="font-weight-bold">Code</span>
+                        </div>
+                        <div class="col-auto mx-n3">
+                            <input type="text" id="spanCode" class="form-control-sm rounded" />
+                        </div>
+                        <div class="col-auto">
+                            <a onclick=" copyCompanyCode();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
+                                <span id="myTooltipComCode" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
+                                <i class="icon-clipboard"></i></a>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-between align-items-center bg-dark text-white p-2 rounded-bottom">
+                        <div class="col-auto">
+                            <p id="companyNamelbl1" class="font-weight-bold m-0">Company URL</p>
+                        </div>
+                        <div class="col mx-n2">
+                            <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n3" />
+                        </div>
+                        <div class="col-auto">
+                            <a class="text-white" onclick="copyCompanyLink();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
+                                <span id="myTooltipPass" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
+                                <i class="icon-clipboard"></i></a>
+                        </div>
+                    </div>
+                    <!-- // END HERE -->
+
 
                     <div class="table-responsive">
-                        <div class="tableviewincidents" style="min-height: 400px;">
+                        <div class="tableviewincidents mt-2 height-100">
                             <table id="tblViewIncidents" style="width: 100%" class="table table-hover border-bottom mb-4">
                                 <thead class="thead-dark">
                                     <tr>

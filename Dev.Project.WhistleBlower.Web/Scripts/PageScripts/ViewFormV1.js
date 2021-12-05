@@ -8,9 +8,10 @@
     else {
         window.location.href = "/Pages/Login.aspx";
     }
+ 
     menuEnableDisable();//ref Utility.js
-    getBannerDetails();
-
+    getViewBannerDetails();
+    jQuery('[data-toggle="tooltip"]').tooltip();
 
 
 });
@@ -36,8 +37,8 @@ function loadFormDetails(iURN) {
 
                 IncResponse = response.IncDetails;
 
-                $('.spanTraxID').text(IncResponse.IURN);
-                $('.spanTraxDate').text(IncResponse.SubmissionDateTime.toLocaleString());
+                $('.spaTraxID').text(IncResponse.IURN);
+                $('.spaTraxDate').text(IncResponse.SubmissionDateTime.toLocaleString());
 
                 $('#IsReportable').val(IncResponse.IsReportable == true ? "Yes" : "No");
 
@@ -235,7 +236,7 @@ function updateCaseInformation(iurn) {
     });
 }
 
-function getBannerDetails() {
+function getViewBannerDetails() {
     $.ajax({
         url: '/api/CompanyProfile/1',
         method: 'GET',
@@ -254,7 +255,7 @@ function getBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }

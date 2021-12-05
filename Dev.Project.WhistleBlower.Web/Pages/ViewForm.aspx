@@ -8,11 +8,18 @@
             $('.disableControls').attr('disabled', true);
         });
     </script>
+    <style>
+        .section-hero {
+            background: none !important;
+        }
+    </style>
     <script src="/Scripts/PageScripts/ViewFormV1.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <section id="reportFraud" class="section-hero">
+
         <div class="container">
+
             <div class="row justify-content-center align-items-center py-10 langDirection">
                 <div class="col-12 topBanner" style="display: none">
                     <a class="ancImgTopBanner" target="_blank" href="#">
@@ -22,6 +29,7 @@
                 </div>
                 <div class="col-12">
 
+
                     <div class="text-center">
                         <h1 class="display-5" style="color: #00B48F" id="h1CompanyName"></h1>
                     </div>
@@ -29,6 +37,7 @@
                         <h2 class="display-5" id="ReportIncident"></h2>
                         <p class="lead" id="pAreYouWhistleBlower"></p>
                     </div>
+
                     <!-- end of text-center -->
 
                     <div class="mt-6">
@@ -173,18 +182,21 @@
                             <input id="customCheck1" type="checkbox" class="custom-control-input disableControls" disabled />
                             <label for="customCheck1" id="lblAckPolicy" class="custom-control-label font-weight-normal"></label>
                         </div>
-
+                        <hr />
                         <!--end of custom-checkbox -->
-                        <div class="form-group my-4">
-                            <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-block btn-primary"></button>
+                        <div class="form-group col-auto align-self-end my-4" style="text-align: center">
+
+                            <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-primary"></button>
+
                         </div>
+                        <hr />
                         <!-- end of form group -->
                     </div>
                     <!-- end of div -->
 
                     <p class="text-muted text-center" id="lblIdentityNeverRevel"><i class="icon-lock mr-1"></i></p>
-                    <p class="text-muted text-center">Transaction Ref ID: <strong><span class='spanTraxID'></span></strong></p>
-                    <p class="text-muted text-center">Submission Date Time : <strong><span class='spanTraxDate'></span></strong></p>
+                    <p class="text-muted text-center">Transaction Ref ID: <strong><span class='spaTraxID'></span></strong></p>
+                    <p class="text-muted text-center">Submission Date Time : <strong><span class='spaTraxDate'></span></strong></p>
                 </div>
                 <!--end of col-->
 

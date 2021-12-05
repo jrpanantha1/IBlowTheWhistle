@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="manifest.json" />
-     <!-- Place favicon.ico in the root directory -->
+    <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="icon.png" />
     <link rel="apple-touch-icon" sizes="57x57" href="/IblowthewhistleFavico/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="/IblowthewhistleFavico/apple-icon-60x60.png" />
@@ -77,7 +77,7 @@
                 <div class="col-lg-7 d-flex align-items-center">
                     <div class="w-75 mx-auto px-lg-6 my-lg-0 mt-md-0 mt-8">
                         <div class="intro">
-                            <h1 class="mb-3">Sign in to I Blow The Whistle</h1>
+                            <h1 class="mb-3">Sign in</h1>
                             <p class="mb-4 mb-md-5">Sign in to review your existing reported Incidents, if you have opted to be informed.</p>
                         </div>
                         <!--end of intro-->
@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <div class="d-flex justify-content-between align-items-top">
                                     <label for="password">Password</label>
-                                    <a href="/Pages/ContactUs.aspx" class="text-secondary small">Forgot password?</a>
+                                    <a href="/Pages/ForgetPassword.aspx" class="text-secondary small">Forgot password?</a>
                                 </div>
                                 <input type="password" class="form-control" value="" placeholder="Password" id="txtPassword" />
 
@@ -110,15 +110,16 @@
                             </div>
                             <!--end of form-group-->
                         </form>
-                        <!--end of form-->
-                        <ul class="navbar-nav align-items-center" style="display: flex; flex-direction: row">
-                            <li class="nav-item d-md-inline-block">
-                                <span class="mr-4 text-unstyled">Don't have an account?</span>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Pages/Join.aspx" class="btn btn-sm btn-outline-dark">Get Started</a>
-                            </li>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <label class="control-label" for="textinput">Don't have an account?</label></li>
+                            <li class="list-inline-item"><a href="https://info.iblowthewhistle.com/products/" class="btn btn-sm btn-outline-dark">Get Started</a></li>
+                            <li class="list-inline-item">
+                                <label class="control-label" for="textinput">If you need support</label></li>
+                            <li class="list-inline-item"><a href="https://info.iblowthewhistle.com/support/" class="btn btn-sm btn-outline-dark">reach out to us</a></li>
                         </ul>
+                        <!--end of form-->
+
                     </div>
 
                 </div>

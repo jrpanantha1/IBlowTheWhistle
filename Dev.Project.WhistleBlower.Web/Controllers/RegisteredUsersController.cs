@@ -29,6 +29,38 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             return rUser;
         }
         [Authorize]
+        public IEnumerable<RegisteredUser> GetRegisteredUsers(string AcctType)
+        {
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+            List<RegisteredUser> rUser = db.RegisteredUsers.Where(e => e.AcctType.ToString() == AcctType && e.CompanyID.ToString() == companyID).ToList();
+
+            return rUser;
+        }
+        [Authorize]
+        public IHttpActionResult GETAdminCountRegisterdUser(bool adminOnly)
+        {
+            RegUserPageContent objRegUserContent = new RegUserPageContent();
+
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+            var adminUsers = db.RegisteredUsers.OrderBy(tt => tt.FullName).Where(e => e.AcctType.ToString() == WhistleContants.AdminUserAccountType && e.CompanyID.ToString() == companyID).Select(dd => dd.FullName != "" ? dd.FullName : dd.FirstName + " " + dd.LastName).ToList();
+            List<RegisteredUser> objRegUser = new List<RegisteredUser>();
+            if (adminUsers != null)
+            {
+
+                foreach (var item in adminUsers)
+                {
+                    objRegUser.Add(new RegisteredUser
+                    {
+                        FullName = item
+                    });
+                }
+            }
+            objRegUserContent.objAdminCount = adminUsers.Count();
+            objRegUserContent.objRegUser = objRegUser;
+
+            return Ok(objRegUserContent);
+        }
+        [Authorize]
         public IHttpActionResult PostRegisterdUser(RegisteredUser objRegisterdUser)
         {
             string retnPassword = "";
@@ -44,36 +76,19 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     if (objCompany != null)
                     {
                         var adminCount = db.RegisteredUsers.Where(e => e.AcctType.ToString() == WhistleContants.AdminUserAccountType && e.CompanyID.ToString() == companyID).Count();
-                        if (objCompany.SubscriptionPlan == 1)//Basic
-                        {
-                            if (adminCount >= 3)
-                            {
-                                retnMessage = "you have reached maximum count 3 for you current plan. please contact blow the whistle admin";
-                                return Ok(retnMessage);
-                            }
-                        }
-                        else if (objCompany.SubscriptionPlan == 2)//PREMIUM
-                        {
-                            if (adminCount >= 10)
-                            {
-                                retnMessage = "you have reached maximum count 10 for you current plan. please contact blow the whistle admin";
-                                return Ok(retnMessage);
-                            }
+                        var objSubsPlan = db.SubscriptionPlans.Where(e => e.PlanID == objCompany.SubscriptionPlan).FirstOrDefault();
 
-                        }
-                        else if (objCompany.SubscriptionPlan == 3)//BESPOKE
+                        if (adminCount >= objSubsPlan.AdminSeatCount)
                         {
-                            if (adminCount >= 20)
-                            {
-                                retnMessage = "you have reached maximum count 20 for you current plan. please contact blow the whistle admin";
-                                return Ok(retnMessage);
-                            }
+                            retnMessage = "You have reached maximum count " + objSubsPlan.AdminSeatCount + " for your current plan. please contact I Blow the Whistle admin";
+                            return Ok(retnMessage);
                         }
-                        else // defualt basic paln
+                        if (objRegisterdUser.IsPrimaryAcc == true)
                         {
-                            if (adminCount >= 3)
+                            var primaryAdminCount = db.RegisteredUsers.Where(e => e.AcctType.ToString() == WhistleContants.AdminUserAccountType && e.CompanyID.ToString() == companyID && e.IsPrimaryAcc == true).Count();
+                            if (primaryAdminCount > 0)
                             {
-                                retnMessage = "you have reached maximum count 3 for you current plan. please contact blow the whistle admin";
+                                retnMessage = "You have already a primary account; A company can have only one primary account";
                                 return Ok(retnMessage);
                             }
                         }
@@ -83,6 +98,9 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 objRegisterdUser.RegUserID = regID;
                 objRegisterdUser.CompanyID = objRegisterdUser.CompanyID != null && objRegisterdUser.CompanyID != Guid.Empty ? objRegisterdUser.CompanyID : new Guid(companyID);
                 objRegisterdUser.AcctType = WhistleContants.AdminUserAccountType;
+                objRegisterdUser.ActivationStatus = true;
+                objRegisterdUser.CreatedOn = System.DateTime.Now;
+                objRegisterdUser.IsPrimaryAcc = objRegisterdUser.IsPrimaryAcc;
                 retnPassword = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? "" : "Generated";
 
                 objRegisterdUser.Password = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? objRegisterdUser.Password : Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
@@ -118,19 +136,80 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         {
             try
             {
-                string emailID = User.Identity.Name;
-
+                string emailID = userDetails.Email != null && userDetails.Email != "" ? userDetails.Email : User.Identity.Name;
+                bool passWordChanged = false;
                 var result = db.RegisteredUsers.FirstOrDefault(u => u.Email.ToString().Equals(emailID));
                 if (result != null)
                 {
-                    result.Password = userDetails.Password;
+                    if (userDetails.Password != null && userDetails.Password != "")
+                    {
+                        result.Password = userDetails.Password;
+                        passWordChanged = true;
+                    }
+                    if (userDetails.PreferredTimeZone != null && userDetails.PreferredTimeZone != "")
+                    {
+                        result.PreferredTimeZone = userDetails.PreferredTimeZone;
+                    }
+                    if (userDetails.PreferredLanguage != null)
+                    {
+                        result.PreferredLanguage = userDetails.PreferredLanguage;
+                    }
+                    if (userDetails.FirstName != null && userDetails.FirstName != "")
+                    {
+                        result.FirstName = userDetails.FirstName;
+                    }
+                    if (userDetails.LastName != null && userDetails.LastName != "")
+                    {
+                        result.LastName = userDetails.LastName;
+                    }
+                    if (userDetails.FullName != null && userDetails.FullName != "")
+                    {
+                        result.FullName = userDetails.FullName;
+                    }
+                    result.ModifiedOn = System.DateTime.Now;
+                    if (passWordChanged)
+                    {
+                        result.UpdateReason = "user details including password got changed";
+                    }
+                    else
+                        result.UpdateReason = "user details got changed except password";
+
+
                     db.SaveChanges();
-                    return Ok("Password updated successfully.");
+                    return Ok("updated successfully.");
                 }
                 else
                 {
                     return NotFound();
                 }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        [Authorize]
+        public IHttpActionResult PutResetPassword([FromBody] RegisteredUser userDetails, bool adminOnlyAllowed)
+        {
+            try
+            {
+                if (adminOnlyAllowed)
+                {
+                    var result = db.RegisteredUsers.FirstOrDefault(u => u.Email.ToString().Equals(userDetails.Email));
+                    if (result != null)
+                    {
+                        result.Password = userDetails.Password;
+                        db.SaveChanges();
+                        return Ok("Password updated successfully.");
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                else
+                    return NotFound();
 
             }
             catch (Exception ex)
@@ -151,5 +230,20 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         {
             return db.RegisteredUsers.Count(e => e.RegUserID == id) > 0;
         }
+    }
+
+    public class RegUserPageContent
+    {
+        public RegUserPageContent()
+        {
+            objAdminCount = 0;
+            objRegUser = null;
+
+        }
+
+        public List<RegisteredUser> objRegUser { get; set; }
+        public int objAdminCount { get; set; }
+
+
     }
 }

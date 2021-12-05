@@ -158,8 +158,9 @@
                     <h3 class="header-sm-title">Reports Dashboard</h3>
 
                 </div>
-                <a href="#" onclick="generatePDF(); return false;">
-                    <img src="/Images/PDFIcon.png" style="float: right" /></a>
+                <a href="#" onclick="generatePDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export Dashboard to PDF'>
+                    <img src="/Images/PDFIcon.png" /></a>
+
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">

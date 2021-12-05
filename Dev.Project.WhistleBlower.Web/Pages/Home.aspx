@@ -23,13 +23,13 @@
     <script src="/Scripts/PageScripts/Home.js"></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  
+
 
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
 
- 
+
 
 
     <section id="reportFraud" class="section-hero">
@@ -121,7 +121,7 @@
 
                     <div class="sendbtn form-group">
                         <label for="button">&nbsp;</label>
-                        <button id="button" type="submit" class="btn btn-block btn-primary" onclick="if (enquryFormValidation()) { SendEmailNotification(); };return false;">Send</button>
+                        <button id="button" type="submit" class="btn btn-block btn-primary" onclick="enquryFormValidation();return false;">Send</button>
                     </div>
 
                 </div>
@@ -169,5 +169,5 @@
         });
 
     </script>
-    
+
 </asp:Content>

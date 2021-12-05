@@ -28,5 +28,10 @@ namespace WhistleBlowerDAL
         public Nullable<bool> ActivationStatus { get; set; }
         public string AcctType { get; set; }
         public Nullable<int> PreferredLanguage { get; set; }
+        public string PreferredTimeZone { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string UpdateReason { get; set; }
+        public Nullable<bool> IsPrimaryAcc { get; set; }
     }
 }

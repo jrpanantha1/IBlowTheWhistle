@@ -3,25 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.3/moment-timezone-with-data.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <script src="/Scripts/PageScripts/MyAccount.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            const dateTimeUtc = new Date();
-            document.querySelector(".js-TimeUtc").innerHTML = dateTimeUtc.toUTCString().split(" GMT")[0];
-
-            document.querySelector(".js-Selector").addEventListener("change", e => {
-                const dateTimeLocal = new Date(dateTimeUtc.getTime() + e.target.value * 3600 * 1000);
-                document.querySelector(".js-TimeLocal").innerHTML = dateTimeLocal.toUTCString().split(" GMT")[0];
-            });
-
-            const event = new Event("change");
-            document.querySelector(".js-Selector").dispatchEvent(event);
-        });
-
-    </script>
 
     <style type="text/css">
         .file-attachment-btn-label {
@@ -31,6 +18,11 @@
             display: block;
             cursor: inherit;
             opacity: 0;
+        }
+
+        .timezone-selector {
+            width: 250px;
+            margin-bottom: 5px;
         }
     </style>
     <section class="section-split">
@@ -42,14 +34,17 @@
                             <div class="col-12">
 
                                 <div class="col-xl-12 top-header">
-                                    <h1>My Account</h1>
+                                    <h2 class="langDirection" id="formTitle"></h2>
                                     <span class="header-line"></span>
-                                    <p class="text-xl-center">My Account is the central customer dashboard in I Blow The Whistle. Customers can change company avatars, banners, view past orders and payment details.</p>
+                                    <p class="text-xl-center langDirection" id="formShortNote"></p>
+                                </div>
+                                <div class="col-xl-12 top-header">
+                                    <h5 id="lblEndDate" class="langDirection" style="color: red; text-align: center"></h5>
                                 </div>
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Your Avatar</a>
+                                        <a class="toggle langDirection" href="#" id="ancclsExpYourAvatar"></a>
                                         <div class="inner intro mb-4">
 
                                             <div class="d-flex justify-content-center align-items-center pb-3 inner-1">
@@ -58,12 +53,12 @@
                                                 <img class="comavatar avatar-lg" src="/assets/images/LargeAvatar.png" alt="" />
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">Your Avatar</h6>--%>
-                                                    <label class="btn btn-sm btn-dark file-attachment-btn" for="profilePicAttachmentBtn">
-                                                        Select Profile Picture
+                                                    <label class="btn btn-sm btn-dark file-attachment-btn langDirection" for="profilePicAttachmentBtn" id="lblSelectPrifile">
+
                                                         <input id="profilePicAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     </label>
 
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Picture" onclick="updateCompanyProfile();" id="btnUpdateAccount" />
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" onclick="updateCompanyProfile();" id="btnUpdateAccount" />
 
                                                 </div>
                                                 <!--end of avatar change-->
@@ -80,7 +75,7 @@
                                     </li>
 
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Top Banner</a>
+                                        <a class="toggle langDirection" href="#" id="ancclsExpTopBanner"></a>
 
                                         <div class="inner intro mb-4">
 
@@ -91,11 +86,10 @@
                                                 <br />
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
-                                                    <label class="btn btn-sm btn-dark file-attachment-btn" for="topBannerAttachmentBtn">
-                                                        Select Top Banner
-                                                      <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
+                                                    <label class="btn btn-sm btn-dark file-attachment-btn" for="topBannerAttachmentBtn" id="lblSelectBanner">
+                                                        <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     </label>
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary p-4" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
 
                                                 </div>
                                                 <!--end of avatar change-->
@@ -111,121 +105,306 @@
                                     </li>
 
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Preferred Language</a>
-                                        <div class="inner intro mb-4" style="height: auto; min-height: 400px;">
-                                            <p class="inner">
-                                                Let's make a nice big leafy tree. You have to make those little noises or it won't work. Let's put some happy little clouds in our world. We don't really know where this goes - and I'm not sure we really care. When you do it your way you can go anywhere you choose. No worries. No cares. Just float and wait for the wind to blow you around.
-                                            </p>
-                                            <div class="d-flex justify-content-center align-items-center pb-3 inner-2 ">
+                                        <a class="toggle langDirection" href="#" id="ancclsExpPreffLanguage"></a>
+                                        <div class="inner intro mb-4">
 
-                                                <div class="nav-item dropdown language-switcher">
-                                                    <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
-                                                    <label>
-                                                        Select Preferred Language                                                    
-                                                    </label>
-                                                    <a class="nav-link icon dropdown-toggle avatar-sm d-inline-flex dropdownLanguage" href="#" style="border: 2px solid #999; padding-left: 10px; border-radius: 50%" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
-                                                    <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
-                                                        <a href="#" class="dropdown-item" id="engItem">
-                                                            <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
-                                                            <span>English</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="thaiItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-th"></i>--%>
-                                                            <span>Thai</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="frenchItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-fr"></i>--%>
-                                                            <span>French</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="spanishItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-es"></i>--%>
-                                                            <span>Spanish</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="russianItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-ru"></i>--%>
-                                                            <span>Russian</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="kazItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-kz"></i>--%>
-                                                            <span>Kazakh</span>
-                                                        </a>
-                                                        <a href="#" class="dropdown-item" id="arabicItem">
-                                                            <%--<i class="flag-icon flag-icon-squared flag-icon-ar"></i>--%>
-                                                            <span>Arabic</span>
-                                                        </a>
-                                                    </div>
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Language" onclick="updateCompanyProfile();" id="btnUpdateLanguage" />
-
+                                            <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                                <div class="avatar-change ml-4">
+                                                    <a href="/Pages/Changelanguage.aspx">
+                                                        <img alt="Qries" src="/Images/Click Here.png" /></a>
                                                 </div>
-                                                <!--end of avatar change-->
-                                                <!--end of flex-->
-
                                             </div>
+
                                         </div>
                                     </li>
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Preferred Timezone </a>
+                                        <a class="toggle langDirection" id="ancclsExpPreffTimeZone" href="#"></a>
 
                                         <div class="inner intro mb-4">
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
-                                                <p>
-                                                    <select class="js-Selector form-control">
-                                                        <option value="-12.0">(GMT -12:00)</option>
-                                                        <option value="-11.0">(GMT -11:00)</option>
-                                                        <option value="-10.0">(GMT -10:00)</option>
-                                                        <option value="-9.0">(GMT -9:00)</option>
-                                                        <option value="-8.0">(GMT -8:00))</option>
-                                                        <option value="-7.0">(GMT -7:00))</option>
-                                                        <option value="-6.0">(GMT -6:00)</option>
-                                                        <option value="-5.0">(GMT -5:00)</option>
-                                                        <option value="-4.0">(GMT -4:00)</option>
-                                                        <option value="-3.0">(GMT -3:00)</option>
-                                                        <option value="-2.0">(GMT -2:00)</option>
-                                                        <option value="-1.0">(GMT -1:00)</option>
-                                                        <option value="0.0">(GMT)</option>
-                                                        <option value="1.0">(GMT +1:00)</option>
-                                                        <option value="2.0" selected="selected">(GMT +2:00)</option>
-                                                        <option value="3.0">(GMT +3:00)</option>
-                                                        <option value="4.0">(GMT +4:00)</option>
-                                                        <option value="5.0">(GMT +5:00)</option>
-                                                        <option value="6.0">(GMT +6:00)</option>
-                                                        <option value="7.0">(GMT +7:00)</option>
-                                                        <option value="8.0">(GMT +8:00)</option>
-                                                        <option value="9.0">(GMT +9:00)</option>
-                                                        <option value="9.5">(GMT +9:30)</option>
-                                                        <option value="10.0">(GMT +10:00)</option>
-                                                        <option value="11.0">(GMT +11:00)</option>
-                                                        <option value="12.0">(GMT +12:00)</option>
+                                                <div id="calContainer">
+                                                    <label class=" langDirection control-label calendar-legend-section-header-text" id="lblSelectTimeZone"></label>
+                                                    <select class="form-control timezone-selector" name="eventsCalCountry" id="eventsCalCountry">
+                                                        <option value="AF">Afghanistan</option>
+                                                        <option value="AL">Albania</option>
+                                                        <option value="DZ">Algeria</option>
+                                                        <option value="AD">Andorra</option>
+                                                        <option value="AO">Angola</option>
+                                                        <option value="AI">Anguilla</option>
+                                                        <option value="AG">Antigua &amp; Barbuda</option>
+                                                        <option value="AR">Argentina</option>
+                                                        <option value="AM">Armenia</option>
+                                                        <option value="AW">Aruba</option>
+                                                        <option value="AU">Australia</option>
+                                                        <option value="AT">Austria</option>
+                                                        <option value="AZ">Azerbaijan</option>
+                                                        <option value="BS">Bahamas</option>
+                                                        <option value="BH">Bahrain</option>
+                                                        <option value="BD">Bangladesh</option>
+                                                        <option value="BB">Barbados</option>
+                                                        <option value="BY">Belarus</option>
+                                                        <option value="BE">Belgium</option>
+                                                        <option value="BZ">Belize</option>
+                                                        <option value="BJ">Benin</option>
+                                                        <option value="BM">Bermuda</option>
+                                                        <option value="BT">Bhutan</option>
+                                                        <option value="BO">Bolivia</option>
+                                                        <option value="BA">Bosnia &amp; Herzegovina</option>
+                                                        <option value="BW">Botswana</option>
+                                                        <option value="BR">Brazil</option>
+                                                        <option value="GB">Britain (UK)</option>
+                                                        <option value="IO">British Indian Ocean Territory</option>
+                                                        <option value="BN">Brunei</option>
+                                                        <option value="BG">Bulgaria</option>
+                                                        <option value="BF">Burkina Faso</option>
+                                                        <option value="BI">Burundi</option>
+                                                        <option value="KH">Cambodia</option>
+                                                        <option value="CM">Cameroon</option>
+                                                        <option value="CA">Canada</option>
+                                                        <option value="CV">Cape Verde</option>
+                                                        <option value="BQ">Caribbean NL</option>
+                                                        <option value="KY">Cayman Islands</option>
+                                                        <option value="CF">Central African Rep.</option>
+                                                        <option value="TD">Chad</option>
+                                                        <option value="CL">Chile</option>
+                                                        <option value="CN">China</option>
+                                                        <option value="CX">Christmas Island</option>
+                                                        <option value="CC">Cocos (Keeling) Islands</option>
+                                                        <option value="CO">Colombia</option>
+                                                        <option value="KM">Comoros</option>
+                                                        <option value="CD">Congo (Dem. Rep.)</option>
+                                                        <option value="CG">Congo (Rep.)</option>
+                                                        <option value="CK">Cook Islands</option>
+                                                        <option value="CR">Costa Rica</option>
+                                                        <option value="HR">Croatia</option>
+                                                        <option value="CU">Cuba</option>
+                                                        <option value="CW">Curacao</option>
+                                                        <option value="CY">Cyprus</option>
+                                                        <option value="CZ">Czech Republic</option>
+                                                        <option value="CI">Côte d'Ivoire</option>
+                                                        <option value="DK">Denmark</option>
+                                                        <option value="DJ">Djibouti</option>
+                                                        <option value="DM">Dominica</option>
+                                                        <option value="DO">Dominican Republic</option>
+                                                        <option value="TL">East Timor</option>
+                                                        <option value="EC">Ecuador</option>
+                                                        <option value="EG">Egypt</option>
+                                                        <option value="SV">El Salvador</option>
+                                                        <option value="GQ">Equatorial Guinea</option>
+                                                        <option value="ER">Eritrea</option>
+                                                        <option value="EE">Estonia</option>
+                                                        <option value="ET">Ethiopia</option>
+                                                        <option value="FK">Falkland Islands</option>
+                                                        <option value="FO">Faroe Islands</option>
+                                                        <option value="FJ">Fiji</option>
+                                                        <option value="FI">Finland</option>
+                                                        <option value="FR">France</option>
+                                                        <option value="GF">French Guiana</option>
+                                                        <option value="PF">French Polynesia</option>
+                                                        <option value="GA">Gabon</option>
+                                                        <option value="GM">Gambia</option>
+                                                        <option value="GE">Georgia</option>
+                                                        <option value="DE">Germany</option>
+                                                        <option value="GH">Ghana</option>
+                                                        <option value="GI">Gibraltar</option>
+                                                        <option value="GR">Greece</option>
+                                                        <option value="GL">Greenland</option>
+                                                        <option value="GD">Grenada</option>
+                                                        <option value="GP">Guadeloupe</option>
+                                                        <option value="GU">Guam</option>
+                                                        <option value="GT">Guatemala</option>
+                                                        <option value="GG">Guernsey</option>
+                                                        <option value="GN">Guinea</option>
+                                                        <option value="GW">Guinea-Bissau</option>
+                                                        <option value="GY">Guyana</option>
+                                                        <option value="HT">Haiti</option>
+                                                        <option value="HN">Honduras</option>
+                                                        <option value="HK">Hong Kong</option>
+                                                        <option value="HU">Hungary</option>
+                                                        <option value="IS">Iceland</option>
+                                                        <option value="IN">India</option>
+                                                        <option value="ID">Indonesia</option>
+                                                        <option value="IR">Iran</option>
+                                                        <option value="IQ">Iraq</option>
+                                                        <option value="IE">Ireland</option>
+                                                        <option value="IM">Isle of Man</option>
+                                                        <option value="IL">Israel</option>
+                                                        <option value="IT">Italy</option>
+                                                        <option value="JM">Jamaica</option>
+                                                        <option value="JP">Japan</option>
+                                                        <option value="JE">Jersey</option>
+                                                        <option value="JO">Jordan</option>
+                                                        <option value="KZ">Kazakhstan</option>
+                                                        <option value="KE">Kenya</option>
+                                                        <option value="KI">Kiribati</option>
+                                                        <option value="KP">Korea (North)</option>
+                                                        <option value="KR">Korea (South)</option>
+                                                        <option value="KW">Kuwait</option>
+                                                        <option value="KG">Kyrgyzstan</option>
+                                                        <option value="LA">Laos</option>
+                                                        <option value="LV">Latvia</option>
+                                                        <option value="LB">Lebanon</option>
+                                                        <option value="LS">Lesotho</option>
+                                                        <option value="LR">Liberia</option>
+                                                        <option value="LY">Libya</option>
+                                                        <option value="LI">Liechtenstein</option>
+                                                        <option value="LT">Lithuania</option>
+                                                        <option value="LU">Luxembourg</option>
+                                                        <option value="MO">Macau</option>
+                                                        <option value="MK">Macedonia</option>
+                                                        <option value="MG">Madagascar</option>
+                                                        <option value="MW">Malawi</option>
+                                                        <option value="MY">Malaysia</option>
+                                                        <option value="MV">Maldives</option>
+                                                        <option value="ML">Mali</option>
+                                                        <option value="MT">Malta</option>
+                                                        <option value="MH">Marshall Islands</option>
+                                                        <option value="MQ">Martinique</option>
+                                                        <option value="MR">Mauritania</option>
+                                                        <option value="MU">Mauritius</option>
+                                                        <option value="YT">Mayotte</option>
+                                                        <option value="MX">Mexico</option>
+                                                        <option value="FM">Micronesia</option>
+                                                        <option value="MD">Moldova</option>
+                                                        <option value="MC">Monaco</option>
+                                                        <option value="MN">Mongolia</option>
+                                                        <option value="ME">Montenegro</option>
+                                                        <option value="MS">Montserrat</option>
+                                                        <option value="MA">Morocco</option>
+                                                        <option value="MZ">Mozambique</option>
+                                                        <option value="MM">Myanmar (Burma)</option>
+                                                        <option value="NA">Namibia</option>
+                                                        <option value="NR">Nauru</option>
+                                                        <option value="NP">Nepal</option>
+                                                        <option value="NL">Netherlands</option>
+                                                        <option value="NC">New Caledonia</option>
+                                                        <option value="NZ">New Zealand</option>
+                                                        <option value="NI">Nicaragua</option>
+                                                        <option value="NE">Niger</option>
+                                                        <option value="NG">Nigeria</option>
+                                                        <option value="NU">Niue</option>
+                                                        <option value="NF">Norfolk Island</option>
+                                                        <option value="MP">Northern Mariana Islands</option>
+                                                        <option value="NO">Norway</option>
+                                                        <option value="OM">Oman</option>
+                                                        <option value="PK">Pakistan</option>
+                                                        <option value="PW">Palau</option>
+                                                        <option value="PS">Palestine</option>
+                                                        <option value="PA">Panama</option>
+                                                        <option value="PG">Papua New Guinea</option>
+                                                        <option value="PY">Paraguay</option>
+                                                        <option value="PE">Peru</option>
+                                                        <option value="PH">Philippines</option>
+                                                        <option value="PN">Pitcairn</option>
+                                                        <option value="PL">Poland</option>
+                                                        <option value="PT">Portugal</option>
+                                                        <option value="PR">Puerto Rico</option>
+                                                        <option value="QA">Qatar</option>
+                                                        <option value="RO">Romania</option>
+                                                        <option value="RU">Russia</option>
+                                                        <option value="RW">Rwanda</option>
+                                                        <option value="RE">Réunion</option>
+                                                        <option value="AS">Samoa (American)</option>
+                                                        <option value="WS">Samoa (western)</option>
+                                                        <option value="SM">San Marino</option>
+                                                        <option value="ST">Sao Tome &amp; Principe</option>
+                                                        <option value="SA">Saudi Arabia</option>
+                                                        <option value="SN">Senegal</option>
+                                                        <option value="RS">Serbia</option>
+                                                        <option value="SC">Seychelles</option>
+                                                        <option value="SL">Sierra Leone</option>
+                                                        <option value="SG">Singapore</option>
+                                                        <option value="SK">Slovakia</option>
+                                                        <option value="SI">Slovenia</option>
+                                                        <option value="SB">Solomon Islands</option>
+                                                        <option value="SO">Somalia</option>
+                                                        <option value="ZA">South Africa</option>
+                                                        <option value="SS">South Sudan</option>
+                                                        <option value="ES">Spain</option>
+                                                        <option value="LK">Sri Lanka</option>
+                                                        <option value="BL">St Barthelemy</option>
+                                                        <option value="SH">St Helena</option>
+                                                        <option value="KN">St Kitts &amp; Nevis</option>
+                                                        <option value="LC">St Lucia</option>
+                                                        <option value="SX">St Maarten (Dutch)</option>
+                                                        <option value="MF">St Martin (French)</option>
+                                                        <option value="PM">St Pierre &amp; Miquelon</option>
+                                                        <option value="VC">St Vincent</option>
+                                                        <option value="SD">Sudan</option>
+                                                        <option value="SR">Suriname</option>
+                                                        <option value="SJ">Svalbard &amp; Jan Mayen</option>
+                                                        <option value="SZ">Swaziland</option>
+                                                        <option value="SE">Sweden</option>
+                                                        <option value="CH">Switzerland</option>
+                                                        <option value="SY">Syria</option>
+                                                        <option value="TW">Taiwan</option>
+                                                        <option value="TJ">Tajikistan</option>
+                                                        <option value="TZ">Tanzania</option>
+                                                        <option value="TH">Thailand</option>
+                                                        <option value="TG">Togo</option>
+                                                        <option value="TK">Tokelau</option>
+                                                        <option value="TO">Tonga</option>
+                                                        <option value="TT">Trinidad &amp; Tobago</option>
+                                                        <option value="TN">Tunisia</option>
+                                                        <option value="TR">Turkey</option>
+                                                        <option value="TM">Turkmenistan</option>
+                                                        <option value="TC">Turks &amp; Caicos Is</option>
+                                                        <option value="TV">Tuvalu</option>
+                                                        <option value="UM">US minor outlying islands</option>
+                                                        <option value="UG">Uganda</option>
+                                                        <option value="UA">Ukraine</option>
+                                                        <option value="AE">United Arab Emirates</option>
+                                                        <option value="US">United States</option>
+                                                        <option value="UY">Uruguay</option>
+                                                        <option value="UZ">Uzbekistan</option>
+                                                        <option value="VU">Vanuatu</option>
+                                                        <option value="VA">Vatican City</option>
+                                                        <option value="VE">Venezuela</option>
+                                                        <option value="VN">Vietnam</option>
+                                                        <option value="VG">Virgin Islands (UK)</option>
+                                                        <option value="VI">Virgin Islands (US)</option>
+                                                        <option value="WF">Wallis &amp; Futuna</option>
+                                                        <option value="EH">Western Sahara</option>
+                                                        <option value="YE">Yemen</option>
+                                                        <option value="ZM">Zambia</option>
+                                                        <option value="ZW">Zimbabwe</option>
+                                                        <option value="AX">Åland Islands</option>
                                                     </select>
-                                                </p>
-                                                <ul>
-                                                    <li><strong>UTC time:</strong> <span class="js-TimeUtc">2017-06-05T19:41:03Z</span></li>
-                                                    <li><strong>Local time:</strong> <span class="js-TimeLocal"></span></li>
-                                                </ul>
+                                                    <select class="form-control timezone-selector" name="eventsCalTimezone" id="eventsCalTimezone">
+                                                        <option value="America/New_York">(UTC-05:00) Eastern</option>
+                                                        <option value="America/Chicago">(UTC-06:00) Central</option>
+                                                        <option value="America/Denver">(UTC-07:00) Mountain</option>
+                                                        <option value="America/Phoenix">(UTC-07:00) Mountain - AZ</option>
+                                                        <option value="America/Los_Angeles">(UTC-08:00) Pacific</option>
+                                                        <option value="America/Anchorage">(UTC-09:00) Alaskan</option>
+                                                        <option value="Pacific/Honolulu">(UTC-10:00) Hawaiian</option>
+                                                    </select>
+                                                </div>
+
                                             </div>
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
-
-
                                                 <p>
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Time Zone" id="btnZone" />
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Time Zone" onclick="updateTimeZone();return false;" id="btnZone" />
                                                 </p>
                                             </div>
 
                                         </div>
                                     </li>
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Reset Password</a>
+                                        <a class="toggle langDirection" id="ancclsExpResetPassword" href="#"></a>
 
                                         <div class="inner intro mb-4">
 
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ml-4">
-                                                    <a href="/Pages/ResetPassword.aspx">Click here</a>
+                                                    <a href="/Pages/ResetPassword.aspx">
+                                                        <img alt="Qries" src="/Images/Click Here.png" /></a>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </li>
+
 
                                 </ul>
 
@@ -281,10 +460,25 @@
         });
 
 
+        /*Generated 2016-05-23 08:17:41.711000*/var timezone_json = { "BD": [{ "tzid": "Asia/Dhaka", "name": "Bangladesh" }], "BE": [{ "tzid": "Europe/Brussels", "name": "Romance" }], "BF": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "BG": [{ "tzid": "Europe/Sofia", "name": "FLE" }], "BA": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "BB": [{ "tzid": "America/Barbados", "name": "SA Western" }], "WF": [{ "tzid": "Pacific/Wallis", "name": "UTC+12" }], "BL": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "BM": [{ "tzid": "Atlantic/Bermuda", "name": "Atlantic" }], "BN": [{ "tzid": "Asia/Brunei", "name": "Singapore" }], "BO": [{ "tzid": "America/La_Paz", "name": "SA Western" }], "JP": [{ "tzid": "Asia/Tokyo", "name": "Tokyo" }], "BI": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "BJ": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "BT": [{ "tzid": "Asia/Thimphu", "name": "Bangladesh" }], "JM": [{ "tzid": "America/Jamaica", "name": "SA Pacific" }], "JO": [{ "tzid": "Asia/Amman", "name": "Jordan" }], "WS": [{ "tzid": "Pacific/Apia", "name": "Samoa" }], "BQ": [{ "tzid": "America/Curacao", "name": "SA Western" }], "BR": [{ "tzid": "America/Noronha", "name": "UTC-02" }, { "tzid": "America/Belem", "name": "Belem" }, { "tzid": "America/Fortaleza", "name": "Fortaleza" }, { "tzid": "America/Recife", "name": "Recife" }, { "tzid": "America/Araguaina", "name": "Araguaina" }, { "tzid": "America/Maceio", "name": "Maceio" }, { "tzid": "America/Bahia", "name": "Bahia" }, { "tzid": "America/Sao_Paulo", "name": "Sao Paulo" }, { "tzid": "America/Campo_Grande", "name": "Campo Grande" }, { "tzid": "America/Cuiaba", "name": "Cuiaba" }, { "tzid": "America/Porto_Velho", "name": "Velho" }, { "tzid": "America/Boa_Vista", "name": "Boa Vista" }, { "tzid": "America/Manaus", "name": "Manaus" }, { "tzid": "America/Rio_Branco", "name": "Rio Branco" }], "BS": [{ "tzid": "America/Nassau", "name": "Eastern" }], "JE": [{ "tzid": "Europe/London", "name": "GMT" }], "BY": [{ "tzid": "Europe/Minsk", "name": "Belarus" }], "BZ": [{ "tzid": "America/Belize", "name": "Central America" }], "RU": [{ "tzid": "Europe/Kaliningrad", "name": "Kaliningrad" }, { "tzid": "Europe/Moscow", "name": "Russian" }, { "tzid": "Europe/Simferopol", "name": "Russian" }, { "tzid": "Europe/Volgograd", "name": "Russian" }, { "tzid": "Europe/Samara", "name": "Russia Zone 3" }, { "tzid": "Asia/Yekaterinburg", "name": "Ekaterinburg" }, { "tzid": "Asia/Omsk", "name": "N. Central Asia" }, { "tzid": "Asia/Novosibirsk", "name": "N. Central Asia" }, { "tzid": "Asia/Novokuznetsk", "name": "North Asia" }, { "tzid": "Asia/Krasnoyarsk", "name": "North Asia" }, { "tzid": "Asia/Irkutsk", "name": "North Asia East" }, { "tzid": "Asia/Chita", "name": "Yakutsk" }, { "tzid": "Asia/Yakutsk", "name": "Yakutsk" }, { "tzid": "Asia/Khandyga", "name": "Yakutsk" }, { "tzid": "Asia/Vladivostok", "name": "Vladivostok" }, { "tzid": "Asia/Ust-Nera", "name": "Vladivostok" }, { "tzid": "Asia/Magadan", "name": "Magadan" }, { "tzid": "Asia/Sakhalin", "name": "Vladivostok" }, { "tzid": "Asia/Srednekolymsk", "name": "Russia Zone 10" }, { "tzid": "Asia/Kamchatka", "name": "Russia Zone 11" }, { "tzid": "Asia/Anadyr", "name": "Russia Zone 11" }], "RW": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "RS": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "LT": [{ "tzid": "Europe/Vilnius", "name": "FLE" }], "RE": [{ "tzid": "Indian/Reunion", "name": "Mauritius" }], "LU": [{ "tzid": "Europe/Luxembourg", "name": "W. Europe" }], "LR": [{ "tzid": "Africa/Monrovia", "name": "Greenwich" }], "RO": [{ "tzid": "Europe/Bucharest", "name": "GTB" }], "TK": [{ "tzid": "Pacific/Fakaofo", "name": "Tonga" }], "GW": [{ "tzid": "Africa/Bissau", "name": "Greenwich" }], "GU": [{ "tzid": "Pacific/Guam", "name": "West Pacific" }], "GT": [{ "tzid": "America/Guatemala", "name": "Central America" }], "GR": [{ "tzid": "Europe/Athens", "name": "GTB" }], "GQ": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "GP": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "BH": [{ "tzid": "Asia/Qatar", "name": "Arab" }], "GY": [{ "tzid": "America/Guyana", "name": "SA Western" }], "GG": [{ "tzid": "Europe/London", "name": "GMT" }], "GF": [{ "tzid": "America/Cayenne", "name": "SA Eastern" }], "GE": [{ "tzid": "Asia/Tbilisi", "name": "Georgian" }], "GD": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "GB": [{ "tzid": "Europe/London", "name": "GMT" }], "GA": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "GN": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "GM": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "GL": [{ "tzid": "America/Godthab", "name": "Greenland" }, { "tzid": "America/Danmarkshavn", "name": "UTC" }, { "tzid": "America/Scoresbysund", "name": "Azores" }, { "tzid": "America/Thule", "name": "Atlantic" }], "GI": [{ "tzid": "Europe/Gibraltar", "name": "W. Europe" }], "GH": [{ "tzid": "Africa/Accra", "name": "Greenwich" }], "OM": [{ "tzid": "Asia/Dubai", "name": "Arabian" }], "BW": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "HR": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "HT": [{ "tzid": "America/Port-au-Prince", "name": "Eastern" }], "HU": [{ "tzid": "Europe/Budapest", "name": "Central Europe" }], "HK": [{ "tzid": "Asia/Hong_Kong", "name": "China" }], "HN": [{ "tzid": "America/Tegucigalpa", "name": "Central America" }], "LV": [{ "tzid": "Europe/Riga", "name": "FLE" }], "AD": [{ "tzid": "Europe/Andorra", "name": "W. Europe" }], "PR": [{ "tzid": "America/Puerto_Rico", "name": "SA Western" }], "PS": [{ "tzid": "Asia/Gaza", "name": "Palestine Time" }], "PW": [{ "tzid": "Pacific/Palau", "name": "Tokyo" }], "PT": [{ "tzid": "Europe/Lisbon", "name": "Lisbon" }, { "tzid": "Atlantic/Azores", "name": "Azores" }], "KR": [{ "tzid": "Asia/Seoul", "name": "Korea" }], "PY": [{ "tzid": "America/Asuncion", "name": "Paraguay" }], "IQ": [{ "tzid": "Asia/Baghdad", "name": "Arabic" }], "PA": [{ "tzid": "America/Panama", "name": "SA Pacific" }], "PF": [{ "tzid": "Pacific/Tahiti", "name": "Hawaiian" }], "PG": [{ "tzid": "Pacific/Port_Moresby", "name": "West Pacific" }, { "tzid": "Pacific/Bougainville", "name": "Central Pacific" }], "PE": [{ "tzid": "America/Lima", "name": "SA Pacific" }], "PK": [{ "tzid": "Asia/Karachi", "name": "Pakistan" }], "PH": [{ "tzid": "Asia/Manila", "name": "Singapore" }], "PN": [{ "tzid": "Pacific/Pitcairn", "name": "Pitcairn Time" }], "PL": [{ "tzid": "Europe/Warsaw", "name": "Central European" }], "PM": [{ "tzid": "America/Miquelon", "name": "Miquelon Time" }], "ZM": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "EH": [{ "tzid": "Africa/El_Aaiun", "name": "Morocco" }], "EE": [{ "tzid": "Europe/Tallinn", "name": "FLE" }], "EG": [{ "tzid": "Africa/Cairo", "name": "Egypt" }], "ZA": [{ "tzid": "Africa/Johannesburg", "name": "South Africa" }], "EC": [{ "tzid": "America/Guayaquil", "name": "SA Pacific" }, { "tzid": "Pacific/Galapagos", "name": "Central America" }], "AL": [{ "tzid": "Europe/Tirane", "name": "Central Europe" }], "AO": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "KZ": [{ "tzid": "Asia/Almaty", "name": "Almaty" }, { "tzid": "Asia/Aqtobe", "name": "Aqtobe" }, { "tzid": "Asia/Aqtau", "name": "Aqtau" }], "ET": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "SO": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "ZW": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "KY": [{ "tzid": "America/Panama", "name": "SA Pacific" }], "ES": [{ "tzid": "Europe/Madrid", "name": "Madrid" }, { "tzid": "Africa/Ceuta", "name": "Ceuta" }, { "tzid": "Atlantic/Canary", "name": "GMT" }], "ER": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "ME": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "MD": [{ "tzid": "Europe/Chisinau", "name": "E. Europe" }], "MG": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "MF": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "MA": [{ "tzid": "Africa/Casablanca", "name": "Morocco" }], "MC": [{ "tzid": "Europe/Monaco", "name": "W. Europe" }], "UZ": [{ "tzid": "Asia/Tashkent", "name": "Tashkent" }], "MM": [{ "tzid": "Asia/Rangoon", "name": "Myanmar" }], "ML": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "MO": [{ "tzid": "Asia/Macau", "name": "China" }], "MN": [{ "tzid": "Asia/Ulaanbaatar", "name": "Ulaanbaatar" }, { "tzid": "Asia/Choibalsan", "name": "Choibalsan" }], "MH": [{ "tzid": "Pacific/Majuro", "name": "Majuro" }, { "tzid": "Pacific/Kwajalein", "name": "Kwajalein" }], "MK": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "UM": [{ "tzid": "Pacific/Pago_Pago", "name": "UTC-11" }, { "tzid": "Pacific/Wake", "name": "UTC+12" }, { "tzid": "Pacific/Honolulu", "name": "Hawaiian" }], "MT": [{ "tzid": "Europe/Malta", "name": "W. Europe" }], "MW": [{ "tzid": "Africa/Maputo", "name": "South Africa" }], "MV": [{ "tzid": "Indian/Maldives", "name": "West Asia" }], "MQ": [{ "tzid": "America/Martinique", "name": "SA Western" }], "MP": [{ "tzid": "Pacific/Guam", "name": "West Pacific" }], "MS": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "MR": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "AU": [{ "tzid": "Antarctica/Macquarie", "name": "Central Pacific" }, { "tzid": "Australia/Hobart", "name": "Eastern - Hobart" }, { "tzid": "Australia/Sydney", "name": "Eastern - Sydney" }, { "tzid": "Australia/Brisbane", "name": "Eastern - Brisbane" }, { "tzid": "Australia/Adelaide", "name": "Central- Adelaide" }, { "tzid": "Australia/Darwin", "name": "Central - Darwin" }, { "tzid": "Australia/Perth", "name": "Western" }], "UG": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "MY": [{ "tzid": "Asia/Kuala_Lumpur", "name": "Kuala Lumpur" }], "MX": [{ "tzid": "America/Mexico_City", "name": "Central - Mexico City" }, { "tzid": "America/Cancun", "name": "Eastern" }, { "tzid": "America/Chihuahua", "name": "Mountain - Chihuahua" }, { "tzid": "America/Hermosillo", "name": "Mountain - Hermosillo" }, { "tzid": "America/Tijuana", "name": "Pacific" }], "VU": [{ "tzid": "Pacific/Efate", "name": "Central Pacific" }], "FR": [{ "tzid": "Europe/Paris", "name": "Romance" }], "AW": [{ "tzid": "America/Curacao", "name": "SA Western" }], "SH": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "AF": [{ "tzid": "Asia/Kabul", "name": "Afghanistan" }], "AX": [{ "tzid": "Europe/Helsinki", "name": "FLE" }], "FI": [{ "tzid": "Europe/Helsinki", "name": "FLE" }], "FJ": [{ "tzid": "Pacific/Fiji", "name": "Fiji" }], "FK": [{ "tzid": "Atlantic/Stanley", "name": "SA Eastern" }], "FM": [{ "tzid": "Pacific/Kosrae", "name": "Central Pacific" }], "FO": [{ "tzid": "Atlantic/Faroe", "name": "Faroe Time" }], "NI": [{ "tzid": "America/Managua", "name": "Central America" }], "NL": [{ "tzid": "Europe/Amsterdam", "name": "W. Europe" }], "NO": [{ "tzid": "Europe/Oslo", "name": "W. Europe" }], "NA": [{ "tzid": "Africa/Windhoek", "name": "Namibia" }], "NC": [{ "tzid": "Pacific/Noumea", "name": "Central Pacific" }], "NE": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "NF": [{ "tzid": "Pacific/Norfolk", "name": "Central Pacific" }], "NG": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "NZ": [{ "tzid": "Pacific/Auckland", "name": "New Zealand" }], "NP": [{ "tzid": "Asia/Kathmandu", "name": "Nepal Time" }], "NR": [{ "tzid": "Pacific/Nauru", "name": "UTC+12" }], "NU": [{ "tzid": "Pacific/Niue", "name": "UTC-11" }], "CK": [{ "tzid": "Pacific/Rarotonga", "name": "Hawaiian" }], "CI": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "CH": [{ "tzid": "Europe/Zurich", "name": "W. Europe" }], "CO": [{ "tzid": "America/Bogota", "name": "SA Pacific" }], "CN": [{ "tzid": "Asia/Shanghai", "name": "China" }, { "tzid": "Asia/Urumqi", "name": "Central Asia" }], "CM": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "CL": [{ "tzid": "America/Santiago", "name": "Santiago" }, { "tzid": "Pacific/Easter", "name": "Easter Island" }], "CC": [{ "tzid": "Indian/Cocos", "name": "Myanmar" }], "CA": [{ "tzid": "America/St_Johns", "name": "Newfoundland" }, { "tzid": "America/Halifax", "name": "Atlantic - Halifax" }, { "tzid": "America/Toronto", "name": "Eastern - Toronto" }, { "tzid": "America/Iqaluit", "name": "Eastern - Iqaluit" }, { "tzid": "America/Winnipeg", "name": "Central - Winnipeg" }, { "tzid": "America/Regina", "name": "Central - Regina" }, { "tzid": "America/Edmonton", "name": "Mountain - Edmonton" }, { "tzid": "America/Yellowknife", "name": "Mountain - Yellowknife" }, { "tzid": "America/Dawson_Creek", "name": "Dawson Creek" }, { "tzid": "America/Vancouver", "name": "Pacific - Vancouver" }, { "tzid": "America/Whitehorse", "name": "Pacific - Whitehorse" }], "CG": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "CF": [{ "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "CD": [{ "tzid": "Africa/Maputo", "name": "South Africa" }, { "tzid": "Africa/Lagos", "name": "W. Central Africa" }], "CZ": [{ "tzid": "Europe/Prague", "name": "Central Europe" }], "CY": [{ "tzid": "Asia/Nicosia", "name": "GTB" }], "CX": [{ "tzid": "Indian/Christmas", "name": "SE Asia" }], "CR": [{ "tzid": "America/Costa_Rica", "name": "Central America" }], "CW": [{ "tzid": "America/Curacao", "name": "SA Western" }], "CV": [{ "tzid": "Atlantic/Cape_Verde", "name": "Cape Verde" }], "CU": [{ "tzid": "America/Havana", "name": "Eastern" }], "SZ": [{ "tzid": "Africa/Johannesburg", "name": "South Africa" }], "SY": [{ "tzid": "Asia/Damascus", "name": "Syria" }], "SX": [{ "tzid": "America/Curacao", "name": "SA Western" }], "KG": [{ "tzid": "Asia/Bishkek", "name": "Central Asia" }], "KE": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "SS": [{ "tzid": "Africa/Khartoum", "name": "E. Africa" }], "SR": [{ "tzid": "America/Paramaribo", "name": "SA Eastern" }], "KI": [{ "tzid": "Pacific/Tarawa", "name": "UTC+12" }, { "tzid": "Pacific/Enderbury", "name": "Tonga" }, { "tzid": "Pacific/Kiritimati", "name": "Line Islands" }], "KH": [{ "tzid": "Asia/Bangkok", "name": "SE Asia" }], "SV": [{ "tzid": "America/El_Salvador", "name": "Central America" }], "KM": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "ST": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "SK": [{ "tzid": "Europe/Prague", "name": "Central Europe" }], "SJ": [{ "tzid": "Europe/Oslo", "name": "W. Europe" }], "SI": [{ "tzid": "Europe/Belgrade", "name": "Central Europe" }], "KP": [{ "tzid": "Asia/Pyongyang", "name": "North Korea" }], "KW": [{ "tzid": "Asia/Riyadh", "name": "Arab" }], "SN": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "SM": [{ "tzid": "Europe/Rome", "name": "W. Europe" }], "SL": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "SC": [{ "tzid": "Indian/Mahe", "name": "Mauritius" }], "SB": [{ "tzid": "Pacific/Guadalcanal", "name": "Central Pacific" }], "SA": [{ "tzid": "Asia/Riyadh", "name": "Arab" }], "SG": [{ "tzid": "Asia/Singapore", "name": "Singapore" }], "SE": [{ "tzid": "Europe/Stockholm", "name": "W. Europe" }], "SD": [{ "tzid": "Africa/Khartoum", "name": "E. Africa" }], "DO": [{ "tzid": "America/Santo_Domingo", "name": "SA Western" }], "DM": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "DJ": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "DK": [{ "tzid": "Europe/Copenhagen", "name": "Romance" }], "DE": [{ "tzid": "Europe/Berlin", "name": "Berlin" }], "YE": [{ "tzid": "Asia/Riyadh", "name": "Arab" }], "AT": [{ "tzid": "Europe/Vienna", "name": "W. Europe" }], "DZ": [{ "tzid": "Africa/Algiers", "name": "W. Central Africa" }], "US": [{ "tzid": "America/New_York", "name": "Eastern" }, { "tzid": "America/Chicago", "name": "Central" }, { "tzid": "America/Denver", "name": "Mountain" }, { "tzid": "America/Phoenix", "name": "Mountain - AZ" }, { "tzid": "America/Los_Angeles", "name": "Pacific" }, { "tzid": "America/Anchorage", "name": "Alaskan" }, { "tzid": "Pacific/Honolulu", "name": "Hawaiian" }], "UY": [{ "tzid": "America/Montevideo", "name": "Montevideo" }], "YT": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "MU": [{ "tzid": "Indian/Mauritius", "name": "Mauritius" }], "KN": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "LB": [{ "tzid": "Asia/Beirut", "name": "Middle East" }], "LC": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "LA": [{ "tzid": "Asia/Bangkok", "name": "SE Asia" }], "TV": [{ "tzid": "Pacific/Funafuti", "name": "UTC+12" }], "TW": [{ "tzid": "Asia/Taipei", "name": "Taipei" }], "TT": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "TR": [{ "tzid": "Europe/Istanbul", "name": "Turkey" }], "LK": [{ "tzid": "Asia/Colombo", "name": "Sri Lanka" }], "LI": [{ "tzid": "Europe/Zurich", "name": "W. Europe" }], "TN": [{ "tzid": "Africa/Tunis", "name": "W. Central Africa" }], "TO": [{ "tzid": "Pacific/Tongatapu", "name": "Tonga" }], "TL": [{ "tzid": "Asia/Dili", "name": "Tokyo" }], "TM": [{ "tzid": "Asia/Ashgabat", "name": "West Asia" }], "TJ": [{ "tzid": "Asia/Dushanbe", "name": "West Asia" }], "LS": [{ "tzid": "Africa/Johannesburg", "name": "South Africa" }], "TH": [{ "tzid": "Asia/Bangkok", "name": "SE Asia" }], "TG": [{ "tzid": "Africa/Abidjan", "name": "Greenwich" }], "TD": [{ "tzid": "Africa/Ndjamena", "name": "W. Central Africa" }], "TC": [{ "tzid": "America/Grand_Turk", "name": "SA Western" }], "LY": [{ "tzid": "Africa/Tripoli", "name": "Libya" }], "VA": [{ "tzid": "Europe/Rome", "name": "W. Europe" }], "VC": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "AE": [{ "tzid": "Asia/Dubai", "name": "Arabian" }], "VE": [{ "tzid": "America/Caracas", "name": "Venezuela" }], "AG": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "VG": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "AI": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "VI": [{ "tzid": "America/Port_of_Spain", "name": "SA Western" }], "IS": [{ "tzid": "Atlantic/Reykjavik", "name": "Greenwich" }], "IR": [{ "tzid": "Asia/Tehran", "name": "Iran" }], "AM": [{ "tzid": "Asia/Yerevan", "name": "Caucasus" }], "IT": [{ "tzid": "Europe/Rome", "name": "W. Europe" }], "VN": [{ "tzid": "Asia/Bangkok", "name": "SE Asia" }], "AS": [{ "tzid": "Pacific/Pago_Pago", "name": "UTC-11" }], "AR": [{ "tzid": "America/Argentina/Salta", "name": "Argentina" }], "IM": [{ "tzid": "Europe/London", "name": "GMT" }], "IL": [{ "tzid": "Asia/Jerusalem", "name": "Israel" }], "IO": [{ "tzid": "Indian/Chagos", "name": "Central Asia" }], "IN": [{ "tzid": "Asia/Kolkata", "name": "India" }], "TZ": [{ "tzid": "Africa/Nairobi", "name": "E. Africa" }], "AZ": [{ "tzid": "Asia/Baku", "name": "Azerbaijan" }], "IE": [{ "tzid": "Europe/Dublin", "name": "GMT" }], "ID": [{ "tzid": "Asia/Jakarta", "name": "Jakarta" }, { "tzid": "Asia/Makassar", "name": "Singapore" }, { "tzid": "Asia/Jayapura", "name": "Tokyo" }], "UA": [{ "tzid": "Europe/Kiev", "name": "Kiev" }], "QA": [{ "tzid": "Asia/Qatar", "name": "Arab" }], "MZ": [{ "tzid": "Africa/Maputo", "name": "South Africa" }] }
 
+        function onCountryChange() {
+            $("#eventsCalTimezone").empty();
+            var countryCode = $("#eventsCalCountry").val();
 
+            for (var i in timezone_json[countryCode]) {
+                var timezoneObj = timezone_json[countryCode][i];
+                var now = moment(new Date())
+                $("#eventsCalTimezone").append("<option value='" + timezoneObj.tzid + "'>" + "(UTC" + moment.tz(now, timezoneObj.tzid).format('Z') + ") " + timezoneObj.name)
+            }
+        }
 
+        $(document).ready(function () {
+            $("#eventsCalCountry").change(onCountryChange);
+            $("#eventsCalCountry").val("US");
+            onCountryChange();
 
+        })
 
     </script>
 </asp:Content>

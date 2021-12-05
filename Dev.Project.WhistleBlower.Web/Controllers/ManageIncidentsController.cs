@@ -65,7 +65,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     if (companyID != "")
                     {
                         var decryptEmailID = Cipher.Encrypt(emailID, objCM.encPassword);
-
+                        
                         var whistleBlowIncident = from r in db.WhistleBlowIncidents
                                      .Where(d => AccType == WhistleContants.anonymousUserAccountType ? d.AnonymousEmailID == decryptEmailID : d.Email == decryptEmailID).OrderByDescending(s => s.SubmissionDateTime)
                                                   select new
@@ -459,6 +459,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             try
             {
 
+                string emailIDNew = User.Identity.Name;
 
                 List<WitnessDetail> lstItemWitness = new List<WitnessDetail>();
                 List<SuccessClass> returnObj = new List<SuccessClass>();
@@ -503,11 +504,19 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             string AnonymousEmailID = "";
                             if (WhistleBlowDetail.UpdatedOnIncidentMethod == 3)//3 means Anonymous update progress
                             {
-                                AnonymousEmailID = Utility.getRandomEmail() + "@Iblowthewhistle.com";
+                                if (emailIDNew != null)
+                                {
+                                    AnonymousEmailID = emailIDNew;
+                                }
+                                else
+                                    AnonymousEmailID = Utility.getRandomEmail() + "@Iblowthewhistle.com";
+
                                 objWhistleBlow.AnonymousEmailID = Cipher.Encrypt(AnonymousEmailID, encPassword);
 
                             }
                             objWhistleBlow.UpdatedOnIncidentMethod = WhistleBlowDetail.UpdatedOnIncidentMethod;
+
+
                             objWhistleBlow.Email = WhistleBlowDetail.Email != "" ? Cipher.Encrypt(WhistleBlowDetail.Email, encPassword) : DBNull.Value.ToString();
                             objWhistleBlow.Phone = WhistleBlowDetail.Phone != "" ? Cipher.Encrypt(WhistleBlowDetail.Phone, encPassword) : DBNull.Value.ToString();
                             objWhistleBlow.EvidenceCanBeUsedForInvestigation = WhistleBlowDetail.EvidenceCanBeUsedForInvestigation;
@@ -567,6 +576,15 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
                             RegisteredUser objRegisteredUser = new RegisteredUser();
                             string strRegUserID = "";
+
+                            //if (WhistleBlowDetail.Email == null || WhistleBlowDetail.Email == "")
+                            //{
+                            //    if (emailIDNew != null)
+                            //    {
+                            //        WhistleBlowDetail.Email = emailIDNew;
+                            //    }
+                            //}
+
                             if (WhistleBlowDetail.Email != null && WhistleBlowDetail.Email != "")//update progress by email given
                             {
                                 objRegisteredUser = new RegisteredUser();
@@ -586,7 +604,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 }
 
                             }
-                            if (objWhistleBlow.UpdatedOnIncidentMethod == 3)//Anonymous update progress
+                            if (objWhistleBlow.UpdatedOnIncidentMethod == 3 && emailIDNew == null)//Anonymous update progress
                             {
 
                                 objRegisteredUser = new RegisteredUser();

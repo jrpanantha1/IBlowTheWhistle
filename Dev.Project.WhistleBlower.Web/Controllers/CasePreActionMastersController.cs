@@ -49,37 +49,23 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
         // PUT: api/CasePreActionMasters/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCasePreActionMaster(Guid id, CasePreActionMaster casePreActionMaster)
+        public IHttpActionResult PutCasePreActionMaster(CasePreActionMaster casePreActionMaster)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != casePreActionMaster.CPURN)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(casePreActionMaster).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                var casePreObj = db.CasePreActionMasters.FirstOrDefault(d => d.CPURN == casePreActionMaster.CPURN);
+                if (casePreObj != null)
+                {
+                    casePreObj.PreAction = casePreActionMaster.PreAction;
+                    casePreObj.PreActionBrief = casePreActionMaster.PreActionBrief;
+                    db.SaveChanges();
+                }
+                return Ok("Success");
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CasePreActionMasterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return Ok("ERROR");
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/CasePreActionMasters

@@ -18,12 +18,110 @@
     <script src="/Scripts/bootstrap.min.js" async defer></script>
     <script src="/Scripts/PageScripts/Home.js"></script>
     <script src="/Scripts/Utility.js"></script>
-    <script src="/Scripts/PageScripts/languageChange.js"></script>
+    <script src="/Scripts/PageScripts/HomelanguageChange.js"></script>
     <script src="/Scripts/Validation.js"></script>
     <style type="text/css">
         .error {
             border: 1px solid red !important;
         }
+
+        .ddlLanguage {
+            background-color: #00a485;
+        }
+
+            .ddlLanguage .dropdown-item {
+                width: 50%;
+                clear: none;
+                float: left;
+            }
+
+        .dropdown-item {
+            color: white !important;
+        }
+
+        .dropdown-item {
+            display: block;
+            width: 100%;
+            padding: .8rem 1.5rem;
+            clear: both;
+            font-weight: 400;
+            color: #879CA7;
+            text-align: inherit;
+            white-space: nowrap;
+            background-color: transparent;
+            border: 0
+        }
+
+            .dropdown-item:hover, .dropdown-item:focus {
+                color: #00122C;
+                text-decoration: none;
+                background-color: rgba(240,243,247,0.5)
+            }
+
+            .dropdown-item.active, .dropdown-item:active {
+                color: #00122C;
+                text-decoration: none;
+                background-color: rgba(240,243,247,0.5)
+            }
+
+            .dropdown-item.disabled, .dropdown-item:disabled {
+                color: #879CA7;
+                pointer-events: none;
+                background-color: transparent
+            }
+
+
+        .ddlLanguage .dropdown-item {
+            width: 50%;
+            clear: none;
+            float: left;
+        }
+
+        .selected-item span {
+            background: url('https://api.iconify.design/feather-check.svg') no-repeat left center / contain;
+        }
+
+        .dropdown-item span {
+            padding-left: 35px;
+        }
+
+        .dropdown-menu {
+            min-width: 15rem;
+            -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075)
+        }
+
+            .dropdown-menu.ddlLanguage {
+                float: left;
+                min-width: 20rem;
+                -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+                padding: 20px 0;
+            }
+
+            .dropdown-menu [class*="icon-"] {
+                margin-right: 1rem
+            }
+
+        .dropdown-ellipses {
+            color: #879CA7
+        }
+
+            .dropdown-ellipses:after {
+                display: none !important
+            }
+
+        .dropdown-filter {
+            font-size: 80%;
+            text-transform: uppercase;
+            color: inherit;
+            font-weight: 600;
+            letter-spacing: 0.04rem
+        }
+
+            .dropdown-filter:hover {
+                color: rgba(0,18,44,0.8)
+            }
     </style>
     <script>
         $(document).ready(function () {
@@ -44,9 +142,10 @@
             <!----- banner ---->
             <section class="banner" id="banner">
                 <div class="container">
+
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="https://cutt.ly/JWj56NG">
+                            <a class="navbar-brand" href="/">
                                 <img src="/Images/newHome/logo-light.png" class="logo" alt=""></a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-bars"></i>
@@ -54,41 +153,47 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="https://cutt.ly/cWkwbRP">Info</a>
+                                        <a id="ancMenuInfo" class="nav-link" href="https://cutt.ly/cWkwbRP">Info</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="https://info.iblowthewhistle.com/products">Pricing</a>
+                                        <a id="ancMenuPricing" class="nav-link" href="https://iblowthewhistle.com/products">Pricing</a>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Language
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #00a485;">
-                                            <table class="table text-white">
-                                                <tr class="text-center">
-                                                    <td class="text-center">English</td>
-                                                    <td class="text-center">Hindi</td>
-                                                </tr>
-                                                <tr class="text-center">
-                                                    <td class="text-center">Urdu</td>
-                                                    <td class="text-center">Frencch</td>
-                                                </tr>
-                                                <tr class="text-center">
-                                                    <td class="text-center">Chines</td>
-                                                    <td class="text-center">Thai</td>
-                                                </tr>
-                                                <tr class="text-center">
-                                                    <td class="text-center">Dutch</td>
-                                                    <td class="text-center">Russian</td>
-                                                </tr>
-                                                <tr class="text-center">
-                                                    <td class="text-center">Kazakh</td>
-                                                    <td class="text-center">German</td>
-                                                </tr>
-                                            </table>
-                                        </ul>
+                                    <li class="nav-item dropdown language-switcher">
+
+                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                        <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
+                                            <a href="#" class="dropdown-item" id="engItem">
+                                                <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>
+                                                <span>English</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="thaiItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-th"></i>--%>
+                                                <span>Thai</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="frenchItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-fr"></i>--%>
+                                                <span>French</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="spanishItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-es"></i>--%>
+                                                <span>Spanish</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="russianItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-ru"></i>--%>
+                                                <span>Russian</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="kazItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-kz"></i>--%>
+                                                <span>Kazakh</span>
+                                            </a>
+                                            <a href="#" class="dropdown-item" id="arabicItem">
+                                                <%--<i class="flag-icon flag-icon-squared flag-icon-ar"></i>--%>
+                                                <span>Arabic</span>
+                                            </a>
+                                        </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/Pages/Login.aspx"><i class="fas fa-user"></i>Sign In</a>
+                                        <a class="nav-link" href="/Pages/Login.aspx"><i class="fas fa-user"></i><span id="ancSignIn">Sign In</span></a>
                                     </li>
                                 </ul>
 
@@ -96,19 +201,20 @@
                         </div>
                     </nav>
                     <div class="banner_box text-center">
-                        <h3>Report Concerns Without Risk</h3>
+                        <div class="alert alert-warning" style="display: none; background-color: #00a485; color: #ffffff;" role="alert">
+                            This is a warning alert— Complany ID is not valid!
+                        </div>
+                        <h3 id="hIncTitle">Report Concerns Without Risk</h3>
 
                         <div class="input-group mb-3 mx-auto">
-                            <input type="text" required id="CompanyURN" class="form-control" placeholder="Company URN i.e. NG123456" />
-                            <button type="submit" id='basic-addon2' onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn input-group-text">Submit</button>
+                            <input type="text" required id="CompanyURN" maxlength="20" class="form-control" placeholder="Company URN i.e. NG123456" />
+                            <button type="submit" id='basic-addon2' onclick="if (Validation()) { validateCompanyKey();} return false;" class="btn input-group-text"></button>
                         </div>
-                        <p>
-                            We help your company understand your Employees critical concerns with total anonymity.
-             We connect the concerns with the right people within the organization that needs 
-             to hear those concerns.
+                        <p id="pIncDesc">
+                            We help your company understand your Employees critical concerns with total anonymity. We connect the concerns with the right people within the organization that needs to hear those concerns.
                         </p>
                         <h6>
-                            <i class="fas fa-lock"></i>Using the latest Encryption Standards to ensure the highest level protection
+                            <i class="fas fa-lock"></i><span id="spanSecMsg">Using the latest Encryption Standards to ensure the highest level protection</span>
                         </h6>
                     </div>
 
@@ -138,16 +244,10 @@
 
                         <div class="col-md-6">
                             <div class="sub_bannner_box">
-                                <h3>Everything you need to know about whistleblowing</h3>
-                                <p>
-                                    If you experience an instance of incident or you have been scammed 
-                        by a company you work with or a company you have worked for, you
-                         can expose them risk free with our website. Spread the word and
-                          make sure that others do not get taken advantage of. Rather 
-                          than having a company pursue legal action against you for
-                           publishing the report, get the news out with an anonymous tip!
+                                <h3><span id="spanBoxTitle"></span></h3>
+                                <p id="pboxDesc">
                                 </p>
-                                <a href="#">Click Here</a>
+                                <a id="ancClickhere" target="_blank" href="https://iblowthewhistle.com"></a>
                             </div>
                         </div>
 
@@ -158,23 +258,22 @@
             <!----- sub bannner ----->
 
             <!---------- contact ------->
-            <section class="contact" id="contact">
+            <section class="contact d-none" id="contact">
                 <div class="container text-center">
-                    <h6>Are you interested in enabling concerns and disclosure in your organization?
-            Contact us today to establish an ethical reporting service for your company.
-                    </h6>
-                    <h1>Contact With Us</h1>
+                    <h6 id="hContactUsDesc"></h6>
+                    <h1 id="hContactUs"></h1>
                     <div class="contact_box">
 
-                        <input type="text" name="name" id="firstName" placeholder="First Name" required autocomplete="off" /><br />
-                        <input type="text" name="name" id="lastName" placeholder="Last Name" required autocomplete="off" /><br />
-                        <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off" /><br />
-                        <textarea name="message" id="message" placeholder="Message" required autocomplete="off"></textarea><br />
-                        <label for="">Do you want to receive the latest information?</label>
+                        <input type="text" name="name" id="firstName" required autocomplete="off" /><br />
+                        <input type="text" name="name" id="lastName" required autocomplete="off" /><br />
+                        <input type="email" name="email" id="email" required autocomplete="off" /><br />
+                        <textarea name="message" id="message" required autocomplete="off"></textarea><br />
+                        <label for="" id="lblDoYouWant"></label>
                         <br />
-                        <input type="checkbox" id="checkinp" required /><label for="checkinp">Yes, I want to receive the latest marketing information from I Blow The Whistle.</label><br />
-                        <input type="submit" name="sub_btn" id="sub_btn" value="Send" onclick="enquryFormValidation();return false;" /><br />
-                        <label for="">Read more about how we use your info <a href="http://blog.iblowthewhistle.com/Privacy" style="color: #00a485; text-decoration: none;">here.</a></label>
+                        <input type="checkbox" id="checkinp" required /><label for="checkinp" id="lblDoYouWantChkbox"></label><br />
+                        <input type="submit" name="sub_btn" id="sub_btn" onclick="enquryFormValidation();return false;" /><br />
+                        <label for="" id="lblReadMore"></label>
+
 
                     </div>
                 </div>
@@ -189,14 +288,14 @@
 
                         <div class="col-md-6 col-lg-3">
                             <div class="footer_box">
-                                <a href="https://cutt.ly/JWj56NG">
-                                    <img src="/Images/newHome/logo-light.png" class="logo" alt=""></a>
+                                <a href="/">
+                                    <img src="/Images/newHome/logo-light.png" class="logo" alt="" /></a>
                             </div>
                         </div>
 
                         <div class="col-md-6 col-lg-3">
                             <div class="footer_box">
-                                <h4><span>About Us to Know</span></h4>
+                                <h4><span>About Us</span></h4>
                                 <div class="social_icon">
                                     <a href="https://www.facebook.com/IBlowTheWhistle/"><i class="fab fa-facebook-f"></i></a>
                                     <a href="https://twitter.com/Iblowthewhistl1"><i class="fab fa-twitter"></i></a>
@@ -210,17 +309,12 @@
                             <div class="footer_box">
                                 <h4><span>Important Links</span></h4>
                                 <div class="social_link">
-                                    <a target="_blank" href="https://info.iblowthewhistle.com">Information</a>
-                                    <a target="_blank" href="https://info.iblowthewhistle.com/benefits-2">Features</a>
-                                    <a target="_blank" href="https://info.iblowthewhistle.com/Support">Support</a>
-                                    <a target="_blank" href="https://info.iblowthewhistle.com/terms-conditions">Legal</a>
-                                    <a target="_blank" href="https://info.iblowthewhistle.com/products">Pricing</a>
-                                    <%--  <a href="https://cutt.ly/tWkqpJZ">Benefits</a>
-                                    <a href="https://cutt.ly/sWkqzBR">Eligibility</a>
-                                    <a href="https://cutt.ly/OWkqEZd">Explainer</a>
-                                    <a href="https://cutt.ly/rWkqO0o">Support</a>
-                                    <a href="https://cutt.ly/OWkqHoV">Terms &Conditions</a>
-                                    <a href="https://cutt.ly/FWkqVap">Privacy Policy</a>--%>
+                                    <a target="_blank" href="https://iblowthewhistle.com">Information</a>
+                                    <a target="_blank" href="https://iblowthewhistle.com/benefits-2">Features</a>
+                                    <a target="_blank" href="https://iblowthewhistle.com/Support">Support</a>
+                                    <a target="_blank" href="https://iblowthewhistle.com/terms-conditions">Legal</a>
+                                    <a target="_blank" href="https://iblowthewhistle.com/products">Pricing</a>
+
                                 </div>
                             </div>
                         </div>

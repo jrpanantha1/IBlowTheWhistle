@@ -156,5 +156,8 @@
                     <!--end of container-->
     </section>
 
-
+      <script src="/assets/js/autosize.min.js" async defer></script>
+    <script>
+        autosize($('textarea'));
+    </script>
 </asp:Content>

@@ -84,6 +84,9 @@
     <Compile Include="AnonymousResponseHistory.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BannerLangMaster.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CaseManagement.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +103,9 @@
     <Compile Include="EmailTemplate.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomeLanguage.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IBTWProspect.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
@@ -112,6 +118,9 @@
     <Compile Include="LanguageMaster.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MyAccountLangMaster.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisteredUser.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
@@ -120,6 +129,9 @@
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Setting.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubscriptionHistroy.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SubscriptionPlan.cs">

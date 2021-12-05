@@ -1,29 +1,23 @@
 ﻿
 $(document).ready(function () {
 
-    if (localStorage.getItem("accessToken") != null) {
+
+    if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
+        getAdminCount();
+    }
+    else if (localStorage.getItem("accessToken") != null) {
+        window.location.href = "/Pages/ViewIncidents.aspx";
     }
     else {
         window.location.href = "/Pages/Login.aspx";
     }
+
 });
 
-
-function createNewAdminUsers() {
-
-    var objNewUser = {
-        "firstName": $('#txtFirstName').val(),
-        "fullName": $('#txtFullName').val(),
-        "lastName": $('#txtLastName').val(),
-        "Email": $('#txtEmail').val(),
-        "password": $('#txtPassword').val()
-    };
-
-
+function getAdminCount() {
     $.ajax({
-        url: '/api/RegisteredUsers',
-        method: 'POST',
-        data: JSON.stringify(objNewUser),
+        url: '/api/RegisteredUsers?adminOnly=true',
+        method: 'GET',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         async: false,
@@ -31,59 +25,51 @@ function createNewAdminUsers() {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         },
         success: function (response) {
-            if (response != null && response == "Success") {
-                showSuccessMessage("Account created successfully.");
-                clearControls();
-            }
-            if (response != null && response != "Success") {
-                $('#divWarning').show();
-                $('#spanwarningText').text(response);
+            if (response != null) {
+                showLmitationPerPLan(response.objAdminCount);
+                //showAdminUsers(response.objRegUser);
             }
         },
         error: function (response) {
             alert(response.responseText);
-            clearControls();
+            if (response.responseText.indexOf("Authorization has been denied for this request") != -1) {
+                window.location.href = "/Pages/Login.aspx";
+            }
         },
         failure: function (response) {
             alert(response.responseText);
-            clearControls();
+        }
+    });
+}
+function showLmitationPerPLan(adminCount) {
+
+    var planCode = $('#hdnSusPlanCode').val();
+    var returnStr = "";
+
+    $.ajax({
+        url: '/api/SubscriptionPlans?id=' + planCode + '',
+        method: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        success: function (response) {
+            if (response != null) {
+                returnStr = "You have already {" + adminCount + "} admin account. You can create maximum " + response.AdminSeatCount + "";
+                $('#lblshowLimit').text(returnStr);
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
         }
     });
 
 }
-function clearControls() {
-    $('#txtFirstName').val("");
-    $('#txtLastName').val("");
-    $('#txtEmail').val("");
-    $('#txtPassword').val("");
-    $('#txtConPassword').val("");
-    $('#txtFullName').val("");
 
-}
-function newJoinValidation() {
-    var flag = true;
 
-    if (!GetTextBoxEmptyValidation($('#txtFirstName'))) {
-        flag = false;
-    }
-    if (!GetTextBoxEmptyValidation($('#txtLastName'))) {
-        flag = false;
-    }
-    if (!ValidateEmail($('#txtEmail'))) {
-        flag = false;
-    }
-    if (!GetTextBoxEmptyValidation($('#txtPassword'))) {
-        flag = false;
-    }
 
-    if ($('#txtPassword').val() != $('#txtConPassword').val()) {
-        flag = false;
-        $('#txtPassword').addClass('error');
-        $('#txtConPassword').addClass('error');
-    }
-    else {
-        $('#txtPassword').removeClass('error');
-        $('#txtConPassword').removeClass('error');
-    }
-    return flag;
-}

@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0" style="margin: 0 auto;">
-                    <button type="button" id="btnGoHome" class="btn btn-lg btn-primary" onclick="window.location.href='/Pages/Default.aspx';">Go to Home</button>
+                    <button type="button" id="btnGoHome" class="btn btn-lg btn-primary" onclick="window.location.href='/Pages/Login.aspx';">Go to Login</button>
                     <button type="button" id="btnGoClose" class="btn btn-lg btn-primary" onclick="$('#AnonymousModal').modal('hide');location.reload();return false;" style="display: none">Close</button>
                 </div>
             </div>

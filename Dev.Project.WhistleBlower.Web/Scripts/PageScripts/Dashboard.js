@@ -1,10 +1,16 @@
 ﻿$(document).ready(function () {
 
-    if (localStorage.getItem("AcctType") != "Admin") {
+    if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
+        loadDashboard();
+    }
+    else if (localStorage.getItem("accessToken") != null) {
         window.location.href = "/Pages/ViewIncidents.aspx";
     }
-    else
-        loadDashboard();
+    else {
+        window.location.href = "/Pages/Login.aspx";
+    }
+
+
 });
 
 function loadDashboard() {

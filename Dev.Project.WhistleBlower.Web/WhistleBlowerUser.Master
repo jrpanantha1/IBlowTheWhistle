@@ -79,8 +79,11 @@
             sessionStorage.removeItem("accessToken");
             window.location.href = "/";
         }
-
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
+
 </head>
 <body>
     <form id="form" runat="server" action="" method="post" class="needs-validation" novalidate>
@@ -95,7 +98,7 @@
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                                     <li class="nav-item d-none">
-                                        <a href="https://info.iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll"><i style="font-size: 24px;" class="icon-dollar-sign mr-5"></i></a>
+                                        <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll"><i style="font-size: 24px;" class="icon-dollar-sign mr-5"></i></a>
                                     </li>
                                     <li class="nav-item">
                                         <a onclick="location.reload();return false;" href="#" data-toggle='tooltip' data-placement='left' data-original-title='Refresh' class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
@@ -147,7 +150,7 @@
                                             <!-- // remove this block if avatar available -->
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item py-4 d-flex align-items-center" href="#">
+                                            <a class="dropdown-item py-4 d-flex align-items-center" href="/Pages/ViewIncidents.aspx">
                                                 <img style="height: 24px; width: 24px; align-content: center;" class="companyavatar avatar avatar-sm mr-3" src="/assets/images/default-profile_01.png" alt="Arya Stark" />
                                                 <div>
                                                     <h6 class="mb-0 font-weight-normal">
@@ -163,9 +166,9 @@
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="/Pages/MyAccount.aspx"><i class="mr-3 icon-settings"></i>Account</a>
                                             </div>
-                                            <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
+                                            <div class="dashboardMenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>Reports Dashbaord</a>
+                                                <a class="dropdown-item" href="/Pages/IncidentForm.aspx"><i class="mr-3 icon-file-plus"></i>Capture Own Incidents</a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
@@ -173,7 +176,7 @@
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/IncidentForm.aspx"><i class="mr-3 icon-file-plus"></i>Capture Own Incidents</a>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>Reports Dashboard</a>
                                             </div>
                                             <div class="preferencesMenu AdminAccountOnlymenu">
                                                 <div class="dropdown-divider"></div>
@@ -218,11 +221,11 @@
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com">Information</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/benefits-2">Features</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/Support">Support</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/terms-conditions">Legal</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/products">Pricing</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com">Information</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/benefits-2">Features</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/Support">Support</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/terms-conditions">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/products">Pricing</a></li>
                             </ul>
                         </div>
                         <!--end of col-->
@@ -238,6 +241,8 @@
         <input type="hidden" id="hdnAcctType" />
         <input type="hidden" id="hdnSusPlanCode" />
         <input type="hidden" id="hdnLoggedUserName" />
+        <input type="hidden" id="hdnPreferredLang" />
+        <input type="hidden" id="hdnPreferredZone" />
 
     </form>
 

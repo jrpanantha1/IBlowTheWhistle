@@ -1,12 +1,17 @@
 ﻿
 $(document).ready(function () {
 
-    if (localStorage.getItem("accessToken") != null) {
+    if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
         getCompanyLists();
+    }
+    else if (localStorage.getItem("accessToken") != null) {
+        window.location.href = "/Pages/ViewIncidents.aspx";
     }
     else {
         window.location.href = "/Pages/Login.aspx";
     }
+
+
     $(".comanyListDDL").change(function () {
         var selValue = $('#ddlCompanyList').val();
         getCompanyKeyLink(selValue);
@@ -19,6 +24,7 @@ function createCompanyAdminUsers() {
         "firstName": $('#txtFirstName').val(),
         "fullName": $('#txtFullName').val(),
         "lastName": $('#txtLastName').val(),
+        "isPrimaryAcc": $("#chkIsPrimary").is(':checked') == true ? 1 : 0,
         "Email": $('#txtEmail').val(),
         "CompanyID": $('#ddlCompanyList').val()
     };
@@ -132,7 +138,7 @@ function getCompanyKeyLink(ddlValue) {
         success: function (response) {
             if (response != "") {
                 $("#txtCompanyURLLink").val("");
-                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
                 $("#txtCompanyURLLink").val(tarURL);
 
             }

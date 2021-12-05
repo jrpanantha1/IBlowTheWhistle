@@ -17,7 +17,7 @@ function applyLangClickEvent() {
         $(".ddlLanguage a").removeClass("selected-item");
         $(this).addClass("selected-item");
 
-        switch ($(this).find("span").text()) {
+        switch ($(this).find("span").text().trim()) {
 
             case "English":
                 lanCode = 1;
@@ -90,7 +90,17 @@ function applyLangClickEvent() {
                 lanCode = 11;
                 $(".dropdownLanguage").text("MS");
                 break;
+            //Tamil
+            case "தமிழ்":
+                lanCode = 12;
+                $(".dropdownLanguage").text("Ta");
+                break;
 
+
+            case "ಕನ್ನಡ":
+                lanCode = 13;
+                $(".dropdownLanguage").text("Kn");
+                break;
             default:
                 //$(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
                 lanCode = 1;
@@ -101,29 +111,14 @@ function applyLangClickEvent() {
         // sessionStorage.setItem("iBlowLanguage", $(this).find("span").text());
         sessionStorage.setItem("iBlowLanguage", lanCode);
         sessionStorage.setItem("lngSelectedItemTick", $(this).attr("id"));
+
+        localStorage.setItem("iBlowLanguage", lanCode);
+        localStorage.setItem("lngSelectedItemTick", $(this).attr("id"));
+
         location.reload();
 
     });
 }
-function applyLanguageOnDemand(sLang) {
-    $(".dropdownLanguage i").removeClass();
-    switch (sLang) {
-
-        case "English":
-            $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-            break;
-
-        case "Arabic":
-            $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-ar");
-            break;
-
-        default:
-            $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-us");
-            break;
-
-    }
-}
-
 function getLanguageMaster() {
 
 
@@ -146,6 +141,7 @@ function getLanguageMaster() {
         }
     });
 }
+
 function constructLanguageDropdown(objLangMaster) {
     var langHtmlString = "";
     var langMasterCount = objLangMaster.length;
@@ -163,13 +159,19 @@ function constructLanguageDropdown(objLangMaster) {
 }
 
 function applySelectedItemTick() {
+    //var prefLanguage = $("#hdnPreferredLang").val();
 
-    if (sessionStorage.getItem("iBlowLanguage") != null) {
+    //if (prefLanguage != null && prefLanguage != "") {
+    //    sessionStorage.setItem("iBlowLanguage", prefLanguage);
+    //}
+    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
         $(".dropdownLanguage i").removeClass();
-        var sLang = sessionStorage.getItem("iBlowLanguage").toString();
 
-        if (sessionStorage.getItem("lngSelectedItemTick") != null) {
-            $("#" + sessionStorage.getItem("lngSelectedItemTick")).addClass("selected-item");
+        var sLang = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
+
+        if ((sessionStorage.getItem("lngSelectedItemTick") != null && sessionStorage.getItem("lngSelectedItemTick") != "") || localStorage.getItem("lngSelectedItemTick") != null) {
+            var selctID = sessionStorage.getItem("lngSelectedItemTick") != null && sessionStorage.getItem("lngSelectedItemTick") != "" ? sessionStorage.getItem("lngSelectedItemTick") : localStorage.getItem("lngSelectedItemTick")
+            $("#" + selctID).addClass("selected-item");
 
         }
         switch (sLang) {
@@ -233,6 +235,15 @@ function applySelectedItemTick() {
             case "11":
                 // $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
                 $(".dropdownLanguage").text("MS");
+                break;
+            case "12":
+                // $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $(".dropdownLanguage").text("Ta");
+                break;
+
+            case "13":
+                // $(".dropdownLanguage i").addClass("flag-icon flag-icon-squared flag-icon-kz");
+                $(".dropdownLanguage").text("Kn");
                 break;
 
             default:

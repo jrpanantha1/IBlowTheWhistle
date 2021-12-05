@@ -68,12 +68,17 @@ namespace Dev.Project.WhistleBlower.Web.Data
                     if (!string.IsNullOrEmpty(emailID))
                     {
                         var userCheck = Entities.RegisteredUsers.FirstOrDefault(e => e.Email.Trim() == emailID);
-                        userDetail.UserID = userCheck.UserID;
-                        userDetail.Email = userCheck.Email;
-                        userDetail.Password = userCheck.Password;
-                        userDetail.CompanyID = userCheck.CompanyID;
-                        userDetail.RegUserID = userCheck.RegUserID;
-                        userDetail.AcctType = userCheck.AcctType != null && userCheck.AcctType != "" ? userCheck.AcctType : "User";
+                        if (userCheck != null)
+                        {
+                            userDetail.UserID = userCheck.UserID;
+                            userDetail.Email = userCheck.Email;
+                            userDetail.Password = userCheck.Password;
+                            userDetail.CompanyID = userCheck.CompanyID;
+                            userDetail.RegUserID = userCheck.RegUserID;
+                            userDetail.AcctType = userCheck.AcctType != null && userCheck.AcctType != "" ? userCheck.AcctType : "User";
+                        }
+                        else
+                            return null;
 
                     }
                 }

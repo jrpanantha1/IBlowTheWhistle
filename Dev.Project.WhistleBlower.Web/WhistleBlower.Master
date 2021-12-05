@@ -70,7 +70,7 @@
     </style>
     <script type="text/javascript">
         function checkandredirect() {
-            if (localStorage.getItem("AcctType") == "Admin") {
+            if (localStorage.getItem("AcctType") != null) {
                 window.location.href = "/Pages/ViewIncidents.aspx";
             }
             else {
@@ -92,7 +92,7 @@
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                                     <li class="nav-item UpdatedOnIncidentDisableForAdmin">
-                                        <a href="https://info.iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll">Pricing</a>
+                                        <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll">Pricing</a>
                                     </li>
                                     <li class="nav-item dropdown language-switcher">
 
@@ -169,11 +169,11 @@
                         <!--end of col-->
                         <div class="col-md-auto">
                             <ul class="nav justify-content-center justify-content-md-end">
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com">Information</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/benefits-2">Features</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/Support">Support</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/terms-conditions">Legal</a></li>
-                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://info.iblowthewhistle.com/products">Pricing</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com">Information</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/benefits-2">Features</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/Support">Support</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/terms-conditions">Legal</a></li>
+                                <li class="nav-item"><a target="_blank" class="nav-link" href="https://iblowthewhistle.com/products">Pricing</a></li>
                             </ul>
                         </div>
                         <!--end of col-->

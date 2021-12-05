@@ -28,7 +28,8 @@ function getCompanyProfile() {
                 if (response.CompanyName != null && response.CompanyName != "") {
                     $("#h1CompanyName").text(response.CompanyName);// display in View Incident and Reoprt Incodent top 
                 }
-                if (localStorage.getItem("AcctType") == "Admin") {
+                if (localStorage.getItem("AcctType") != null && localStorage.getItem("AcctType").toString() != "") {
+                    // if (localStorage.getItem("AcctType") == "Admin")
                     $('#btnGoHome').hide();
                     $('#btnGoClose').show();
                     $('.UpdatedOnIncidentDisableForAdmin').hide();
@@ -90,7 +91,7 @@ function IncidentFormValidation() {
     var emailElm = $('#UpdatedOnIncidentMethodEmail');
     var phoneElm = $('#UpdatedOnIncidentMethodPhone');
 
-    if (localStorage.getItem("AcctType") != "Admin") {
+    if (localStorage.getItem("AcctType") == null || localStorage.getItem("AcctType") == "") {//this is for capture own incidents no need this validation
 
         if (incElm.val() == null || incElm.find(":selected").index() == 0 || incElm.val() == "") {
             flag = false;
@@ -217,6 +218,10 @@ function submitIncidentDetails() {
     if ($('#UpdatedOnIncident').val() == "Yes") {
         updateMethodNumber = $('#UpdatedOnIncidentMethod').val() == "Email" ? 1 : $('#UpdatedOnIncidentMethod').val() == "Phone" ? 2 : 3
     }
+    else {
+        updateMethodNumber = 3;
+        $('#UpdatedOnIncident').val("No");
+    }
     var WhistleBlowData =
     {
         "IsReportable": $('#IsReportable').val() == "Yes" ? 1 : 0,
@@ -236,7 +241,7 @@ function submitIncidentDetails() {
         "WitnessFullName": $('#WitnessFullName').val(),
         "WitnessEmail": $('#WitnessEmail').val(),
         "WitnessPhone": $('#WitnessPhone').val(),
-        "ReportedLanguageID": sessionStorage.getItem("iBlowLanguage")
+        "ReportedLanguageID": sessionStorage.getItem("iBlowLanguage") != null ? sessionStorage.getItem("iBlowLanguage") : localStorage.getItem("iBlowLanguage")
     }
     var objWitnessDataColn = [];
 
@@ -319,7 +324,7 @@ function finalProcess(successTranxID, response) {
     }
 
     $('#AnonymousModal').modal('show');
-    if (localStorage.getItem("AcctType") != "Admin") {
+    if (localStorage.getItem("AcctType") == null || localStorage.getItem("AcctType") == "") {
         $('#btnGoHome').show();
         $('#btnGoClose').hide();
     }

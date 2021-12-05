@@ -241,6 +241,7 @@
     <Content Include="assets\js\jquery.dataTables.min.js" />
     <Content Include="assets\js\theme.min.js" />
     <Content Include="assets\js\toast.script.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="IblowthewhistleFavico\android-icon-144x144.png" />
     <Content Include="IblowthewhistleFavico\android-icon-192x192.png" />
@@ -268,7 +269,11 @@
     <Content Include="IblowthewhistleFavico\ms-icon-150x150.png" />
     <Content Include="IblowthewhistleFavico\ms-icon-310x310.png" />
     <Content Include="IblowthewhistleFavico\ms-icon-70x70.png" />
+    <Content Include="Images\addNewPerson.png" />
+    <Content Include="Images\backToHome.png" />
+    <Content Include="Images\Click Here.png" />
     <Content Include="Images\ExcelIcon.png" />
+    <Content Include="Images\ExportPDF.png" />
     <Content Include="Images\IblowTheWhistleCustomerBanner.png" />
     <Content Include="Images\IBTWBook.png" />
     <Content Include="Images\newHome\logo-light.png" />
@@ -280,9 +285,11 @@
     <Content Include="Images\newHome\p5.jpg" />
     <Content Include="Images\PDFIcon.png" />
     <Content Include="Images\PricingStructure.jpg" />
+    <Content Include="Images\searchIcon.png" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
+    <Content Include="Images\uploadIntoCaseTrack.png" />
     <Content Include="Images\Whistle_Long.jpg" />
     <Content Include="Images\Whistle_Long_Internalbanner.png" />
     <Content Include="Images\Whistle_MediumSquare.jpg" />
@@ -297,12 +304,14 @@
     <Content Include="Pages\Banners.aspx" />
     <Content Include="Pages\Benefits.aspx" />
     <Content Include="Pages\Casemanagement.aspx" />
+    <Content Include="Pages\Changelanguage.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Customers.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Eligibility.aspx" />
     <Content Include="Pages\Explainer.aspx" />
+    <Content Include="Pages\ForgetPassword.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\IncidentForm.aspx" />
     <Content Include="Pages\Join.aspx" />
@@ -310,13 +319,17 @@
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\IBTWAdmin.aspx" />
     <Content Include="Pages\ManageAdmin.aspx" />
+    <Content Include="Pages\AdminAccounts.aspx" />
+    <Content Include="Pages\ManageCaseStatus.aspx" />
     <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\Pricing.aspx" />
     <Content Include="Pages\ResetPassword.aspx" />
     <Content Include="Pages\Response.aspx" />
     <Content Include="Pages\Signup.aspx" />
+    <Content Include="Pages\SubscriptionHistroy.aspx" />
     <Content Include="Pages\Success.html" />
     <Content Include="Pages\Test.aspx" />
+    <Content Include="Pages\UpdatePassword.aspx" />
     <Content Include="Pages\ViewForm.aspx" />
     <Content Include="Pages\ViewIncidents.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -336,15 +349,22 @@
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\PageScripts\Banner.js" />
     <Content Include="Scripts\PageScripts\Casemanagement.js" />
+    <Content Include="Scripts\PageScripts\Changelanguage.js" />
     <Content Include="Scripts\PageScripts\CompanyProfile.js" />
     <Content Include="Scripts\PageScripts\Dashboard.js" />
+    <Content Include="Scripts\PageScripts\ForgetPassword.js" />
     <Content Include="Scripts\PageScripts\Home.js" />
     <Content Include="Scripts\PageScripts\IncidentForm.js" />
     <Content Include="Scripts\PageScripts\Join.js" />
+    <Content Include="Scripts\PageScripts\HomelanguageChange.js" />
     <Content Include="Scripts\PageScripts\languageChange.js" />
     <Content Include="Scripts\PageScripts\Login.js" />
     <Content Include="Scripts\PageScripts\IBTWAdmin.js" />
     <Content Include="Scripts\PageScripts\ManageAdmin.js" />
+    <Content Include="Scripts\PageScripts\AdminAccounts.js" />
+    <Content Include="Scripts\PageScripts\UpdatePassword.js" />
+    <Content Include="Scripts\PageScripts\SubscriptionHistory.js" />
+    <Content Include="Scripts\PageScripts\ManageCaseStatus.js" />
     <Content Include="Scripts\PageScripts\MyAccount.js" />
     <Content Include="Scripts\PageScripts\ResetPassword.js" />
     <Content Include="Scripts\PageScripts\ResponseV1.js" />
@@ -368,19 +388,26 @@
     <Compile Include="Authorization\Startup.cs" />
     <Compile Include="Authorization\WhistleBlowerAuthorizationServerProvider.cs" />
     <Compile Include="Controllers\AnonymousResponseHistoriesController.cs" />
+    <Compile Include="Controllers\BannerLangMastersController.cs" />
     <Compile Include="Controllers\CaseManagementsController.cs" />
     <Compile Include="Controllers\CasePreActionMastersController.cs" />
     <Compile Include="Controllers\CompanyMastersController.cs" />
     <Compile Include="Controllers\CompanyProfileController.cs" />
     <Compile Include="Controllers\ExchangeController.cs" />
     <Compile Include="Controllers\FileUploaderController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
+    <Compile Include="Controllers\HomeLanguagesController.cs" />
     <Compile Include="Controllers\IBTWProspectsController.cs" />
     <Compile Include="Controllers\LanguageDetailsController.cs" />
     <Compile Include="Controllers\LanguageMastersController.cs" />
     <Compile Include="Controllers\ManageIncidentsController.cs" />
+    <Compile Include="Controllers\MyAccountLangMastersController.cs" />
     <Compile Include="Controllers\RegisteredUsersController.cs" />
     <Compile Include="Controllers\ResponseLanguagesController.cs" />
+    <Compile Include="Controllers\SubscriptionHistroysController.cs" />
+    <Compile Include="Controllers\SubscriptionPlansController.cs" />
     <Compile Include="Controllers\TestAPIController.cs" />
+    <Compile Include="Controllers\UpdatePasswordController.cs" />
     <Compile Include="Controllers\ViewDashboardController.cs" />
     <Compile Include="Controllers\ViewIncidentsLanguagesController.cs" />
     <Compile Include="Data\Cipher.cs" />
@@ -425,6 +452,13 @@
     <Compile Include="Pages\Casemanagement.aspx.designer.cs">
       <DependentUpon>Casemanagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Changelanguage.aspx.cs">
+      <DependentUpon>Changelanguage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Changelanguage.aspx.designer.cs">
+      <DependentUpon>Changelanguage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -466,6 +500,13 @@
     </Compile>
     <Compile Include="Pages\Explainer.aspx.designer.cs">
       <DependentUpon>Explainer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -516,6 +557,20 @@
     <Compile Include="Pages\ManageAdmin.aspx.designer.cs">
       <DependentUpon>ManageAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdminAccounts.aspx.cs">
+      <DependentUpon>AdminAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminAccounts.aspx.designer.cs">
+      <DependentUpon>AdminAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ManageCaseStatus.aspx.cs">
+      <DependentUpon>ManageCaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ManageCaseStatus.aspx.designer.cs">
+      <DependentUpon>ManageCaseStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MyAccount.aspx.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -551,12 +606,26 @@
     <Compile Include="Pages\Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SubscriptionHistroy.aspx.cs">
+      <DependentUpon>SubscriptionHistroy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SubscriptionHistroy.aspx.designer.cs">
+      <DependentUpon>SubscriptionHistroy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdatePassword.aspx.cs">
+      <DependentUpon>UpdatePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UpdatePassword.aspx.designer.cs">
+      <DependentUpon>UpdatePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewForm.aspx.cs">
       <DependentUpon>ViewForm.aspx</DependentUpon>
@@ -597,6 +666,13 @@
     <Content Include="Images\IBTWGuidebook.pdf" />
     <Content Include="IblowthewhistleFavico\manifest.json" />
     <None Include="Properties\PublishProfiles\eWhistlePublish.pubxml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\HomeLanguages\Create.cshtml" />
+    <Content Include="Views\HomeLanguages\Delete.cshtml" />
+    <Content Include="Views\HomeLanguages\Details.cshtml" />
+    <Content Include="Views\HomeLanguages\Edit.cshtml" />
+    <Content Include="Views\HomeLanguages\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

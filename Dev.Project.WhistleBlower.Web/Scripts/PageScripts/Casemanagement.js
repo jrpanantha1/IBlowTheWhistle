@@ -1,13 +1,18 @@
 ﻿$(document).ready(function () {
 
-    if (localStorage.getItem("accessToken") != null) {
+    if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
+        getCaseDocuments();
+        loadCasePreActionMaster();
+        getCaseManagementDetails();
+    }
+    else if (localStorage.getItem("accessToken") != null) {
+        window.location.href = "/Pages/ViewIncidents.aspx";
     }
     else {
         window.location.href = "/Pages/Login.aspx";
     }
-    getCaseDocuments();
-    loadCasePreActionMaster();
-    getCaseManagementDetails();
+
+   
 
 
 });
@@ -55,8 +60,8 @@ function getCaseManagementDetails() {
 }
 function loadCasePreActionMaster() {
     var lanCode = 1;
-    if (sessionStorage.getItem("iBlowLanguage") != null) {
-        lanCode = sessionStorage.getItem("iBlowLanguage").toString();
+    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
+        lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
     }
 
     $.ajax({

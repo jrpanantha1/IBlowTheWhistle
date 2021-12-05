@@ -1,0 +1,273 @@
+﻿@model IEnumerable<WhistleBlowerDAL.HomeLanguage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeClusterID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menuInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menuPricing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menuLanguage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menuSignIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncTitlePlcHolder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncTitleDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncTitleSecMsg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.btnSubmit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.boxEverythingNedToKnowTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.boxEverythingNedToKnowDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.boxClickHere)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactUsTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactUsDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactFNamePlcHolder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactLNamePlcHolder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactEmailPlcHolder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactMessagePlcHolder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContDesclimerDoyouWant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContDesclimerChkbox)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactSendBtn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactReadMorelbl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2Menu1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2Menu2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2Menu3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2Menu4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle2Menu5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3Menu1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3Menu2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3Menu3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3Menu4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FooterGrpTitle3Menu5)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeClusterID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LanguageID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menuInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menuPricing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menuLanguage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menuSignIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncTitlePlcHolder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncTitleDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncTitleSecMsg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.btnSubmit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.boxEverythingNedToKnowTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.boxEverythingNedToKnowDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.boxClickHere)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactUsTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactUsDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactFNamePlcHolder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactLNamePlcHolder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactEmailPlcHolder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactMessagePlcHolder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContDesclimerDoyouWant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContDesclimerChkbox)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactSendBtn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactReadMorelbl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2Menu1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2Menu2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2Menu3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2Menu4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle2Menu5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3Menu1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3Menu2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3Menu3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3Menu4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FooterGrpTitle3Menu5)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HURN }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HURN }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HURN })
+        </td>
+    </tr>
+}
+
+</table>

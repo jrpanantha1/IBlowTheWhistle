@@ -59,45 +59,65 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         [Authorize]
         public IHttpActionResult PostUploadFiles(string iURN)
         {
-            int iUploadedCnt = 0;
-            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
-
-            string sPath = "";
-            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CaseDocuments/" + iURN + "/");
-            if (!System.IO.Directory.Exists(path))
+            try
             {
-                System.IO.Directory.CreateDirectory(path);
-            }
 
-            System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
 
-            // CHECK THE FILE COUNT.
-            for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
-            {
-                System.Web.HttpPostedFile hpf = hfc[iCnt];
+                int iUploadedCnt = 0;
+                string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
 
-                if (hpf.ContentLength > 0)
+                string sPath = "";
+                string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/IBTWImages/" + companyID + "/CaseDocuments/" + iURN + "/");
+                if (!System.IO.Directory.Exists(path))
                 {
-                    // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
-                    if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                    System.IO.Directory.CreateDirectory(path);
+                }
+
+                System.Web.HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+
+                // CHECK THE FILE COUNT.
+                for (int iCnt = 0; iCnt <= hfc.Count - 1; iCnt++)
+                {
+                    System.Web.HttpPostedFile hpf = hfc[iCnt];
+
+                    if (hpf.ContentLength > 0)
                     {
-                        // SAVE THE FILES IN THE FOLDER.
-                        hpf.SaveAs(path + Path.GetFileName(hpf.FileName));
-                        iUploadedCnt = iUploadedCnt + 1;
+                        // CHECK IF THE SELECTED FILE(S) ALREADY EXISTS IN FOLDER. (AVOID DUPLICATE)
+                        if (hpf.FileName == "blob")
+                        {
+                            string newNamec = string.Format(@"Chat History - {0}.pdf", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+                            if (!File.Exists(sPath + Path.GetFileName(newNamec)))
+                            {
+                                // SAVE THE FILES IN THE FOLDER.
+                                hpf.SaveAs(path + Path.GetFileName(newNamec));
+                                iUploadedCnt = iUploadedCnt + 1;
+                            }
+                        }
+                        else if (!File.Exists(sPath + Path.GetFileName(hpf.FileName)))
+                        {
+                            // SAVE THE FILES IN THE FOLDER.
+                            hpf.SaveAs(path + Path.GetFileName(hpf.FileName));
+                            iUploadedCnt = iUploadedCnt + 1;
+                        }
                     }
                 }
-            }
 
-            // RETURN A MESSAGE.
-            if (iUploadedCnt > 0)
-            {
-                //return iUploadedCnt + " Files Uploaded Successfully";
+                // RETURN A MESSAGE.
+                if (iUploadedCnt > 0)
+                {
+                    //return iUploadedCnt + " Files Uploaded Successfully";
+                }
+                else
+                {
+                    //return "Upload Failed";
+                }
+                return Ok();
             }
-            else
+            catch (Exception ex)
             {
-                //return "Upload Failed";
+
+                return Ok(ex.InnerException);
             }
-            return Ok();
         }
         [Authorize]
         public IHttpActionResult PostUploadFiles(string iURN, bool IncDoc)

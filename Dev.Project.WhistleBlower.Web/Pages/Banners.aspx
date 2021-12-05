@@ -71,15 +71,15 @@
         <div class="row justify-content-center align-items-center py-10 langDirection">
             <div class="col-12">
                 <div class="col-xl-12 top-header">
-                    <h1>Banner</h1>
+                    <h2 class="langDirection" id="formTitle"></h2>
                     <span class="header-line"></span>
-                    <p class="text-xl-center">We have added a selection of banners for you to use in your company.  The banners and their code link directly to your own company’s safe concern area.</p>
+                    <p class="text-xl-center langDirection" id="formShortNote"></p>
                 </div>
 
                 <div class="col-xl-12 topBanner">
                     <div class="bannername">
                         <div class="bannername-area">
-                            <span class="bannertitletxt">Banner URL</span>
+                            <span class="bannertitletxt langDirection" id="spanCompanyURL"></span>
                             <input type="text" id="txtBannerText" />
                             <a onclick="copyBannerLink();return false;" style="cursor: pointer;" data-toggle='tooltip' data-placement='top' data-original-title='Copy link here'><span class="cbtooltiptext" id="myTooltipPass" data-toggle='tooltip' data-placement='top' data-original-title='Copy link here'></span>
                                 <i class="icon-clipboard"></i></a>
@@ -89,11 +89,9 @@
 
                     <div class="col-xl-12 qrcontent-txt">
                         <div class="col-xl-8 qr-code-txt">
-                            <h1>Create dynamic QR code
-                            <br />
-                                for reporting</h1>
-                            <p class="text-xl-left">A dynamic QR Code is a quick way for people to access the site and create reports easily from their phones. Rather than typing in a unique web address, a person can point their phone camera at a QR Code and be directed to your companies particular Reporting area. From below, you can download your QR Code or cut and paste the image into your communication medium.</p>
-                            <button class="generate-qr-code">Generate QR Code to Report Incident</button>
+                            <h1 class="langDirection" id="h1QRCode"></h1>
+                            <p class="text-xl-left langDirection" id="pQRDesc"></p>
+                            <button class="generate-qr-code langDirection" id="btnGenerateQR"></button>
                         </div>
                         <div class="col-xl-4 qr-code-generator">
 
@@ -101,7 +99,7 @@
                             <input type="number" class="qr-size" value="128" min="20" max="500" style="display: none" />
 
                             <div id="qrcode" style="border: 1px solid black"></div>
-                            <button class="generate-qr-code" style="margin: 0 auto; margin-top: 5px;" id="btnSaveasImage" onclick="saveQRCodeAsImage(); return false;">Save as Image</button>
+                            <button class="generate-qr-code langDirection" style="margin: 0 auto; margin-top: 5px;" id="btnSaveasImage" onclick="saveQRCodeAsImage(); return false;"></button>
 
                         </div>
                     </div>
@@ -148,7 +146,7 @@
 
 
                         <a target="_blank" href="#" class="bannerimg-7">
-                            <img src="/assets/images/Whistle_MediumSquare.jpg"  onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                            <img src="/assets/images/Whistle_MediumSquare.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
                             <p>300 x 250</p>
                         </a>
 

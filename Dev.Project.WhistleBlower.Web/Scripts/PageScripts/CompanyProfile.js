@@ -36,7 +36,7 @@ function getCompanyProfile() {
                     $("#h1CompanyName").text(response.CompanyName);// display in View Incident and Reoprt Incodent top 
                 }
                 //update for QR code in banners page
-                var tarURL = "https://iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
                 $("#txtQrCode").val(tarURL);
 
                 //if (localStorage.getItem("AcctType") != "Admin" || response.SubscriptionPlan == 1) {
@@ -44,7 +44,7 @@ function getCompanyProfile() {
                     $('.AdminAccountOnlymenu').hide();
                 }
                 //update hidden key for feature ref
-                $('#hdnSusPlanCode').val(response.SubscriptionPlan);
+                $('#hdnSusPlanCode').val(response.SubscriptionPlan != null ? response.SubscriptionPlan : 1);
 
             }
 
@@ -75,6 +75,10 @@ function getUserProfileDetails() {
                 var uName = fName + " " + lName;
                 $(".usernametxt").text(uName);
                 $("#hdnLoggedUserName").val(uName);
+                var llcode = response[0].PreferredLanguage != null ? response[0].PreferredLanguage : "1";
+                $("#hdnPreferredLang").val(llcode);
+                localStorage.setItem("iBlowLanguage", llcode);
+                $("#hdnPreferredZone").val(response[0].PreferredTimeZone);
             }
 
         },

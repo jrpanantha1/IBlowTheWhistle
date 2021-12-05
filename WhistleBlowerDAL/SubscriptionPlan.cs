@@ -18,5 +18,7 @@ namespace WhistleBlowerDAL
         public int SubPlanID { get; set; }
         public string SubscriptionPlan1 { get; set; }
         public bool isActive { get; set; }
+        public string Comments { get; set; }
+        public Nullable<int> AdminSeatCount { get; set; }
     }
 }

@@ -69,6 +69,8 @@
                                     <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
                                     <a href="#" onclick="exportToPDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export chat info to PDF'>
                                         <img src="/Images/PDFIcon.png" /></a>
+                                    <a id="ancSaveChatInfotoCaseMngt" onclick="saveChatInfotoCaseMngt(); return false;" style="height: 24px; width: 24px;" href="#" data-toggle='tooltip' data-placement='top' data-original-title='Save to Case Tracking' class="smooth-scroll">
+                                        <img src="/Images/uploadIntoCaseTrack.png" /></a>
                                 </div>
 
                             </div>
@@ -109,7 +111,6 @@
     <!-- Form Autosize -->
     <div id="elementH"></div>
     <script src="/assets/js/autosize.min.js" async defer></script>
-
     <script>
         autosize($('textarea'));
     </script>

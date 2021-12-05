@@ -50,8 +50,8 @@ function getLabelDetails() {
 
 
     var lanCode = 1;
-    if (sessionStorage.getItem("iBlowLanguage") != null) {
-        lanCode = sessionStorage.getItem("iBlowLanguage").toString();
+    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
+        lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
     }
 
     $.ajax({
@@ -84,7 +84,7 @@ function getLabelDetails() {
 
                 $('#lblUpdatedOnIncident').text(response[0].UpdatedOnIncident);
                 $('#lblHowWouldUpdate').text(response[0].HowWouldUpdated);
-                $('#lblAckPolicy').text(response[0].AckPolicy);
+                $('#lblAckPolicy').html(response[0].AckPolicy);
                 $('#lblIdentityNeverRevel').text(response[0].IdentityNeverRevel);
                 $('#lblComments').text(response[0].Comments);
                 $('#comments').attr("placeholder", response[0].ConcernDetailsPHT);
@@ -120,19 +120,31 @@ function getLabelDetails() {
 
 }
 function menuEnableDisable() {
-    if (sessionStorage.getItem('AcctType') != null) {
+    if (sessionStorage.getItem('AcctType') != null || localStorage.getItem('AcctType') != null) {
 
-        if (sessionStorage.getItem('AcctType') == "Admin") {
+        if (sessionStorage.getItem('AcctType') == "Admin" || localStorage.getItem('AcctType') == "Admin") {
             $('.dashboardMenu').show();
         }
         else
             $('.dashboardMenu').hide();
         // if the user is anonymous then disable preferance menu
-        if (sessionStorage.getItem('AcctType') == "Anonymous User") {
+        if (sessionStorage.getItem('AcctType') == "Anonymous User" || localStorage.getItem('AcctType') == "Anonymous User") {
             $('.preferencesMenu').hide();
         }
     }
 }
+function isAdmin() {
+    var isAdminAcctType = false;
+
+    if (sessionStorage.getItem('AcctType') != null || localStorage.getItem('AcctType') != null) {
+
+        if (sessionStorage.getItem('AcctType') == "Admin" || localStorage.getItem('AcctType') == "Admin") {
+            isAdminAcctType = true;
+        }
+        return isAdminAcctType;
+    }
+}
+
 function showSuccessMessage(strMessage) {
     $.Toast("Success", strMessage, "success", {
         //has_icon: true,
@@ -144,4 +156,16 @@ function showSuccessMessage(strMessage) {
         has_progress: true,
         rtl: false,
     });
+}
+
+function getLangCode() {
+
+    var lanCode = 1;
+    if (sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") {
+        lanCode = sessionStorage.getItem("iBlowLanguage").toString();
+    }
+    else if (localStorage.getItem("iBlowLanguage") != null && localStorage.getItem("iBlowLanguage") != "null" && localStorage.getItem("iBlowLanguage").toString() != "") {
+        lanCode = localStorage.getItem("iBlowLanguage").toString();
+    }
+    return lanCode;
 }
