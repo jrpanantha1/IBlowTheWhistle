@@ -219,7 +219,9 @@ function getIncidentDetails() {
                                         "<option value='Discarded'>Discarded</option>" +
                                         "<option value='Route to email'>Route to email</option>" +
                                         "</select>";
-                                    $('#' + data.rTranID).val(data.rIncCategory);
+                                    $('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
+                                    //$('#' + data.rTranID).val(data.rIncCategory);
+                                    //$('#' + data.rTranID).attr("selected", "selected");
                                 }
                                 else {
                                     ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
@@ -501,7 +503,10 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                         "<option value='Discarded'>Discarded</option>" +
                                         "<option value='Route to email'>Route to email</option>" +
                                         "</select>";
-                                    $('#' + data.rTranID).val(data.rIncCategory);
+
+                                    $('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
+                                    //$('#' + data.rTranID).val(data.rIncCategory);
+                                    //$('#' + data.rTranID).attr("selected", "selected");
                                 }
                                 else {
                                     ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +

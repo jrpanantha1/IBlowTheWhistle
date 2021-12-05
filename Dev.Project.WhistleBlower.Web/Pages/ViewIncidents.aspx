@@ -353,7 +353,7 @@
                             <span id="companyCodelbl" class="font-weight-bold">Code</span>
                         </div>
                         <div class="col-auto mx-n3">
-                            <input type="text" id="spanCode" class="form-control-sm rounded" />
+                            <input type="text" id="spanCode" class="form-control-sm rounded col mx-n1" />
                         </div>
                         <div class="col-auto">
                             <a onclick=" copyCompanyCode();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
@@ -363,10 +363,10 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center bg-dark text-white p-2 rounded-bottom">
                         <div class="col-auto">
-                            <p id="companyNamelbl1" class="font-weight-bold m-0">Company URL</p>
+                            <h5 id="companyNamelbl1" class="m-0 mr-2">Company URL </h5>
                         </div>
-                        <div class="col mx-n2">
-                            <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n3" />
+                        <div class="col mx-n3">
+                            <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n1" />
                         </div>
                         <div class="col-auto">
                             <a class="text-white" onclick="copyCompanyLink();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
