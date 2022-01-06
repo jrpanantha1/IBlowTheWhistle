@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dev.Project.WhistleBlower.Web.Pages {
-    
-    
-    public partial class Admin {
-        
+namespace Dev.Project.WhistleBlower.Web.Pages
+{
+
+
+    public partial class Admin
+    {
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// txtTobeEncrypt control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTobeEncrypt;
-        
+
         /// <summary>
         /// Label2 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-        
+
         /// <summary>
         /// txtEncryptedValue control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEncryptedValue;
-        
+
         /// <summary>
         /// btnEncrypt control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEncrypt;
-        
+
         /// <summary>
         /// Label3 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-        
+
         /// <summary>
         /// txtTobeDecrypt control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTobeDecrypt;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// txtDecryptedValue control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDecryptedValue;
-        
+
         /// <summary>
         /// btnDecrypt control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDecrypt;
-        
+
         /// <summary>
         /// Label5 control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label5;
-        
+
         /// <summary>
         /// txtRandomNumber control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRandomNumber;
-        
+
         /// <summary>
         /// Label6 control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label6;
-        
+
         /// <summary>
         /// txtRandomString control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRandomString;
-        
+
         /// <summary>
         /// btnGenarteRandom control.
         /// </summary>
@@ -146,5 +148,68 @@ namespace Dev.Project.WhistleBlower.Web.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGenarteRandom;
+
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// txtEncPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEncPassword;
+
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// txtEncKey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEncKey;
+
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// txtDecPWD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDecPWD;
+
+        /// <summary>
+        /// btnShowDecPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnShowDecPassword;
     }
 }

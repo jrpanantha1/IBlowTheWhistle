@@ -99,7 +99,7 @@ function updateCompanyProfile() {
 
 }
 
-function updateTimeZone() {
+function updatePrefferances() {
     var preferredZone = $('#eventsCalTimezone').text();
 
     var ZoneuserData =

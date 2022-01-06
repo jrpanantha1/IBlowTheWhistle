@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.MyAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    My Account | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
@@ -35,7 +36,7 @@
 
                                 <div class="col-xl-12 top-header">
                                     <h2 class="langDirection" id="formTitle"></h2>
-                                    <span class="header-line"></span>
+                                    <span class="header-line langDirection"></span>
                                     <p class="text-xl-center langDirection" id="formShortNote"></p>
                                 </div>
                                 <div class="col-xl-12 top-header">
@@ -110,7 +111,7 @@
 
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ml-4">
-                                                    <a href="/Pages/Changelanguage.aspx">
+                                                    <a href="/Pages/Changepreferences.aspx">
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
                                                 </div>
                                             </div>
@@ -384,7 +385,7 @@
                                             </div>
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <p>
-                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Time Zone" onclick="updateTimeZone();return false;" id="btnZone" />
+                                                    <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Time Zone" onclick="updatePrefferances();return false;" id="btnZone" />
                                                 </p>
                                             </div>
 
@@ -401,10 +402,8 @@
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </li>
-
 
                                 </ul>
 

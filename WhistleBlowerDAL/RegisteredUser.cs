@@ -33,5 +33,6 @@ namespace WhistleBlowerDAL
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string UpdateReason { get; set; }
         public Nullable<bool> IsPrimaryAcc { get; set; }
+        public string PreferredFilter { get; set; }
     }
 }

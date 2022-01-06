@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
-        GetCasePreActionMaster();
+        //GetCasePreActionMaster();
     }
     else if (localStorage.getItem("accessToken") != null) {
         window.location.href = "/Pages/ViewIncidents.aspx";
@@ -9,13 +9,24 @@
     else {
         window.location.href = "/Pages/Login.aspx";
     }
+
 });
+$(function () {
+    $("a.incCategoryClick").click(function () {
+        var incCatSelectedText = $(this).attr('selectedtext');
+        $('#dropdownFilter').text(incCatSelectedText);
+
+    });
+});
+
+
 function updatePreferredLanguage() {
     var preferredZone = $('#eventsCalTimezone').text();
-
+    var prefferedFilter = $('#dropdownFilter').text();
     var languserData =
     {
-        "PreferredLanguage": sessionStorage.getItem("iBlowLanguage") != null ? sessionStorage.getItem("iBlowLanguage") : localStorage.getItem("iBlowLanguage")
+        "PreferredLanguage": sessionStorage.getItem("iBlowLanguage") != null ? sessionStorage.getItem("iBlowLanguage") : localStorage.getItem("iBlowLanguage"),
+        "PreferredFilter": prefferedFilter
     }
 
     $.ajax({

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="SubscriptionHistroy.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.SubscriptionHistroy" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+     Subscription Histroy | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <link href="/JQDatatables/datatables.min.css" rel="stylesheet" type="text/css" />

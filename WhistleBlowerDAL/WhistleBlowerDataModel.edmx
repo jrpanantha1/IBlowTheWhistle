@@ -27,10 +27,10 @@
           <Property Name="LanguageID" Type="int" />
           <Property Name="FormTitle" Type="nvarchar" MaxLength="800" />
           <Property Name="TitleShortNotes" Type="nvarchar(max)" />
-          <Property Name="lblCompanyURl" Type="nvarchar" MaxLength="30" />
+          <Property Name="lblCompanyURl" Type="nvarchar" MaxLength="40" />
           <Property Name="lblQRTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="lblQRShortNotes" Type="nvarchar" MaxLength="3000" />
-          <Property Name="btnSaveasImage" Type="nvarchar" MaxLength="20" />
+          <Property Name="btnSaveasImage" Type="nvarchar" MaxLength="40" />
           <Property Name="btnGenerateQRCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CaseManagement">
@@ -143,6 +143,7 @@
           <Property Name="FooterGrpTitle3Menu3" Type="nvarchar" MaxLength="25" />
           <Property Name="FooterGrpTitle3Menu4" Type="nvarchar" MaxLength="25" />
           <Property Name="FooterGrpTitle3Menu5" Type="nvarchar" MaxLength="25" />
+          <Property Name="WarningMessage" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="IBTWProspects">
           <Key>
@@ -228,6 +229,21 @@
           <Property Name="LanguageCode" Type="nchar" MaxLength="10" />
           <Property Name="DisplayText" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ManageAdminLangMaster">
+          <Key>
+            <PropertyRef Name="MURN" />
+          </Key>
+          <Property Name="MURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MngAdClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="FormTitle" Type="nvarchar" MaxLength="800" />
+          <Property Name="TitleShortNotes" Type="nvarchar(max)" />
+          <Property Name="lblAdminCount" Type="nvarchar" MaxLength="100" />
+          <Property Name="clsExpMngAdminAccount" Type="nvarchar" MaxLength="100" />
+          <Property Name="clsExpMngStatusCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="clsExpVwSubsHistroy" Type="nvarchar" MaxLength="100" />
+          <Property Name="btnClickhere" Type="nvarchar" MaxLength="40" />
+        </EntityType>
         <EntityType Name="MyAccountLangMaster">
           <Key>
             <PropertyRef Name="MURN" />
@@ -243,12 +259,12 @@
           <Property Name="clsExpPreffLanguage" Type="nvarchar" MaxLength="100" />
           <Property Name="clsExpPreffTimeZone" Type="nvarchar" MaxLength="50" />
           <Property Name="clsExpResetPassword" Type="nvarchar" MaxLength="50" />
-          <Property Name="btnSelectPicture" Type="nvarchar" MaxLength="20" />
-          <Property Name="btnUpdatePicture" Type="nvarchar" MaxLength="20" />
-          <Property Name="btnUpdateBanner" Type="nvarchar" MaxLength="20" />
-          <Property Name="btnClickhere" Type="nvarchar" MaxLength="10" />
-          <Property Name="lblTimeSelector" Type="nvarchar" MaxLength="30" />
-          <Property Name="btnUpdateTime" Type="nvarchar" MaxLength="25" />
+          <Property Name="btnSelectPicture" Type="nvarchar" MaxLength="40" />
+          <Property Name="btnUpdatePicture" Type="nvarchar" MaxLength="40" />
+          <Property Name="btnUpdateBanner" Type="nvarchar" MaxLength="40" />
+          <Property Name="btnClickhere" Type="nvarchar" MaxLength="40" />
+          <Property Name="lblTimeSelector" Type="nvarchar" MaxLength="40" />
+          <Property Name="btnUpdateTime" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="RegisteredUsers">
           <Key>
@@ -273,6 +289,7 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="UpdateReason" Type="nvarchar" MaxLength="800" />
           <Property Name="IsPrimaryAcc" Type="bit" />
+          <Property Name="PreferredFilter" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ResponseLanguage">
           <Key>
@@ -399,6 +416,7 @@
           <EntitySet Name="IncidentDocuments" EntityType="Self.IncidentDocuments" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="LanguageDetails" EntityType="Self.LanguageDetails" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="ManageAdminLangMaster" EntityType="Self.ManageAdminLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="MyAccountLangMaster" EntityType="Self.MyAccountLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="RegisteredUsers" EntityType="Self.RegisteredUsers" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="ResponseLanguage" EntityType="Self.ResponseLanguage" Schema="eformulus_admin" store:Type="Tables" />
@@ -438,11 +456,12 @@
           <EntitySet Name="ViewIncidentsLanguages" EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" />
           <EntitySet Name="CasePreActionMasters" EntityType="eformulus_IBTW_DBModel.CasePreActionMaster" />
           <EntitySet Name="CaseManagements" EntityType="eformulus_IBTW_DBModel.CaseManagement" />
-          <EntitySet Name="HomeLanguages" EntityType="eformulus_IBTW_DBModel.HomeLanguage" />
           <EntitySet Name="SubscriptionPlans" EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" />
           <EntitySet Name="SubscriptionHistroys" EntityType="eformulus_IBTW_DBModel.SubscriptionHistroy" />
           <EntitySet Name="BannerLangMasters" EntityType="eformulus_IBTW_DBModel.BannerLangMaster" />
+          <EntitySet Name="ManageAdminLangMasters" EntityType="eformulus_IBTW_DBModel.ManageAdminLangMaster" />
           <EntitySet Name="MyAccountLangMasters" EntityType="eformulus_IBTW_DBModel.MyAccountLangMaster" />
+          <EntitySet Name="HomeLanguages" EntityType="eformulus_IBTW_DBModel.HomeLanguage" />
           <EntitySet Name="RegisteredUsers" EntityType="eformulus_IBTW_DBModel.RegisteredUser" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
@@ -681,6 +700,86 @@
           <Property Name="CaseUpdated" Type="DateTime" Precision="3" />
           <Property Name="CaseStatus" Type="Boolean" />
         </EntityType>
+        <EntityType Name="SubscriptionPlan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubPlanID" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionPlan1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdminSeatCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SubscriptionHistroy">
+          <Key>
+            <PropertyRef Name="SHURN" />
+          </Key>
+          <Property Name="SHURN" Type="Guid" Nullable="false" />
+          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
+          <Property Name="SubHisClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubInvoiceNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SubscriptionPlan" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ValidTo" Type="DateTime" Precision="3" />
+          <Property Name="Currency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PaidVia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="CardLast4Digit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BannerLangMaster">
+          <Key>
+            <PropertyRef Name="BURN" />
+          </Key>
+          <Property Name="BURN" Type="Guid" Nullable="false" />
+          <Property Name="BanClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lblCompanyURl" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="lblQRTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lblQRShortNotes" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="btnSaveasImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="btnGenerateQRCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ManageAdminLangMaster">
+          <Key>
+            <PropertyRef Name="MURN" />
+          </Key>
+          <Property Name="MURN" Type="Guid" Nullable="false" />
+          <Property Name="MngAdClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lblAdminCount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpMngAdminAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpMngStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpVwSubsHistroy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="btnClickhere" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyAccountLangMaster">
+          <Key>
+            <PropertyRef Name="MURN" />
+          </Key>
+          <Property Name="MURN" Type="Guid" Nullable="false" />
+          <Property Name="MyAcClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lblSubEndDate" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpYourAvatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpTopBanner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpPreffLanguage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpPreffTimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpResetPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="btnSelectPicture" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="btnUpdatePicture" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="btnUpdateBanner" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="btnClickhere" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="lblTimeSelector" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="btnUpdateTime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="HomeLanguage">
           <Key>
             <PropertyRef Name="HURN" />
@@ -727,71 +826,7 @@
           <Property Name="FooterGrpTitle3Menu3" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FooterGrpTitle3Menu4" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FooterGrpTitle3Menu5" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SubscriptionPlan">
-          <Key>
-            <PropertyRef Name="PlanID" />
-          </Key>
-          <Property Name="PlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubPlanID" Type="Int32" Nullable="false" />
-          <Property Name="SubscriptionPlan1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AdminSeatCount" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SubscriptionHistroy">
-          <Key>
-            <PropertyRef Name="SHURN" />
-          </Key>
-          <Property Name="SHURN" Type="Guid" Nullable="false" />
-          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
-          <Property Name="SubHisClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubInvoiceNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="SubscriptionPlan" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="ValidTo" Type="DateTime" Precision="3" />
-          <Property Name="Currency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PaidVia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Created" Type="DateTime" Precision="3" />
-          <Property Name="CardLast4Digit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="BannerLangMaster">
-          <Key>
-            <PropertyRef Name="BURN" />
-          </Key>
-          <Property Name="BURN" Type="Guid" Nullable="false" />
-          <Property Name="BanClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LanguageID" Type="Int32" />
-          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
-          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="lblCompanyURl" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="lblQRTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lblQRShortNotes" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
-          <Property Name="btnSaveasImage" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="btnGenerateQRCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="MyAccountLangMaster">
-          <Key>
-            <PropertyRef Name="MURN" />
-          </Key>
-          <Property Name="MURN" Type="Guid" Nullable="false" />
-          <Property Name="MyAcClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LanguageID" Type="Int32" />
-          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
-          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="lblSubEndDate" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpYourAvatar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpTopBanner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpPreffLanguage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpPreffTimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpResetPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="btnSelectPicture" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="btnUpdatePicture" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="btnUpdateBanner" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="btnClickhere" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="lblTimeSelector" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="btnUpdateTime" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="WarningMessage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -816,6 +851,7 @@
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="UpdateReason" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
           <Property Name="IsPrimaryAcc" Type="Boolean" />
+          <Property Name="PreferredFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1083,54 +1119,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HomeLanguages">
-            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.HomeLanguage">
-              <MappingFragment StoreEntitySet="HomeLanguage">
-                <ScalarProperty Name="FooterGrpTitle3Menu5" ColumnName="FooterGrpTitle3Menu5" />
-                <ScalarProperty Name="FooterGrpTitle3Menu4" ColumnName="FooterGrpTitle3Menu4" />
-                <ScalarProperty Name="FooterGrpTitle3Menu3" ColumnName="FooterGrpTitle3Menu3" />
-                <ScalarProperty Name="FooterGrpTitle3Menu2" ColumnName="FooterGrpTitle3Menu2" />
-                <ScalarProperty Name="FooterGrpTitle3Menu1" ColumnName="FooterGrpTitle3Menu1" />
-                <ScalarProperty Name="FooterGrpTitle2Menu5" ColumnName="FooterGrpTitle2Menu5" />
-                <ScalarProperty Name="FooterGrpTitle2Menu4" ColumnName="FooterGrpTitle2Menu4" />
-                <ScalarProperty Name="FooterGrpTitle2Menu3" ColumnName="FooterGrpTitle2Menu3" />
-                <ScalarProperty Name="FooterGrpTitle2Menu2" ColumnName="FooterGrpTitle2Menu2" />
-                <ScalarProperty Name="FooterGrpTitle2Menu1" ColumnName="FooterGrpTitle2Menu1" />
-                <ScalarProperty Name="FooterGrpTitle4" ColumnName="FooterGrpTitle4" />
-                <ScalarProperty Name="FooterGrpTitle3" ColumnName="FooterGrpTitle3" />
-                <ScalarProperty Name="FooterGrpTitle2" ColumnName="FooterGrpTitle2" />
-                <ScalarProperty Name="FooterGrpTitle1" ColumnName="FooterGrpTitle1" />
-                <ScalarProperty Name="ContactReadMorelbl" ColumnName="ContactReadMorelbl" />
-                <ScalarProperty Name="ContactSendBtn" ColumnName="ContactSendBtn" />
-                <ScalarProperty Name="ContDisclaimerChkbox" ColumnName="ContDisclaimerChkbox" />
-                <ScalarProperty Name="ContDisclaimerDoyouWant" ColumnName="ContDisclaimerDoyouWant" />
-                <ScalarProperty Name="ContactMessagePlcHolder" ColumnName="ContactMessagePlcHolder" />
-                <ScalarProperty Name="ContactEmailPlcHolder" ColumnName="ContactEmailPlcHolder" />
-                <ScalarProperty Name="ContactLNamePlcHolder" ColumnName="ContactLNamePlcHolder" />
-                <ScalarProperty Name="ContactFNamePlcHolder" ColumnName="ContactFNamePlcHolder" />
-                <ScalarProperty Name="ContactUsDesc" ColumnName="ContactUsDesc" />
-                <ScalarProperty Name="ContactUsTitle" ColumnName="ContactUsTitle" />
-                <ScalarProperty Name="boxClickHere" ColumnName="boxClickHere" />
-                <ScalarProperty Name="boxEverythingNedToKnowDesc" ColumnName="boxEverythingNedToKnowDesc" />
-                <ScalarProperty Name="boxEverythingNedToKnowTitle" ColumnName="boxEverythingNedToKnowTitle" />
-                <ScalarProperty Name="btnSubmit" ColumnName="btnSubmit" />
-                <ScalarProperty Name="IncTitleSecMsg" ColumnName="IncTitleSecMsg" />
-                <ScalarProperty Name="IncTitleDesc" ColumnName="IncTitleDesc" />
-                <ScalarProperty Name="IncTitlePlcHolder" ColumnName="IncTitlePlcHolder" />
-                <ScalarProperty Name="IncTitle" ColumnName="IncTitle" />
-                <ScalarProperty Name="menu3" ColumnName="menu3" />
-                <ScalarProperty Name="menu2" ColumnName="menu2" />
-                <ScalarProperty Name="menu1" ColumnName="menu1" />
-                <ScalarProperty Name="menuSignIn" ColumnName="menuSignIn" />
-                <ScalarProperty Name="menuLanguage" ColumnName="menuLanguage" />
-                <ScalarProperty Name="menuPricing" ColumnName="menuPricing" />
-                <ScalarProperty Name="menuInfo" ColumnName="menuInfo" />
-                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
-                <ScalarProperty Name="HomeClusterID" ColumnName="HomeClusterID" />
-                <ScalarProperty Name="HURN" ColumnName="HURN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SubscriptionPlans">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.SubscriptionPlan">
               <MappingFragment StoreEntitySet="SubscriptionPlan">
@@ -1177,6 +1165,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ManageAdminLangMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ManageAdminLangMaster">
+              <MappingFragment StoreEntitySet="ManageAdminLangMaster">
+                <ScalarProperty Name="btnClickhere" ColumnName="btnClickhere" />
+                <ScalarProperty Name="clsExpVwSubsHistroy" ColumnName="clsExpVwSubsHistroy" />
+                <ScalarProperty Name="clsExpMngStatusCode" ColumnName="clsExpMngStatusCode" />
+                <ScalarProperty Name="clsExpMngAdminAccount" ColumnName="clsExpMngAdminAccount" />
+                <ScalarProperty Name="lblAdminCount" ColumnName="lblAdminCount" />
+                <ScalarProperty Name="TitleShortNotes" ColumnName="TitleShortNotes" />
+                <ScalarProperty Name="FormTitle" ColumnName="FormTitle" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="MngAdClusterID" ColumnName="MngAdClusterID" />
+                <ScalarProperty Name="MURN" ColumnName="MURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MyAccountLangMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.MyAccountLangMaster">
               <MappingFragment StoreEntitySet="MyAccountLangMaster">
@@ -1200,9 +1204,59 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HomeLanguages">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.HomeLanguage">
+              <MappingFragment StoreEntitySet="HomeLanguage">
+                <ScalarProperty Name="WarningMessage" ColumnName="WarningMessage" />
+                <ScalarProperty Name="FooterGrpTitle3Menu5" ColumnName="FooterGrpTitle3Menu5" />
+                <ScalarProperty Name="FooterGrpTitle3Menu4" ColumnName="FooterGrpTitle3Menu4" />
+                <ScalarProperty Name="FooterGrpTitle3Menu3" ColumnName="FooterGrpTitle3Menu3" />
+                <ScalarProperty Name="FooterGrpTitle3Menu2" ColumnName="FooterGrpTitle3Menu2" />
+                <ScalarProperty Name="FooterGrpTitle3Menu1" ColumnName="FooterGrpTitle3Menu1" />
+                <ScalarProperty Name="FooterGrpTitle2Menu5" ColumnName="FooterGrpTitle2Menu5" />
+                <ScalarProperty Name="FooterGrpTitle2Menu4" ColumnName="FooterGrpTitle2Menu4" />
+                <ScalarProperty Name="FooterGrpTitle2Menu3" ColumnName="FooterGrpTitle2Menu3" />
+                <ScalarProperty Name="FooterGrpTitle2Menu2" ColumnName="FooterGrpTitle2Menu2" />
+                <ScalarProperty Name="FooterGrpTitle2Menu1" ColumnName="FooterGrpTitle2Menu1" />
+                <ScalarProperty Name="FooterGrpTitle4" ColumnName="FooterGrpTitle4" />
+                <ScalarProperty Name="FooterGrpTitle3" ColumnName="FooterGrpTitle3" />
+                <ScalarProperty Name="FooterGrpTitle2" ColumnName="FooterGrpTitle2" />
+                <ScalarProperty Name="FooterGrpTitle1" ColumnName="FooterGrpTitle1" />
+                <ScalarProperty Name="ContactReadMorelbl" ColumnName="ContactReadMorelbl" />
+                <ScalarProperty Name="ContactSendBtn" ColumnName="ContactSendBtn" />
+                <ScalarProperty Name="ContDisclaimerChkbox" ColumnName="ContDisclaimerChkbox" />
+                <ScalarProperty Name="ContDisclaimerDoyouWant" ColumnName="ContDisclaimerDoyouWant" />
+                <ScalarProperty Name="ContactMessagePlcHolder" ColumnName="ContactMessagePlcHolder" />
+                <ScalarProperty Name="ContactEmailPlcHolder" ColumnName="ContactEmailPlcHolder" />
+                <ScalarProperty Name="ContactLNamePlcHolder" ColumnName="ContactLNamePlcHolder" />
+                <ScalarProperty Name="ContactFNamePlcHolder" ColumnName="ContactFNamePlcHolder" />
+                <ScalarProperty Name="ContactUsDesc" ColumnName="ContactUsDesc" />
+                <ScalarProperty Name="ContactUsTitle" ColumnName="ContactUsTitle" />
+                <ScalarProperty Name="boxClickHere" ColumnName="boxClickHere" />
+                <ScalarProperty Name="boxEverythingNedToKnowDesc" ColumnName="boxEverythingNedToKnowDesc" />
+                <ScalarProperty Name="boxEverythingNedToKnowTitle" ColumnName="boxEverythingNedToKnowTitle" />
+                <ScalarProperty Name="btnSubmit" ColumnName="btnSubmit" />
+                <ScalarProperty Name="IncTitleSecMsg" ColumnName="IncTitleSecMsg" />
+                <ScalarProperty Name="IncTitleDesc" ColumnName="IncTitleDesc" />
+                <ScalarProperty Name="IncTitlePlcHolder" ColumnName="IncTitlePlcHolder" />
+                <ScalarProperty Name="IncTitle" ColumnName="IncTitle" />
+                <ScalarProperty Name="menu3" ColumnName="menu3" />
+                <ScalarProperty Name="menu2" ColumnName="menu2" />
+                <ScalarProperty Name="menu1" ColumnName="menu1" />
+                <ScalarProperty Name="menuSignIn" ColumnName="menuSignIn" />
+                <ScalarProperty Name="menuLanguage" ColumnName="menuLanguage" />
+                <ScalarProperty Name="menuPricing" ColumnName="menuPricing" />
+                <ScalarProperty Name="menuInfo" ColumnName="menuInfo" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="HomeClusterID" ColumnName="HomeClusterID" />
+                <ScalarProperty Name="HURN" ColumnName="HURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RegisteredUsers">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.RegisteredUser">
               <MappingFragment StoreEntitySet="RegisteredUsers">
+                <ScalarProperty Name="PreferredFilter" ColumnName="PreferredFilter" />
                 <ScalarProperty Name="IsPrimaryAcc" ColumnName="IsPrimaryAcc" />
                 <ScalarProperty Name="UpdateReason" ColumnName="UpdateReason" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />

@@ -20,12 +20,13 @@
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CasePreActionMaster" Width="1.5" PointX="5.375" PointY="13.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CaseManagement" Width="1.5" PointX="7.375" PointY="11.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.HomeLanguage" Width="1.5" PointX="13.375" PointY="6.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.SubscriptionHistroy" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.BannerLangMaster" Width="1.5" PointX="7.75" PointY="6.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.MyAccountLangMaster" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.RegisteredUser" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.ManageAdminLangMaster" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.MyAccountLangMaster" Width="1.5" PointX="15.75" PointY="6.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.HomeLanguage" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.RegisteredUser" Width="1.5" PointX="15.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

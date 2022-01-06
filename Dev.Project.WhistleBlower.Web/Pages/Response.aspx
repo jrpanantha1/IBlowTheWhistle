@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="Response.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.Response" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Response | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js" async defer></script>

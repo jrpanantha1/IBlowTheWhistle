@@ -86,10 +86,21 @@ namespace Dev.Project.WhistleBlower.Web.Authorization
 
                     if (context.UserName != "" && context.Password != "")
                     {
+                        //string encPassword = Cipher.EncryptPassword(context.Password, "");
+                        //GcxptDEONndCGKxEe3lIJg==
                         RegisteredUser GetUserDetails = Utility.GetRegistredUserDetails(context.UserName);
+                        if (GetUserDetails == null)
+                        {
+                            context.SetError("User not found");
+                            return;
+                        }
+
+                        string encPassword = Utility.retrurnEncryptPassword(context.Password, GetUserDetails.CompanyID.ToString());
+
                         if (GetUserDetails.Email.Trim().ToLower() == context.UserName.Trim().ToLower())
                         {
-                            if (GetUserDetails.Password == context.Password)
+                            //if (GetUserDetails.Password == context.Password)
+                            if (GetUserDetails.Password == encPassword)
                             {
                                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
                                 identity.AddClaim(new Claim("companyID", GetUserDetails.CompanyID.ToString()));

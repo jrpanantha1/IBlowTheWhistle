@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="ViewIncidents.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ViewIncidents" %>
+﻿<%@ Page Title="View Incidents | I Blow the Whistle" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="ViewIncidents.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ViewIncidents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+   View All Incidents | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Refresh" content="120" />
@@ -375,7 +376,7 @@
                         </div>
                     </div>
                     <!-- // END HERE -->
-
+                    <label></label>
 
                     <div class="table-responsive">
                         <div class="tableviewincidents mt-2 height-100">

@@ -113,7 +113,7 @@
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <label class="control-label" for="textinput">Don't have an account?</label></li>
-                            <li class="list-inline-item"><a href="https://info.iblowthewhistle.com/products/" class="btn btn-sm btn-outline-dark">Get Started</a></li>
+                            <li class="list-inline-item mb-1"><a href="https://info.iblowthewhistle.com/products/" class="btn btn-sm btn-outline-dark">Get Started</a></li>
                             <li class="list-inline-item">
                                 <label class="control-label" for="textinput">If you need support</label></li>
                             <li class="list-inline-item"><a href="https://info.iblowthewhistle.com/support/" class="btn btn-sm btn-outline-dark">reach out to us</a></li>

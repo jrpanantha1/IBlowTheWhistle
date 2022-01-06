@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="AdminAccounts.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ManageCaseStatus" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Admin Accounts | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <link href="/JQDatatables/datatables.min.css" rel="stylesheet" type="text/css" />
@@ -83,8 +84,12 @@
                                         <th class="langDirection">Last Name</th>
                                         <th class="langDirection">Full Name</th>
                                         <th class="langDirection">Email</th>
-                                         <th class="langDirection">Is Primary</th>
-                                        <th class="angDirection d-none">Reg UserID</th>
+                                        <th class="langDirection">Is Primary</th>
+                                        <th class="langDirection">Select</th>
+                                        <th class="langDirection">Delete</th>
+                                        <th class="langDirection d-none">Reg UserID</th>
+
+
                                     </tr>
                                 </thead>
                             </table>

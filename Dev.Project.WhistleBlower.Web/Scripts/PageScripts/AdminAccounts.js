@@ -66,7 +66,7 @@ function GetAdminAccounts() {
                     },
                     "bProcessing": true,
                     "columnDefs": [
-                        { targets: [0, 1, 2, 3, 4, 5], visible: true },
+                        { targets: [0, 1, 2, 3, 4, 5, 6, 7], visible: true },
                         { targets: '_all', visible: false }
                     ],
                     "iDisplayLength": 10,
@@ -77,6 +77,21 @@ function GetAdminAccounts() {
                         { "data": "rFullName" },
                         { "data": "rEmail" },
                         { "data": "risPrimary" },
+
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = "<a class='fa fa-list' onclick='GetUsersDetails(this)' title='Güncelle' href='javascript:;'><img src='/Images/viewIcon.png' /></a>";
+                                return ReturnHTML;
+                            }
+
+
+                        },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = "<a class='fa fa-list' onclick='deleteUID(this)' title='Güncelle' href='javascript:;'><img src='/Images/deleteIcon.png' /></a>";
+                                return ReturnHTML;
+                            }
+                        },
                         { "data": "rRegUserID" }
                     ]
                 });
@@ -86,30 +101,35 @@ function GetAdminAccounts() {
                 var table = $('#tableAdminAccounts').DataTable();
                 $('#tableAdminAccounts tbody').on('click', 'tr', function () {
 
-                    if ($(this).hasClass('selected')) {
-                        $(this).removeClass('selected');
-                    }
-                    else {
-                        table.$('tr.selected').removeClass('selected');
-                        $(this).addClass('selected');
-                    }
+                    //if ($(this).hasClass('selected')) {
+                    //    $(this).removeClass('selected');
+                    //}
+                    //else {
+                    //    table.$('tr.selected').removeClass('selected');
+                    //    $(this).addClass('selected');
+                    //}
 
-                    var selectedData = table.rows('.selected').data();
-                    if (selectedData != null) {
+                    //var selectedData = table.rows('.selected').data();
+                    //if (selectedData != null) {
 
 
-                        //alert(selectedData[0].rPreAction);
-                        $('#txtEmail').val(selectedData[0].rEmail);
-                        $('#txtRegID').val(selectedData[0].rRegUserID);
-                        $('#txtFirstName').val(selectedData[0].rFirstName);
-                        $('#txtLastName').val(selectedData[0].rLastName);
-                        $('#txtFullName').val(selectedData[0].rFullName);
+                    //    //alert(selectedData[0].rPreAction);
+                    //    $('#txtEmail').val(selectedData[0].rEmail);
+                    //    $('#txtRegID').val(selectedData[0].rRegUserID);
+                    //    $('#txtFirstName').val(selectedData[0].rFirstName);
+                    //    $('#txtLastName').val(selectedData[0].rLastName);
+                    //    $('#txtFullName').val(selectedData[0].rFullName);
 
-                        $('#txtEmail').attr("disabled", "disabled");
-                        $('#btnAddNew').hide();
-                        $('#btnSubmit').show();
-                    }
+                    //    $('#txtEmail').attr("disabled", "disabled");
+                    //    $('#btnAddNew').hide();
+                    //    $('#btnSubmit').show();
+                    //}
                 });
+
+                //$('#tableAdminAccounts').on("click", ".btnDelete", function () {
+
+
+                //});
 
             }
         },
@@ -124,7 +144,80 @@ function GetAdminAccounts() {
         }
     });
 }
+function deleteUID(ele) {
+    var dataRow = $('#tableAdminAccounts').DataTable().row($(ele).closest('tr')).data();
+    if (dataRow.risPrimary == "false") {
+        if (confirm("Are you sure?")) {
+            deleteRegisterdUser(dataRow.rRegUserID);
+        }
+    }
+    else {
+        alert("Primary account cannot be deleted.");
+    }
 
+    return false;
+}
+function GetUsersDetails(ele) {
+    var dataRow = $('#tableAdminAccounts').DataTable().row($(ele).closest('tr')).data();
+    var table = $('#tableAdminAccounts').DataTable();
+
+
+    //$('#tableAdminAccounts').DataTable().removeClass('selected');
+    //$('#tableAdminAccounts').DataTable().row($(ele).closest('tr')).addClass('selected');
+
+
+
+    // var selectedData = table.rows('.selected').data();
+    if (dataRow != null) {
+
+
+        //alert(selectedData[0].rPreAction);
+        $('#txtEmail').val(dataRow.rEmail);
+        $('#txtRegID').val(dataRow.rRegUserID);
+        $('#txtFirstName').val(dataRow.rFirstName);
+        $('#txtLastName').val(dataRow.rLastName);
+        $('#txtFullName').val(dataRow.rFullName);
+
+        $('#txtEmail').attr("disabled", "disabled");
+        $('#btnAddNew').hide();
+        $('#btnSubmit').show();
+    }
+
+
+    //alert(dataRow.rRegUserID);
+}
+function deleteRegisterdUser(rUsergID) {
+
+    $.ajax({
+        url: '/api/RegisteredUsers?id=' + rUsergID,
+        method: 'DELETE',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        success: function (response) {
+            if (response != null && response == "Success") {
+                showSuccessMessage("Record deleted successfully.");
+                shownewForm();
+                GetAdminAccounts();
+            }
+            if (response != null && response != "Success") {
+                $('#divWarning').show();
+                $('#spanwarningText').text(response);
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+            shownewForm();
+        },
+        failure: function (response) {
+            alert(response.responseText);
+            shownewForm();
+        }
+    });
+}
 function updateAdminAccValidation() {
     var flag = true;
 

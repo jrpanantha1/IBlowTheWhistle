@@ -40,11 +40,12 @@ namespace WhistleBlowerDAL
         public virtual DbSet<ViewIncidentsLanguage> ViewIncidentsLanguages { get; set; }
         public virtual DbSet<CasePreActionMaster> CasePreActionMasters { get; set; }
         public virtual DbSet<CaseManagement> CaseManagements { get; set; }
-        public virtual DbSet<HomeLanguage> HomeLanguages { get; set; }
         public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
         public virtual DbSet<SubscriptionHistroy> SubscriptionHistroys { get; set; }
         public virtual DbSet<BannerLangMaster> BannerLangMasters { get; set; }
+        public virtual DbSet<ManageAdminLangMaster> ManageAdminLangMasters { get; set; }
         public virtual DbSet<MyAccountLangMaster> MyAccountLangMasters { get; set; }
+        public virtual DbSet<HomeLanguage> HomeLanguages { get; set; }
         public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
     }
 }

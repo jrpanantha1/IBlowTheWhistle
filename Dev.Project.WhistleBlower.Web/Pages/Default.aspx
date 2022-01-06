@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>IBTW | Home</title>
+    <title>I Blow the Whistle</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -202,7 +202,7 @@
                     </nav>
                     <div class="banner_box text-center">
                         <div class="alert alert-warning" style="display: none; background-color: #00a485; color: #ffffff;" role="alert">
-                            This is a warning alert— Complany ID is not valid!
+                            <span id="spanWarningMsg"></span>
                         </div>
                         <h3 id="hIncTitle">Report Concerns Without Risk</h3>
 
@@ -310,7 +310,7 @@
                                 <h4><span>Important Links</span></h4>
                                 <div class="social_link">
                                     <a target="_blank" href="https://iblowthewhistle.com">Information</a>
-                                    <a target="_blank" href="https://iblowthewhistle.com/benefits-2">Features</a>
+                                    <a target="_blank" href="https://iblowthewhistle.com/features">Features</a>
                                     <a target="_blank" href="https://iblowthewhistle.com/Support">Support</a>
                                     <a target="_blank" href="https://iblowthewhistle.com/terms-conditions">Legal</a>
                                     <a target="_blank" href="https://iblowthewhistle.com/products">Pricing</a>
@@ -324,8 +324,8 @@
                                 <h4><span>Contact Us</span></h4>
                                 <div class="follow_link">
                                     <p><a href="#"><i class="fas fa-map-marker"></i>Kuala Lumpur, Malaysia</a></p>
-                                    <p><a href="#"><i class="fas fa-envelope"></i>contactus@iblowthewhistle.com</a></p>
-                                    <p><a href="https://cutt.ly/AWkwiXK"><i class="fas fa-link"></i>www.iblowthewhistle.com</a></p>
+                                    <p><a href="mailto://contactus@iblowthewhistle.com"><i class="fas fa-envelope"></i>contactus@iblowthewhistle.com</a></p>
+                                    <p><a href="https://iblowthewhistle.com"><i class="fas fa-link"></i>www.iblowthewhistle.com</a></p>
                                 </div>
                             </div>
                         </div>

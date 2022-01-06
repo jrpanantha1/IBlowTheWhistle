@@ -65,7 +65,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     if (companyID != "")
                     {
                         var decryptEmailID = Cipher.Encrypt(emailID, objCM.encPassword);
-                        
+
                         var whistleBlowIncident = from r in db.WhistleBlowIncidents
                                      .Where(d => AccType == WhistleContants.anonymousUserAccountType ? d.AnonymousEmailID == decryptEmailID : d.Email == decryptEmailID).OrderByDescending(s => s.SubmissionDateTime)
                                                   select new
@@ -597,7 +597,12 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                     //strRegUserID = RegUserID.ToString();
                                     objRegisteredUser.RegUserID = RegUserID;
                                     objRegisteredUser.Email = AnonymousEmailID = WhistleBlowDetail.Email;
-                                    objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);// WhistleContants.userPassword;
+
+                                    string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                                    RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
+
+
+                                    objRegisteredUser.Password = AnonyPassword = RandomPasswordTobeUpdated;//Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);// WhistleContants.userPassword;
                                     objRegisteredUser.AcctType = WhistleContants.normalUserAccountType;
                                     Entities.RegisteredUsers.Add(objRegisteredUser);
                                     Entities.SaveChanges();
@@ -613,7 +618,12 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 //strRegUserID = RegUserID.ToString();
                                 objRegisteredUser.RegUserID = RegUserID;
                                 objRegisteredUser.Email = AnonymousEmailID; //Utility.getRandomEmail() + "@ibtw.com";
-                                objRegisteredUser.Password = AnonyPassword = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength); //WhistleContants.userPassword;
+
+                                string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                                RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
+
+
+                                objRegisteredUser.Password = AnonyPassword = RandomPasswordTobeUpdated;// Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength); //WhistleContants.userPassword;
                                 objRegisteredUser.AcctType = WhistleContants.anonymousUserAccountType;
                                 Entities.RegisteredUsers.Add(objRegisteredUser);
                                 Entities.SaveChanges();

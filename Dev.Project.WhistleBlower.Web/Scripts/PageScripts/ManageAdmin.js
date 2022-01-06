@@ -3,7 +3,8 @@ $(document).ready(function () {
 
 
     if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
-        getAdminCount();
+        loadManageAdminLanguageDetails()
+
     }
     else if (localStorage.getItem("accessToken") != null) {
         window.location.href = "/Pages/ViewIncidents.aspx";
@@ -41,6 +42,7 @@ function getAdminCount() {
         }
     });
 }
+
 function showLmitationPerPLan(adminCount) {
 
     var planCode = $('#hdnSusPlanCode').val();
@@ -57,7 +59,20 @@ function showLmitationPerPLan(adminCount) {
         },
         success: function (response) {
             if (response != null) {
-                returnStr = "You have already {" + adminCount + "} admin account. You can create maximum " + response.AdminSeatCount + "";
+
+                String.format = function () {
+                    var s = arguments[0];
+                    for (var i = 0; i < arguments.length - 1; i++) {
+                        var reg = new RegExp("\\{" + i + "\\}", "gm");
+                        s = s.replace(reg, arguments[i + 1]);
+                    }
+
+                    return s;
+                }
+
+                var link = String.format($('#lblshowLimit').text(),
+                    adminCount, response.AdminSeatCount);
+                returnStr = link;//"You have already {" + adminCount + "} admin account. You can create maximum " + response.AdminSeatCount + "";
                 $('#lblshowLimit').text(returnStr);
             }
         },
@@ -70,6 +85,43 @@ function showLmitationPerPLan(adminCount) {
     });
 
 }
+function loadManageAdminLanguageDetails() {
 
+
+    var lanCode = 1;
+    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
+        lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
+    }
+
+    $.ajax({
+        url: '/api/ManageAdminLangMasters?langID=' + Number(lanCode),
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        //async: false,
+        success: function (response) {
+            if (response != "") {
+                $('#formTitle').text(response[0].FormTitle);
+                $('#formShortNote').text(response[0].TitleShortNotes);
+                $('#ancclsExpMngAdminAccount').text(response[0].clsExpMngAdminAccount);
+                $('#ancclsExpMngStatusCode').text(response[0].clsExpMngStatusCode);
+                $('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
+                $('#lblshowLimit').text(response[0].lblAdminCount);
+                //$('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
+                getAdminCount();
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+
+}
 
 

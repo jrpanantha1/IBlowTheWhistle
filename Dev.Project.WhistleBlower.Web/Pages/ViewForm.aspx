@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="ViewForm.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ViewForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    View Incident | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
@@ -186,7 +187,8 @@
                         <!--end of custom-checkbox -->
                         <div class="form-group col-auto align-self-end my-4" style="text-align: center">
 
-                            <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-primary"></button>
+                           
+                            <input type="button" class="btn btn-xs btn-primary" value="Close" onclick="window.location.href = '/Pages/ViewIncidents.aspx'" id="btnback" />
 
                         </div>
                         <hr />

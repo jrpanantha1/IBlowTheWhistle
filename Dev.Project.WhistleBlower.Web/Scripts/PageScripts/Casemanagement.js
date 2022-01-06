@@ -12,7 +12,7 @@
         window.location.href = "/Pages/Login.aspx";
     }
 
-   
+
 
 
 });
@@ -318,4 +318,44 @@ function updateCaseDocumentUploadInformation() {
     jQuery.each(jQuery('#FileAttachmentDetails')[0].files, function (i, file) {
         updateCaseInformation("The file " + file.name + " has been added");
     });
+}
+function ExportCaseHistroyToPDF() {
+    var doc = new jsPDF();  //create jsPDF object
+
+    var divContents = $("#wrapper").html();
+    var divTopContents = $("#divCaseTop").html();
+
+    //var a = [];
+    //var imagesArray = $(divContents).find("img").each(function (index) {
+    //    a[index] = $(this).html();
+    //});
+    //for (var i = 0; i < imagesArray.length; i++) {
+
+    //    var find = imagesArray[i].currentSrc;
+    //    find = find.substring(find.indexOf("/I"));
+    //    //var find = ffind;//"/IBTWImages/4e2162b8-51f5-41fa-8eed-f0a4569bcca5/CompanyLogo.png";
+    //    var re = new RegExp(find, 'g');
+
+    //    divContents = divContents.replace(re, '#');
+    //}
+
+    var tranID = $('#spnIncID').text();
+
+    doc.fromHTML(divTopContents + divContents, // page element which you want to print as PDF
+        15,
+        15,
+        {
+            'width': 170  //set width
+        },
+        function (a) {
+
+
+            var today = new Date();
+            var tDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+            doc.save("CaseHistroy - " + tranID + ".pdf"); // save file name as HTML2PDF.pdf
+        });
+
+
+
 }

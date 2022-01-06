@@ -77,7 +77,9 @@ function IncidentFormValidation() {
         if (!GetDropdownSelectedIndexValidation($('#FileAttachment'))) {
             flag = false;
         }
-
+        else if (!dropdownYesValidateText($('#FileAttachment'), $('#FileAttachmentDetails'))) {
+            flag = false;
+        }
     }
 
     if (!GetTextBoxEmptyValidation($('#comments'))) {
@@ -157,6 +159,10 @@ function IncidentFormValidation() {
             wPhone.addClass('error');
 
         }
+        else if (!ValidateEmail(wEmail)) {
+            wEmail.addClass('error');
+            flag = false;
+        }
         else {
             wName.removeClass('error');
             wEmail.removeClass('error');
@@ -177,6 +183,10 @@ function IncidentFormValidation() {
                 wEmail1.addClass('error');
                 wPhone1.addClass('error');
 
+            }
+            else if (!ValidateEmail(wEmail1)) {
+                wEmail1.addClass('error');
+                flag = false;
             }
             else {
                 wName1.removeClass('error');

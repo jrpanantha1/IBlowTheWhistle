@@ -22,11 +22,16 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 string uID = userDetails.RegUserID.ToString();
 
                 var result = db.RegisteredUsers.FirstOrDefault(u => u.RegUserID.ToString().Equals(uID));
+
                 if (result != null)
                 {
                     if (userDetails.Password != null && userDetails.Password != "")
                     {
-                        result.Password = userDetails.Password;
+                        //result.Password = userDetails.Password;
+                        //sha256 encryption
+                        var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN == result.CompanyID).encPassword;
+                        result.Password = Cipher.EncryptPassword(userDetails.Password, encPassword);
+
                         result.UpdateReason = "Password got changed";
                     }
                     result.ModifiedOn = System.DateTime.Now;

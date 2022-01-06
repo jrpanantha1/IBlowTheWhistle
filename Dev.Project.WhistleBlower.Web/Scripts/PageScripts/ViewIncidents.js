@@ -4,8 +4,19 @@
     if (localStorage.getItem("accessToken") != null) {
         getViewIncidentLabelDetails();
         // getIncidentDetails();
-        getIncidentDetailsByIncCategory("Unread")
-        $('#dropdownFilter').text("Unread");
+
+        //default filter is comming from prefreances screen
+        if ($("#hdnPreferredFilter").val() != "" && $("#hdnPreferredFilter").val() != "All") {
+            getIncidentDetailsByIncCategory($("#hdnPreferredFilter").val());
+            $('#dropdownFilter').text($("#hdnPreferredFilter").val());
+        }
+        else {
+            getIncidentDetails();
+            $('#dropdownFilter').text("All");
+        }
+
+
+
 
         $('.signIn').hide();
         //$('.dt-buttons').find('span').prepend('<img src="/Image/ExcelIcon.png"/>')
@@ -183,23 +194,23 @@ function getIncidentDetails() {
                                 var ReturnHTML = '';
                                 // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
                                 var readStatus = 0;
-                                if (data.rIncCategory == 'null' || data.rIncCategory == null) {
+                                if (data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") {
                                     readStatus = 1;
                                 }
 
                                 if (data.hisCount == "0") {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 else {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 return ReturnHTML;
                             }
@@ -209,32 +220,112 @@ function getIncidentDetails() {
                         {
                             "data": function (data, type, row, meta) {
                                 var ReturnHTML = '';
-                                if (data.rIncCategory != null && data.rIncCategory != "") {
+                                var $select;
+                                if (localStorage.getItem("AcctType") == "Admin") {
 
-                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                        "<option value='Unread'>Unread</option>" +
-                                        "<option value='Read'>Read</option>" +
-                                        "<option value='Important'>Important</option>" +
-                                        "<option value='Done'>Done</option>" +
-                                        "<option value='Discarded'>Discarded</option>" +
-                                        "<option value='Route to email'>Route to email</option>" +
-                                        "</select>";
-                                    $('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
-                                    //$('#' + data.rTranID).val(data.rIncCategory);
-                                    //$('#' + data.rTranID).attr("selected", "selected");
+                                    if (data.rIncCategory != null && data.rIncCategory != "") {
+
+
+                                        $select = $("<select id='" + data.rTranID + "' class='target' ></select>", {
+                                        });
+
+                                        var v = "Unread";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Read";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Important";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+                                        v = "Done";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Discarded";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Route to email";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+
+                                        //ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        //    "<option value='Unread'>Unread</option>" +
+                                        //    "<option value='Read'>Read</option>" +
+                                        //    "<option value='Important'>Important</option>" +
+                                        //    "<option value='Done'>Done</option>" +
+                                        //    "<option value='Discarded'>Discarded</option>" +
+                                        //    "<option value='Route to email'>Route to email</option>" +
+                                        //    "</select>";
+
+                                        //$('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
+                                        //$('#' + data.rTranID).val(data.rIncCategory);
+                                        ////$('#' + data.rTranID).attr("selected", "selected");
+                                    }
+                                    else {
+                                        ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                            "<option value='Unread'>Unread</option>" +
+                                            "<option value='Read'>Read</option>" +
+                                            "<option value='Important'>Important</option>" +
+                                            "<option value='Done'>Done</option>" +
+                                            "<option value='Discarded'>Discarded</option>" +
+                                            "<option value='Route to email'>Route to email</option>" +
+                                            "</select>";
+                                    }
                                 }
                                 else {
-                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                        "<option value='Unread'>Unread</option>" +
-                                        "<option value='Read'>Read</option>" +
-                                        "<option value='Important'>Important</option>" +
-                                        "<option value='Done'>Done</option>" +
-                                        "<option value='Discarded'>Discarded</option>" +
-                                        "<option value='Route to email'>Route to email</option>" +
-                                        "</select>";
+
+                                    ReturnHTML = " <label id='" + data.rTranID + "'>" + data.rIncCategory + "</label>";
+                                    return ReturnHTML;
                                 }
 
-                                return ReturnHTML;
+                                return $select.prop("outerHTML");
                             }
                         }
 
@@ -252,7 +343,7 @@ function getIncidentDetails() {
                     $('.dt-buttons').hide();
 
                     //disable category colum
-                    tblDT.column(13).visible(false);
+                    // tblDT.column(13).visible(false);
                     //disbale company code
                     $('.companyCode').hide();
                     // $('.topBanner').hide();
@@ -467,23 +558,23 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                 var ReturnHTML = '';
                                 // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
                                 var readStatus = 0;
-                                if (data.rIncCategory == 'null' || data.rIncCategory == null) {
+                                if (data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") {
                                     readStatus = 1;
                                 }
 
                                 if (data.hisCount == "0") {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 else {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a target='_blank' href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a target='_blank' href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 return ReturnHTML;
                             }
@@ -493,33 +584,113 @@ function getIncidentDetailsByIncCategory(incCategory) {
                         {
                             "data": function (data, type, row, meta) {
                                 var ReturnHTML = '';
-                                if (data.rIncCategory != null && data.rIncCategory != "") {
+                                var $select;
+                                if (localStorage.getItem("AcctType") == "Admin") {
+                                    if (data.rIncCategory != null && data.rIncCategory != "") {
 
-                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                        "<option value='Unread'>Unread</option>" +
-                                        "<option value='Read'>Read</option>" +
-                                        "<option value='Important'>Important</option>" +
-                                        "<option value='Done'>Done</option>" +
-                                        "<option value='Discarded'>Discarded</option>" +
-                                        "<option value='Route to email'>Route to email</option>" +
-                                        "</select>";
 
-                                    $('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
-                                    //$('#' + data.rTranID).val(data.rIncCategory);
-                                    //$('#' + data.rTranID).attr("selected", "selected");
+                                        $select = $("<select id='" + data.rTranID + "' class='target' ></select>", {
+                                        });
+
+                                        var v = "Unread";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Read";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Important";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+                                        v = "Done";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Discarded";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+                                        v = "Route to email";
+                                        var $option = $("<option></option>", {
+                                            "text": v,
+                                            "value": v
+                                        });
+                                        if (data.rIncCategory === v) {
+                                            $option.attr("selected", "selected")
+                                        }
+
+                                        $select.append($option);
+
+
+                                        //ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        //    "<option value='Unread'>Unread</option>" +
+                                        //    "<option value='Read'>Read</option>" +
+                                        //    "<option value='Important'>Important</option>" +
+                                        //    "<option value='Done'>Done</option>" +
+                                        //    "<option value='Discarded'>Discarded</option>" +
+                                        //    "<option value='Route to email'>Route to email</option>" +
+                                        //    "</select>";
+
+                                        //$('#' + data.rTranID + ' option[value="' + data.rIncCategory + '"]').attr("selected", "selected");
+                                        //$('#' + data.rTranID).val(data.rIncCategory);
+                                        ////$('#' + data.rTranID).attr("selected", "selected");
+                                    }
+                                    else {
+                                        ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                            "<option value='Unread'>Unread</option>" +
+                                            "<option value='Read'>Read</option>" +
+                                            "<option value='Important'>Important</option>" +
+                                            "<option value='Done'>Done</option>" +
+                                            "<option value='Discarded'>Discarded</option>" +
+                                            "<option value='Route to email'>Route to email</option>" +
+                                            "</select>";
+                                    }
                                 }
                                 else {
-                                    ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
-                                        "<option value='Unread'>Unread</option>" +
-                                        "<option value='Read'>Read</option>" +
-                                        "<option value='Important'>Important</option>" +
-                                        "<option value='Done'>Done</option>" +
-                                        "<option value='Discarded'>Discarded</option>" +
-                                        "<option value='Route to email'>Route to email</option>" +
-                                        "</select>";
+
+                                    ReturnHTML = " <label id='" + data.rTranID + "'>" + data.rIncCategory + "</label>";
+                                    return ReturnHTML;
+
                                 }
 
-                                return ReturnHTML;
+                                return $select.prop("outerHTML");
+                                // return ReturnHTML;
                             }
                         }
 
@@ -540,7 +711,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                     $('.dt-buttons').hide();
 
                     //disable category colum
-                    tblDT.column(13).visible(false);
+                    //tblDT.column(13).visible(false);
                     //disbale company code
                     $('.companyCode').hide();
                     // $('.topBanner').hide();

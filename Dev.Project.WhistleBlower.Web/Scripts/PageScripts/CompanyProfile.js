@@ -79,6 +79,8 @@ function getUserProfileDetails() {
                 $("#hdnPreferredLang").val(llcode);
                 localStorage.setItem("iBlowLanguage", llcode);
                 $("#hdnPreferredZone").val(response[0].PreferredTimeZone);
+                $("#dropdownFilter").text(response[0].PreferredFilter);
+                $("#hdnPreferredFilter").val(response[0].PreferredFilter);
             }
 
         },

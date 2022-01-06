@@ -139,6 +139,9 @@ function loadHomeLanguageDetails() {
                 $('#email').attr("placeholder", response[0].ContactEmailPlcHolder);
                 $('#message').attr("placeholder", response[0].ContactMessagePlcHolder);
 
+                //Warning Message
+                $('#spanWarningMsg').text(response[0].WarningMessage);
+
             }
         },
         error: function (response) {

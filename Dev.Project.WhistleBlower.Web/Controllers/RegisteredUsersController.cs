@@ -103,7 +103,12 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 objRegisterdUser.IsPrimaryAcc = objRegisterdUser.IsPrimaryAcc;
                 retnPassword = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? "" : "Generated";
 
-                objRegisterdUser.Password = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? objRegisterdUser.Password : Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN == objRegisterdUser.CompanyID).encPassword;
+                RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
+
+                //objRegisterdUser.Password = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? objRegisterdUser.Password : Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                objRegisterdUser.Password = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? Cipher.EncryptPassword(objRegisterdUser.Password, encPassword) : RandomPasswordTobeUpdated;
 
 
                 db.RegisteredUsers.Add(objRegisterdUser);
@@ -143,7 +148,9 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 {
                     if (userDetails.Password != null && userDetails.Password != "")
                     {
-                        result.Password = userDetails.Password;
+
+                        var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN == result.CompanyID).encPassword;
+                        result.Password = Cipher.EncryptPassword(userDetails.Password, encPassword);// userDetails.Password;
                         passWordChanged = true;
                     }
                     if (userDetails.PreferredTimeZone != null && userDetails.PreferredTimeZone != "")
@@ -153,6 +160,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     if (userDetails.PreferredLanguage != null)
                     {
                         result.PreferredLanguage = userDetails.PreferredLanguage;
+                    }
+                    if (userDetails.PreferredFilter != null)
+                    {
+                        result.PreferredFilter = userDetails.PreferredFilter;
                     }
                     if (userDetails.FirstName != null && userDetails.FirstName != "")
                     {
@@ -169,10 +180,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     result.ModifiedOn = System.DateTime.Now;
                     if (passWordChanged)
                     {
-                        result.UpdateReason = "user details including password got changed";
+                        result.UpdateReason = "user details get changed including password";
                     }
                     else
-                        result.UpdateReason = "user details got changed except password";
+                        result.UpdateReason = "user details get changed except password";
 
 
                     db.SaveChanges();
@@ -199,7 +210,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     var result = db.RegisteredUsers.FirstOrDefault(u => u.Email.ToString().Equals(userDetails.Email));
                     if (result != null)
                     {
-                        result.Password = userDetails.Password;
+                        var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN == result.CompanyID).encPassword;
+                        result.Password = Cipher.EncryptPassword(userDetails.Password, encPassword);// userDetails.Password;
+
+                        //result.Password = userDetails.Password;
                         db.SaveChanges();
                         return Ok("Password updated successfully.");
                     }
@@ -215,6 +229,31 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+        [Authorize]
+        // DELETE: api/BannerLangMasters/5
+        [ResponseType(typeof(RegisteredUser))]
+        public IHttpActionResult DeleteRegisteredUser(Guid id)
+        {
+            try
+            {
+
+                RegisteredUser regUserAcc = db.RegisteredUsers.Find(id);
+                if (regUserAcc == null)
+                {
+                    return NotFound();
+                }
+
+                db.RegisteredUsers.Remove(regUserAcc);
+                db.SaveChanges();
+
+                return Ok("Success");
+            }
+            catch (Exception ex)
+            {
+
+                return Ok(ex.Message);
             }
         }
         protected override void Dispose(bool disposing)

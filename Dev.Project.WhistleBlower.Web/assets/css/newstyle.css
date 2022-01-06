@@ -60,7 +60,8 @@
 }
 
     .banner_box h3 {
-        font-size: 50px;
+        font-size: 45px;
+        /*font-size: 50px; pandiya*/
         font-weight: 600;
         margin-top: 10px;
         margin-bottom: 30px;
@@ -86,7 +87,8 @@
     width: 145px;
     background-color: #00a485;
     color: white;
-    font-size: 20px;
+    font-size: 17px;
+    /* font-size: 20px;*/
     text-align: center !important;
     outline: none !important;
     box-shadow: none !important;
@@ -432,7 +434,7 @@
     }
 
     .banner_box h3 {
-        font-size: 37px;
+        font-size: 15px;
         margin-top: 33px;
         line-height: 41px;
     }
@@ -445,6 +447,7 @@
 
     #basic-addon2 {
         width: 89px;
+        font-size: 10px;
     }
 
     .banner_box p {
@@ -498,7 +501,7 @@
     }
 
     .banner_box h3 {
-        font-size: 40px;
+        font-size: 25px;
         margin-top: 33px;
         line-height: 41px;
     }
@@ -511,6 +514,7 @@
 
     #basic-addon2 {
         width: 100px;
+        font-size: 12px;
     }
 
     .banner_box p {
@@ -577,6 +581,7 @@
 
     #basic-addon2 {
         width: 100px;
+        font-size: 12px;
     }
 
     .banner_box p {
@@ -642,6 +647,7 @@
 
     #basic-addon2 {
         width: 120px;
+        font-size: 12px;
     }
 
     .banner_box p {

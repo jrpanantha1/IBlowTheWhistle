@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="Banners.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.Banners" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Banners | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="/Scripts/PageScripts/Banner.js"></script>

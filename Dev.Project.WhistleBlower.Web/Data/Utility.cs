@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Web;
 using WhistleBlowerDAL;
@@ -64,7 +65,8 @@ namespace Dev.Project.WhistleBlower.Web.Data
             {
                 using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
                 {
-
+                    //updatedPWDDecrypt();
+                    //updatedPWDEncrypt();
                     if (!string.IsNullOrEmpty(emailID))
                     {
                         var userCheck = Entities.RegisteredUsers.FirstOrDefault(e => e.Email.Trim() == emailID);
@@ -89,6 +91,53 @@ namespace Dev.Project.WhistleBlower.Web.Data
             }
 
             return userDetail;
+        }
+        public static void updatedPWDEncrypt()
+        {
+            using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
+            {
+
+                var userCheck = Entities.RegisteredUsers;
+
+                if (userCheck != null)
+                {
+                    foreach (var item in userCheck)
+                    {
+                        var encPassword = Entities.CompanyMasters.FirstOrDefault(e => e.CURN == item.CompanyID).encPassword;
+                        item.Password = Cipher.EncryptPassword(item.Password, encPassword);
+
+                    }
+                    Entities.SaveChanges();
+                }
+            }
+        }
+        public static void updatedPWDDecrypt()
+        {
+            using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
+            {
+
+                var userCheck = Entities.RegisteredUsers;
+
+                if (userCheck != null)
+                {
+                    foreach (var item in userCheck)
+                    {
+
+                        item.Password = Cipher.DecryptPassword(item.Password, "");
+
+                    }
+                    Entities.SaveChanges();
+                }
+            }
+        }
+        public static string retrurnEncryptPassword(string tobeEnc, string cmpID)
+        {
+            using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
+            {
+                var encPassword = Entities.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == cmpID).encPassword;
+                var encEncryptedPWD = Cipher.EncryptPassword(tobeEnc, encPassword);
+                return encEncryptedPWD;
+            }
         }
         public static void SendEmail(string mailID, string subject, string message)
         {

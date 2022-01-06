@@ -56,5 +56,6 @@ namespace WhistleBlowerDAL
         public string FooterGrpTitle3Menu3 { get; set; }
         public string FooterGrpTitle3Menu4 { get; set; }
         public string FooterGrpTitle3Menu5 { get; set; }
+        public string WarningMessage { get; set; }
     }
 }

@@ -39,5 +39,11 @@ namespace Dev.Project.WhistleBlower.Web.Pages
             string rText = RandomString(int.Parse(txtRandomNumber.Text)) + random.Next(100, 999);
             txtRandomString.Text = rText;
         }
+
+        protected void btnShowDecPassword_Click(object sender, EventArgs e)
+        {
+            var strDecrypted = Cipher.DecryptPassword(txtEncPassword.Text, txtEncKey.Text);
+            txtDecPWD.Text = strDecrypted;
+        }
     }
 }

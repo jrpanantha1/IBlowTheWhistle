@@ -272,6 +272,7 @@
     <Content Include="Images\addNewPerson.png" />
     <Content Include="Images\backToHome.png" />
     <Content Include="Images\Click Here.png" />
+    <Content Include="Images\deleteIcon.png" />
     <Content Include="Images\ExcelIcon.png" />
     <Content Include="Images\ExportPDF.png" />
     <Content Include="Images\IblowTheWhistleCustomerBanner.png" />
@@ -290,6 +291,7 @@
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
     <Content Include="Images\uploadIntoCaseTrack.png" />
+    <Content Include="Images\viewIcon.png" />
     <Content Include="Images\Whistle_Long.jpg" />
     <Content Include="Images\Whistle_Long_Internalbanner.png" />
     <Content Include="Images\Whistle_MediumSquare.jpg" />
@@ -305,6 +307,7 @@
     <Content Include="Pages\Benefits.aspx" />
     <Content Include="Pages\Casemanagement.aspx" />
     <Content Include="Pages\Changelanguage.aspx" />
+    <Content Include="Pages\Changepreferences.aspx" />
     <Content Include="Pages\ContactUs.aspx" />
     <Content Include="Pages\Customers.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
@@ -322,6 +325,7 @@
     <Content Include="Pages\AdminAccounts.aspx" />
     <Content Include="Pages\ManageCaseStatus.aspx" />
     <Content Include="Pages\MyAccount.aspx" />
+    <Content Include="Pages\PasswordEncryption.aspx" />
     <Content Include="Pages\Pricing.aspx" />
     <Content Include="Pages\ResetPassword.aspx" />
     <Content Include="Pages\Response.aspx" />
@@ -350,6 +354,7 @@
     <Content Include="Scripts\PageScripts\Banner.js" />
     <Content Include="Scripts\PageScripts\Casemanagement.js" />
     <Content Include="Scripts\PageScripts\Changelanguage.js" />
+    <Content Include="Scripts\PageScripts\Changepreferences.js" />
     <Content Include="Scripts\PageScripts\CompanyProfile.js" />
     <Content Include="Scripts\PageScripts\Dashboard.js" />
     <Content Include="Scripts\PageScripts\ForgetPassword.js" />
@@ -362,6 +367,7 @@
     <Content Include="Scripts\PageScripts\IBTWAdmin.js" />
     <Content Include="Scripts\PageScripts\ManageAdmin.js" />
     <Content Include="Scripts\PageScripts\AdminAccounts.js" />
+    <Content Include="Scripts\PageScripts\PasswordEncryption.js" />
     <Content Include="Scripts\PageScripts\UpdatePassword.js" />
     <Content Include="Scripts\PageScripts\SubscriptionHistory.js" />
     <Content Include="Scripts\PageScripts\ManageCaseStatus.js" />
@@ -400,6 +406,7 @@
     <Compile Include="Controllers\IBTWProspectsController.cs" />
     <Compile Include="Controllers\LanguageDetailsController.cs" />
     <Compile Include="Controllers\LanguageMastersController.cs" />
+    <Compile Include="Controllers\ManageAdminLangMastersController.cs" />
     <Compile Include="Controllers\ManageIncidentsController.cs" />
     <Compile Include="Controllers\MyAccountLangMastersController.cs" />
     <Compile Include="Controllers\RegisteredUsersController.cs" />
@@ -458,6 +465,13 @@
     </Compile>
     <Compile Include="Pages\Changelanguage.aspx.designer.cs">
       <DependentUpon>Changelanguage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Changepreferences.aspx.cs">
+      <DependentUpon>Changepreferences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Changepreferences.aspx.designer.cs">
+      <DependentUpon>Changepreferences.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContactUs.aspx.cs">
       <DependentUpon>ContactUs.aspx</DependentUpon>
@@ -577,6 +591,13 @@
     </Compile>
     <Compile Include="Pages\MyAccount.aspx.designer.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PasswordEncryption.aspx.cs">
+      <DependentUpon>PasswordEncryption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PasswordEncryption.aspx.designer.cs">
+      <DependentUpon>PasswordEncryption.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Pricing.aspx.cs">
       <DependentUpon>Pricing.aspx</DependentUpon>

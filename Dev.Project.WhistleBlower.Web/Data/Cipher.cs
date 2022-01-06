@@ -11,13 +11,43 @@ namespace Dev.Project.WhistleBlower.Web.Data
     public static class Cipher
     {
         static string systemPassword = "Whistle!2@3#4$";
+        static string systemPasswordForPWD = "IBTW!2@3#4$";
         public static string Encrypt(string plainText, string password)
         {
             if (password == "")
             {
                 password = systemPassword;
             }
-          
+
+            if (plainText == null)
+            {
+                return null;
+            }
+
+            if (password == null)
+            {
+                password = String.Empty;
+            }
+
+            // Get the bytes of the string
+            var bytesToBeEncrypted = Encoding.UTF8.GetBytes(plainText);
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            // Hash the password with SHA256
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            var bytesEncrypted = Cipher.Encrypt(bytesToBeEncrypted, passwordBytes);
+
+            return Convert.ToBase64String(bytesEncrypted);
+        }
+
+        public static string EncryptPassword(string plainText, string password)
+        {
+            if (password == "")
+            {
+                password = systemPasswordForPWD;
+            }
+
             if (plainText == null)
             {
                 return null;
@@ -51,6 +81,34 @@ namespace Dev.Project.WhistleBlower.Web.Data
             if (password == "")
             {
                 password = systemPassword;
+            }
+            if (encryptedText == null)
+            {
+                return null;
+            }
+
+            if (password == null)
+            {
+                password = String.Empty;
+            }
+
+            // Get the bytes of the string
+            var bytesToBeDecrypted = Convert.FromBase64String(encryptedText);
+            var passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            var bytesDecrypted = Cipher.Decrypt(bytesToBeDecrypted, passwordBytes);
+
+            return Encoding.UTF8.GetString(bytesDecrypted);
+        }
+
+        public static string DecryptPassword(string encryptedText, string password)
+        {
+
+            if (password == "")
+            {
+                password = systemPasswordForPWD;
             }
             if (encryptedText == null)
             {

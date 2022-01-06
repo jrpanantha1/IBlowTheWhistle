@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="ManageAdmin.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ManageAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Manage Admin | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="/Scripts/PageScripts/ManageAdmin.js"></script>
@@ -47,15 +48,15 @@
                         <div class="row m-0 justify-content-center align-items-center">
                             <div class="col-12">
                                 <div class="col-xl-12 top-header">
-                                    <h2>Manage Admin Users</h2>
-                                    <span class="header-line"></span>
-                                    <p class="text-xl-center">Add, Edit and Delete admin users.</p>
+                                    <h2 class="langDirection" id="formTitle"></h2>
+                                    <span class="header-line langDirection"></span>
+                                    <p class="text-xl-center langDirection" id="formShortNote"></p>
                                     <h6 id="lblshowLimit" style="color: red; text-align: center"></h6>
                                 </div>
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Manage Admin Accounts</a>
+                                        <a class="toggle" href="#" id="ancclsExpMngAdminAccount"></a>
 
                                         <div class="inner intro mb-2 justify-content-center align-items-center">
                                             <a href="/Pages/AdminAccounts.aspx">
@@ -66,7 +67,7 @@
                                 </ul>
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">Manage Status Code</a>
+                                        <a class="toggle" href="#" id="ancclsExpMngStatusCode"></a>
                                         <div class="inner intro mb-4">
                                             <div class="topbanner  pb-3 inner-2">
                                                 <div class="avatar-change ">
@@ -81,7 +82,7 @@
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#">View Subscription History</a>
+                                        <a class="toggle" href="#" id="ancclsExpVwSubsHistroy"></a>
                                         <div class="inner intro mb-4">
                                             <div class="topbanner  pb-3 inner-2">
                                                 <div class="avatar-change ">

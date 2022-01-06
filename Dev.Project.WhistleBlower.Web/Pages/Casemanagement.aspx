@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="Casemanagement.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.Casemanagement" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
+    Case Management | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js" async defer></script>
     <script src="/Scripts/PageScripts/Casemanagement.js"></script>
 
     <section class="section-split">
@@ -41,7 +43,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card mb-3">
-                                                <div class="card-body">
+                                                <div class="card-body" id="divCaseTop">
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <h6 class="mb-0">Case Transaction Number</h6>
@@ -117,7 +119,9 @@
                                                                 </div>
 
                                                                 <div class="col-md-12 offset-md-0">
-                                                                    <h4>Latest Updates</h4>
+                                                                    <h4 style="float: left">Latest Updates</h4>
+                                                                    <a href="#" onclick="ExportCaseHistroyToPDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export case history to PDF'>
+                                                                        <img style="margin: 20px;" src="/Images/PDFIcon.png" /></a>
                                                                     <div id="wrapper"></div>
                                                                 </div>
 
@@ -156,7 +160,7 @@
                     <!--end of container-->
     </section>
 
-      <script src="/assets/js/autosize.min.js" async defer></script>
+    <script src="/assets/js/autosize.min.js" async defer></script>
     <script>
         autosize($('textarea'));
     </script>
