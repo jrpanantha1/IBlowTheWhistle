@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dev.Project.WhistleBlower.Web.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -40,6 +41,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             {
                 return NotFound();
             }
+
 
             return Ok(lngDetails);
         }

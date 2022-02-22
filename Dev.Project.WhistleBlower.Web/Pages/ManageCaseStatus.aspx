@@ -56,6 +56,7 @@
                                         <th class="d-none">Language ID</th>
                                         <th class="langDirection">Status Code</th>
                                         <th class="langDirection">Status Desc</th>
+                                        <th class="langDirection">Select</th>
                                     </tr>
                                 </thead>
                             </table>

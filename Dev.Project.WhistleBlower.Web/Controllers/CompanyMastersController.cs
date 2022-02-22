@@ -34,17 +34,20 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 {
                     string temp = path_and_query.Split('?')[1].ToString();
 
-                    string key = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[0].ToString();
-                    string value = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[1].ToString();
+                    //string key = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[0].ToString();
+                    //string value = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[1].ToString();
 
+                    string value = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[0].ToString();
+                
 
                     Setting settingObj = db.Settings.Find(1);
 
-                    string degryptKey = Cipher.Decrypt(key, settingObj.SettingValue);
+                   // string degryptKey = Cipher.Decrypt(key, settingObj.SettingValue);
                     string degryptValue = Cipher.Decrypt(value, settingObj.SettingValue);
 
 
-                    var objCompany = db.CompanyMasters.Where(e => e.CompanyKey.ToString() == degryptKey && e.CompanyValue == degryptValue).FirstOrDefault();
+                    //var objCompany = db.CompanyMasters.Where(e => e.CompanyKey.ToString() == degryptKey && e.CompanyValue == degryptValue).FirstOrDefault();
+                    var objCompany = db.CompanyMasters.Where(e => e.CompanyValue == degryptValue).FirstOrDefault();
                     if (objCompany == null)
                     {
                         return NotFound();

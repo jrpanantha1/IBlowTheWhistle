@@ -264,7 +264,7 @@ function getIncCaseDocuments() {
 
                         var last = arrFile[i].substring(arrFile[i].lastIndexOf("/") + 1, arrFile[i].length);
 
-                        caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "<i sValue='" + arrFile[i] + "' id='icon-trash-2' style='float:right;padding:5px;' class='icon-trash-2 mx-2'></i></li></a>";
+                        caseDocHtml += "<a target='_blank' href='" + arrFile[i] + "'><li><span class='casefa-li'><i class='icon-file-text mx-2'></i></span> " + dRow + " - " + last + "<i sValue='" + arrFile[i] + "' id='icon-trash-2' style='float:right;padding:5px;display:none;' class='icon-trash-2 mx-2'></i></li></a>";
                     }
                 }
                 caseDocHtml += "</ol >";
@@ -338,7 +338,7 @@ function getResponseBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com?" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }
@@ -355,6 +355,10 @@ function getResponseBannerDetails() {
 $(document).ready(function () {
     $(document).on('click', '#icon-trash-2',
         function () {
+
+            //as per jordan #101 disbale this for now later we enable if required 05/Feb/2022
+            return;
+
             var listValue = $(this).parent().parent().attr('href');
             if (confirm("Are you sure want to delete?")) {
                 //alert(listValue);

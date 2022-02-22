@@ -97,8 +97,8 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-                                    <li class="nav-item d-none">
-                                        <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll"><i style="font-size: 24px;" class="icon-dollar-sign mr-5"></i></a>
+                                    <li class="nav-item">
+                                        <a href="/Pages/Policies.aspx" data-toggle='tooltip' data-placement='left' data-original-title='Policies' class="smooth-scroll"><i style="font-size: 24px;" class="icon-folder mr-5"></i></a>
                                     </li>
                                     <li class="nav-item">
                                         <a onclick="location.reload();return false;" href="#" data-toggle='tooltip' data-placement='left' data-original-title='Refresh' class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
@@ -209,7 +209,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col-md">
-                            <p>&copy; 2021 I Blow The Whistle. All rights reserved.</p>
+                            <p>&copy; 2022 I Blow The Whistle. All rights reserved.</p>
                         </div>
                         <div class="col-md-auto social-media-icon">
                             <a target="_blank" href="https://twitter.com/Iblowthewhistl1" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a>

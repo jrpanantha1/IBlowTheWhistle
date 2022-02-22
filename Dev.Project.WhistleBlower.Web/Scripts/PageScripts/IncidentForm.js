@@ -152,22 +152,34 @@ function IncidentFormValidation() {
     else if ($('#HaveWitness').find(":selected").index() == 1) {
 
 
-        if ((wName.val() == null || wName.val() == "") && (wEmail.val() == null || wEmail.val() == "") && (wPhone.val() == null || wPhone.val() == "")) {
+        if ((wName.val() == null || wName.val() == "") && (wPhone.val() == null || wPhone.val() == "") && (wEmail.val() == null || wEmail.val() == "")) {
             flag = false;
             wName.addClass('error');
             wEmail.addClass('error');
             wPhone.addClass('error');
 
         }
-        else if (!ValidateEmail(wEmail)) {
-            wEmail.addClass('error');
+        else if ((wName.val() == null || wName.val() == "")) {
             flag = false;
+            wName.addClass('error');
+            wPhone.removeClass('error');
+            wEmail.removeClass('error');
+
         }
+
         else {
             wName.removeClass('error');
             wEmail.removeClass('error');
             wPhone.removeClass('error');
         }
+
+        if ((wEmail.val() != null && wEmail.val() != "")) {
+            if (!ValidateEmail(wEmail)) {
+                wEmail.addClass('error');
+                flag = false;
+            }
+        }
+
         //if additional witness added
         var cloneLength = $('.clone-witness').length;
         for (var i = 1; i < cloneLength; i++) {
@@ -184,14 +196,24 @@ function IncidentFormValidation() {
                 wPhone1.addClass('error');
 
             }
-            else if (!ValidateEmail(wEmail1)) {
-                wEmail1.addClass('error');
+            else if ((wName1.val() == null || wName1.val() == "")) {
                 flag = false;
+                wName1.addClass('error');
+                wPhone1.removeClass('error');
+                wEmail1.removeClass('error');
+
             }
             else {
                 wName1.removeClass('error');
                 wEmail1.removeClass('error');
                 wPhone1.removeClass('error');
+            }
+
+            if ((wEmail1.val() != null && wEmail1.val() != "")) {
+                if (!ValidateEmail(wEmail1)) {
+                    wEmail1.addClass('error');
+                    flag = false;
+                }
             }
 
         }

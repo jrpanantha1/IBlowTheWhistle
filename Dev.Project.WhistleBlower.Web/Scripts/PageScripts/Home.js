@@ -17,6 +17,7 @@ function validateCompanyKey() {
     sessionStorage.clear();
     //localStorage.clear();
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("AcctType");
     sessionStorage.removeItem("accessToken");
 
     var comValue = $('#CompanyURN').val();
@@ -86,7 +87,7 @@ function getCompanyNumber() {
 
         },
         error: function (response) {
-
+            localStorage.setItem("AcctType", "");
         },
         failure: function (response) {
             alert(response.responseText);

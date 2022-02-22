@@ -92,7 +92,7 @@
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                                     <li class="nav-item UpdatedOnIncidentDisableForAdmin">
-                                        <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="smooth-scroll">Pricing</a>
+                                        <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="Pricingtag smooth-scroll">Pricing</a>
                                     </li>
                                     <li class="nav-item dropdown language-switcher">
 
@@ -156,7 +156,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col-md">
-                            <p>&copy; 2021 I Blow The Whistle. All rights reserved.</p>
+                            <p>&copy; 2022 I Blow The Whistle. All rights reserved.</p>
                         </div>
 
                         <div class="col-md-auto social-media-icon">

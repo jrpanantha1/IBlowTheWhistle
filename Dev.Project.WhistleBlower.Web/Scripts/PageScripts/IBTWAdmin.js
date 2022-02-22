@@ -138,7 +138,7 @@ function getCompanyKeyLink(ddlValue) {
         success: function (response) {
             if (response != "") {
                 $("#txtCompanyURLLink").val("");
-                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response.CompanyKey + "/ib" + response.CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com?"  + response.CompanyValue;
                 $("#txtCompanyURLLink").val(tarURL);
 
             }

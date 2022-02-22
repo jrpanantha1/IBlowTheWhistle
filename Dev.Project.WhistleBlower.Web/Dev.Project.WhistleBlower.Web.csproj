@@ -205,6 +205,7 @@
     <Content Include="assets\css\newstyle.css" />
     <Content Include="assets\css\overall.css" />
     <Content Include="assets\css\styles.min.css" />
+    <Content Include="assets\css\summernote-lite.min.css" />
     <Content Include="assets\fonts\feather.svg" />
     <Content Include="assets\images\avatar-woman.jpg" />
     <Content Include="assets\images\avatar7.png" />
@@ -239,6 +240,7 @@
     <Content Include="assets\js\form.validate.min.js" />
     <Content Include="assets\js\jquery.dataTables.js" />
     <Content Include="assets\js\jquery.dataTables.min.js" />
+    <Content Include="assets\js\summernote-lite.min.js" />
     <Content Include="assets\js\theme.min.js" />
     <Content Include="assets\js\toast.script.js" />
     <Content Include="Content\Site.css" />
@@ -326,6 +328,8 @@
     <Content Include="Pages\ManageCaseStatus.aspx" />
     <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\PasswordEncryption.aspx" />
+    <Content Include="Pages\Policies.aspx" />
+    <Content Include="Pages\PolicyDocuments.aspx" />
     <Content Include="Pages\Pricing.aspx" />
     <Content Include="Pages\ResetPassword.aspx" />
     <Content Include="Pages\Response.aspx" />
@@ -368,6 +372,8 @@
     <Content Include="Scripts\PageScripts\ManageAdmin.js" />
     <Content Include="Scripts\PageScripts\AdminAccounts.js" />
     <Content Include="Scripts\PageScripts\PasswordEncryption.js" />
+    <Content Include="Scripts\PageScripts\Policies.js" />
+    <Content Include="Scripts\PageScripts\PolicyDocuments.js" />
     <Content Include="Scripts\PageScripts\UpdatePassword.js" />
     <Content Include="Scripts\PageScripts\SubscriptionHistory.js" />
     <Content Include="Scripts\PageScripts\ManageCaseStatus.js" />
@@ -409,6 +415,8 @@
     <Compile Include="Controllers\ManageAdminLangMastersController.cs" />
     <Compile Include="Controllers\ManageIncidentsController.cs" />
     <Compile Include="Controllers\MyAccountLangMastersController.cs" />
+    <Compile Include="Controllers\PolicyDocumentController.cs" />
+    <Compile Include="Controllers\PolicyMastersController.cs" />
     <Compile Include="Controllers\RegisteredUsersController.cs" />
     <Compile Include="Controllers\ResponseLanguagesController.cs" />
     <Compile Include="Controllers\SubscriptionHistroysController.cs" />
@@ -598,6 +606,20 @@
     </Compile>
     <Compile Include="Pages\PasswordEncryption.aspx.designer.cs">
       <DependentUpon>PasswordEncryption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Policies.aspx.cs">
+      <DependentUpon>Policies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Policies.aspx.designer.cs">
+      <DependentUpon>Policies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PolicyDocuments.aspx.cs">
+      <DependentUpon>PolicyDocuments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PolicyDocuments.aspx.designer.cs">
+      <DependentUpon>PolicyDocuments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Pricing.aspx.cs">
       <DependentUpon>Pricing.aspx</DependentUpon>

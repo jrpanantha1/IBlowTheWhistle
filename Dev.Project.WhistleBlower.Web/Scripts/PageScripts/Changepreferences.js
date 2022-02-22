@@ -46,8 +46,11 @@ function updatePreferredLanguage() {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         },
         success: function (response) {
-            if (response != "") {
+            if (response != "Unauthorized") {
                 showSuccessMessage("Preferences updated successfully.");
+            }
+            else {
+                alert(response);
             }
         },
         error: function (response) {

@@ -22,7 +22,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 }
                 else
                 {
-                    RegisteredUser emailAddress = Utility.GetRegistredUserDetails(UserEmail);
+                    RegisteredUser emailAddress = Utility.GetRegistredUserDetailsForForgotPass(UserEmail);
                     if (emailAddress != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, emailAddress.Email);

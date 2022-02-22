@@ -13,6 +13,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
 
     <style type="text/css">
+        .section-hero {
+            background: none !important;
+        }
+        .Pricingtag
+        {display:none;}
+
         .hiddenControl {
             position: absolute;
             left: -9999px;
@@ -273,23 +279,23 @@
 
     <script src="/assets/js/form.min.js" async defer></script>
     <script type="text/javascript">
-        $('#FileAttachmentDetails').on('change', function () {
-            readFile(this.files[0], function (e) {
-                CompanyLogoBase64 = e.target.result;
-            });
+          $('#FileAttachmentDetails').on('change', function () {
+              readFile(this.files[0], function (e) {
+                  CompanyLogoBase64 = e.target.result;
+              });
 
-            readFile(this.files[1], function (e) {
-                CompanyLogoBase641 = e.target.result;
-            });
+              readFile(this.files[1], function (e) {
+                  CompanyLogoBase641 = e.target.result;
+              });
 
-            if (this.files[2].size > 0) {
-                readFile(this.files[2], function (e) {
-                    CompanyLogoBase642 = e.target.result;
-                });
-            }
+              if (this.files[2].size > 0) {
+                  readFile(this.files[2], function (e) {
+                      CompanyLogoBase642 = e.target.result;
+                  });
+              }
 
 
-        });
+          });
 
     </script>
 </asp:Content>

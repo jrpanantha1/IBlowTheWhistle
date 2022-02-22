@@ -33,6 +33,12 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 langID = 1;
             }
             string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+            string emailID = User.Identity.Name;
+            var isValidaUserTofetch = db.RegisteredUsers.Where(e => e.AcctType.ToString() == "Admin" && e.CompanyID.ToString() == companyID && e.Email == emailID).FirstOrDefault();
+            if (isValidaUserTofetch == null)
+            {
+                return Ok("Unauthorized");
+            }
 
             var casePreActionMaster = (from lm in db.LanguageMasters
                                        join ld in db.CasePreActionMasters on lm.LanguageID equals ld.LanguageID

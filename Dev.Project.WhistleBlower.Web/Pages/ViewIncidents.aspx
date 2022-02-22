@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="View Incidents | I Blow the Whistle" Language="C#" MasterPageFile="~/WhistleBlowerUser.Master" AutoEventWireup="true" CodeBehind="ViewIncidents.aspx.cs" Inherits="Dev.Project.WhistleBlower.Web.Pages.ViewIncidents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
-   View All Incidents | I Blow the Whistle
+    View All Incidents | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="Refresh" content="120" />
@@ -319,6 +319,22 @@
             color: #fff;
             font-weight: normal;
         }
+
+        div.dt-buttons,
+        .dataTables_wrapper .dataTables_filter {
+            margin: 12px 0;
+        }
+
+        button.dt-button,
+        div.dt-button,
+        a.dt-button {
+            padding: 12px;
+            margin-bottom: 0;
+        }
+
+        .dataTables_wrapper .dataTables_filter label {
+            margin-bottom: 0;
+        }
     </style>
     <script type="text/javascript">
 
@@ -343,43 +359,43 @@
                 <div class="col-12 contentarea">
 
                     <!-- START HERE -->
-                    <div class="d-flex justify-content-between align-items-center bg-primary p-2 rounded-top">
-                        <div class="col-auto">
-                            <h5 id="companyNamelbl" class="m-0 mr-2"><span class="sr-only">Name </span></h5>
+                    <div id="topCompanySection" style="display: none">
+                        <div class="d-flex justify-content-between align-items-center bg-primary p-2 rounded-top">
+                            <div class="col-auto">
+                                <h5 id="companyNamelbl" class="m-0 mr-2"><span class="sr-only">Name </span></h5>
+                            </div>
+                            <div class="col mx-n3">
+                                <span id="spanCompany" class="text-white">Demo Company Bespoke</span>
+                            </div>
+                            <div class="col-auto">
+                                <span id="companyCodelbl" class="font-weight-bold">Code</span>
+                            </div>
+                            <div class="col-auto mx-n3">
+                                <input type="text" id="spanCode" class="form-control-sm rounded col mx-n1" />
+                            </div>
+                            <div class="col-auto">
+                                <a onclick=" copyCompanyCode();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
+                                    <span id="myTooltipComCode" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
+                                    <i class="icon-clipboard"></i></a>
+                            </div>
                         </div>
-                        <div class="col mx-n3">
-                            <span id="spanCompany" class="text-white">Demo Company Bespoke</span>
+                        <div class="d-flex justify-content-between align-items-center bg-dark text-white p-2 rounded-bottom">
+                            <div class="col-auto">
+                                <h5 id="companyNamelbl1" class="m-0 mr-2">Company URL </h5>
+                            </div>
+                            <div class="col mx-n3">
+                                <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n1" />
+                            </div>
+                            <div class="col-auto">
+                                <a class="text-white" onclick="copyCompanyLink();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
+                                    <span id="myTooltipPass" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
+                                    <i class="icon-clipboard"></i></a>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <span id="companyCodelbl" class="font-weight-bold">Code</span>
-                        </div>
-                        <div class="col-auto mx-n3">
-                            <input type="text" id="spanCode" class="form-control-sm rounded col mx-n1" />
-                        </div>
-                        <div class="col-auto">
-                            <a onclick=" copyCompanyCode();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
-                                <span id="myTooltipComCode" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
-                                <i class="icon-clipboard"></i></a>
-                        </div>
+                        <!-- // END HERE -->
                     </div>
-                    <div class="d-flex justify-content-between align-items-center bg-dark text-white p-2 rounded-bottom">
-                        <div class="col-auto">
-                            <h5 id="companyNamelbl1" class="m-0 mr-2">Company URL </h5>
-                        </div>
-                        <div class="col mx-n3">
-                            <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n1" />
-                        </div>
-                        <div class="col-auto">
-                            <a class="text-white" onclick="copyCompanyLink();return false;" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Link Here">
-                                <span id="myTooltipPass" data-toggle="tooltip" data-placement="bottom" data-original-title="" title=""></span>
-                                <i class="icon-clipboard"></i></a>
-                        </div>
-                    </div>
-                    <!-- // END HERE -->
-                    <label></label>
-
                     <div class="table-responsive">
-                        <div class="tableviewincidents mt-2 height-100">
+                        <div class="tableviewincidents height-100">
                             <table id="tblViewIncidents" style="width: 100%" class="table table-hover border-bottom mb-4">
                                 <thead class="thead-dark">
                                     <tr>

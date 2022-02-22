@@ -33,7 +33,7 @@ function GetAdminAccounts() {
         dataType: 'json',
         //async: false,
         success: function (response) {
-            if (response != "") {
+            if (response != "Unauthorized") {
                 var items = response;
                 for (var i = 0; i < items.length; i++) {
 
@@ -80,7 +80,7 @@ function GetAdminAccounts() {
 
                         {
                             "data": function (data, type, row, meta) {
-                                var ReturnHTML = "<a class='fa fa-list' onclick='GetUsersDetails(this)' title='Güncelle' href='javascript:;'><img src='/Images/viewIcon.png' /></a>";
+                                var ReturnHTML = "<a data-toggle='tooltip' data-placement='top'  data-original-title='Select row to update' onclick='GetUsersDetails(this)'  href='javascript:;'><img src='/Images/viewIcon.png' /></a>";
                                 return ReturnHTML;
                             }
 
@@ -88,7 +88,7 @@ function GetAdminAccounts() {
                         },
                         {
                             "data": function (data, type, row, meta) {
-                                var ReturnHTML = "<a class='fa fa-list' onclick='deleteUID(this)' title='Güncelle' href='javascript:;'><img src='/Images/deleteIcon.png' /></a>";
+                                var ReturnHTML = "<a data-toggle='tooltip' data-placement='top'  data-original-title='Delete' onclick='deleteUID(this)'  href='javascript:;'><img src='/Images/deleteIcon.png' /></a>";
                                 return ReturnHTML;
                             }
                         },
@@ -131,6 +131,12 @@ function GetAdminAccounts() {
 
                 //});
 
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            }
+            else {
+                $('#btnCancel').hide();
+                $('#btnback').show();
+                alert(response);
             }
         },
         error: function (response) {
@@ -160,7 +166,9 @@ function deleteUID(ele) {
 function GetUsersDetails(ele) {
     var dataRow = $('#tableAdminAccounts').DataTable().row($(ele).closest('tr')).data();
     var table = $('#tableAdminAccounts').DataTable();
-
+    //apply selected class     
+    table.$('tr.selected').removeClass('selected');
+    $(ele).closest('tr').addClass('selected');
 
     //$('#tableAdminAccounts').DataTable().removeClass('selected');
     //$('#tableAdminAccounts').DataTable().row($(ele).closest('tr')).addClass('selected');
@@ -220,7 +228,15 @@ function deleteRegisterdUser(rUsergID) {
 }
 function updateAdminAccValidation() {
     var flag = true;
-
+    if (!GetTextBoxEmptyValidation($('#txtFirstName'))) {
+        flag = false;
+    }
+    if (!GetTextBoxEmptyValidation($('#txtLastName'))) {
+        flag = false;
+    }
+    if (!GetTextBoxEmptyValidation($('#txtFullName'))) {
+        flag = false;
+    }
     if (!GetTextBoxEmptyValidation($('#txtPassword'))) {
         flag = false;
     }

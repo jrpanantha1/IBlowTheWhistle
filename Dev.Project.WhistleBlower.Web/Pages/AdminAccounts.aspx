@@ -54,10 +54,10 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input id="txtPassword" class="form-control removeLater" placeholder="Password" type="password" />
+                            <input id="txtPassword" class="form-control removeLater"   placeholder="Password" type="password" />
                         </div>
                         <div class="col">
-                            <input id="txtConfirmPassword" class="form-control removeLater" placeholder="Confirm Password" type="password" />
+                            <input id="txtConfirmPassword" class="form-control removeLater"   placeholder="Confirm Password" type="password" />
                         </div>
                     </div>
                     <div class="row mt-4 mb-2">
@@ -67,6 +67,7 @@
                         </div>
                         <div class="col-6">
                             <button type="button" id="btnCancel" class="btn btn-block btn-primary" onclick="window.location.href='/Pages/AdminAccounts.aspx';">Cancel</button>
+                            <input type="button" class="btn btn-block btn-primary" value="Close" onclick="window.location.href = '/Pages/ManageAdmin.aspx'" id="btnback" style="display: none" />
                         </div>
                     </div>
 

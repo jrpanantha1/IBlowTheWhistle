@@ -399,6 +399,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 WhistleViewForm.HaveWitness = whistleBlowIncident[0].HaveWitness;
                 WhistleViewForm.FileAttachment = whistleBlowIncident[0].FileAttachment;
                 WhistleViewForm.UpdatedOnIncident = whistleBlowIncident[0].UpdatedOnIncident;
+                WhistleViewForm.UpdatedOnIncidentMethod = whistleBlowIncident[0].UpdatedOnIncidentMethod;
                 WhistleViewForm.ReportedLanguageID = whistleBlowIncident[0].ReportedLanguageID != null ? whistleBlowIncident[0].ReportedLanguageID.ToString() : "1";
 
                 //WhistleViewForm.SupportingDocuments = whistleBlowIncident[0].SupportingDocuments != null && whistleBlowIncident[0].SupportingDocuments != "" ? Cipher.Decrypt(whistleBlowIncident[0].SupportingDocuments, encPassword) : "";
@@ -472,7 +473,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
                 string traxID = "";
                 string AnonyPassword = "";
-
+                string passwordToBeReturned = "";
 
                 if (WhistleBlowDetail != null)
                 {
@@ -598,7 +599,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                     objRegisteredUser.RegUserID = RegUserID;
                                     objRegisteredUser.Email = AnonymousEmailID = WhistleBlowDetail.Email;
 
-                                    string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                                    string RandomPasswordTobeUpdated = passwordToBeReturned = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
                                     RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
 
 
@@ -619,7 +620,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 objRegisteredUser.RegUserID = RegUserID;
                                 objRegisteredUser.Email = AnonymousEmailID; //Utility.getRandomEmail() + "@ibtw.com";
 
-                                string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                                string RandomPasswordTobeUpdated = passwordToBeReturned = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
                                 RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
 
 
@@ -650,7 +651,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
                             returnObj = new List<SuccessClass>
                             {
-                                new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = AnonyPassword }
+                                new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = passwordToBeReturned }
 
                             };
                         }

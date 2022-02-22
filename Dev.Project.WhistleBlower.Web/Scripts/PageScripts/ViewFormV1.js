@@ -8,7 +8,7 @@
     else {
         window.location.href = "/Pages/Login.aspx";
     }
- 
+
     menuEnableDisable();//ref Utility.js
     getViewBannerDetails();
     jQuery('[data-toggle="tooltip"]').tooltip();
@@ -48,6 +48,15 @@ function loadFormDetails(iURN) {
                 $('#UpdatedOnIncident').val(IncResponse.UpdatedOnIncident == true ? "Yes" : "No");
                 IncResponse.UpdatedOnIncident == true ? $('#collapseUpdatedOnIncident').show() : $('#collapseUpdatedOnIncident').hide();
                 $('#UpdatedOnIncidentMethod').val(IncResponse.UpdatedOnIncidentMethod == "1" ? "Email" : IncResponse.UpdatedOnIncidentMethod == "2" ? "Phone" : "Anonymous");
+                if (IncResponse.UpdatedOnIncidentMethod == "1") {
+                    $('#collapseUpdatedOnIncidentMethodEmail').show();
+                    $('#UpdatedOnIncidentMethodEmail').val(IncResponse.Email);
+                }
+                else if (IncResponse.UpdatedOnIncidentMethod == "2") {
+                    $('#collapseUpdatedOnIncidentMethodPhone').show();
+                    $('#UpdatedOnIncidentMethodPhone').val(IncResponse.Phone);
+
+                }
                 $('#comments').text(IncResponse.Comments);
 
                 if (IncResponse.SupportingEvidence == true) {
@@ -255,7 +264,7 @@ function getViewBannerDetails() {
                 else {
                     $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                 }
-                var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response[0].CompanyKey + "/ib" + response[0].CompanyValue;
+                var tarURL = "https://apps.iblowthewhistle.com?" + response[0].CompanyValue;
                 $('.ancImgTopBanner').attr("href", tarURL);
                 $('.topBanner').show();
             }

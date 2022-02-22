@@ -28,6 +28,7 @@ function getAdminCount() {
         success: function (response) {
             if (response != null) {
                 showLmitationPerPLan(response.objAdminCount);
+                disbaleManageAdminforNonSuperAdmin(response.isSuperAdmin)
                 //showAdminUsers(response.objRegUser);
             }
         },
@@ -42,7 +43,14 @@ function getAdminCount() {
         }
     });
 }
+function disbaleManageAdminforNonSuperAdmin(isValue) {
+    if (isValue == 1) {
+        $('#ulclsExpMngAdminAccount').show();
+    }
+    else
+        $('#ulclsExpMngAdminAccount').hide();
 
+}
 function showLmitationPerPLan(adminCount) {
 
     var planCode = $('#hdnSusPlanCode').val();
@@ -109,6 +117,7 @@ function loadManageAdminLanguageDetails() {
                 $('#ancclsExpMngAdminAccount').text(response[0].clsExpMngAdminAccount);
                 $('#ancclsExpMngStatusCode').text(response[0].clsExpMngStatusCode);
                 $('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
+                $('#ancclsExpVwPolicyDocuments').text(response[0].clsExpVwPolicyDocuments);
                 $('#lblshowLimit').text(response[0].lblAdminCount);
                 //$('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
                 getAdminCount();

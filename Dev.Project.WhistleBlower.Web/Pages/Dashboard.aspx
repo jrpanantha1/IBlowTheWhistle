@@ -281,7 +281,7 @@
         </div>
     </div>
     <div style="margin-top: 100px;"></div>
-
+    <div id="editor"></div>
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 

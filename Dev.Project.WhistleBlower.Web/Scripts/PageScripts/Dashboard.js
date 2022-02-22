@@ -128,6 +128,18 @@ function generatePDF() {
     //pdf.addImage(dataURL, 'JPEG', 20, 20, 170, 80); //addImage(image, format, x-coordinate, y-coordinate, width, height)
     //pdf.save("IBTWDashboard.pdf");
 
+    //var doc = new jsPDF();
+    //var specialElementHandlers = {
+    //    '#editor': function (element, renderer) {
+    //        return true;
+    //    }
+    //};
+
+    //doc.fromHTML($('#right-panel').html(), 15, 15, {
+    //    'width': 700,
+    //    'elementHandlers': specialElementHandlers
+    //});
+    //doc.save('sample_file.pdf');
 
     var doc = new jsPDF("p", "mm", "a4");
     var width = doc.internal.pageSize.width;

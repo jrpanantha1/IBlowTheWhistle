@@ -7,8 +7,9 @@
 @import url("https://fonts.googleapis.com/css?family=Lato|Titillium+Web:400,600,700");
 
 h1, h2, h3, h4, h5, h6, p, span, div, ul, li, button, button:active, button:focus, button:visited, button:hover, input, input:active, input:focus, input:visited, input:hover, a, a:active, a:focus, a:visited, a:hover, select, option {
-    font-family: "Segoe UI";
-    outline: none;
+    /* font-family: "Segoe UI";
+    outline: none;*/
+    font-family: "Titillium Web", sans-serif;
 }
 
 :root {
@@ -15009,13 +15010,24 @@ ul.timeline {
     color: #ff0476;
 }
 
-#divCaseDocuments .CaseDocfa-ul {
-    margin-left: 0;
+#divCaseDocuments {
+    background-color: #f2f2f2;
+    border-color: #e5e5e5;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    margin-top: 20px;
 }
+
+    #divCaseDocuments .CaseDocfa-ul {
+        margin-left: 0;
+    }
 
 .CaseDocfa-ul li {
     border: 1px solid #f0f3f7;
     background: #f0f0f0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
 CaseDocfa-ul li:nth-child(2n+1) {
@@ -15704,10 +15716,16 @@ blockquote {
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 11px !important;
+    /*font-size: 16px;*/
     background-color: white;
     background-image: url('/Images/searchIcon.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px !important;
+    padding: 10px 20px 12px 40px !important;
+    /*padding: 12px 20px 12px 40px !important;*/
+}
+.ancImgTopBanner img,
+.imgTopBanner {
+    height: auto;
 }

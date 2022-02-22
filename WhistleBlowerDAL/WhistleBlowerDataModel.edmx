@@ -18,6 +18,17 @@
           <Property Name="ViewStatus" Type="bit" />
           <Property Name="commentBy" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="AuditMngtAdminLogin">
+          <Key>
+            <PropertyRef Name="AURN" />
+          </Key>
+          <Property Name="AURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AuditClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegUserID" Type="uniqueidentifier" />
+          <Property Name="LoggedInTime" Type="datetime" />
+          <Property Name="LogoutTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="BannerLangMaster">
           <Key>
             <PropertyRef Name="BURN" />
@@ -243,6 +254,7 @@
           <Property Name="clsExpMngStatusCode" Type="nvarchar" MaxLength="100" />
           <Property Name="clsExpVwSubsHistroy" Type="nvarchar" MaxLength="100" />
           <Property Name="btnClickhere" Type="nvarchar" MaxLength="40" />
+          <Property Name="clsExpVwPolicyDocuments" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MyAccountLangMaster">
           <Key>
@@ -265,6 +277,18 @@
           <Property Name="btnClickhere" Type="nvarchar" MaxLength="40" />
           <Property Name="lblTimeSelector" Type="nvarchar" MaxLength="40" />
           <Property Name="btnUpdateTime" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PolicyMaster">
+          <Key>
+            <PropertyRef Name="PMURN" />
+          </Key>
+          <Property Name="PMURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PolClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="PolicyHTML" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="RegisteredUsers">
           <Key>
@@ -368,6 +392,16 @@
           <Property Name="GrdStsDiscarded" Type="nvarchar" MaxLength="20" />
           <Property Name="GrdStsRouteEmail" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="VisitCountAllLogin">
+          <Key>
+            <PropertyRef Name="VURN" />
+          </Key>
+          <Property Name="VURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VisitClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyURN" Type="uniqueidentifier" />
+          <Property Name="ClientIPAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteAccessdTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="WhistleBlowIncidents">
           <Key>
             <PropertyRef Name="IURN" />
@@ -405,6 +439,7 @@
         </EntityType>
         <EntityContainer Name="eformulus_IBTW_DBModelStoreContainer">
           <EntitySet Name="AnonymousResponseHistory" EntityType="Self.AnonymousResponseHistory" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="AuditMngtAdminLogin" EntityType="Self.AuditMngtAdminLogin" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="BannerLangMaster" EntityType="Self.BannerLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CaseManagement" EntityType="Self.CaseManagement" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CasePreActionMaster" EntityType="Self.CasePreActionMaster" Schema="eformulus_admin" store:Type="Tables" />
@@ -418,12 +453,14 @@
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="ManageAdminLangMaster" EntityType="Self.ManageAdminLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="MyAccountLangMaster" EntityType="Self.MyAccountLangMaster" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="PolicyMaster" EntityType="Self.PolicyMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="RegisteredUsers" EntityType="Self.RegisteredUsers" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="ResponseLanguage" EntityType="Self.ResponseLanguage" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="SubscriptionHistroy" EntityType="Self.SubscriptionHistroy" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="SubscriptionPlan" EntityType="Self.SubscriptionPlan" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="ViewIncidentsLanguage" EntityType="Self.ViewIncidentsLanguage" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="VisitCountAllLogin" EntityType="Self.VisitCountAllLogin" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="WhistleBlowIncidents" EntityType="Self.WhistleBlowIncidents" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="WitnessDetails" EntityType="Self.WitnessDetails" Schema="eformulus_admin" store:Type="Tables" />
         </EntityContainer>
@@ -463,6 +500,9 @@
           <EntitySet Name="MyAccountLangMasters" EntityType="eformulus_IBTW_DBModel.MyAccountLangMaster" />
           <EntitySet Name="HomeLanguages" EntityType="eformulus_IBTW_DBModel.HomeLanguage" />
           <EntitySet Name="RegisteredUsers" EntityType="eformulus_IBTW_DBModel.RegisteredUser" />
+          <EntitySet Name="AuditMngtAdminLogins" EntityType="eformulus_IBTW_DBModel.AuditMngtAdminLogin" />
+          <EntitySet Name="VisitCountAllLogins" EntityType="eformulus_IBTW_DBModel.VisitCountAllLogin" />
+          <EntitySet Name="PolicyMasters" EntityType="eformulus_IBTW_DBModel.PolicyMaster" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
           <Key>
@@ -757,6 +797,7 @@
           <Property Name="clsExpMngStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="clsExpVwSubsHistroy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="btnClickhere" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpVwPolicyDocuments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MyAccountLangMaster">
           <Key>
@@ -852,6 +893,39 @@
           <Property Name="UpdateReason" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
           <Property Name="IsPrimaryAcc" Type="Boolean" />
           <Property Name="PreferredFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AuditMngtAdminLogin">
+          <Key>
+            <PropertyRef Name="AURN" />
+          </Key>
+          <Property Name="AURN" Type="Guid" Nullable="false" />
+          <Property Name="AuditClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyURN" Type="Guid" Nullable="false" />
+          <Property Name="RegUserID" Type="Guid" />
+          <Property Name="LoggedInTime" Type="DateTime" Precision="3" />
+          <Property Name="LogoutTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VisitCountAllLogin">
+          <Key>
+            <PropertyRef Name="VURN" />
+          </Key>
+          <Property Name="VURN" Type="Guid" Nullable="false" />
+          <Property Name="VisitClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyURN" Type="Guid" />
+          <Property Name="ClientIPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteAccessdTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PolicyMaster">
+          <Key>
+            <PropertyRef Name="PMURN" />
+          </Key>
+          <Property Name="PMURN" Type="Guid" Nullable="false" />
+          <Property Name="CURN" Type="Guid" Nullable="false" />
+          <Property Name="PolClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="PolicyHTML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1168,6 +1242,7 @@
           <EntitySetMapping Name="ManageAdminLangMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ManageAdminLangMaster">
               <MappingFragment StoreEntitySet="ManageAdminLangMaster">
+                <ScalarProperty Name="clsExpVwPolicyDocuments" ColumnName="clsExpVwPolicyDocuments" />
                 <ScalarProperty Name="btnClickhere" ColumnName="btnClickhere" />
                 <ScalarProperty Name="clsExpVwSubsHistroy" ColumnName="clsExpVwSubsHistroy" />
                 <ScalarProperty Name="clsExpMngStatusCode" ColumnName="clsExpMngStatusCode" />
@@ -1276,6 +1351,42 @@
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditMngtAdminLogins">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AuditMngtAdminLogin">
+              <MappingFragment StoreEntitySet="AuditMngtAdminLogin">
+                <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
+                <ScalarProperty Name="LoggedInTime" ColumnName="LoggedInTime" />
+                <ScalarProperty Name="RegUserID" ColumnName="RegUserID" />
+                <ScalarProperty Name="CompanyURN" ColumnName="CompanyURN" />
+                <ScalarProperty Name="AuditClusterID" ColumnName="AuditClusterID" />
+                <ScalarProperty Name="AURN" ColumnName="AURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitCountAllLogins">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.VisitCountAllLogin">
+              <MappingFragment StoreEntitySet="VisitCountAllLogin">
+                <ScalarProperty Name="SiteAccessdTime" ColumnName="SiteAccessdTime" />
+                <ScalarProperty Name="ClientIPAddress" ColumnName="ClientIPAddress" />
+                <ScalarProperty Name="CompanyURN" ColumnName="CompanyURN" />
+                <ScalarProperty Name="VisitClusterID" ColumnName="VisitClusterID" />
+                <ScalarProperty Name="VURN" ColumnName="VURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.PolicyMaster">
+              <MappingFragment StoreEntitySet="PolicyMaster">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="PolicyHTML" ColumnName="PolicyHTML" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="PolClusterID" ColumnName="PolClusterID" />
+                <ScalarProperty Name="CURN" ColumnName="CURN" />
+                <ScalarProperty Name="PMURN" ColumnName="PMURN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -29,12 +29,22 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             return rUser;
         }
         [Authorize]
-        public IEnumerable<RegisteredUser> GetRegisteredUsers(string AcctType)
+        public IHttpActionResult GetRegisteredUsers(string AcctType)
         {
             string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
-            List<RegisteredUser> rUser = db.RegisteredUsers.Where(e => e.AcctType.ToString() == AcctType && e.CompanyID.ToString() == companyID).ToList();
+            string emailID = User.Identity.Name;
+            //check the logged user has permission to modify the content?
+            var isValidaUserTofetch = db.RegisteredUsers.Where(e => e.AcctType.ToString() == AcctType && e.IsPrimaryAcc == true && e.CompanyID.ToString() == companyID && e.Email == emailID).FirstOrDefault();
+            if (isValidaUserTofetch == null)
+            {
+                return Ok("Unauthorized");
+            }
+            else
+            {
+                List<RegisteredUser> rUser = db.RegisteredUsers.Where(e => e.AcctType.ToString() == AcctType && e.CompanyID.ToString() == companyID).ToList();
+                return Ok(rUser);
+            }
 
-            return rUser;
         }
         [Authorize]
         public IHttpActionResult GETAdminCountRegisterdUser(bool adminOnly)
@@ -42,6 +52,23 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             RegUserPageContent objRegUserContent = new RegUserPageContent();
 
             string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+            string emailID = User.Identity.Name;
+            //check the logged user has permission to modify the content?
+            var isValidaUserTofetch = db.RegisteredUsers.Where(e => e.AcctType.ToString() == "Admin" && e.CompanyID.ToString() == companyID && e.Email == emailID).FirstOrDefault();
+            objRegUserContent.isSuperAdmin = 0;
+            if (isValidaUserTofetch == null)
+            {
+                return Ok("Unauthorized");
+            }
+            else
+            {
+                if (isValidaUserTofetch.IsPrimaryAcc == true)
+                {
+                    objRegUserContent.isSuperAdmin = 1;
+                }
+
+            }
+            //end
             var adminUsers = db.RegisteredUsers.OrderBy(tt => tt.FullName).Where(e => e.AcctType.ToString() == WhistleContants.AdminUserAccountType && e.CompanyID.ToString() == companyID).Select(dd => dd.FullName != "" ? dd.FullName : dd.FirstName + " " + dd.LastName).ToList();
             List<RegisteredUser> objRegUser = new List<RegisteredUser>();
             if (adminUsers != null)
@@ -69,6 +96,15 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             if (objRegisterdUser.Email != "")
             {
                 string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+
+                //check the logged user has permission to modify the content?
+                string emailID = User.Identity.Name;
+                var isValidaUserTofetch = db.RegisteredUsers.Where(e => e.AcctType.ToString() == "Admin" && e.CompanyID.ToString() == companyID && e.Email == emailID).FirstOrDefault();
+                if (isValidaUserTofetch == null)
+                {
+                    return Ok("Unauthorized");
+                }
+                // end 
 
                 if (objRegisterdUser.CompanyID == null || objRegisterdUser.CompanyID == Guid.Empty)
                 {
@@ -103,7 +139,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 objRegisterdUser.IsPrimaryAcc = objRegisterdUser.IsPrimaryAcc;
                 retnPassword = objRegisterdUser.Password != "" && objRegisterdUser.Password != null ? "" : "Generated";
 
-                string RandomPasswordTobeUpdated = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
+                string passwordToBeReturned = "";
+                string RandomPasswordTobeUpdated = passwordToBeReturned = Membership.GeneratePassword(WhistleContants.PasswordLength, WhistleContants.PasswordNumericCharLength);
                 var encPassword = db.CompanyMasters.FirstOrDefault(e => e.CURN == objRegisterdUser.CompanyID).encPassword;
                 RandomPasswordTobeUpdated = Cipher.EncryptPassword(RandomPasswordTobeUpdated, encPassword);
 
@@ -120,7 +157,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         return Ok("Success");
                     }
                     else
-                        return Ok(objRegisterdUser.Password);
+                        return Ok(passwordToBeReturned);//objRegisterdUser.Password
                 }
                 catch (DbUpdateException)
                 {
@@ -143,7 +180,16 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             {
                 string emailID = userDetails.Email != null && userDetails.Email != "" ? userDetails.Email : User.Identity.Name;
                 bool passWordChanged = false;
-                var result = db.RegisteredUsers.FirstOrDefault(u => u.Email.ToString().Equals(emailID));
+
+                //check the logged user has permission to modify the content?
+                var result = db.RegisteredUsers.Where(e => e.AcctType.ToString() == "Admin" && e.Email == emailID).FirstOrDefault();
+                if (result == null)
+                {
+                    return Ok("Unauthorized");
+                }
+                // end 
+
+                //var result = db.RegisteredUsers.FirstOrDefault(u => u.Email.ToString().Equals(emailID));
                 if (result != null)
                 {
                     if (userDetails.Password != null && userDetails.Password != "")
@@ -276,13 +322,14 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         public RegUserPageContent()
         {
             objAdminCount = 0;
+            isSuperAdmin = 0;
             objRegUser = null;
 
         }
 
         public List<RegisteredUser> objRegUser { get; set; }
         public int objAdminCount { get; set; }
-
+        public int isSuperAdmin { get; set; }
 
     }
 }

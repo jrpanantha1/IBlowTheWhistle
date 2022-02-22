@@ -54,7 +54,7 @@
                                     <h6 id="lblshowLimit" style="color: red; text-align: center"></h6>
                                 </div>
 
-                                <ul class="accordion">
+                                <ul class="accordion" id="ulclsExpMngAdminAccount">
                                     <li class="accordion-list">
                                         <a class="toggle" href="#" id="ancclsExpMngAdminAccount"></a>
 
@@ -87,6 +87,21 @@
                                             <div class="topbanner  pb-3 inner-2">
                                                 <div class="avatar-change ">
                                                     <a href="/Pages/SubscriptionHistroy.aspx">
+                                                        <img alt="Qries" src="/Images/Click Here.png" /></a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <ul class="accordion">
+                                    <li class="accordion-list">
+                                        <a class="toggle" href="#" id="ancclsExpVwPolicyDocuments"></a>
+                                        <div class="inner intro mb-4">
+                                            <div class="topbanner  pb-3 inner-2">
+                                                <div class="avatar-change ">
+                                                    <a href="/Pages/PolicyDocuments.aspx">
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
                                                 </div>
                                             </div>

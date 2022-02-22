@@ -78,6 +78,31 @@ namespace Dev.Project.WhistleBlower.Web.Data
                             userDetail.CompanyID = userCheck.CompanyID;
                             userDetail.RegUserID = userCheck.RegUserID;
                             userDetail.AcctType = userCheck.AcctType != null && userCheck.AcctType != "" ? userCheck.AcctType : "User";
+
+                            //for Audit management we capture loging dateandtime
+                            if (userCheck.AcctType == "Admin")
+                            {
+                                AuditMngtAdminLogin objAudit = new AuditMngtAdminLogin();
+
+                                Guid aNewID = Guid.NewGuid();
+                                objAudit.AURN = aNewID;
+                                objAudit.CompanyURN = userDetail.CompanyID;
+                                objAudit.RegUserID = userDetail.RegUserID;
+                                objAudit.LoggedInTime = System.DateTime.Now;
+
+                                Entities.AuditMngtAdminLogins.Add(objAudit);
+                                Entities.SaveChanges();
+                            }
+                            //update Visitor count for audit
+                            VisitCountAllLogin objVisitor = new VisitCountAllLogin();
+                            Guid vistNewID = Guid.NewGuid();
+                            objVisitor.VURN = vistNewID;
+                            objVisitor.SiteAccessdTime = System.DateTime.Now;
+                            objVisitor.ClientIPAddress = GetIPAddress();
+                            objVisitor.CompanyURN = userCheck.CompanyID;
+
+                            Entities.VisitCountAllLogins.Add(objVisitor);
+                            Entities.SaveChanges();
                         }
                         else
                             return null;
@@ -91,6 +116,69 @@ namespace Dev.Project.WhistleBlower.Web.Data
             }
 
             return userDetail;
+        }
+        public static void CreateVisitCount(string CompanyURN = "")
+        {
+            //update Visitor count for audit
+            using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
+            {
+                VisitCountAllLogin objVisitor = new VisitCountAllLogin();
+                Guid vistNewID = Guid.NewGuid();
+                objVisitor.VURN = vistNewID;
+                objVisitor.SiteAccessdTime = System.DateTime.Now;
+                objVisitor.ClientIPAddress = Utility.GetIPAddress();
+                if (CompanyURN != "")
+                {
+                    objVisitor.CompanyURN = new Guid(CompanyURN);
+                }
+
+
+                Entities.VisitCountAllLogins.Add(objVisitor);
+                Entities.SaveChanges();
+            }
+        }
+        public static RegisteredUser GetRegistredUserDetailsForForgotPass(string emailID)
+        {
+            RegisteredUser userDetail = new RegisteredUser();
+            try
+            {
+                using (eformulus_IBTW_DBEntities Entities = new eformulus_IBTW_DBEntities())
+                {
+
+                    if (!string.IsNullOrEmpty(emailID))
+                    {
+                        var userCheck = Entities.RegisteredUsers.FirstOrDefault(e => e.Email.Trim() == emailID);
+                        if (userCheck != null)
+                        {
+                            userDetail.UserID = userCheck.UserID;
+                            userDetail.Email = userCheck.Email;
+                            userDetail.Password = userCheck.Password;
+                            userDetail.CompanyID = userCheck.CompanyID;
+                            userDetail.RegUserID = userCheck.RegUserID;
+                            userDetail.AcctType = userCheck.AcctType != null && userCheck.AcctType != "" ? userCheck.AcctType : "User";
+
+                        }
+                        else
+                            return null;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return userDetail;
+        }
+        public static string GetIPAddress()
+        {
+            string ip = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            }
+            return ip;
         }
         public static void updatedPWDEncrypt()
         {

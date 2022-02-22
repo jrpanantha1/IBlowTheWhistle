@@ -74,6 +74,9 @@ namespace Dev.Project.WhistleBlower.Web.Authorization
                         identity.AddClaim(new Claim("companyID", objCompany[0].CURN.ToString()));
                         identity.AddClaim(new Claim("encPassword", objCompany[0].encPassword));
                         context.Validated(identity);
+
+                        //update visit count
+                        Utility.CreateVisitCount(objCompany[0].CURN.ToString());
                     }
                     else
                     {

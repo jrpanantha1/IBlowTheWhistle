@@ -12,16 +12,10 @@
         }
         else {
             getIncidentDetails();
-            $('#dropdownFilter').text("All");
         }
-
-
-
 
         $('.signIn').hide();
         //$('.dt-buttons').find('span').prepend('<img src="/Image/ExcelIcon.png"/>')
-
-
 
     }
     else {
@@ -46,14 +40,14 @@
         $('#dropdownFilter').text(incCatSelectedText);
     });
 
-    $(".target").change(function () {
-        CategorySelectedEvent();
-    });
 
 });
 
 var JsonObj = [];
 function getIncidentDetails() {
+
+    $('#dropdownFilter').text("All");
+
     JsonObj = [];
     $.ajax({
         url: '/api/ManageIncidents',
@@ -77,12 +71,10 @@ function getIncidentDetails() {
                     $("#spanCompany").text(response.objCompanyMasters.CompanyName);
                     $(".spanCompanyNameIcon").text(response.objCompanyMasters.CompanyName);
                     $("#spanCode").val(response.CompanyValueNonEncrypt);
-                    var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
+                    var tarURL = "https://apps.iblowthewhistle.com?" + response.objCompanyMasters.CompanyValue;
                     $("#txtCompanyLink").val(tarURL);
 
 
-                    //if (localStorage.getItem("AcctType") == "Admin") {
-                    //}
 
                     //show top banner if available
                     if (response.CompantTopBanners != null && response.CompantTopBanners != "") {
@@ -160,14 +152,28 @@ function getIncidentDetails() {
                         {
                             "data": function (data, type, row, meta) {
                                 var ReturnHTML = '';
+
+                                //var readStatus1 = 0;
+                                //if ((data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") & (localStorage.getItem("AcctType") == "Admin")) {
+                                //    readStatus1 = 1;
+                                //}
+
                                 ReturnHTML = "<div class='gridDescription wd100'>" + data.rEvidenceDetails + "</div>"
+
+                                //ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus1 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='View Details' > <div class='gridDescription wd100'>" + data.rEvidenceDetails + "</div></a>";
                                 return ReturnHTML;
                             }
                         },
                         {
                             "data": function (data, type, row, meta) {
+
+                                var readStatus2 = 0;
+                                if ((data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") & (localStorage.getItem("AcctType") == "Admin")) {
+                                    readStatus2 = 1;
+                                }
                                 var ReturnHTML = '';
-                                ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
+                                //ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
+                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='View Details' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
                                 return ReturnHTML;
                             }
 
@@ -194,7 +200,7 @@ function getIncidentDetails() {
                                 var ReturnHTML = '';
                                 // <a href="chat.html" class="text-success" class="text-success" data-toggle="tooltip" data-placement="top" data-original-title="Chat History"><i class="icon-message-circle mx-2"></i></a>
                                 var readStatus = 0;
-                                if (data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") {
+                                if ((data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") & (localStorage.getItem("AcctType") == "Admin")) {
                                     readStatus = 1;
                                 }
 
@@ -223,10 +229,12 @@ function getIncidentDetails() {
                                 var $select;
                                 if (localStorage.getItem("AcctType") == "Admin") {
 
+                                    $('#topCompanySection').show();// show for admin
+
                                     if (data.rIncCategory != null && data.rIncCategory != "") {
 
 
-                                        $select = $("<select id='" + data.rTranID + "' class='target' ></select>", {
+                                        $select = $("<select id='" + data.rTranID + "' onchange='updateStatusInCaseHistory(this);' class='target' ></select>", {
                                         });
 
                                         var v = "Unread";
@@ -309,7 +317,7 @@ function getIncidentDetails() {
                                         ////$('#' + data.rTranID).attr("selected", "selected");
                                     }
                                     else {
-                                        ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        ReturnHTML = "<select id='" + data.rTranID + "' onchange='updateStatusInCaseHistory(this);' name='status' class='target'>" +
                                             "<option value='Unread'>Unread</option>" +
                                             "<option value='Read'>Read</option>" +
                                             "<option value='Important'>Important</option>" +
@@ -320,6 +328,12 @@ function getIncidentDetails() {
                                     }
                                 }
                                 else {
+
+                                    //for user disbale this section
+                                    $('#dropdownFilter').removeAttr('data-toggle');
+                                    $('#dropdownFilter').removeClass('dropdown-toggle');
+                                    $('#dropdownFilter').text('Status');
+                                    $('#topCompanySection').hide();
 
                                     ReturnHTML = " <label id='" + data.rTranID + "'>" + data.rIncCategory + "</label>";
                                     return ReturnHTML;
@@ -367,6 +381,12 @@ function getIncidentDetails() {
                     //$('.topBanner').show();
                 }
 
+                //$("#tblViewIncidents").on("change", ".target", function () {
+
+
+                //});
+
+
             }
             else {
 
@@ -386,10 +406,10 @@ function getIncidentDetails() {
         }
     })
 }
+function updateStatusInCaseHistory(elm) {
 
-function CategorySelectedEvent() {
-    var selectedID = $(this).attr("id");
-    var ddlSelectedValue = $(this).val();
+    var selectedID = $(elm).attr("id");
+    var ddlSelectedValue = $(elm).val();
 
     $.ajax({
         url: '/api/ManageIncidents?IURN=' + selectedID + '&status=' + ddlSelectedValue + '',
@@ -404,7 +424,6 @@ function CategorySelectedEvent() {
             if (response != null && response == "Success") {
 
                 updateCaseInformationOnStatusChange(selectedID, ddlSelectedValue);
-                //location.reload();
             }
         },
         error: function (response) {
@@ -415,7 +434,6 @@ function CategorySelectedEvent() {
         }
     });
 }
-
 function getIncidentDetailsByIncCategory(incCategory) {
     JsonObj = [];
     $.ajax({
@@ -440,7 +458,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                     $("#spanCompany").text(response.objCompanyMasters.CompanyName);
                     $(".spanCompanyNameIcon").text(response.objCompanyMasters.CompanyName);
                     $("#spanCode").val(response.CompanyValueNonEncrypt);
-                    var tarURL = "https://apps.iblowthewhistle.com/Pages/Default.aspx?" + response.objCompanyMasters.CompanyKey + "/ib" + response.objCompanyMasters.CompanyValue;
+                    var tarURL = "https://apps.iblowthewhistle.com?" + response.objCompanyMasters.CompanyValue;
                     $("#txtCompanyLink").val(tarURL);
 
 
@@ -530,8 +548,16 @@ function getIncidentDetailsByIncCategory(incCategory) {
                         },
                         {
                             "data": function (data, type, row, meta) {
+                                //var ReturnHTML = '';
+                                //ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
+                                //return ReturnHTML;
+
+                                var readStatus2 = 0;
+                                if ((data.rIncCategory == 'null' || data.rIncCategory == null || data.rIncCategory == "Unread") & (localStorage.getItem("AcctType") == "Admin")) {
+                                    readStatus2 = 1;
+                                }
                                 var ReturnHTML = '';
-                                ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
+                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='View Details' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
                                 return ReturnHTML;
                             }
 
@@ -586,10 +612,11 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                 var ReturnHTML = '';
                                 var $select;
                                 if (localStorage.getItem("AcctType") == "Admin") {
+                                    $('#topCompanySection').show();// show for admin
                                     if (data.rIncCategory != null && data.rIncCategory != "") {
 
 
-                                        $select = $("<select id='" + data.rTranID + "' class='target' ></select>", {
+                                        $select = $("<select id='" + data.rTranID + "' onchange='updateStatusInCaseHistory(this);' class='target' ></select>", {
                                         });
 
                                         var v = "Unread";
@@ -672,7 +699,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                         ////$('#' + data.rTranID).attr("selected", "selected");
                                     }
                                     else {
-                                        ReturnHTML = "<select id='" + data.rTranID + "' name='status' class='target'>" +
+                                        ReturnHTML = "<select id='" + data.rTranID + "' onchange='updateStatusInCaseHistory(this);' name='status' class='target'>" +
                                             "<option value='Unread'>Unread</option>" +
                                             "<option value='Read'>Read</option>" +
                                             "<option value='Important'>Important</option>" +
@@ -683,6 +710,12 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                     }
                                 }
                                 else {
+                                    //for user disbale this section
+                                    $('#dropdownFilter').removeAttr('data-toggle');
+                                    $('#dropdownFilter').removeClass('dropdown-toggle');
+                                    $('#dropdownFilter').text('Status');
+                                    $('#topCompanySection').hide();
+
 
                                     ReturnHTML = " <label id='" + data.rTranID + "'>" + data.rIncCategory + "</label>";
                                     return ReturnHTML;
@@ -738,35 +771,35 @@ function getIncidentDetailsByIncCategory(incCategory) {
 
 
 
-                $("#tblViewIncidents").on("change", ".target", function () {
+                //$("#tblViewIncidents").on("change", ".target", function () {
 
-                    var selectedID = $(this).attr("id");
-                    var ddlSelectedValue = $(this).val();
+                //    var selectedID = $(this).attr("id");
+                //    var ddlSelectedValue = $(this).val();
 
-                    $.ajax({
-                        url: '/api/ManageIncidents?IURN=' + selectedID + '&status=' + ddlSelectedValue + '',
-                        method: 'PUT',
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'json',
-                        async: false,
-                        headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-                        },
-                        success: function (response) {
-                            if (response != null && response == "Success") {
+                //    $.ajax({
+                //        url: '/api/ManageIncidents?IURN=' + selectedID + '&status=' + ddlSelectedValue + '',
+                //        method: 'PUT',
+                //        contentType: 'application/json; charset=utf-8',
+                //        dataType: 'json',
+                //        async: false,
+                //        headers: {
+                //            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+                //        },
+                //        success: function (response) {
+                //            if (response != null && response == "Success") {
 
-                                updateCaseInformationOnStatusChange(selectedID, ddlSelectedValue);
-                                //location.reload();
-                            }
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                });
+                //                updateCaseInformationOnStatusChange(selectedID, ddlSelectedValue);
+                //                //location.reload();
+                //            }
+                //        },
+                //        error: function (response) {
+                //            alert(response.responseText);
+                //        },
+                //        failure: function (response) {
+                //            alert(response.responseText);
+                //        }
+                //    });
+                //});
 
             }
             else {
@@ -787,7 +820,6 @@ function getIncidentDetailsByIncCategory(incCategory) {
         }
     })
 }
-
 function updateCaseInformationOnStatusChange(iurn, SelectedValue) {
 
     var loggedUser = $('#hdnLoggedUserName').val().trim();
@@ -818,7 +850,14 @@ function updateCaseInformationOnStatusChange(iurn, SelectedValue) {
                 $('#tblViewIncidents').DataTable().clear().destroy();
                 //$('#tblViewIncidents').DataTable().clear();
                 //$('#tblViewIncidents').DataTable().destroy();
-                getIncidentDetails();
+
+                if ($('#dropdownFilter').text() == "All") {
+                    getIncidentDetails();
+                }
+                else {
+                    getIncidentDetailsByIncCategory($('#dropdownFilter').text());
+                }
+
 
             }
         },
