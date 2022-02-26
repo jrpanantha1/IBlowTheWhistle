@@ -201,7 +201,9 @@
   <ItemGroup>
     <Content Include="assets\css\bootstrap-responsive.min.css" />
     <Content Include="assets\css\css2.css" />
+    <Content Include="assets\css\free.min.css" />
     <Content Include="assets\css\jquery.dataTables.css" />
+    <Content Include="assets\css\NewHome\bootstrap.min.css" />
     <Content Include="assets\css\newstyle.css" />
     <Content Include="assets\css\overall.css" />
     <Content Include="assets\css\styles.min.css" />
@@ -209,8 +211,19 @@
     <Content Include="assets\fonts\feather.svg" />
     <Content Include="assets\images\avatar-woman.jpg" />
     <Content Include="assets\images\avatar7.png" />
+    <Content Include="assets\images\Banner2\IblowTheWhistleCustomerBanner.png" />
+    <Content Include="assets\images\Banner2\Whistle_Long.png" />
+    <Content Include="assets\images\Banner2\Whistle_Long_Internalbanner.png" />
+    <Content Include="assets\images\Banner2\Whistle_MediumSquare.png" />
+    <Content Include="assets\images\Banner2\Whistle_Rect.png" />
+    <Content Include="assets\images\Banner2\Whistle_Rect240-400.png" />
+    <Content Include="assets\images\Banner2\Whistle_small.png" />
+    <Content Include="assets\images\Banner2\Whistle_Small_Square.png" />
+    <Content Include="assets\images\Banner2\Whistle_SquareLarge.png" />
+    <Content Include="assets\images\Banner2\Whistle_Tall.png" />
     <Content Include="assets\images\bg--hero.jpg" />
     <Content Include="assets\images\default-profile_01.png" />
+    <Content Include="assets\images\feather-check.svg" />
     <Content Include="assets\images\happywoman.jpg" />
     <Content Include="assets\images\IblowTheWhistleCustomerBanner.png" />
     <Content Include="assets\images\laptop-woman.jpg" />
@@ -235,6 +248,7 @@
     <Content Include="assets\images\Whistle_Tall.jpg" />
     <Content Include="assets\js\1a4a488850.js" />
     <Content Include="assets\js\autosize.min.js" />
+    <Content Include="assets\js\bootstrap.bundle.min.js" />
     <Content Include="assets\js\dataTables.responsive.min.js" />
     <Content Include="assets\js\form.min.js" />
     <Content Include="assets\js\form.validate.min.js" />
@@ -329,6 +343,7 @@
     <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\PasswordEncryption.aspx" />
     <Content Include="Pages\Policies.aspx" />
+    <Content Include="Pages\policy.aspx" />
     <Content Include="Pages\PolicyDocuments.aspx" />
     <Content Include="Pages\Pricing.aspx" />
     <Content Include="Pages\ResetPassword.aspx" />
@@ -372,6 +387,7 @@
     <Content Include="Scripts\PageScripts\ManageAdmin.js" />
     <Content Include="Scripts\PageScripts\AdminAccounts.js" />
     <Content Include="Scripts\PageScripts\PasswordEncryption.js" />
+    <Content Include="Scripts\PageScripts\policy.js" />
     <Content Include="Scripts\PageScripts\Policies.js" />
     <Content Include="Scripts\PageScripts\PolicyDocuments.js" />
     <Content Include="Scripts\PageScripts\UpdatePassword.js" />
@@ -613,6 +629,13 @@
     </Compile>
     <Compile Include="Pages\Policies.aspx.designer.cs">
       <DependentUpon>Policies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\policy.aspx.cs">
+      <DependentUpon>policy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\policy.aspx.designer.cs">
+      <DependentUpon>policy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\PolicyDocuments.aspx.cs">
       <DependentUpon>PolicyDocuments.aspx</DependentUpon>

@@ -24,5 +24,7 @@ namespace WhistleBlowerDAL
         public string lblQRShortNotes { get; set; }
         public string btnSaveasImage { get; set; }
         public string btnGenerateQRCode { get; set; }
+        public string clsExpBanner1 { get; set; }
+        public string clsExpBanner2 { get; set; }
     }
 }

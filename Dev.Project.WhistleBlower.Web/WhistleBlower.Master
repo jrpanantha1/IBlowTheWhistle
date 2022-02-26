@@ -36,6 +36,7 @@
     <script src="/Scripts/bootstrap.min.js" async defer></script>
     <script src="/assets/js/theme.min.js" async defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/styles.min.css" rel="stylesheet" />
     <script src="/Scripts/Utility.js"></script>
     <script src="/Scripts/PageScripts/languageChange.js"></script>
@@ -91,6 +92,9 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item">
+                                        <a href="/Pages/Policy.aspx" data-toggle='tooltip' target="_blank" data-placement='left' data-original-title='Policies' class="smooth-scroll"><i style="font-size: 24px;" class="icon-folder mr-5"></i></a>
+                                    </li>
                                     <li class="nav-item UpdatedOnIncidentDisableForAdmin">
                                         <a href="https://iblowthewhistle.com/products" target="_blank" data-toggle='tooltip' data-placement='left' data-original-title='Pricing' class="Pricingtag smooth-scroll">Pricing</a>
                                     </li>
@@ -128,6 +132,7 @@
                                             </a>
                                         </div>
                                     </li>
+
                                     <li class="nav-item signIn">
                                         <a href="/Pages/Login.aspx" class="nav-link mr-lg-3"><i class="icon-user mr-2"></i>Sign In</a>
                                     </li>

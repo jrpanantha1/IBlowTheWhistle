@@ -43,6 +43,8 @@
           <Property Name="lblQRShortNotes" Type="nvarchar" MaxLength="3000" />
           <Property Name="btnSaveasImage" Type="nvarchar" MaxLength="40" />
           <Property Name="btnGenerateQRCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="clsExpBanner1" Type="nvarchar" MaxLength="100" />
+          <Property Name="clsExpBanner2" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CaseManagement">
           <Key>
@@ -782,6 +784,8 @@
           <Property Name="lblQRShortNotes" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="btnSaveasImage" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="btnGenerateQRCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpBanner1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpBanner2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ManageAdminLangMaster">
           <Key>
@@ -1226,6 +1230,8 @@
           <EntitySetMapping Name="BannerLangMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.BannerLangMaster">
               <MappingFragment StoreEntitySet="BannerLangMaster">
+                <ScalarProperty Name="clsExpBanner2" ColumnName="clsExpBanner2" />
+                <ScalarProperty Name="clsExpBanner1" ColumnName="clsExpBanner1" />
                 <ScalarProperty Name="btnGenerateQRCode" ColumnName="btnGenerateQRCode" />
                 <ScalarProperty Name="btnSaveasImage" ColumnName="btnSaveasImage" />
                 <ScalarProperty Name="lblQRShortNotes" ColumnName="lblQRShortNotes" />

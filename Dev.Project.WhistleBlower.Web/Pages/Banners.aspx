@@ -104,67 +104,156 @@
 
                         </div>
                     </div>
-
-
                     <div class="clearfix"></div>
                     <hr />
+                    <ul class="accordion" id="ulclsExpBanner1">
+                        <li class="accordion-list">
+                            <a class="toggle" href="#" id="ancclsBanner1"></a>
+                            <div class="inner intro mb-4">
+                                <div class="topbanner  pb-3 inner-2">
+                                    <div class="banner-container">
+
+                                        <a target="_blank" href="#" class="bannerimg-1">
+                                            <img src="/assets/images/Whistle_Long_Internalbanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>728 x 90</p>
+
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-2">
+                                            <img src="/assets/images/Whistle_Long.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>728 x 90</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-3">
+                                            <img src="/assets/images/Whistle_SquareLarge.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>250x 250</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-4">
+                                            <img src="/assets/images/IblowTheWhistleCustomerBanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>413 x 1231</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-9">
+                                            <img src="/assets/images/Whistle_Small_Square.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>125 x 125</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-5">
+                                            <img src="/assets/images/Whistle_Rect.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>300 x 600</p>
+                                        </a>
+
+                                        <a target="_blank" href="#" class="bannerimg-6">
+                                            <img src="/assets/images/Whistle_Tall.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>160 x 600</p>
+                                        </a>
+
+
+                                        <a target="_blank" href="#" class="bannerimg-6">
+                                            <img src="/assets/images/Whistle_MediumSquare.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>300 x 250</p>
+                                        </a>
+
+                                        <a target="_blank" href="#" class="bannerimg-8">
+                                            <img src="/assets/images/Whistle_small.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>20 x 240</p>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="accordion" id="ulclsExpBanner2">
+                        <li class="accordion-list">
+                            <a class="toggle" href="#" id="ancclsBanner2"></a>
+
+                            <div class="inner intro mb-4">
+                                <div class="topbanner  pb-3 inner-2">
+                                    <div class="banner-container">
+
+                                        <a target="_blank" href="#" class="bannerimg-1">
+                                            <img src="/assets/images/Banner2/Whistle_Long_Internalbanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>728 x 90</p>
+
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-2">
+                                            <img src="/assets/images/Banner2/Whistle_Long.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>468 x 60</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-3">
+                                            <img src="/assets/images/Banner2/Whistle_SquareLarge.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>250x 250</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-4">
+                                            <img src="/assets/images/Banner2/IblowTheWhistleCustomerBanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>336 x 280</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-7Type2">
+                                            <img src="/assets/images/Banner2/Whistle_MediumSquare.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>300 x 250</p>
+                                        </a>
+
+                                        <a target="_blank" href="#" class="bannerimg-5">
+                                            <img src="/assets/images/Banner2/Whistle_Rect.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>300 x 600</p>
+                                        </a>
+                                        <a target="_blank" href="#" class="bannerimg-5">
+                                            <img src="/assets/images/Banner2/Whistle_Rect240-400.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>240 x 400</p>
+                                        </a>
+
+                                        <a target="_blank" href="#" class="bannerimg-6">
+                                            <img src="/assets/images/Banner2/Whistle_Tall.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>160 x 600</p>
+                                        </a>
+
+
+                                        <a target="_blank" href="#" class="bannerimg-8">
+                                            <img src="/assets/images/Banner2/Whistle_small.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>20 x 240</p>
+                                        </a>
+
+
+                                        <a target="_blank" href="#" class="bannerimg-8">
+                                            <img src="/assets/images/Banner2/Whistle_Small_Square.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
+                                            <p>125 x 125</p>
+
+                                        </a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+
+
+
                     <%-- <a class="ancImgTopBanner" target="_blank" href="#">
                         <img class="imgTopBanner" src="/assets/images/WhistleDefaultTopBanner.PNG" alt="horizontal banner" />
 
                     </a>--%>
-                    <div class="banner-container">
-
-                        <a target="_blank" href="#" class="bannerimg-1">
-                            <img src="/assets/images/Whistle_Long_Internalbanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>728 x 90</p>
-
-                        </a>
-                        <a target="_blank" href="#" class="bannerimg-2">
-                            <img src="/assets/images/Whistle_Long.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>728 x 90</p>
-                        </a>
-                        <a target="_blank" href="#" class="bannerimg-3">
-                            <img src="/assets/images/Whistle_SquareLarge.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>250x 250</p>
-                        </a>
-                        <a target="_blank" href="#" class="bannerimg-4">
-                            <img src="/assets/images/IblowTheWhistleCustomerBanner.png" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>413 x 1231</p>
-                        </a>
-                        <a target="_blank" href="#" class="bannerimg-9">
-                            <img src="/assets/images/Whistle_Small_Square.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>125 x 125</p>
-                        </a>
-                        <a target="_blank" href="#" class="bannerimg-5">
-                            <img src="/assets/images/Whistle_Rect.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>300 x 600</p>
-                        </a>
-
-                        <a target="_blank" href="#" class="bannerimg-6">
-                            <img src="/assets/images/Whistle_Tall.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>160 x 600</p>
-                        </a>
-
-
-                        <a target="_blank" href="#" class="bannerimg-7">
-                            <img src="/assets/images/Whistle_MediumSquare.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>300 x 250</p>
-                        </a>
-
-                        <a target="_blank" href="#" class="bannerimg-8">
-                            <img src="/assets/images/Whistle_small.jpg" onclick="downloadAsImage(this); return false;" alt="horizontal banner" />
-                            <p>20 x 240</p>
-                        </a>
-
-
-                    </div>
-
                 </div>
 
 
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $('.toggle').click(function (e) {
+            e.preventDefault();
 
+            let $this = $(this);
+
+            if ($this.next().hasClass('show')) {
+                $this.next().removeClass('show');
+                $this.next().slideUp(350);
+            } else {
+                $this.parent().parent().find('li .inner').removeClass('show');
+                $this.parent().parent().find('li .inner').slideUp(350);
+                $this.next().toggleClass('show');
+                $this.next().slideToggle(350);
+            }
+        });
+    </script>
 
 </asp:Content>

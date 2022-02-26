@@ -67,10 +67,10 @@
                                 <div class="col-auto align-self-end">
                                     <!-- Icons -->
                                     <button id="button" type="submit" onclick="sendResponse(); return false;" class="btn btn-xs btn-primary langDirection"><span id="btSend"></span></button>
-                                    <button type="submit" onclick="window.open('', '_self', ''); window.close();" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
+                                    <button type="button" onclick="window.location.href = '/Pages/ViewIncidents.aspx'" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
                                     <a href="#" onclick="exportToPDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export chat info to PDF'>
-                                        <img src="/Images/PDFIcon.png" /></a>
-                                    <a id="ancSaveChatInfotoCaseMngt" onclick="saveChatInfotoCaseMngt(); return false;" style="height: 24px; width: 24px;" href="#" data-toggle='tooltip' data-placement='top' data-original-title='Save to Case Tracking' class="smooth-scroll">
+                                        <img class="imgPDFIcon" src="/Images/PDFIcon.png" /></a>
+                                    <a id="ancSaveChatInfotoCaseMngt" onclick="saveChatInfotoCaseMngt(); return false;" style="height: 24px; width: 24px; display: none;" href="#" data-toggle='tooltip' data-placement='top' data-original-title='Save to Case Tracking' class="smooth-scroll">
                                         <img src="/Images/uploadIntoCaseTrack.png" /></a>
                                 </div>
 

@@ -94,9 +94,13 @@
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="/Pages/ViewIncidents.aspx">
                                 <img alt="I Blow The Whistle" src="/assets/images/logo.png" class="logo"></a>
+
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="icon-more-vertical"></i></button>
                             <div id="navbarNav" class="collapse navbar-collapse">
                                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                                    <li class="nav-item">
+                                        <a href="/Pages/ViewIncidents.aspx" data-toggle='tooltip' data-placement='left' data-original-title='Home' class="smooth-scroll"><i style="font-size: 24px;" class="icon-home mr-5"></i></a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="/Pages/Policies.aspx" data-toggle='tooltip' data-placement='left' data-original-title='Policies' class="smooth-scroll"><i style="font-size: 24px;" class="icon-folder mr-5"></i></a>
                                     </li>

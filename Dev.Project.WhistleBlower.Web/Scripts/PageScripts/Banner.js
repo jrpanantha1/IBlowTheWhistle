@@ -33,7 +33,7 @@ function getBannerDetails() {
                     else {
                         $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                     }
-                    var tarURL = "https://apps.iblowthewhistle.com?"  + response[0].CompanyValue;
+                    var tarURL = "https://apps.iblowthewhistle.com?" + response[0].CompanyValue;
                     //copy to clipboard
                     //var bannerValue = "<a target='_blank' href='" + tarURL + "'><img class='imgTopBanner' src='/assets/images/WhistleDefaultTopBanner.PNG' alt='horizontal banner' /></a>";
                     var bannerValue = tarURL;//"<a target='_blank' href='" + tarURL + "'></a>";
@@ -89,7 +89,8 @@ function loadBannerLanguageDetails() {
                 $('#pQRDesc').text(response[0].lblQRShortNotes);
                 $('#btnGenerateQR').text(response[0].btnGenerateQRCode);
                 $('#btnSaveasImage').text(response[0].btnSaveasImage);
-                
+                $('#ancclsBanner1').text(response[0].clsExpBanner1);
+                $('#ancclsBanner2').text(response[0].clsExpBanner2);
             }
         },
         error: function (response) {

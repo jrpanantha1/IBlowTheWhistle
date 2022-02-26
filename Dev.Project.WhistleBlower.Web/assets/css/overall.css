@@ -141,6 +141,13 @@
     }
 
 
+.bannerimg-7Type2 {
+    width: auto;
+    float: left;
+    /*margin: 30px 0 0 0;*/
+    height: auto;
+}
+
 .bannerimg-7 {
     width: auto;
     float: left;
@@ -148,33 +155,39 @@
     height: auto;
 }
 
-    .bannerimg-7 img {
-        width: 100%;
-        float: left;
-        height: 100%;
-    }
+.bannerimg-7, .bannerimg-7Type2 img {
+    width: 100%;
+    float: left;
+    height: 100%;
+}
 
-    .bannerimg-7 p {
-        width: 100%;
-        float: left;
-        color: #000;
-    }
+.bannerimg-7, .bannerimg-7Type2 p {
+    width: 100%;
+    float: left;
+    color: #000;
+}
 
 
 
+.bannerimg-8Type2 {
+    width: auto;
+    float: left;
+    /*margin: 20px 0 20px 0;*/
+    height: auto;
+    /*height: 90px; pandiya*/
+}
 
 .bannerimg-8 {
     width: auto;
     float: left;
     margin: 20px 0 20px 0;
     height: auto;
-    /*height: 90px; pandiya*/
+    /* height: 90px; */
 }
 
     .bannerimg-8 img {
-        width: 180px;
         float: left;
-        height: 350px;
+        width: auto;
     }
 
     .bannerimg-8 p {

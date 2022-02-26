@@ -7,12 +7,26 @@
     <title>I Blow the Whistle</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/IblowthewhistleFavico/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/IblowthewhistleFavico/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/IblowthewhistleFavico/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/IblowthewhistleFavico/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/IblowthewhistleFavico/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/IblowthewhistleFavico/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/IblowthewhistleFavico/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/IblowthewhistleFavico/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/IblowthewhistleFavico/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/IblowthewhistleFavico/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/IblowthewhistleFavico/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/IblowthewhistleFavico/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/IblowthewhistleFavico/favicon-16x16.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="/assets/css/newstyle.css" />
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <script src="https://kit.fontawesome.com/1a4a488850.js" crossorigin="anonymous"></script>
+    <link href="/assets/css/NewHome/bootstrap.min.css" rel="stylesheet" />
+    <script src="/assets/js/1a4a488850.js"></script>
     <script src="/Scripts/jquery-3.3.1.min.js"></script>
     <script src="/Scripts/popper.min.js" async defer></script>
     <script src="/Scripts/bootstrap.min.js" async defer></script>
@@ -78,7 +92,7 @@
         }
 
         .selected-item span {
-            background: url('https://api.iconify.design/feather-check.svg') no-repeat left center / contain;
+            background: url('\assets\images\feather-check.svg') no-repeat left center / contain;
         }
 
         .dropdown-item span {
@@ -290,7 +304,9 @@
                             <div class="footer_box">
                                 <a href="/">
                                     <img src="/Images/newHome/logo-light.png" class="logo" alt="" /></a>
+
                             </div>
+
                         </div>
 
                         <div class="col-md-6 col-lg-3">
@@ -331,13 +347,12 @@
                         </div>
 
                     </div>
+
                 </div>
             </section>
             <!------ /footer ----->
 
-
-
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
 
         </div>
