@@ -285,6 +285,7 @@
     <Content Include="IblowthewhistleFavico\ms-icon-150x150.png" />
     <Content Include="IblowthewhistleFavico\ms-icon-310x310.png" />
     <Content Include="IblowthewhistleFavico\ms-icon-70x70.png" />
+    <Content Include="Images\addIncidents.png" />
     <Content Include="Images\addNewPerson.png" />
     <Content Include="Images\backToHome.png" />
     <Content Include="Images\Click Here.png" />
@@ -302,6 +303,7 @@
     <Content Include="Images\newHome\p5.jpg" />
     <Content Include="Images\PDFIcon.png" />
     <Content Include="Images\PricingStructure.jpg" />
+    <Content Include="Images\reload.png" />
     <Content Include="Images\searchIcon.png" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
@@ -416,6 +418,7 @@
     <Compile Include="Authorization\Startup.cs" />
     <Compile Include="Authorization\WhistleBlowerAuthorizationServerProvider.cs" />
     <Compile Include="Controllers\AnonymousResponseHistoriesController.cs" />
+    <Compile Include="Controllers\AvatarMenuLanguagesController.cs" />
     <Compile Include="Controllers\BannerLangMastersController.cs" />
     <Compile Include="Controllers\CaseManagementsController.cs" />
     <Compile Include="Controllers\CasePreActionMastersController.cs" />

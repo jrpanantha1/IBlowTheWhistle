@@ -87,6 +87,9 @@
     <Compile Include="AuditMngtAdminLogin.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AvatarMenuLanguage.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BannerLangMaster.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>

@@ -354,6 +354,11 @@ function finalProcess(successTranxID, response) {
         $('#txtPass').val(response[0].AnonymousPassowrd);
         $('#annoymouslogin').show();
     }
+    $('#divAccountExistMsg').hide();
+    if (response[0].ExistingAccountMessage != "") {
+        $('#divAccountExistMsg').show();
+        $('#pAccountExistMsg').text(response[0].ExistingAccountMessage);
+    }
 
     $('#AnonymousModal').modal('show');
     if (localStorage.getItem("AcctType") == null || localStorage.getItem("AcctType") == "") {

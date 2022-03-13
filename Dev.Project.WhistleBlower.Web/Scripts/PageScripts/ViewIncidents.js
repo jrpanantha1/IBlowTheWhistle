@@ -144,6 +144,22 @@ function getIncidentDetails() {
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                         }
+                    },
+                    {
+                        text: '<img src="/Images/addIncidents.png"></img>',
+                        titleAttr: 'Add more incidents',
+                        action: function (e, dt, button, config) {
+                            window.location = '/Pages/IncidentForm.aspx';
+                        }
+
+                    },
+                    {
+                        text: '<img src="/Images/reload.png"></img>',
+                        titleAttr: 'Reload Incidents',
+                        action: function (e, dt, button, config) {
+                            getIncidentDetails();
+                        }
+
                     }],
                     "iDisplayLength": 10,
                     "aoColumns": [
@@ -533,6 +549,22 @@ function getIncidentDetailsByIncCategory(incCategory) {
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
                         }
+                    },
+                    {
+                        text: '<img src="/Images/addIncidents.png"></img>',
+                        titleAttr: 'Add more incidents',
+                        action: function (e, dt, button, config) {
+                            window.location = '/Pages/IncidentForm.aspx';
+                        }
+
+                    },
+                    {
+                        text: '<img src="/Images/reload.png"></img>',
+                        titleAttr: 'Reload Incidents',
+                        action: function (e, dt, button, config) {
+                            getIncidentDetailsByIncCategory($('#dropdownFilter').text());
+                        }
+
                     }],
                     "iDisplayLength": 10,
                     "language": { search: '', searchPlaceholder: "Search.." },

@@ -503,6 +503,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                             objWhistleBlow.IncCategory = "Unread";
 
                             string AnonymousEmailID = "";
+                            string EmailExistMessage = "";
                             if (WhistleBlowDetail.UpdatedOnIncidentMethod == 3)//3 means Anonymous update progress
                             {
                                 if (emailIDNew != null)
@@ -608,6 +609,10 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                     Entities.RegisteredUsers.Add(objRegisteredUser);
                                     Entities.SaveChanges();
                                 }
+                                else
+                                {
+                                    EmailExistMessage = WhistleContants.AccountExistMessage;
+                                }
 
                             }
                             if (objWhistleBlow.UpdatedOnIncidentMethod == 3 && emailIDNew == null)//Anonymous update progress
@@ -651,7 +656,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
                             returnObj = new List<SuccessClass>
                             {
-                                new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = passwordToBeReturned }
+                                new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = passwordToBeReturned,ExistingAccountMessage = EmailExistMessage }
 
                             };
                         }

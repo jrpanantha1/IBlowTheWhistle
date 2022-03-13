@@ -20,6 +20,7 @@
         $('#ancSaveChatInfotoCaseMngt').hide();
     }
 
+    //ancRefresh
 });
 
 function getResponseHistory() {

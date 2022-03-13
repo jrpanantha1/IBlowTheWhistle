@@ -31,7 +31,7 @@
                 <div class="col-12 mt-2">
                     <a href="#" onclick="shownewForm(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Click here to create new admin'>
                         <img src="/Images/addNewPerson.png" /></a>
-                    <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Manage Admin'>
+                    <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Administration'>
                         <img src="/Images/backToHome.png" /></a>
                     <div class="row" style="margin-bottom: 2%;">
                         <input type="hidden" id="txtRegID" />

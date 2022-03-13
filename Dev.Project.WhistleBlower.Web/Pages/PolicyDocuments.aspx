@@ -34,7 +34,7 @@
                                     <span class="header-line langDirection"></span>
                                     <p class="lead langDirection" id="formShortNote"></p>
                                 </header>
-                                <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Manage Admin'>
+                                <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Administration'>
                                     <img src="/Images/backToHome.png" /></a>
                                 <!-- end of header -->
                                 <div class="card shadow-sm mt-5">

@@ -26,10 +26,11 @@
                                     <span class="header-line langDirection"></span>
                                     <p class="lead langDirection" id="formShortNote"></p>
                                 </header>
+                                <div id="divCaseHtmContents" class="mt-5">
+                                </div>
                                 <div id="divCaseDocuments" class="mt-5">
                                 </div>
-                                <div id="divCaseHtmContents" class="mt-4">
-                                </div>
+
                                 <div class="alert alert-info alert-dismissible fade show" style="display: none" role="alert" id="divInfo">
                                     <span id="successMessage">There is no policies</span>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -27,6 +27,8 @@
                         <h1 class="display-5 langDirection" id="formTitle"></h1>
                         <p class="lead langDirection" id="formShortNote"></p>
                     </header>
+                    <a onclick="getResponseHistory();return false;" href="#" id="ancRefresh" data-toggle='tooltip' data-placement='left' data-original-title='Reload response' class="smooth-scroll">
+                        <img alt="reload" src="/Images/reload.png" /></a>
                     <!-- end of header -->
                     <div class="card shadow-sm">
                         <div class="card-body p-5">

@@ -168,26 +168,28 @@
                                             <!--end of dropdown item-->
                                             <div class="preferencesMenu AdminAccountOnlymenu">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/MyAccount.aspx"><i class="mr-3 icon-settings"></i>Account</a>
+                                                <a class="dropdown-item" id="ancMenuAccount" href="/Pages/MyAccount.aspx"><i class="mr-3 icon-settings"></i></a>
                                             </div>
                                             <div class="dashboardMenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/IncidentForm.aspx"><i class="mr-3 icon-file-plus"></i>Capture Own Incidents</a>
+                                                <a class="dropdown-item" href="/Pages/IncidentForm.aspx" id="ancMenuCaptureOwn"><i class="mr-3 icon-file-plus"></i></a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Banners.aspx"><i class="mr-3 icon-image"></i>Banners</a>
+                                                <a class="dropdown-item" href="/Pages/Banners.aspx" id="ancMenuBanners"><i class="mr-3 icon-image"></i></a>
                                             </div>
                                             <div class="dashboardMenu AdminAccountOnlymenu FreeCompanyNoAccess">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx"><i class="mr-3 icon-pie-chart"></i>Reports Dashboard</a>
+                                                <a class="dropdown-item" href="/Pages/Dashboard.aspx" id="ancMenuReports"><i class="mr-3 icon-pie-chart"></i></a>
                                             </div>
                                             <div class="preferencesMenu AdminAccountOnlymenu">
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="/Pages/ManageAdmin.aspx"><i class="mr-3 icon-settings"></i>Manage Admin</a>
+                                                <a class="dropdown-item" href="/Pages/ManageAdmin.aspx" id="ancMenuAdmin"><i class="mr-3 icon-settings"></i></a>
                                             </div>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-log-out"></i>Sign Out</a>
+                                            <a class="dropdown-item text-muted" target="_blank" href="https://iblowthewhistle.com/help" id="ancMenuHelp"><i class="mr-3 icon-help-circle"></i></a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item text-muted" id="btnsignOut" style="cursor: pointer" onclick="clearSession();return false;"><i class="mr-3 icon-log-out"></i></a>
                                         </div>
                                         <!--end of dropdown menu-->
                                     </li>

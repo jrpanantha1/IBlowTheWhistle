@@ -72,26 +72,36 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         [Authorize]
         public IHttpActionResult GetCompanyMaster()
         {
-            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
-            string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
 
-            var result = db.CompanyMasters.FirstOrDefault(u => u.CURN.ToString().Trim().ToUpper().Equals(companyID.ToUpper()));
-
-            result.CompanyKey = Cipher.Encrypt(result.CompanyKey, result.encPassword);
-            result.CompanyValue = Cipher.Encrypt(result.CompanyValue, result.encPassword);
-
-            if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
+            try
             {
-                result.CompanyLogo = "";
-                result.CompanyValue = "";
 
+
+                string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+                string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType") != null ? ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value : WhistleContants.anonymousUserAccountType;
+
+                var result = db.CompanyMasters.FirstOrDefault(u => u.CURN.ToString().Trim().ToUpper().Equals(companyID.ToUpper()));
+
+                result.CompanyKey = Cipher.Encrypt(result.CompanyKey, result.encPassword);
+                result.CompanyValue = Cipher.Encrypt(result.CompanyValue, result.encPassword);
+
+                if (AccType == WhistleContants.anonymousUserAccountType || AccType == WhistleContants.normalUserAccountType)
+                {
+                    result.CompanyLogo = "";
+                    result.CompanyValue = "";
+
+                }
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
             }
-            if (result == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                throw ex;
             }
 
-            return Ok(result);
         }
 
         // PUT: api/CompanyProfile/5

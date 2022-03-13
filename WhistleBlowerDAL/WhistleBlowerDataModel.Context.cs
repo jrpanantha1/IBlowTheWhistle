@@ -50,5 +50,6 @@ namespace WhistleBlowerDAL
         public virtual DbSet<AuditMngtAdminLogin> AuditMngtAdminLogins { get; set; }
         public virtual DbSet<VisitCountAllLogin> VisitCountAllLogins { get; set; }
         public virtual DbSet<PolicyMaster> PolicyMasters { get; set; }
+        public virtual DbSet<AvatarMenuLanguage> AvatarMenuLanguages { get; set; }
     }
 }

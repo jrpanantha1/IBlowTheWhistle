@@ -30,7 +30,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         [ResponseType(typeof(AnonymousResponseHistory))]
         public IHttpActionResult GetAnonymousResponseHistory(string strIURN)
         {
-            var anonymousResponse = db.AnonymousResponseHistories.OrderBy(tt => tt.ResponseDate).Where(d => d.IURN.ToString() == strIURN).ToList();
+            var anonymousResponse = db.AnonymousResponseHistories.OrderBy(tt => tt.ResponseDate).Where(d => d.IURN.ToString() == strIURN).OrderBy(g => g.ResponseDate).ToList();
             string AccType = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "accType").Value;
 
             if (anonymousResponse == null)
@@ -43,6 +43,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 var updateAnonymousHistry = from x in db.AnonymousResponseHistories
                                             where x.IURN.ToString() == strIURN && x.commentBy == "Admin" && x.ViewStatus == false
                                             select x;
+
 
                 // now use First or a loop if you expect multiple
                 foreach (var updAnnoy in updateAnonymousHistry)

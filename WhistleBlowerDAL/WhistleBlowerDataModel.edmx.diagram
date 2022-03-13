@@ -30,6 +30,7 @@
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.AuditMngtAdminLogin" Width="1.5" PointX="3.375" PointY="6.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.VisitCountAllLogin" Width="1.5" PointX="10.375" PointY="8.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.PolicyMaster" Width="1.5" PointX="7.375" PointY="15.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.AvatarMenuLanguage" Width="1.5" PointX="15.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

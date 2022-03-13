@@ -24,5 +24,6 @@ namespace Dev.Project.WhistleBlower.Web.Models
         public string TransactionID { get; set; }
         public string AnonymousUserName { get; set; }
         public string AnonymousPassowrd { get; set; }
+        public string ExistingAccountMessage { get; set; }
     }
 }

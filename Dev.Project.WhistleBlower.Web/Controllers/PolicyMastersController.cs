@@ -32,10 +32,12 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             {
                 langID = 1;
             }
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+
             var policyDetails = (from lm in db.LanguageMasters
                                  join ld in db.PolicyMasters on lm.LanguageID equals ld.LanguageID
-                                 where lm.LanguageID == langID
-                                 select ld).ToList();
+                                 where lm.LanguageID == langID && ld.CURN.ToString() == companyID
+                                 select ld).OrderByDescending(tt => tt.isActive).ToList();
 
             if (policyDetails == null)
             {
@@ -96,13 +98,25 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 return Ok("Unauthorized");
             }
 
-            Guid policyID = Guid.NewGuid();
-            policyMaster.PMURN = policyID;
-            policyMaster.CURN = new Guid(companyID);
-            policyMaster.UpdatedOn = System.DateTime.Now; ;
+            // check if policy details is available ?
+            var isExist = db.PolicyMasters.Where(e => e.CURN.ToString() == companyID && e.isActive == true).FirstOrDefault();
+            if (isExist == null)
+            {
 
-            db.PolicyMasters.Add(policyMaster);
 
+                Guid policyID = Guid.NewGuid();
+                policyMaster.PMURN = policyID;
+                policyMaster.CURN = new Guid(companyID);
+                policyMaster.isActive = true;
+
+                policyMaster.UpdatedOn = System.DateTime.Now;
+                db.PolicyMasters.Add(policyMaster);
+            }
+            else
+            {
+                isExist.PolicyHTML = policyMaster.PolicyHTML;
+                isExist.UpdatedOn = System.DateTime.Now;
+            }
             try
             {
                 db.SaveChanges();

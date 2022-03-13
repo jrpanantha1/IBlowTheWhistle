@@ -18,7 +18,7 @@
                     <span class="header-line"></span>
                 </div>
                 <div class="col-12 contentarea mt-5">
-                    <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Manage Admin'>
+                    <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Administration'>
                         <img src="/Images/backToHome.png" /></a>
                     <div class="table-responsive">
                         <div class="tableSubscrionHistory" style="min-height: 400px;">

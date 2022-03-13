@@ -12,6 +12,10 @@ $(document).ready(function () {
         window.location.href = "/Pages/Login.aspx";
     }
 
+    // disbale 
+    $('.UpdatedOnIncidentDisableForAdmin').hide();
+    //$('.signIn').hide();
+
 });
 function getPolicyDocumentsForAnnoymousUSer() {
 
@@ -62,9 +66,9 @@ function getPolicyDocumentsForAnnoymousUSer() {
 
 function getPolicyHTMLforAnnoymousUser() {
     var lanCode = 1;
-    if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
-        lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
-    }
+    //if ((sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "") || localStorage.getItem("iBlowLanguage") != null) {
+    //    lanCode = sessionStorage.getItem("iBlowLanguage") != null && sessionStorage.getItem("iBlowLanguage") != "" ? sessionStorage.getItem("iBlowLanguage").toString() : localStorage.getItem("iBlowLanguage").toString();
+    //}
 
     $.ajax({
         url: '/api/PolicyMasters?langID=' + Number(lanCode),

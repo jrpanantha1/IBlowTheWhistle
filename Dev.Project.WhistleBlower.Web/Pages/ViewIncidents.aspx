@@ -381,7 +381,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center bg-dark text-white p-2 rounded-bottom">
                             <div class="col-auto">
-                                <h5 id="companyNamelbl1" class="m-0 mr-2">Company URL </h5>
+                                <h5 id="companyURLlbl" class="m-0 mr-2">Company URL </h5>
                             </div>
                             <div class="col mx-n3">
                                 <input type="text" id="txtCompanyLink" value="" class="form-control-sm rounded col mx-n1" />

@@ -29,6 +29,24 @@
           <Property Name="LoggedInTime" Type="datetime" />
           <Property Name="LogoutTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="AvatarMenuLanguage">
+          <Key>
+            <PropertyRef Name="AMURN" />
+          </Key>
+          <Property Name="AMURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AMenuClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="topMenuHome" Type="nvarchar" MaxLength="30" />
+          <Property Name="topMenuPolicies" Type="nvarchar" MaxLength="30" />
+          <Property Name="topMenuRefresh" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu1Account" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu2CaptureOwnInc" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu3Banner" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu4Dashboard" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu5Admin" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu6SignOut" Type="nvarchar" MaxLength="30" />
+          <Property Name="menu7Help" Type="nvarchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="BannerLangMaster">
           <Key>
             <PropertyRef Name="BURN" />
@@ -442,6 +460,7 @@
         <EntityContainer Name="eformulus_IBTW_DBModelStoreContainer">
           <EntitySet Name="AnonymousResponseHistory" EntityType="Self.AnonymousResponseHistory" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="AuditMngtAdminLogin" EntityType="Self.AuditMngtAdminLogin" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="AvatarMenuLanguage" EntityType="Self.AvatarMenuLanguage" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="BannerLangMaster" EntityType="Self.BannerLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CaseManagement" EntityType="Self.CaseManagement" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="CasePreActionMaster" EntityType="Self.CasePreActionMaster" Schema="eformulus_admin" store:Type="Tables" />
@@ -505,6 +524,7 @@
           <EntitySet Name="AuditMngtAdminLogins" EntityType="eformulus_IBTW_DBModel.AuditMngtAdminLogin" />
           <EntitySet Name="VisitCountAllLogins" EntityType="eformulus_IBTW_DBModel.VisitCountAllLogin" />
           <EntitySet Name="PolicyMasters" EntityType="eformulus_IBTW_DBModel.PolicyMaster" />
+          <EntitySet Name="AvatarMenuLanguages" EntityType="eformulus_IBTW_DBModel.AvatarMenuLanguage" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
           <Key>
@@ -930,6 +950,24 @@
           <Property Name="PolicyHTML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="AvatarMenuLanguage">
+          <Key>
+            <PropertyRef Name="AMURN" />
+          </Key>
+          <Property Name="AMURN" Type="Guid" Nullable="false" />
+          <Property Name="AMenuClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="topMenuHome" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="topMenuPolicies" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="topMenuRefresh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu1Account" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu2CaptureOwnInc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu3Banner" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu4Dashboard" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu5Admin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu6SignOut" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="menu7Help" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1393,6 +1431,25 @@
                 <ScalarProperty Name="PolClusterID" ColumnName="PolClusterID" />
                 <ScalarProperty Name="CURN" ColumnName="CURN" />
                 <ScalarProperty Name="PMURN" ColumnName="PMURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvatarMenuLanguages">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AvatarMenuLanguage">
+              <MappingFragment StoreEntitySet="AvatarMenuLanguage">
+                <ScalarProperty Name="menu7Help" ColumnName="menu7Help" />
+                <ScalarProperty Name="menu6SignOut" ColumnName="menu6SignOut" />
+                <ScalarProperty Name="menu5Admin" ColumnName="menu5Admin" />
+                <ScalarProperty Name="menu4Dashboard" ColumnName="menu4Dashboard" />
+                <ScalarProperty Name="menu3Banner" ColumnName="menu3Banner" />
+                <ScalarProperty Name="menu2CaptureOwnInc" ColumnName="menu2CaptureOwnInc" />
+                <ScalarProperty Name="menu1Account" ColumnName="menu1Account" />
+                <ScalarProperty Name="topMenuRefresh" ColumnName="topMenuRefresh" />
+                <ScalarProperty Name="topMenuPolicies" ColumnName="topMenuPolicies" />
+                <ScalarProperty Name="topMenuHome" ColumnName="topMenuHome" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="AMenuClusterID" ColumnName="AMenuClusterID" />
+                <ScalarProperty Name="AMURN" ColumnName="AMURN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
