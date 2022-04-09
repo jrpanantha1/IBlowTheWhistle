@@ -21,6 +21,8 @@ namespace Dev.Project.WhistleBlower.Web.Data
         public const string AccountExistMessage = "There is an secure account with this email. Please use existing credentials.";
         public const int PasswordLength = 12;
         public const int PasswordNumericCharLength = 2;
+        public const string CompanyID = "companyID";
+        public const string SuccessAdminNotification = "Successfully updated admin notification preferances";
         #endregion
     }
 }

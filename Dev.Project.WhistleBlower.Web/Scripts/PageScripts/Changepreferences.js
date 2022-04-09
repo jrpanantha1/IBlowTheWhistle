@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     if (localStorage.getItem("accessToken") != null && localStorage.getItem("AcctType") == "Admin") {
-        //GetCasePreActionMaster();
+        
     }
     else if (localStorage.getItem("accessToken") != null) {
         window.location.href = "/Pages/ViewIncidents.aspx";
@@ -61,3 +61,41 @@ function updatePreferredLanguage() {
         }
     });
 }
+
+function updateAdminNotification() {
+
+    var chkValue = $('.switch-input').prop('checked');
+
+    var companyData =
+    {
+        "SendAdmNotifyOnNewCase": chkValue
+    }
+
+    $.ajax({
+        url: '/api/CompanyMasters',
+        method: 'PUT',
+        data: JSON.stringify(companyData),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        success: function (response) {
+            if (response != null && response != "") {
+                showSuccessMessage("Admin notification updated successfully.");
+            }
+            else {
+                showSuccessMessage("Error occured. Please contact admin support.");
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+
+ 

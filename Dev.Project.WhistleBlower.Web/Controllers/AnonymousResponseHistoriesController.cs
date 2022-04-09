@@ -67,6 +67,15 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             var objCompanyMaster = db.CompanyMasters.Where(e => e.CURN.ToString() == companyID).Select(o => new { o.encPassword, o.CompanyName, o.CompanyLogo }).Distinct();
             string encPassword = "", companyName = "", companylogo = "";
 
+            // find user display name 
+
+            var getUserID = (from x in db.AnonymousResponseHistories
+                             where x.IURN.ToString() == strIURN && x.commentBy != "Admin"
+                             select x.RegUserID).FirstOrDefault();
+
+            var userNametodisplay = db.RegisteredUsers.Where(e => e.RegUserID.ToString() == getUserID.ToString()).Select(
+                    o => o.AcctType == "Anonymous User" ? "Anonymous User" : o.LastName != null && o.LastName != "" ? o.FirstName + " " + o.LastName : o.FullName != null && o.FullName != "" ? o.FullName : "User").FirstOrDefault();
+            //end
             foreach (var comItem in objCompanyMaster)
             {
                 encPassword = comItem.encPassword;
@@ -92,7 +101,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     ViewStatus = item.ViewStatus,
                     commentBy = item.commentBy,
                     companyName = companyName,
-                    companyLogo = companylogo
+                    companyLogo = companylogo,
+                    regUserDisplayName = userNametodisplay
                 });
 
             }
@@ -189,6 +199,16 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     return NotFound();
                 }
 
+                // find user display name 
+
+                var getUserID = (from x in db.AnonymousResponseHistories
+                                 where x.IURN.ToString() == strIURN && x.commentBy != "Admin"
+                                 select x.RegUserID).FirstOrDefault();
+
+                var userNametodisplay = db.RegisteredUsers.Where(e => e.RegUserID.ToString() == getUserID.ToString()).Select(
+                        o => o.AcctType == "Anonymous User" ? "Anonymous User" : o.LastName != null && o.LastName != "" ? o.FirstName + " " + o.LastName : o.FullName != null && o.FullName != "" ? o.FullName : "User").FirstOrDefault();
+                //end
+
                 List<AnonymousResponse> objAnonymous = new List<AnonymousResponse>();
                 foreach (var item in anonymousResponse)
                 {
@@ -203,7 +223,8 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         ViewStatus = item.ViewStatus,
                         commentBy = item.commentBy,
                         companyName = companyName,
-                        companyLogo = companylogo
+                        companyLogo = companylogo,
+                        regUserDisplayName = userNametodisplay
                     });
 
                 }

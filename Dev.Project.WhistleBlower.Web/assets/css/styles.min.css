@@ -6189,7 +6189,7 @@ a.close.disabled {
     }
 
     .imgPDFIcon {
-        width: 25% !important;
+        /* width: 25% !important;*/
     }
 
     .CaseDocfa-ul li {
@@ -13733,7 +13733,9 @@ a.text-muted:hover {
     -webkit-transition: -webkit-box-shadow .3s ease-in-out;
     transition: -webkit-box-shadow .3s ease-in-out;
     transition: box-shadow .3s ease-in-out;
-    transition: box-shadow .3s ease-in-out, -webkit-box-shadow .3s ease-in-out
+    transition: box-shadow .3s ease-in-out, -webkit-box-shadow .3s ease-in-out;
+    -webkit-box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075),0 0 13px rgba(0,0,0,0.095) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075),0 0 13px rgba(0,0,0,0.095) !important
 }
 
     .card.shadow-sm:hover, .card.site-nav.is-stuck:hover {
@@ -15621,7 +15623,7 @@ blockquote {
 @media screen and (min-width: 100px) and (max-width: 800px) {
     .col-auto img {
         /*  width: 100% !important;*/
-        width: 25% !important;
+        /* width: 25% !important;*/
     }
 
     .divTopSection4 .cbtooltip {

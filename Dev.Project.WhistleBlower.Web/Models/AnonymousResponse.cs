@@ -17,6 +17,7 @@ namespace Dev.Project.WhistleBlower.Web.Models
         public string commentBy { get; set; }
         public string companyName { get; set; }
         public string companyLogo { get; set; }
+        public string regUserDisplayName { get; set; }
 
 
     }

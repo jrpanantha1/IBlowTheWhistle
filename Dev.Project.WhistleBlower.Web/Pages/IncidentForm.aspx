@@ -108,7 +108,7 @@
 
                         </div>
                         <div id="divAccountExistMsg">
-                            <p class="mb-4" id="pAccountExistMsg"></p>
+                            <p class="mb-4" style="font-weight: bold" id="pAccountExistMsg"></p>
                         </div>
                     </div>
                 </div>

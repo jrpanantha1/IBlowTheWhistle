@@ -242,7 +242,11 @@ namespace Dev.Project.WhistleBlower.Web.Data
                 client.Credentials = new System.Net.NetworkCredential(mailServerUN, mailServerPSW);
                 client.EnableSsl = false;
                 objeto_mail.From = new MailAddress("administrator@tacitous.com");
-                objeto_mail.To.Add(new MailAddress(mailID));
+                foreach (var address in mailID.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    objeto_mail.To.Add(address);
+                }
+                //objeto_mail.To.Add(new MailAddress(mailID));
                 objeto_mail.Subject = subject;
                 objeto_mail.IsBodyHtml = true;
                 string mailBody = message;

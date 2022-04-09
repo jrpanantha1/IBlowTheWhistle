@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -167,7 +168,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                                       Comments = r.Comments,
                                                       Phone = r.Phone,
                                                       AnonymousEmailID = r.AnonymousEmailID,
-                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && a.commentBy == WhistleContants.anonymousUserAccountType),
+                                                      Count = db.AnonymousResponseHistories.Count(a => a.IURN == r.IURN && a.ViewStatus == false && (a.commentBy == WhistleContants.anonymousUserAccountType || a.commentBy == WhistleContants.normalUserAccountType)),
                                                       IncCategory = r.IncCategory
                                                   };
                         if (whistleBlowIncident == null)
@@ -484,7 +485,9 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                         if (companyID != "")
                         {
 
-                            var encPassword = Entities.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == companyID).encPassword;
+                            var companyObj = Entities.CompanyMasters.FirstOrDefault(e => e.CURN.ToString() == companyID);
+                            var encPassword = companyObj.encPassword;
+                            var companyName = companyObj.CompanyName;
 
 
                             Guid IncidentIURN = Guid.NewGuid();
@@ -556,7 +559,6 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
 
 
 
-
                             //insert witness detaiuls here
                             foreach (var item in witnessDetailsJson)
                             {
@@ -611,7 +613,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 }
                                 else
                                 {
-                                    EmailExistMessage = WhistleContants.AccountExistMessage;
+                                    EmailExistMessage = WhistleContants.AccountExistMessage + " - Email ID : " + WhistleBlowDetail.Email;
                                 }
 
                             }
@@ -653,7 +655,18 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                                 db.CaseManagements.Add(objCase);
                                 db.SaveChanges();
                             }
-
+                            //send email notification to all admin about this concern 
+                            try
+                            {
+                                if (companyObj.SendAdmNotifyOnNewCase != null && companyObj.SendAdmNotifyOnNewCase == true)
+                                {
+                                    sendEmailNotificationToAdmin(objWhistleBlow, encPassword, companyName);
+                                }
+                               
+                            }
+                            catch (Exception)
+                            {
+                            }
                             returnObj = new List<SuccessClass>
                             {
                                 new SuccessClass { TransactionID = traxID, AnonymousUserName = AnonymousEmailID, AnonymousPassowrd = passwordToBeReturned,ExistingAccountMessage = EmailExistMessage }
@@ -674,7 +687,56 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             }
 
         }
+        private void sendEmailNotificationToAdmin(WhistleBlowIncident whistleBlowIncident, string encPassword, string companyName)
+        {
+            try
+            {
+                string mailMessage = Utility.GetEmailTemplate("104");
+                StringBuilder sb = new StringBuilder();
+                string toAddress = "";
 
+                var allAdminAccounts = db.RegisteredUsers.Where(e => e.CompanyID == whistleBlowIncident.CompanyID && e.AcctType == WhistleContants.AdminUserAccountType).ToList();
+
+                foreach (var item in allAdminAccounts)
+                {
+                    toAddress += item.Email + ";";
+                }
+
+                if (whistleBlowIncident != null)
+                {
+                    var rEvidenceDetails = whistleBlowIncident.EvidenceDetails != null && whistleBlowIncident.EvidenceDetails != "" ? Cipher.Decrypt(whistleBlowIncident.EvidenceDetails, encPassword) : "";
+                    var rComments = whistleBlowIncident.Comments != "" && whistleBlowIncident.Comments != null ? Cipher.Decrypt(whistleBlowIncident.Comments, encPassword) : "";
+                    var rEmail = whistleBlowIncident.Email != "" && whistleBlowIncident.Email != null ? Cipher.Decrypt(whistleBlowIncident.Email, encPassword) : "";
+                    var rPhone = whistleBlowIncident.Phone != "" && whistleBlowIncident.Phone != null ? Cipher.Decrypt(whistleBlowIncident.Phone, encPassword) : "";
+                    var rAnonymousEmailID = whistleBlowIncident.AnonymousEmailID != "" && whistleBlowIncident.AnonymousEmailID != null ? Cipher.Decrypt(whistleBlowIncident.AnonymousEmailID, encPassword) : "";
+                    var rIsReportable = whistleBlowIncident.IsReportable == true ? "Yes" : "No";
+                    var rSupportingEvidence = whistleBlowIncident.SupportingEvidence == true ? "Yes" : "No";
+                    var rHaveWitness = whistleBlowIncident.HaveWitness == true ? "Yes" : "No";
+                    var rUpdatedOnIncident = whistleBlowIncident.UpdatedOnIncident == true ? "Yes" : "No";
+
+
+                    string mailMessageConstuct = string.Format(mailMessage, companyName, whistleBlowIncident.IURN.ToString(),
+                        rEvidenceDetails,
+                       rComments,
+                        rIsReportable,
+                        rSupportingEvidence,
+                        rHaveWitness,
+                        rUpdatedOnIncident,
+                        rEmail,
+                        rPhone,
+                        rAnonymousEmailID,
+                        whistleBlowIncident.SubmissionDateTime.ToString());
+
+                    Utility.SendEmail(toAddress, "A new concern or disclosure has been reported - " + whistleBlowIncident.IURN + "", mailMessageConstuct);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         [Authorize]
         public IHttpActionResult PutIncidents(string IURN, string status)
         {

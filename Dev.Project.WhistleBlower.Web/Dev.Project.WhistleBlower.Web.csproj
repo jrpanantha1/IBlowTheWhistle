@@ -304,6 +304,7 @@
     <Content Include="Images\PDFIcon.png" />
     <Content Include="Images\PricingStructure.jpg" />
     <Content Include="Images\reload.png" />
+    <Content Include="Images\reloadBidir.png" />
     <Content Include="Images\searchIcon.png" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />

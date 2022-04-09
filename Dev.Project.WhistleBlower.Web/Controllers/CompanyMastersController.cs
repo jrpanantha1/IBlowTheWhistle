@@ -38,11 +38,11 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                     //string value = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[1].ToString();
 
                     string value = temp.Split(new string[] { "/ib" }, StringSplitOptions.None)[0].ToString();
-                
+
 
                     Setting settingObj = db.Settings.Find(1);
 
-                   // string degryptKey = Cipher.Decrypt(key, settingObj.SettingValue);
+                    // string degryptKey = Cipher.Decrypt(key, settingObj.SettingValue);
                     string degryptValue = Cipher.Decrypt(value, settingObj.SettingValue);
 
 
@@ -160,6 +160,31 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 throw ex;
             }
         }
+
+        [Authorize]
+        public IHttpActionResult PUTUpdateCompany([FromBody] CompanyMasterObj companyDetails)
+        {
+            try
+            {
+                string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == WhistleContants.CompanyID).Value;
+                var result = db.CompanyMasters.FirstOrDefault(u => u.CURN.ToString().Trim().ToUpper().Equals(companyID.ToUpper()));
+
+                if (result != null)
+                {
+                    result.SendAdmNotifyOnNewCase = companyDetails.SendAdmNotifyOnNewCase != null ? companyDetails.SendAdmNotifyOnNewCase : false;
+                    db.SaveChanges();
+                    return Ok(WhistleContants.SuccessAdminNotification);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -194,5 +219,6 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         public string CompanyLogo { get; set; }
         public string CompanyTopBanner { get; set; }
         public Nullable<int> SubscriptionPlan { get; set; }
+        public Nullable<bool> SendAdmNotifyOnNewCase { get; set; }
     }
 }

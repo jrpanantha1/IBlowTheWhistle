@@ -11,7 +11,7 @@ $(document).ready(function () {
     else {
         window.location.href = "/Pages/Login.aspx";
     }
-
+    menuEnableDisable();//ref Utility.js
 });
 function getPolicyDocumentsForUSer() {
 

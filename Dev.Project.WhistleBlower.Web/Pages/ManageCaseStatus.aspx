@@ -8,7 +8,15 @@
     <script type="text/javascript" src="/JQDatatables/datatables.min.js"></script>
     <link href="/assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/PageScripts/ManageCaseStatus.js"></script>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
 
+        .btn-block + .btn-block {
+            margin-top: 0
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
 
@@ -21,7 +29,12 @@
 
                 </div>
                 <div class="col-12 mt-6" style="margin-bottom: 2%;">
-                    <div class="row" style="margin-bottom: 2%;">
+                    <a href="#" onclick="shownewStatusForm(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Click here to add new status code'>
+                        <img src="/Images/addIncidents.png" /></a>
+                    <a href="#" onclick="window.location.href='/Pages/ManageAdmin.aspx';" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px; padding-left: 10px;" data-original-title='Back to Administration'>
+                        <img src="/Images/backToHome.png" /></a>
+
+                    <div class="row mt-2" style="margin-bottom: 2%;">
                         <input type="text" id="txtTranID" class="form-control d-none" placeholder="TranID" />
                         <div class="col">
                             <input type="text" id="txtStatusCode" class="form-control" placeholder="Status Code" />
@@ -34,9 +47,10 @@
                     <div class="row mt-4 mb-2">
                         <div class="col-6">
                             <button type="submit" value="Update" id="btnSubmit" onclick="if (updatePreActionValidation()) { updatePreAction(); };return false;" class="btn btn-block btn-primary">Update</button>
+                            <button type="submit" value="Update" id="btnAddNew" onclick="if (updatePreActionValidation()) { addNewStatusCode(); };return false;" style="display: none;" class="btn btn-block btn-primary">Create new status</button>
                         </div>
                         <div class="col-6">
-                            <button type="button" id="btnCancel" class="btn btn-block btn-primary" onclick="window.location.href='/Pages/ManageAdmin.aspx';">Cancel</button>
+                            <button type="button" id="btnCancel" class="btn btn-block btn-primary" onclick="window.location.href='/Pages/ManageCaseStatus.aspx';">Cancel</button>
                         </div>
 
 
@@ -57,6 +71,7 @@
                                         <th class="langDirection">Status Code</th>
                                         <th class="langDirection">Status Desc</th>
                                         <th class="langDirection">Select</th>
+                                        <th class="langDirection">Delete</th>
                                     </tr>
                                 </thead>
                             </table>

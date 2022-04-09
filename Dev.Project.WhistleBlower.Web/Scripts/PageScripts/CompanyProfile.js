@@ -46,6 +46,9 @@ function getCompanyProfile() {
                 //update hidden key for feature ref
                 $('#hdnSusPlanCode').val(response.SubscriptionPlan != null ? response.SubscriptionPlan : 1);
 
+                //update Admin Notification
+                $(".switch-input").prop("checked", response.SendAdmNotifyOnNewCase != null ? response.SendAdmNotifyOnNewCase : false);
+
             }
 
         },
@@ -77,7 +80,10 @@ function getUserProfileDetails() {
                 $("#hdnLoggedUserName").val(uName);
                 var llcode = response[0].PreferredLanguage != null ? response[0].PreferredLanguage : "1";
                 $("#hdnPreferredLang").val(llcode);
-                localStorage.setItem("iBlowLanguage", llcode);
+                //preferred languge is applied firts time 
+                if (localStorage.getItem("iBlowLanguage") == null || localStorage.getItem("iBlowLanguage") == "") {
+                    localStorage.setItem("iBlowLanguage", llcode);
+                }
                 $("#hdnPreferredZone").val(response[0].PreferredTimeZone);
                 $("#dropdownFilter").text(response[0].PreferredFilter);
                 $("#hdnPreferredFilter").val(response[0].PreferredFilter);

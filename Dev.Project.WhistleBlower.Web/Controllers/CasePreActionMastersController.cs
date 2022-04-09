@@ -78,16 +78,21 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         [ResponseType(typeof(CasePreActionMaster))]
         public IHttpActionResult PostCasePreActionMaster(CasePreActionMaster casePreActionMaster)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+
+            Guid newStatusID = Guid.NewGuid();
+            string companyID = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type == "companyID").Value;
+
+            casePreActionMaster.CURN = new Guid(companyID);
+            casePreActionMaster.CPURN = newStatusID;
+            casePreActionMaster.isActive = true;
+
 
             db.CasePreActionMasters.Add(casePreActionMaster);
 
             try
             {
                 db.SaveChanges();
+                return Ok("Success");
             }
             catch (DbUpdateException)
             {
@@ -117,7 +122,7 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
             db.CasePreActionMasters.Remove(casePreActionMaster);
             db.SaveChanges();
 
-            return Ok(casePreActionMaster);
+            return Ok("Success");
         }
 
         protected override void Dispose(bool disposing)

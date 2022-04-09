@@ -68,10 +68,11 @@ function showHistroy(items) {
         var resDate = new Date(items[i].ResponseDate).toLocaleString();
         var resMessage = items[i].Message != "" ? items[i].Message : "";
         var resCompanyName = items[i].companyName;
+        var displayNameTex = items[i].regUserDisplayName != null ? items[i].regUserDisplayName : "User";
 
         resCompanyLogo = items[i].companyLogo != null ? items[i].companyLogo : "/assets/images/LargeAvatar.png";
 
-        if (items[i].commentBy == "Anonymous User") {
+        if (items[i].commentBy == "Anonymous User" || items[i].commentBy == "User") {
 
 
 
@@ -80,8 +81,8 @@ function showHistroy(items) {
             chatHtml = chatHtml + '<div class="row">';
             chatHtml = chatHtml + '<div class="col-auto">';
             chatHtml = chatHtml + '<!-- Avatar -->';
-            chatHtml = chatHtml + '<div class="no-avatar avatar-sm bg-primary">';
-            chatHtml = chatHtml + '<i class="icon-user"></i>';
+            chatHtml = chatHtml + '<div class="no-avatar avatar-sm bg-primary" >';
+            chatHtml = chatHtml + '<i class="icon-user" ></i>';
             chatHtml = chatHtml + '</div>';
             chatHtml = chatHtml + ' </div>';
             chatHtml = chatHtml + '<div class="col ml-n2">';
@@ -90,7 +91,8 @@ function showHistroy(items) {
             chatHtml = chatHtml + ' <div class="row">';
             chatHtml = chatHtml + '<div class="col">';
             chatHtml = chatHtml + '<!-- Title -->';
-            chatHtml = chatHtml + '<h6 class="mb-1">' + anonymousText + '';
+            chatHtml = chatHtml + '<h6 class="mb-1">' + displayNameTex + '';
+            //chatHtml = chatHtml + '<h6 class="mb-1">' + anonymousText + '';
             chatHtml = chatHtml + '</h6>';
             chatHtml = chatHtml + '</div>';
             chatHtml = chatHtml + '<div class="col-auto">';
@@ -308,7 +310,7 @@ function loadLanguageDetails() {
                 $('#btnClose').text(response[0].Close);
                 $('#successMessage').text(response[0].SuccessMessage);
                 $('#txtMessage').attr("placeholder", response[0].Leavecomment);
-                anonymousText = response[0].AnonymousUser;
+                //anonymousText = response[0].AnonymousUser;
             }
         },
         error: function (response) {
@@ -438,7 +440,28 @@ function exportToPDF() {
 
 function saveChatInfotoCaseMngt() {
     var doc = new jsPDF();  //create jsPDF object
-    doc.fromHTML(document.getElementById("chartDiv"), // page element which you want to print as PDF
+
+
+
+    var divContents = $("#chartDiv").html();
+    var imgSRC = $('.ignoreforPDF img').attr('src');
+
+    var a = [];
+    var imagesArray = $(divContents).find("img").each(function (index) {
+        a[index] = $(this).html();
+    });
+    for (var i = 0; i < imagesArray.length; i++) {
+
+        var find = imagesArray[i].currentSrc;
+        find = find.substring(find.indexOf("/I"));
+        //var find = ffind;//"/IBTWImages/4e2162b8-51f5-41fa-8eed-f0a4569bcca5/CompanyLogo.png";
+        var re = new RegExp(find, 'g');
+
+        divContents = divContents.replace(re, '#');
+    }
+
+
+    doc.fromHTML(divContents, // page element which you want to print as PDF //document.getElementById("chartDiv")
         15,
         15,
         {

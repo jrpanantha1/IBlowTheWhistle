@@ -28,7 +28,7 @@
                         <p class="lead langDirection" id="formShortNote"></p>
                     </header>
                     <a onclick="getResponseHistory();return false;" href="#" id="ancRefresh" data-toggle='tooltip' data-placement='left' data-original-title='Reload response' class="smooth-scroll">
-                        <img alt="reload" src="/Images/reload.png" /></a>
+                        <img alt="reload" src="/Images/reloadBidir.png" /></a>
                     <!-- end of header -->
                     <div class="card shadow-sm">
                         <div class="card-body p-5">
@@ -48,13 +48,13 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-auto d-none">
                                     <!-- Avatar -->
                                     <div class="no-avatar avatar-sm">
                                         <i class="icon-user"></i>
                                     </div>
                                 </div>
-                                <div class="col ml-n2">
+                                <div class="col">
 
                                     <!-- Label -->
                                     <label class="sr-only" id="leaveComment"></label>

@@ -128,7 +128,8 @@ function getIncidentDetails() {
                     buttons: [{
                         extend: 'excel',
                         text: '<img src="/Images/ExcelIcon.png"></img>',
-                        titleAttr: 'Save as Excel',
+                        titleAttr: $('#hdnbtnExcel').val(),
+                        className: 'button-noshowtoUser',
                         title: 'Whistle Blow Incidents',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -137,7 +138,8 @@ function getIncidentDetails() {
                     {
                         extend: 'pdf',
                         text: '<img src="/Images/ExportPDF.png"></img>',
-                        titleAttr: 'Save as PDF',
+                        titleAttr: $('#hdnbtnPDF').val(),
+                        className: 'button-noshowtoUser',
                         title: 'Whistle Blow Incidents',
                         orientation: 'landscape',
                         pageSize: 'LEGAL',
@@ -147,7 +149,8 @@ function getIncidentDetails() {
                     },
                     {
                         text: '<img src="/Images/addIncidents.png"></img>',
-                        titleAttr: 'Add more incidents',
+                        titleAttr: $('#hdnbtnAddmore').val(),
+                        className: 'button-noshowtoUser',
                         action: function (e, dt, button, config) {
                             window.location = '/Pages/IncidentForm.aspx';
                         }
@@ -155,7 +158,8 @@ function getIncidentDetails() {
                     },
                     {
                         text: '<img src="/Images/reload.png"></img>',
-                        titleAttr: 'Reload Incidents',
+                        className: 'button-update',
+                        titleAttr: $('#hdnbtnReload').val(),
                         action: function (e, dt, button, config) {
                             getIncidentDetails();
                         }
@@ -189,7 +193,7 @@ function getIncidentDetails() {
                                 }
                                 var ReturnHTML = '';
                                 //ReturnHTML = "<div class='gridDescription wd100'>" + data.rComments + "</div>"
-                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='View Details' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
+                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='" + $('#hdnTipViewDetails').val() + "' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
                                 return ReturnHTML;
                             }
 
@@ -222,17 +226,17 @@ function getIncidentDetails() {
 
                                 if (data.hisCount == "0") {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipCaseMngt').val() + "'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 else {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipCaseMngt').val() + "'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 return ReturnHTML;
                             }
@@ -370,8 +374,9 @@ function getIncidentDetails() {
 
                     $('.companyURLSection').hide();
                     //tblDT.button(0).enable(false);
-                    $('.dt-buttons').hide();
-
+                    //$('.dt-buttons').hide();
+                    $('.button-showtoUser').show();
+                    $('.button-noshowtoUser').hide();
                     //disable category colum
                     // tblDT.column(13).visible(false);
                     //disbale company code
@@ -534,6 +539,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                         extend: 'excel',
                         text: '<img src="/Images/ExcelIcon.png"></img>',
                         titleAttr: 'Save as Excel',
+                        className: 'button-noshowtoUser',
                         title: 'Whistle Blow Incidents',
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -543,6 +549,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                         extend: 'pdf',
                         text: '<img src="/Images/ExportPDF.png"></img>',
                         titleAttr: 'Save as PDF',
+                        className: 'button-noshowtoUser',
                         title: 'Whistle Blow Incidents',
                         orientation: 'landscape',
                         pageSize: 'LEGAL',
@@ -553,6 +560,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                     {
                         text: '<img src="/Images/addIncidents.png"></img>',
                         titleAttr: 'Add more incidents',
+                        className: 'button-noshowtoUser',
                         action: function (e, dt, button, config) {
                             window.location = '/Pages/IncidentForm.aspx';
                         }
@@ -560,6 +568,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                     },
                     {
                         text: '<img src="/Images/reload.png"></img>',
+                        className: 'button-showtoUser',
                         titleAttr: 'Reload Incidents',
                         action: function (e, dt, button, config) {
                             getIncidentDetailsByIncCategory($('#dropdownFilter').text());
@@ -589,7 +598,7 @@ function getIncidentDetailsByIncCategory(incCategory) {
                                     readStatus2 = 1;
                                 }
                                 var ReturnHTML = '';
-                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='View Details' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
+                                ReturnHTML = "<a href = '/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus2 + "' data - toggle='tooltip' data - placement='bottom' data - original - title='" + $('#hdnTipViewDetails').val() + "' > <div class='gridDescription wd100'>" + data.rComments + "</div></a>";
                                 return ReturnHTML;
                             }
 
@@ -622,17 +631,17 @@ function getIncidentDetailsByIncCategory(incCategory) {
 
                                 if (data.hisCount == "0") {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipCaseMngt').val() + "'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 else {
                                     if (localStorage.getItem("AcctType") != "Admin") {
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a></div>";
                                     }
                                     else
-                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='View Details'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Response History'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='Case History'><i class='icon-briefcase mx-2'></i></a></div>";
+                                        ReturnHTML = "<div><a  href='/Pages/ViewForm.aspx?iURN=" + data.rTranID + "&vs=" + readStatus + "' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipViewDetails').val() + "'><i class='icon-link-2 mx-1'></i></a> <a  href='Response.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipResponseHistory').val() + "'><i class='icon-message-circle mx-2'></i><span style='display: inline;' class='badge badge-danger rounded-circle font-weight-normal' >" + data.hisCount + "</span></a><a target='_blank' href='Casemanagement.aspx?iURN=" + data.rTranID + "'' class='text-success' class='text-success' data-toggle='tooltip' data-placement='bottom' data-original-title='" + $('#hdnTipCaseMngt').val() + "'><i class='icon-briefcase mx-2'></i></a></div>";
                                 }
                                 return ReturnHTML;
                             }
@@ -773,7 +782,11 @@ function getIncidentDetailsByIncCategory(incCategory) {
 
                     $('.companyURLSection').hide();
                     //tblDT.button(0).enable(false);
-                    $('.dt-buttons').hide();
+                    //$('.dt-buttons').hide();
+                    $('.button-showtoUser').show();
+                    $('.button-noshowtoUser').hide();
+                    // $('.button-showtoUser').show();
+
 
                     //disable category colum
                     //tblDT.column(13).visible(false);
@@ -950,6 +963,15 @@ function getViewIncidentLabelDetails() {
                 $('#hdnViewDetails').val(response[0].TipViewDetails);
                 $('#hdnResHistory').val(response[0].TipResponseHistory);
                 $('#hdnCaseMngt').val(response[0].TipCaseMngt);
+
+                $('#hdnbtnExcel').val(response[0].GrdBtnExcel);
+                $('#hdnbtnPDF').val(response[0].GrdBtnPDF);
+                $('#hdnbtnAddmore').val(response[0].GrdBtnAddNewInc);
+                $('#hdnbtnReload').val(response[0].GrdBtnRefresh);
+                //tooltip message
+                $('#hdnTipViewDetails').val(response[0].TipViewDetails);
+                $('#hdnTipResponseHistory').val(response[0].TipResponseHistory);
+                $('#hdnTipCaseMngt').val(response[0].TipCaseMngt);
             }
         },
         error: function (response) {

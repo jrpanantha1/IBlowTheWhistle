@@ -116,7 +116,7 @@
     <style>
         .sendbtn {
             position: absolute;
-            right: 0;
+            right: 20px;
             border: 0;
             background: none;
             bottom: 0;

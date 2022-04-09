@@ -34,5 +34,9 @@ namespace WhistleBlowerDAL
         public string GrdStsDone { get; set; }
         public string GrdStsDiscarded { get; set; }
         public string GrdStsRouteEmail { get; set; }
+        public string GrdBtnExcel { get; set; }
+        public string GrdBtnPDF { get; set; }
+        public string GrdBtnAddNewInc { get; set; }
+        public string GrdBtnRefresh { get; set; }
     }
 }

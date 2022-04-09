@@ -13,13 +13,22 @@ $(document).ready(function () {
 
 });
 
+function shownewStatusForm() {
+    $('#txtStatusCode').val("");
+    $('#txtStatusCode').removeClass('error');
+    $('#txtStatusDesc').val("");
+    $('#txtStatusDesc').removeClass('error');
+    $('#btnAddNew').show();
+    $('#btnAddNew').removeClass("d-none")
+    $('#btnSubmit').hide();
+
+}
+
 var JsonPreCaseObj = [];
 function GetCasePreActionMaster() {
 
-    var lanCode = 1;
-    if (localStorage.getItem("iBlowLanguage") != null) {
-        lanCode = localStorage.getItem("iBlowLanguage").toString();
-    }
+    var lanCode = getLanguageCode();// utlity.js
+
     JsonPreCaseObj = [];
     $.ajax({
         url: '/api/CasePreActionMasters?langID=' + Number(lanCode),
@@ -33,6 +42,9 @@ function GetCasePreActionMaster() {
         success: function (response) {
             if (response != "Unauthorized") {
                 var items = response;
+                if (items.length == 0) {
+                    shownewStatusForm();
+                }
                 for (var i = 0; i < items.length; i++) {
 
                     JsonPreCaseObj.push({
@@ -62,7 +74,7 @@ function GetCasePreActionMaster() {
                     },
                     "bProcessing": true,
                     "columnDefs": [
-                        { targets: [0, 4, 5, 6], visible: true },
+                        { targets: [0, 4, 5, 6, 7], visible: true },
                         { targets: '_all', visible: false }
                     ],
                     "iDisplayLength": 10,
@@ -92,6 +104,12 @@ function GetCasePreActionMaster() {
                             }
 
 
+                        },
+                        {
+                            "data": function (data, type, row, meta) {
+                                var ReturnHTML = "<a data-toggle='tooltip' data-placement='top'  data-original-title='Delete' onclick='deleteStatusCode(this)'  href='javascript:;'><img src='/Images/deleteIcon.png' /></a>";
+                                return ReturnHTML;
+                            }
                         }
                     ]
                 });
@@ -148,7 +166,45 @@ function GetCaseStatusDetails(ele) {
         $('#txtTranID').val(selectedData.rCPURN);
     }
 }
+function deleteStatusCode(ele) {
+    var dataRow = $('#tableCasePreAction').DataTable().row($(ele).closest('tr')).data();
+    if (confirm("Are you sure?")) {
+        deleteStatusCodebyID(dataRow.rCPURN);
+    }
 
+    return false;
+}
+function deleteStatusCodebyID(rCPURN) {
+
+    $.ajax({
+        url: '/api/CasePreActionMasters?id=' + rCPURN,
+        method: 'DELETE',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        success: function (response) {
+            if (response != null && response == "Success") {
+                showSuccessMessage("Record deleted successfully.");
+                GetCasePreActionMaster();
+            }
+            if (response != null && response != "Success") {
+                //$('#divWarning').show();
+                //$('#spanwarningText').text(response);
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+            //shownewForm();
+        },
+        failure: function (response) {
+            alert(response.responseText);
+            //shownewForm();
+        }
+    });
+}
 function updatePreActionValidation() {
     var flag = true;
 
@@ -187,6 +243,41 @@ function updatePreAction() {
                 //location.reload();
                 GetCasePreActionMaster();
 
+            }
+        },
+        error: function (response) {
+            alert(response.responseText);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        }
+    });
+}
+function addNewStatusCode() {
+    var sCode = $('#txtStatusCode').val();
+    var sDesc = $('#txtStatusDesc').val();
+    var lanCode = getLanguageCode();// utlity.js
+
+    var dataCasePreAction = {
+        "PreAction": sCode,
+        "PreActionBrief": sDesc,
+        "LanguageID": lanCode
+    };
+
+    $.ajax({
+        url: '/api/CasePreActionMasters',
+        method: 'POST',
+        data: JSON.stringify(dataCasePreAction),
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (response) {
+            if (response != null && response != "" && response == "Success") {
+                showSuccessMessage("Status Code has been added successfully.");
+                GetCasePreActionMaster();
+                clearControls();
             }
         },
         error: function (response) {

@@ -119,6 +119,7 @@
           <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyLogo" Type="nvarchar" MaxLength="200" />
           <Property Name="SubscriptionPlan" Type="int" />
+          <Property Name="SendAdmNotifyOnNewCase" Type="bit" />
         </EntityType>
         <EntityType Name="EmailTemplate">
           <Key>
@@ -411,6 +412,10 @@
           <Property Name="GrdStsDone" Type="nvarchar" MaxLength="20" />
           <Property Name="GrdStsDiscarded" Type="nvarchar" MaxLength="20" />
           <Property Name="GrdStsRouteEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrdBtnExcel" Type="nvarchar" MaxLength="30" />
+          <Property Name="GrdBtnPDF" Type="nvarchar" MaxLength="30" />
+          <Property Name="GrdBtnAddNewInc" Type="nvarchar" MaxLength="30" />
+          <Property Name="GrdBtnRefresh" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="VisitCountAllLogin">
           <Key>
@@ -639,6 +644,7 @@
           <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompanyLogo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="SubscriptionPlan" Type="Int32" />
+          <Property Name="SendAdmNotifyOnNewCase" Type="Boolean" />
         </EntityType>
         <EntityType Name="WhistleBlowIncident">
           <Key>
@@ -736,6 +742,10 @@
           <Property Name="GrdStsDone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GrdStsDiscarded" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GrdStsRouteEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrdBtnExcel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GrdBtnPDF" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GrdBtnAddNewInc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GrdBtnRefresh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CasePreActionMaster">
           <Key>
@@ -1088,6 +1098,7 @@
           <EntitySetMapping Name="CompanyMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.CompanyMaster">
               <MappingFragment StoreEntitySet="CompanyMaster">
+                <ScalarProperty Name="SendAdmNotifyOnNewCase" ColumnName="SendAdmNotifyOnNewCase" />
                 <ScalarProperty Name="SubscriptionPlan" ColumnName="SubscriptionPlan" />
                 <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
                 <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
@@ -1185,6 +1196,10 @@
           <EntitySetMapping Name="ViewIncidentsLanguages">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ViewIncidentsLanguage">
               <MappingFragment StoreEntitySet="ViewIncidentsLanguage">
+                <ScalarProperty Name="GrdBtnRefresh" ColumnName="GrdBtnRefresh" />
+                <ScalarProperty Name="GrdBtnAddNewInc" ColumnName="GrdBtnAddNewInc" />
+                <ScalarProperty Name="GrdBtnPDF" ColumnName="GrdBtnPDF" />
+                <ScalarProperty Name="GrdBtnExcel" ColumnName="GrdBtnExcel" />
                 <ScalarProperty Name="GrdStsRouteEmail" ColumnName="GrdStsRouteEmail" />
                 <ScalarProperty Name="GrdStsDiscarded" ColumnName="GrdStsDiscarded" />
                 <ScalarProperty Name="GrdStsDone" ColumnName="GrdStsDone" />

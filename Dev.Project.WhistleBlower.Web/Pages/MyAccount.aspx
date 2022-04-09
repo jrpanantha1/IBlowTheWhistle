@@ -55,10 +55,8 @@
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">Your Avatar</h6>--%>
                                                     <label class="btn btn-sm btn-dark file-attachment-btn langDirection" for="profilePicAttachmentBtn" id="lblSelectPrifile">
-
-                                                        <input id="profilePicAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     </label>
-
+                                                    <input id="profilePicAttachmentBtn" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     <input type="button" class="btn right  btn-sm btn-block btn-primary" onclick="updateCompanyProfile();" id="btnUpdateAccount" />
 
                                                 </div>
@@ -88,10 +86,9 @@
                                                 <div class="avatar-change ml-4">
                                                     <%--<h6 class="mb-3 text-uppercase font-weight-normal">r</h6>--%>
                                                     <label class="btn btn-sm btn-dark file-attachment-btn" for="topBannerAttachmentBtn" id="lblSelectBanner">
-                                                        <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                     </label>
                                                     <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
-
+                                                    <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
                                                 </div>
                                                 <!--end of avatar change-->
                                                 <!--end of flex-->

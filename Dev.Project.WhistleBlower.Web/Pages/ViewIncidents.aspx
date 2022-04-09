@@ -478,6 +478,14 @@
             <input type="hidden" id="hdnResHistory" />
             <input type="hidden" id="hdnCaseMngt" />
 
+            <input type="hidden" id="hdnbtnExcel" />
+            <input type="hidden" id="hdnbtnPDF" />
+            <input type="hidden" id="hdnbtnAddmore" />
+            <input type="hidden" id="hdnbtnReload" />
+
+            <input type="hidden" id="hdnTipViewDetails" />
+            <input type="hidden" id="hdnTipResponseHistory" />
+            <input type="hidden" id="hdnTipCaseMngt" />
         </div>
         <!--end of container-->
     </section>
