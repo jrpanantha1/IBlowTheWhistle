@@ -21,6 +21,7 @@
     <script src="../Scripts/jquery-3.3.1.min.js"></script>
     <script src="../Scripts/Validation.js"></script>
     <script src="/Scripts/PageScripts/Join.js"></script>
+     <script async defer src="https://cdn.boei.help/hello.js"></script>
     <style>
         .error {
             border: 1px solid red;

@@ -45,7 +45,7 @@
     <script src="/Scripts/PageScripts/languageChange.js"></script>
     <script src="/Scripts/PageScripts/CompanyProfile.js"></script>
     <script src="/Scripts/Validation.js"></script>
-
+    <script async defer src=https://cdn.boei.help/hello.js></script>
     <meta name="msapplication-config" content="browserconfig.xml" />
     <meta name="theme-color" content="#00B48F" />
     <title>
@@ -252,6 +252,6 @@
         <input type="hidden" id="hdnPreferredFilter" />
 
     </form>
-
+    
 </body>
 </html>

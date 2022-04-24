@@ -66,7 +66,7 @@
             }
 
         .switch-input:checked ~ .switch-label {
-            background: #E1B42B;
+            background: #00B48F;
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
         }
 

@@ -345,9 +345,11 @@ function newJoinValidation() {
 }
 function createNewAdminUsers() {
 
+    var df = $('#txtFullName').val() == "" ? $('#txtFirstName').val() + " " + $('#txtLastName').val() : $('#txtFullName').val();
+
     var objNewUser = {
         "firstName": $('#txtFirstName').val(),
-        "fullName": $('#txtFullName').val(),
+        "fullName": df,
         "lastName": $('#txtLastName').val(),
         "Email": $('#txtEmail').val(),
         "password": $('#txtPassword').val()

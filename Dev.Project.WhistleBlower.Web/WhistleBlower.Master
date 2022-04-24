@@ -41,7 +41,7 @@
     <script src="/Scripts/Utility.js"></script>
     <script src="/Scripts/PageScripts/languageChange.js"></script>
     <script src="/Scripts/Validation.js"></script>
-
+    <script async defer src=https://cdn.boei.help/hello.js></script>
     <meta name="msapplication-config" content="browserconfig.xml" />
     <meta name="theme-color" content="#00B48F" />
     <title>
@@ -191,5 +191,6 @@
 
         </div>
     </form>
+    <script async defer src="https://cdn.boei.help/hello.js"></script>
 </body>
 </html>

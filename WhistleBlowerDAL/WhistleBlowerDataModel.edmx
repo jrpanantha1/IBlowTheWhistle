@@ -13,7 +13,7 @@
           <Property Name="IURN" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RegUserID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ResClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Message" Type="nvarchar" MaxLength="200" />
+          <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="ResponseDate" Type="datetime" />
           <Property Name="ViewStatus" Type="bit" />
           <Property Name="commentBy" Type="nvarchar" MaxLength="20" />
@@ -587,7 +587,7 @@
           <Property Name="IURN" Type="Guid" Nullable="false" />
           <Property Name="RegUserID" Type="Guid" Nullable="false" />
           <Property Name="ResClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ResponseDate" Type="DateTime" Precision="3" />
           <Property Name="ViewStatus" Type="Boolean" />
           <Property Name="commentBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />

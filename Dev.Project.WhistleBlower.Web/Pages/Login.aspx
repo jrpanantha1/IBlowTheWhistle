@@ -43,6 +43,7 @@
     <script src="../Scripts/bootstrap.min.js" async defer></script>
     <script src="../Scripts/Validation.js"></script>
     <script src="../Scripts/PageScripts/Login.js"></script>
+     <script async defer src="https://cdn.boei.help/hello.js"></script>
     <style>
         .error {
             border: 1px solid red;

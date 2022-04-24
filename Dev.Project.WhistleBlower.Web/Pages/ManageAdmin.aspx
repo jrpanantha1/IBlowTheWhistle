@@ -57,11 +57,12 @@
                                 <ul class="accordion" id="ulclsExpMngAdminAccount">
                                     <li class="accordion-list">
                                         <a class="toggle" href="#" id="ancclsExpMngAdminAccount"></a>
-
-                                        <div class="inner intro mb-2 justify-content-center align-items-center">
-                                            <a href="/Pages/AdminAccounts.aspx">
-                                                <img alt="Qries" src="/Images/Click Here.png" />
-                                            </a>
+                                        <div class="inner intro mb-4">
+                                           <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                                <a href="/Pages/AdminAccounts.aspx">
+                                                    <img alt="Qries" src="/Images/Click Here.png" />
+                                                </a>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -69,7 +70,7 @@
                                     <li class="accordion-list">
                                         <a class="toggle" href="#" id="ancclsExpMngStatusCode"></a>
                                         <div class="inner intro mb-4">
-                                            <div class="topbanner  pb-3 inner-2">
+                                            <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">
                                                     <a href="/Pages/ManageCaseStatus.aspx">
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
@@ -84,7 +85,7 @@
                                     <li class="accordion-list">
                                         <a class="toggle" href="#" id="ancclsExpVwSubsHistroy"></a>
                                         <div class="inner intro mb-4">
-                                            <div class="topbanner  pb-3 inner-2">
+                                            <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">
                                                     <a href="/Pages/SubscriptionHistroy.aspx">
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
@@ -99,7 +100,7 @@
                                     <li class="accordion-list">
                                         <a class="toggle" href="#" id="ancclsExpVwPolicyDocuments"></a>
                                         <div class="inner intro mb-4">
-                                            <div class="topbanner  pb-3 inner-2">
+                                            <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">
                                                     <a href="/Pages/PolicyDocuments.aspx">
                                                         <img alt="Qries" src="/Images/Click Here.png" /></a>
