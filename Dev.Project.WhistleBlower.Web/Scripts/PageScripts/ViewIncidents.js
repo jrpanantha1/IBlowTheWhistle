@@ -83,7 +83,13 @@ function getIncidentDetails() {
                     else {
                         $('.imgTopBanner').attr("src", "/assets/images/WhistleDefaultTopBanner.PNG");
                     }
-                    $('.ancImgTopBanner').attr("href", tarURL);
+                    //if company has alternate access URL then bind else deault URL
+                    if (response.objCompanyMasters.TopBannerAlternateURL != null && response.objCompanyMasters.TopBannerAlternateURL != "") {
+                        $('.ancImgTopBanner').attr("href", response.objCompanyMasters.TopBannerAlternateURL);
+                    }
+                    else
+                        $('.ancImgTopBanner').attr("href", tarURL);
+
                     $('.topBanner').show();
                     $('.companyURLSection').show();
 
@@ -352,7 +358,7 @@ function getIncidentDetails() {
                                     //for user disbale this section
                                     $('#dropdownFilter').removeAttr('data-toggle');
                                     $('#dropdownFilter').removeClass('dropdown-toggle');
-                                    $('#dropdownFilter').text('Status');
+                                    $('#dropdownFilter').html("<i style='font-size:24px;color:white;' class='icon-align-center mx-1'></i>");
                                     $('#topCompanySection').hide();
 
                                     ReturnHTML = " <label id='" + data.rTranID + "'>" + data.rIncCategory + "</label>";

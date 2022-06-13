@@ -398,7 +398,7 @@ $(document).ready(function () {
 function exportToPDF() {
     var doc = new jsPDF();  //create jsPDF object
 
-    var divContents = $("#chartDiv").html();
+    var divContents = $("#chartDiv").html();   
     var imgSRC = $('.ignoreforPDF img').attr('src');
 
     var a = [];

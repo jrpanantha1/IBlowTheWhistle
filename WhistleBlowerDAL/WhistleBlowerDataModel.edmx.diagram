@@ -14,10 +14,7 @@
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.AnonymousResponseHistory" Width="1.5" PointX="5.375" PointY="9.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.ResponseLanguage" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.IBTWProspect" Width="1.5" PointX="11.375" PointY="4.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CompanyMaster" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" Width="1.5" PointX="3.375" PointY="13.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.LanguageDetail" Width="1.5" PointX="11.375" PointY="11.75" />
-        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CasePreActionMaster" Width="1.5" PointX="5.375" PointY="13.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CaseManagement" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" Width="1.5" PointX="3.375" PointY="0.75" />
@@ -31,6 +28,9 @@
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.VisitCountAllLogin" Width="1.5" PointX="10.375" PointY="8.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.PolicyMaster" Width="1.5" PointX="7.375" PointY="15.75" />
         <EntityTypeShape EntityType="eformulus_IBTW_DBModel.AvatarMenuLanguage" Width="1.5" PointX="15.375" PointY="12.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" Width="1.5" PointX="17.375" PointY="12.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="eformulus_IBTW_DBModel.CompanyMaster" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

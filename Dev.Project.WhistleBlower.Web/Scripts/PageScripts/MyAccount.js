@@ -55,10 +55,12 @@ function getCompanyDetails() {
 
 function updateCompanyProfile() {
 
+    var txtAltURL = $('#txtBannerText').val();
     var companyData =
     {
         "CompanyLogo": ppBase64,
-        "CompanyTopBanner": cbBase64
+        "CompanyTopBanner": cbBase64,
+        "TopBannerAlternateURL": txtAltURL
     }
 
     $.ajax({
@@ -223,6 +225,7 @@ function loadMyAccountLanguageDetails() {
                 $('#lblSelectBanner').text(response[0].btnSelectPicture);
                 $('#btnUpdateTopBanner').val(response[0].btnUpdateBanner);
                 $('#lblSelectTimeZone').text(response[0].lblTimeSelector);
+                $('#spanCompanyURL').text(response[0].topBannerAltURL);
                 //$('#successMessage').text(response[0].SuccessMessage);
                 //$('#txtMessage').attr("placeholder", response[0].Leavecomment);
                 //anonymousText = response[0].AnonymousUser;

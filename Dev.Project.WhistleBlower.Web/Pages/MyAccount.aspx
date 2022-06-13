@@ -9,6 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderMain" runat="server">
     <script src="/Scripts/PageScripts/MyAccount.js"></script>
+    <link href="../assets/css/overall.css" rel="stylesheet" />
 
 
     <style type="text/css">
@@ -24,6 +25,10 @@
         .timezone-selector {
             width: 250px;
             margin-bottom: 5px;
+        }
+
+        .bannername {
+            float: inherit !important;
         }
     </style>
     <section class="section-split">
@@ -45,7 +50,7 @@
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle langDirection" href="#" id="ancclsExpYourAvatar"></a>
+                                        <a class="toggle langDirection ancMinHeight" href="#" id="ancclsExpYourAvatar"></a>
                                         <div class="inner intro mb-4">
 
                                             <div class="d-flex justify-content-center align-items-center pb-3 inner-1">
@@ -74,10 +79,15 @@
                                     </li>
 
                                     <li class="accordion-list">
-                                        <a class="toggle langDirection" href="#" id="ancclsExpTopBanner"></a>
+                                        <a class="toggle langDirection ancMinHeight" href="#" id="ancclsExpTopBanner"></a>
 
                                         <div class="inner intro mb-4">
-
+                                            <div class="bannername">
+                                                <div class="bannername-area d-flex">
+                                                    <span class="bannertitletxt langDirection" id="spanCompanyURL"></span>
+                                                    <input type="text" id="txtBannerText" />
+                                                </div>
+                                            </div>
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
 
                                                 <!-- // no avatar -->
@@ -89,11 +99,15 @@
                                                     </label>
                                                     <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
                                                     <input id="topBannerAttachmentBtn" accept="image/*" value="" name="file-attachment" type="file" class="file-attachment-btn-label" />
+
+
+
                                                 </div>
                                                 <!--end of avatar change-->
                                                 <!--end of flex-->
 
                                             </div>
+
                                             <%--  `<br />
                                             <div class="form-group">
                                                 <input type="button" class="btn right  btn-sm btn-block btn-primary" value="Update Banner" onclick="updateCompanyProfile();" id="btnUpdateTopBanner" />
@@ -103,7 +117,7 @@
                                     </li>
 
                                     <li class="accordion-list">
-                                        <a class="toggle langDirection" href="#" id="ancclsExpPreffLanguage"></a>
+                                        <a class="toggle langDirection ancMinHeight" href="#" id="ancclsExpPreffLanguage"></a>
                                         <div class="inner intro mb-4">
 
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
@@ -116,7 +130,7 @@
                                         </div>
                                     </li>
                                     <li class="accordion-list">
-                                        <a class="toggle langDirection" id="ancclsExpPreffTimeZone" href="#"></a>
+                                        <a class="toggle langDirection ancMinHeight" id="ancclsExpPreffTimeZone" href="#"></a>
 
                                         <div class="inner intro mb-4">
                                             <div class="topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
@@ -389,7 +403,7 @@
                                         </div>
                                     </li>
                                     <li class="accordion-list">
-                                        <a class="toggle langDirection" id="ancclsExpResetPassword" href="#"></a>
+                                        <a class="toggle langDirection ancMinHeight" id="ancclsExpResetPassword" href="#"></a>
 
                                         <div class="inner intro mb-4">
 

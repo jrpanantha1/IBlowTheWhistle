@@ -254,6 +254,8 @@
     <Content Include="assets\js\form.validate.min.js" />
     <Content Include="assets\js\jquery.dataTables.js" />
     <Content Include="assets\js\jquery.dataTables.min.js" />
+    <Content Include="assets\js\jspdf.js" />
+    <Content Include="assets\js\setlanguage.js" />
     <Content Include="assets\js\summernote-lite.min.js" />
     <Content Include="assets\js\theme.min.js" />
     <Content Include="assets\js\toast.script.js" />
@@ -309,6 +311,7 @@
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />
     <Content Include="Images\sort_desc.png" />
+    <Content Include="Images\statusBar.png" />
     <Content Include="Images\uploadIntoCaseTrack.png" />
     <Content Include="Images\viewIcon.png" />
     <Content Include="Images\Whistle_Long.jpg" />

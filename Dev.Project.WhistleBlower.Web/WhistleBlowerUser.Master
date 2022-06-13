@@ -108,7 +108,7 @@
                                         <a onclick="location.reload();return false;" href="#" data-toggle='tooltip' data-placement='left' data-original-title='Refresh' class="smooth-scroll"><i style="font-size: 24px;" class="icon-refresh-ccw mr-5"></i></a>
                                     </li>
                                     <li class="nav-item dropdown language-switcher">
-                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
                                                 <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>

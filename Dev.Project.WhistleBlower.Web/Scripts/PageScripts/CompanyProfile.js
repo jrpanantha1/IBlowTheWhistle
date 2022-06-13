@@ -49,6 +49,8 @@ function getCompanyProfile() {
                 //update Admin Notification
                 $(".switch-input").prop("checked", response.SendAdmNotifyOnNewCase != null ? response.SendAdmNotifyOnNewCase : false);
 
+                $('#txtBannerText').val(response.TopBannerAlternateURL != null ? response.TopBannerAlternateURL : "");
+
             }
 
         },

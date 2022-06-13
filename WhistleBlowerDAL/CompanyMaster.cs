@@ -32,5 +32,6 @@ namespace WhistleBlowerDAL
         public string CompanyLogo { get; set; }
         public Nullable<int> SubscriptionPlan { get; set; }
         public Nullable<bool> SendAdmNotifyOnNewCase { get; set; }
+        public string TopBannerAlternateURL { get; set; }
     }
 }

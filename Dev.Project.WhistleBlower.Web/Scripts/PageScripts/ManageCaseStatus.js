@@ -44,6 +44,7 @@ function GetCasePreActionMaster() {
                 var items = response;
                 if (items.length == 0) {
                     shownewStatusForm();
+                    return;
                 }
                 for (var i = 0; i < items.length; i++) {
 
@@ -99,7 +100,7 @@ function GetCasePreActionMaster() {
                         },
                         {
                             "data": function (data, type, row, meta) {
-                                var ReturnHTML = "<a data-toggle='tooltip' data-placement='top'  data-original-title='Select row to update'  onclick='GetCaseStatusDetails(this)'  href='javascript:;'><img src='/Images/viewIcon.png' /></a>";
+                                var ReturnHTML = "<a data-toggle='tooltip' data-placement='top' id='" + data.rCPURN + "'  data-original-title='Select row to update'  onclick='GetCaseStatusDetails(this)'  href='javascript:;'><img src='/Images/viewIcon.png' /></a>";
                                 return ReturnHTML;
                             }
 
@@ -113,25 +114,8 @@ function GetCasePreActionMaster() {
                         }
                     ]
                 });
+                loadFirstRecod();
 
-                //var table = $('#tableCasePreAction').DataTable();
-                //$('#tableCasePreAction tbody').on('click', 'tr', function () {
-
-                //    if ($(this).hasClass('selected')) {
-                //        $(this).removeClass('selected');
-                //    }
-                //    else {
-                //        table.$('tr.selected').removeClass('selected');
-                //        $(this).addClass('selected');
-                //    }
-
-                //    var selectedData = table.rows('.selected').data();
-                //    //alert(selectedData[0].rPreAction);
-                //    $('#txtStatusCode').val(selectedData[0].rPreAction);
-                //    $('#txtStatusDesc').val(selectedData[0].rPreActionBrief);
-                //    $('#txtTranID').val(selectedData[0].rCPURN);
-
-                //});
                 jQuery('[data-toggle="tooltip"]').tooltip();
 
             }
@@ -150,6 +134,22 @@ function GetCasePreActionMaster() {
             alert(response.responseText);
         }
     });
+}
+function loadFirstRecod() {
+    var selectedData = $('#tableCasePreAction').DataTable().row(0).data();
+    var rCPURNID = $('#tableCasePreAction').DataTable().row(0).data().rCPURN;
+    var table = $('#tableCasePreAction').DataTable();
+
+    //apply selected class     
+    table.$('tr.selected').removeClass('selected');
+    $('#' + rCPURNID).closest('tr').addClass('selected');
+
+    if (selectedData != null) {
+        //alert(selectedData[0].rPreAction);
+        $('#txtStatusCode').val(selectedData.rPreAction);
+        $('#txtStatusDesc').val(selectedData.rPreActionBrief);
+        $('#txtTranID').val(selectedData.rCPURN);
+    }
 }
 function GetCaseStatusDetails(ele) {
     var selectedData = $('#tableCasePreAction').DataTable().row($(ele).closest('tr')).data();

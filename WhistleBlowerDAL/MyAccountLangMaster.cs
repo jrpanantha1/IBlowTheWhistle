@@ -31,5 +31,6 @@ namespace WhistleBlowerDAL
         public string btnClickhere { get; set; }
         public string lblTimeSelector { get; set; }
         public string btnUpdateTime { get; set; }
+        public string topBannerAltURL { get; set; }
     }
 }

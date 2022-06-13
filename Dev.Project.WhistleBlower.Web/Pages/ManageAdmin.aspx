@@ -48,7 +48,7 @@
                         <div class="row m-0 justify-content-center align-items-center">
                             <div class="col-12">
                                 <div class="col-xl-12 top-header">
-                                    <h2 class="langDirection" id="formTitle"></h2>
+                                    <h2 class="langDirection" id="formTitle" style="height: 72px;"></h2>
                                     <span class="header-line langDirection"></span>
                                     <p class="text-xl-center langDirection" id="formShortNote"></p>
                                     <h6 id="lblshowLimit" style="color: red; text-align: center"></h6>
@@ -56,9 +56,9 @@
 
                                 <ul class="accordion" id="ulclsExpMngAdminAccount">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#" id="ancclsExpMngAdminAccount"></a>
+                                        <a class="toggle ancMinHeight" href="#" id="ancclsExpMngAdminAccount"></a>
                                         <div class="inner intro mb-4">
-                                           <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                            <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <a href="/Pages/AdminAccounts.aspx">
                                                     <img alt="Qries" src="/Images/Click Here.png" />
                                                 </a>
@@ -68,7 +68,7 @@
                                 </ul>
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#" id="ancclsExpMngStatusCode"></a>
+                                        <a class="toggle ancMinHeight" href="#" id="ancclsExpMngStatusCode"></a>
                                         <div class="inner intro mb-4">
                                             <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">
@@ -83,7 +83,7 @@
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#" id="ancclsExpVwSubsHistroy"></a>
+                                        <a class="toggle ancMinHeight" href="#" id="ancclsExpVwSubsHistroy"></a>
                                         <div class="inner intro mb-4">
                                             <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">
@@ -98,7 +98,7 @@
 
                                 <ul class="accordion">
                                     <li class="accordion-list">
-                                        <a class="toggle" href="#" id="ancclsExpVwPolicyDocuments"></a>
+                                        <a class="toggle ancMinHeight" href="#" id="ancclsExpVwPolicyDocuments"></a>
                                         <div class="inner intro mb-4">
                                             <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
                                                 <div class="avatar-change ">

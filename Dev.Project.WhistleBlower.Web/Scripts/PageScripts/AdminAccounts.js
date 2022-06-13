@@ -237,12 +237,13 @@ function updateAdminAccValidation() {
     if (!GetTextBoxEmptyValidation($('#txtFullName'))) {
         flag = false;
     }
-    if (!GetTextBoxEmptyValidation($('#txtPassword'))) {
-        flag = false;
+    if (GetTextBoxEmptyValidation($('#txtPassword'))) {
+
+        if (!GetTextBoxEmptyValidation($('#txtConfirmPassword'))) {
+            flag = false;
+        }
     }
-    if (!GetTextBoxEmptyValidation($('#txtConfirmPassword'))) {
-        flag = false;
-    }
+
     else {
         if (!ConfirmPassword($('#txtPassword'), $('#txtConfirmPassword'))) {
             flag = false;
@@ -331,16 +332,22 @@ function newJoinValidation() {
     if (!GetTextBoxEmptyValidation($('#txtPassword'))) {
         flag = false;
     }
-
-    if ($('#txtPassword').val() != $('#txtConfirmPassword').val()) {
+    if (!GetTextBoxEmptyValidation($('#txtConfirmPassword'))) {
         flag = false;
-        $('#txtPassword').addClass('error');
-        $('#txtConfirmPassword').addClass('error');
     }
-    else {
-        $('#txtPassword').removeClass('error');
-        $('#txtConfirmPassword').removeClass('error');
+    if ($('#txtPassword').val() != "") {
+        if ($('#txtPassword').val() != $('#txtConfirmPassword').val()) {
+            flag = false;
+            $('#txtPassword').addClass('error');
+            $('#txtConfirmPassword').addClass('error');
+        }
+        else {
+            $('#txtPassword').removeClass('error');
+            $('#txtConfirmPassword').removeClass('error');
+        }
     }
+     
+  
     return flag;
 }
 function createNewAdminUsers() {

@@ -66,8 +66,11 @@
 
 
                                 </div>
+                                <a onclick="getResponseHistory();return false;" href="#" id="ancRefresh" data-toggle='tooltip' data-placement='left' data-original-title='Reload response' class="smooth-scroll">
+                                    <img alt="reload" src="/Images/reloadBidir.png" /></a>
                                 <div class="col-auto align-self-end">
                                     <!-- Icons -->
+
                                     <button id="button" type="submit" onclick="sendResponse(); return false;" class="btn btn-xs btn-primary langDirection"><span id="btSend"></span></button>
                                     <button type="button" onclick="window.location.href = '/Pages/ViewIncidents.aspx'" id="btnClose" class="btn btn-xs btn-outline-danger langDirection"><span id="btClose"></span></button>
                                     <a href="#" onclick="exportToPDF(); return false;" data-toggle='tooltip' data-placement='top' style="height: 24px; width: 24px;" data-original-title='Export chat info to PDF'>

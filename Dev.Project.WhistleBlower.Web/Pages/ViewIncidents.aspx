@@ -4,7 +4,7 @@
     View All Incidents | I Blow the Whistle
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
-    <meta http-equiv="Refresh" content="120" />
+    <meta />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="/JQDatatables/datatables.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/JQDatatables/datatables.min.js"></script>

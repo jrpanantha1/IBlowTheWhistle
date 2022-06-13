@@ -15796,3 +15796,7 @@ blockquote {
 .imgTopBanner {
     height: auto;
 }
+
+.ancMinHeight {
+    height: 46px;
+}

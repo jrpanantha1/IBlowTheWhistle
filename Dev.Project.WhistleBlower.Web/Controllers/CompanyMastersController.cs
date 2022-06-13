@@ -117,6 +117,11 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
                 if (result != null)
                 {
 
+                    if (!string.IsNullOrEmpty(companyDetails.TopBannerAlternateURL))
+                    {
+                        result.TopBannerAlternateURL = companyDetails.TopBannerAlternateURL;
+                    }
+
                     if (!string.IsNullOrEmpty(companyDetails.CompanyLogo))
                     {
                         if (!companyDetails.CompanyLogo.Contains(@"/IBTWImages/"))
@@ -220,5 +225,6 @@ namespace Dev.Project.WhistleBlower.Web.Controllers
         public string CompanyTopBanner { get; set; }
         public Nullable<int> SubscriptionPlan { get; set; }
         public Nullable<bool> SendAdmNotifyOnNewCase { get; set; }
+        public string TopBannerAlternateURL { get; set; }
     }
 }

@@ -34,10 +34,7 @@ namespace WhistleBlowerDAL
         public virtual DbSet<AnonymousResponseHistory> AnonymousResponseHistories { get; set; }
         public virtual DbSet<ResponseLanguage> ResponseLanguages { get; set; }
         public virtual DbSet<IBTWProspect> IBTWProspects { get; set; }
-        public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
-        public virtual DbSet<WhistleBlowIncident> WhistleBlowIncidents { get; set; }
         public virtual DbSet<LanguageDetail> LanguageDetails { get; set; }
-        public virtual DbSet<ViewIncidentsLanguage> ViewIncidentsLanguages { get; set; }
         public virtual DbSet<CasePreActionMaster> CasePreActionMasters { get; set; }
         public virtual DbSet<CaseManagement> CaseManagements { get; set; }
         public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
@@ -51,5 +48,8 @@ namespace WhistleBlowerDAL
         public virtual DbSet<VisitCountAllLogin> VisitCountAllLogins { get; set; }
         public virtual DbSet<PolicyMaster> PolicyMasters { get; set; }
         public virtual DbSet<AvatarMenuLanguage> AvatarMenuLanguages { get; set; }
+        public virtual DbSet<ViewIncidentsLanguage> ViewIncidentsLanguages { get; set; }
+        public virtual DbSet<WhistleBlowIncident> WhistleBlowIncidents { get; set; }
+        public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
     }
 }

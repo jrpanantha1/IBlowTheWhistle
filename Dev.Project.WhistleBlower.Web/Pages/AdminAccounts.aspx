@@ -54,15 +54,15 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input id="txtPassword" class="form-control removeLater"   placeholder="Password" type="password" />
+                            <input id="txtPassword" class="form-control removeLater" placeholder="Password" type="password" />
                         </div>
                         <div class="col">
-                            <input id="txtConfirmPassword" class="form-control removeLater"   placeholder="Confirm Password" type="password" />
+                            <input id="txtConfirmPassword" class="form-control removeLater" placeholder="Confirm Password" type="password" />
                         </div>
                     </div>
                     <div class="row mt-4 mb-2">
                         <div class="col-6">
-                            <button type="submit" value="Update" id="btnSubmit" onclick="if (updateAdminAccValidation()) { updateAdminAccounts(); };return false;" class="btn btn-block btn-primary">Update Password</button>
+                            <button type="submit" value="Update" id="btnSubmit" onclick="if (updateAdminAccValidation()) { updateAdminAccounts(); };return false;" class="btn btn-block btn-primary">Update</button>
                             <button type="submit" value="Update" id="btnAddNew" onclick="if (newJoinValidation()) { createNewAdminUsers(); };return false;" class="btn btn-block btn-primary d-none">Create new account</button>
                         </div>
                         <div class="col-6">
