@@ -52,6 +52,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.HTML">
+      <HintPath>..\..\..\..\Users\Administrator\Downloads\Aspose.HTML_22.5\Bin\net4.0\Aspose.HTML.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.PDF">
+      <HintPath>..\..\..\..\Users\Administrator\Downloads\Aspose.PDF_22_5\Bin\net4.0\Aspose.PDF.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -199,6 +205,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assessment\Default.aspx" />
+    <Content Include="Assessment\htmlContent\ConclusionContent.txt" />
+    <Content Include="Assessment\htmlContent\firstPageContent.txt" />
+    <Content Include="Assessment\htmlContent\IMPARTIALITY1-3.txt" />
+    <Content Include="Assessment\htmlContent\IMPARTIALITY4-7.txt" />
+    <Content Include="Assessment\htmlContent\IMPARTIALITY8-10.txt" />
+    <Content Include="Assessment\htmlContent\impartialityContent.txt" />
+    <Content Include="Assessment\htmlContent\infographicContent.txt" />
+    <Content Include="Assessment\htmlContent\lastPageContent.txt" />
+    <Content Include="Assessment\htmlContent\MailContent.txt" />
+    <Content Include="Assessment\htmlContent\PROTECTION1-3.txt" />
+    <Content Include="Assessment\htmlContent\PROTECTION4-7.txt" />
+    <Content Include="Assessment\htmlContent\PROTECTION8-10.txt" />
+    <Content Include="Assessment\htmlContent\protectionContent.txt" />
+    <Content Include="Assessment\htmlContent\TRUST1-3.txt" />
+    <Content Include="Assessment\htmlContent\TRUST4-7.txt" />
+    <Content Include="Assessment\htmlContent\TRUST8-10.txt" />
+    <Content Include="Assessment\htmlContent\trustContent.txt" />
+    <Content Include="Assessment\Images\ABriefHistoryOfWhistleblowing.png" />
+    <Content Include="Assessment\Images\APPGACR.png" />
+    <Content Include="Assessment\Images\APPGBB.png" />
+    <Content Include="Assessment\Images\APPGWB.png" />
+    <Content Include="Assessment\Images\image001.png" />
+    <Content Include="Assessment\Images\image006.png" />
+    <Content Include="Assessment\Images\QRCode.png" />
+    <Content Include="Assessment\Images\UWUK.png" />
+    <Content Include="Assessment\Images\WhistblowerKeyActions.JPG" />
+    <Content Include="Assessment\Images\Whistleblower-infographic-001.png" />
+    <Content Include="Assessment\Images\Whistleblower-infographic-002.png" />
+    <Content Include="Assessment\Images\WhistleblowerFriendlyOrg.JPG" />
+    <Content Include="Assessment\Images\WhistleblowerWordHistory.JPG" />
+    <Content Include="Assessment\Images\WhistleblowingHeader.png" />
+    <Content Include="Assessment\Images\WhistleblowingReportHeader.png" />
+    <Content Include="Assessment\Pages\Default.aspx" />
+    <Content Include="Assessment\Pages\TakeAssesment.aspx" />
+    <Content Include="assets\css\AssesmentStyle.css" />
     <Content Include="assets\css\bootstrap-responsive.min.css" />
     <Content Include="assets\css\css2.css" />
     <Content Include="assets\css\free.min.css" />
@@ -230,7 +272,10 @@
     <Content Include="assets\images\LargeAvatar.png" />
     <Content Include="assets\images\logo-eformulus-light.png" />
     <Content Include="assets\images\logo-eformulus.png" />
+    <Content Include="assets\images\logo-icon.png" />
     <Content Include="assets\images\logo-light.png" />
+    <Content Include="assets\images\logo-wbuk-white.png" />
+    <Content Include="assets\images\logo-wbuk.png" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\minus-icon.png" />
     <Content Include="assets\images\plus-icon.png" />
@@ -246,6 +291,7 @@
     <Content Include="assets\images\Whistle_Small_Square.jpg" />
     <Content Include="assets\images\Whistle_SquareLarge.jpg" />
     <Content Include="assets\images\Whistle_Tall.jpg" />
+    <Content Include="assets\images\woman-laptop.svg" />
     <Content Include="assets\js\1a4a488850.js" />
     <Content Include="assets\js\autosize.min.js" />
     <Content Include="assets\js\bootstrap.bundle.min.js" />
@@ -255,6 +301,7 @@
     <Content Include="assets\js\jquery.dataTables.js" />
     <Content Include="assets\js\jquery.dataTables.min.js" />
     <Content Include="assets\js\jspdf.js" />
+    <Content Include="assets\js\pace.min.js" />
     <Content Include="assets\js\setlanguage.js" />
     <Content Include="assets\js\summernote-lite.min.js" />
     <Content Include="assets\js\theme.min.js" />
@@ -295,7 +342,9 @@
     <Content Include="Images\ExcelIcon.png" />
     <Content Include="Images\ExportPDF.png" />
     <Content Include="Images\IblowTheWhistleCustomerBanner.png" />
+    <Content Include="Images\IBTW email Sig.png" />
     <Content Include="Images\IBTWBook.png" />
+    <Content Include="Images\Loader.gif" />
     <Content Include="Images\newHome\logo-light.png" />
     <Content Include="Images\newHome\logo.png" />
     <Content Include="Images\newHome\p1.jpg" />
@@ -346,6 +395,7 @@
     <Content Include="Pages\ManageAdmin.aspx" />
     <Content Include="Pages\AdminAccounts.aspx" />
     <Content Include="Pages\ManageCaseStatus.aspx" />
+    <Content Include="Pages\ManageLabels.aspx" />
     <Content Include="Pages\MyAccount.aspx" />
     <Content Include="Pages\PasswordEncryption.aspx" />
     <Content Include="Pages\Policies.aspx" />
@@ -376,6 +426,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\PageScripts\TakeAssesment.js" />
+    <Content Include="Scripts\PageScripts\AssesmentExam.js" />
     <Content Include="Scripts\PageScripts\Banner.js" />
     <Content Include="Scripts\PageScripts\Casemanagement.js" />
     <Content Include="Scripts\PageScripts\Changelanguage.js" />
@@ -392,6 +444,7 @@
     <Content Include="Scripts\PageScripts\IBTWAdmin.js" />
     <Content Include="Scripts\PageScripts\ManageAdmin.js" />
     <Content Include="Scripts\PageScripts\AdminAccounts.js" />
+    <Content Include="Scripts\PageScripts\ManageLabels.js" />
     <Content Include="Scripts\PageScripts\PasswordEncryption.js" />
     <Content Include="Scripts\PageScripts\policy.js" />
     <Content Include="Scripts\PageScripts\Policies.js" />
@@ -419,9 +472,35 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Assessment\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assessment\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assessment\Evaluation.cs" />
+    <Compile Include="Assessment\GeneratePDF.cs" />
+    <Compile Include="Assessment\Pages\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assessment\Pages\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assessment\Pages\TakeAssesment.aspx.cs">
+      <DependentUpon>TakeAssesment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assessment\Pages\TakeAssesment.aspx.designer.cs">
+      <DependentUpon>TakeAssesment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Authorization\Startup.cs" />
     <Compile Include="Authorization\WhistleBlowerAuthorizationServerProvider.cs" />
     <Compile Include="Controllers\AnonymousResponseHistoriesController.cs" />
+    <Compile Include="Controllers\AssesmentUsersController.cs" />
+    <Compile Include="Controllers\AssessmentQuestionsController.cs" />
+    <Compile Include="Controllers\AssessmentResultsController.cs" />
     <Compile Include="Controllers\AvatarMenuLanguagesController.cs" />
     <Compile Include="Controllers\BannerLangMastersController.cs" />
     <Compile Include="Controllers\CaseManagementsController.cs" />
@@ -433,6 +512,7 @@
     <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\HomeLanguagesController.cs" />
     <Compile Include="Controllers\IBTWProspectsController.cs" />
+    <Compile Include="Controllers\LanguageDetailsByCompaniesController.cs" />
     <Compile Include="Controllers\LanguageDetailsController.cs" />
     <Compile Include="Controllers\LanguageMastersController.cs" />
     <Compile Include="Controllers\ManageAdminLangMastersController.cs" />
@@ -616,6 +696,13 @@
     <Compile Include="Pages\ManageCaseStatus.aspx.designer.cs">
       <DependentUpon>ManageCaseStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ManageLabels.aspx.cs">
+      <DependentUpon>ManageLabels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ManageLabels.aspx.designer.cs">
+      <DependentUpon>ManageLabels.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MyAccount.aspx.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -738,6 +825,7 @@
     <Content Include="assets\fonts\feather.woff" />
     <Content Include="Images\IBTWGuidebook.pdf" />
     <Content Include="IblowthewhistleFavico\manifest.json" />
+    <Content Include="Assessment\lic\Aspose.Total.NET.lic" />
     <None Include="Properties\PublishProfiles\eWhistlePublish.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

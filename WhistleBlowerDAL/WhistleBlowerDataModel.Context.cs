@@ -40,7 +40,6 @@ namespace WhistleBlowerDAL
         public virtual DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
         public virtual DbSet<SubscriptionHistroy> SubscriptionHistroys { get; set; }
         public virtual DbSet<BannerLangMaster> BannerLangMasters { get; set; }
-        public virtual DbSet<ManageAdminLangMaster> ManageAdminLangMasters { get; set; }
         public virtual DbSet<MyAccountLangMaster> MyAccountLangMasters { get; set; }
         public virtual DbSet<HomeLanguage> HomeLanguages { get; set; }
         public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
@@ -51,5 +50,10 @@ namespace WhistleBlowerDAL
         public virtual DbSet<ViewIncidentsLanguage> ViewIncidentsLanguages { get; set; }
         public virtual DbSet<WhistleBlowIncident> WhistleBlowIncidents { get; set; }
         public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
+        public virtual DbSet<LanguageDetailsByCompany> LanguageDetailsByCompanies { get; set; }
+        public virtual DbSet<ManageAdminLangMaster> ManageAdminLangMasters { get; set; }
+        public virtual DbSet<AssessmentQuestion> AssessmentQuestions { get; set; }
+        public virtual DbSet<AssesmentUser> AssesmentUsers { get; set; }
+        public virtual DbSet<AssessmentResult> AssessmentResults { get; set; }
     }
 }

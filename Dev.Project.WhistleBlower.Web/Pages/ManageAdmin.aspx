@@ -111,6 +111,21 @@
                                     </li>
                                 </ul>
 
+                                <ul class="accordion">
+                                    <li class="accordion-list">
+                                        <a class="toggle ancMinHeight" href="#" id="ancclsExpManageLables"></a>
+                                        <div class="inner intro mb-4">
+                                            <div class="topbanner  topbanner d-flex justify-content-center align-items-center pb-3 inner-2">
+                                                <div class="avatar-change ">
+                                                    <a href="/Pages/ManageLabels.aspx">
+                                                        <img alt="Qries" src="/Images/Click Here.png" /></a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
                                 <!--end of col-->
                             </div>
                             <!--end of col-->

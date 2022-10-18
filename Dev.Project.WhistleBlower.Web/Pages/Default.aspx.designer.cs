@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Dev.Project.WhistleBlower.Web.Pages
+namespace Dev.Project.WhistleBlower.Web.Assessment.Pages
 {
     public partial class Default
     {

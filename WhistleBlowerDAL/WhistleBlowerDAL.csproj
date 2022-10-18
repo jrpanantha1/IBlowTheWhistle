@@ -84,6 +84,15 @@
     <Compile Include="AnonymousResponseHistory.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AssesmentUser.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssessmentQuestion.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssessmentResult.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AuditMngtAdminLogin.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
@@ -119,6 +128,9 @@
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LanguageDetail.cs">
+      <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageDetailsByCompany.cs">
       <DependentUpon>WhistleBlowerDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LanguageMaster.cs">

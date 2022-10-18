@@ -41,7 +41,7 @@
     <script src="/Scripts/Utility.js"></script>
     <script src="/Scripts/PageScripts/languageChange.js"></script>
     <script src="/Scripts/Validation.js"></script>
-    <script async defer src=https://cdn.boei.help/hello.js></script>
+    <script async defer src="https://cdn.boei.help/hello.js"></script>
     <meta name="msapplication-config" content="browserconfig.xml" />
     <meta name="theme-color" content="#00B48F" />
     <title>
@@ -100,7 +100,7 @@
                                     </li>
                                     <li class="nav-item dropdown language-switcher">
 
-                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                        <a class="nav-link icon dropdown-toggle dropdownLanguage" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
                                         <div class="dropdown-menu dropdown-menu-right ddlLanguage" aria-labelledby="dropdownLanguage">
                                             <a href="#" class="dropdown-item" id="engItem">
                                                 <%-- <i class="flag-icon flag-icon-squared flag-icon-us"></i>--%>

@@ -21,7 +21,7 @@
                         <div class="row m-0 justify-content-center align-items-center">
                             <div class="col-12">
                                 <div class="col-xl-12 top-header">
-                                    <h1>Create Admin Users</h1>
+                                    <h2 class="langDirection">Create Admin Users</h2>
                                     <span class="header-line"></span>
                                     <p class="text-xl-center">Add, Edit and Delete admin users.</p>
                                 </div>
@@ -57,9 +57,9 @@
                                             <label for="name">Full Name</label>
                                             <input id="txtFullName" class="form-control removeLater" placeholder="Arya Stark" type="text" />
                                         </div>
-                                         <div class="form-group">
+                                        <div class="form-group">
                                             <label for="name">Is Primary Account</label>
-                                           <input type="checkbox" id="chkIsPrimary" />
+                                            <input type="checkbox" id="chkIsPrimary" />
                                         </div>
                                         <!--end of form-group-->
                                         <div class="form-group">

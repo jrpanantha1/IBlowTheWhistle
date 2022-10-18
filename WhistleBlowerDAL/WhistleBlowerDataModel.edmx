@@ -18,6 +18,46 @@
           <Property Name="ViewStatus" Type="bit" />
           <Property Name="commentBy" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="AssesmentUsers">
+          <Key>
+            <PropertyRef Name="AUserURN" />
+          </Key>
+          <Property Name="AUserURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AsClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Organisation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssesmentTaken" Type="bit" />
+          <Property Name="AssesmentTakenOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AssessmentQuestion">
+          <Key>
+            <PropertyRef Name="AssURN" />
+          </Key>
+          <Property Name="AssURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="400" />
+          <Property Name="Option1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Option4" Type="nvarchar" MaxLength="50" />
+          <Property Name="CorrectAns" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExamCategory" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AssessmentResults">
+          <Key>
+            <PropertyRef Name="AsResURN" />
+          </Key>
+          <Property Name="AsResURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReClusterID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AUserURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="400" />
+          <Property Name="GivenAns" Type="nvarchar" MaxLength="100" />
+          <Property Name="Category" Type="nvarchar" MaxLength="100" />
+          <Property Name="Created" Type="datetime" />
+        </EntityType>
         <EntityType Name="AuditMngtAdminLogin">
           <Key>
             <PropertyRef Name="AURN" />
@@ -253,6 +293,54 @@
           <Property Name="EmailAddresslbl" Type="nvarchar" MaxLength="50" />
           <Property Name="Phonelbl" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="LanguageDetailsByCompany">
+          <Key>
+            <PropertyRef Name="LangURN" />
+          </Key>
+          <Property Name="LangURN" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="CURN" Type="uniqueidentifier" />
+          <Property Name="PleaseSelect" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yes" Type="nchar" MaxLength="10" />
+          <Property Name="No" Type="nchar" MaxLength="10" />
+          <Property Name="IsReportable" Type="nvarchar" MaxLength="200" />
+          <Property Name="SupportingEvidence" Type="nvarchar" MaxLength="200" />
+          <Property Name="EvidenceDetails" Type="nvarchar" MaxLength="200" />
+          <Property Name="DoyouhaveanyDocument" Type="nvarchar" MaxLength="200" />
+          <Property Name="BrowseText" Type="nvarchar" MaxLength="200" />
+          <Property Name="NoFileSelected" Type="nvarchar" MaxLength="200" />
+          <Property Name="HaveWitness" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessName" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="WitnessPhone" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedOnIncident" Type="nvarchar" MaxLength="200" />
+          <Property Name="AckPolicy" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdentityNeverRevel" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="800" />
+          <Property Name="AdditionalComments" Type="nvarchar" MaxLength="200" />
+          <Property Name="ReportIncident" Type="nvarchar" MaxLength="200" />
+          <Property Name="Signin" Type="nvarchar" MaxLength="200" />
+          <Property Name="AreYouWhistleBlower" Type="nvarchar" MaxLength="200" />
+          <Property Name="AServiceForm" Type="nvarchar" MaxLength="200" />
+          <Property Name="TermsofService" Type="nvarchar" MaxLength="200" />
+          <Property Name="PrivacyPolicy" Type="nvarchar" MaxLength="200" />
+          <Property Name="AuthrizeDeclaration" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="200" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubmissionDateTime" Type="nvarchar" MaxLength="200" />
+          <Property Name="SubmissionModifiedDate" Type="nvarchar" MaxLength="200" />
+          <Property Name="SupportingDocuments" Type="nvarchar" MaxLength="200" />
+          <Property Name="AnonymousUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ByEmailUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ByPhoneUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ConcernDetailsPHT" Type="nvarchar" MaxLength="100" />
+          <Property Name="EvidenceDetailsPHT" Type="nvarchar" MaxLength="100" />
+          <Property Name="HowWouldUpdated" Type="nvarchar" MaxLength="400" />
+          <Property Name="CloseBtn" Type="nvarchar" MaxLength="50" />
+          <Property Name="ViewDocumentsLnk" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddresslbl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phonelbl" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="LanguageMaster">
           <Key>
             <PropertyRef Name="LanguageID" />
@@ -277,6 +365,7 @@
           <Property Name="clsExpVwSubsHistroy" Type="nvarchar" MaxLength="100" />
           <Property Name="btnClickhere" Type="nvarchar" MaxLength="40" />
           <Property Name="clsExpVwPolicyDocuments" Type="nvarchar" MaxLength="100" />
+          <Property Name="clsExpManageLables" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MyAccountLangMaster">
           <Key>
@@ -466,6 +555,9 @@
         </EntityType>
         <EntityContainer Name="eformulus_IBTW_DBModelStoreContainer">
           <EntitySet Name="AnonymousResponseHistory" EntityType="Self.AnonymousResponseHistory" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="AssesmentUsers" EntityType="Self.AssesmentUsers" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="AssessmentQuestion" EntityType="Self.AssessmentQuestion" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="AssessmentResults" EntityType="Self.AssessmentResults" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="AuditMngtAdminLogin" EntityType="Self.AuditMngtAdminLogin" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="AvatarMenuLanguage" EntityType="Self.AvatarMenuLanguage" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="BannerLangMaster" EntityType="Self.BannerLangMaster" Schema="eformulus_admin" store:Type="Tables" />
@@ -478,6 +570,7 @@
           <EntitySet Name="IBTWProspects" EntityType="Self.IBTWProspects" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="IncidentDocuments" EntityType="Self.IncidentDocuments" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="LanguageDetails" EntityType="Self.LanguageDetails" Schema="eformulus_admin" store:Type="Tables" />
+          <EntitySet Name="LanguageDetailsByCompany" EntityType="Self.LanguageDetailsByCompany" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="ManageAdminLangMaster" EntityType="Self.ManageAdminLangMaster" Schema="eformulus_admin" store:Type="Tables" />
           <EntitySet Name="MyAccountLangMaster" EntityType="Self.MyAccountLangMaster" Schema="eformulus_admin" store:Type="Tables" />
@@ -521,7 +614,6 @@
           <EntitySet Name="SubscriptionPlans" EntityType="eformulus_IBTW_DBModel.SubscriptionPlan" />
           <EntitySet Name="SubscriptionHistroys" EntityType="eformulus_IBTW_DBModel.SubscriptionHistroy" />
           <EntitySet Name="BannerLangMasters" EntityType="eformulus_IBTW_DBModel.BannerLangMaster" />
-          <EntitySet Name="ManageAdminLangMasters" EntityType="eformulus_IBTW_DBModel.ManageAdminLangMaster" />
           <EntitySet Name="MyAccountLangMasters" EntityType="eformulus_IBTW_DBModel.MyAccountLangMaster" />
           <EntitySet Name="HomeLanguages" EntityType="eformulus_IBTW_DBModel.HomeLanguage" />
           <EntitySet Name="RegisteredUsers" EntityType="eformulus_IBTW_DBModel.RegisteredUser" />
@@ -532,6 +624,11 @@
           <EntitySet Name="ViewIncidentsLanguages" EntityType="eformulus_IBTW_DBModel.ViewIncidentsLanguage" />
           <EntitySet Name="WhistleBlowIncidents" EntityType="eformulus_IBTW_DBModel.WhistleBlowIncident" />
           <EntitySet Name="CompanyMasters" EntityType="eformulus_IBTW_DBModel.CompanyMaster" />
+          <EntitySet Name="LanguageDetailsByCompanies" EntityType="eformulus_IBTW_DBModel.LanguageDetailsByCompany" />
+          <EntitySet Name="ManageAdminLangMasters" EntityType="eformulus_IBTW_DBModel.ManageAdminLangMaster" />
+          <EntitySet Name="AssessmentQuestions" EntityType="eformulus_IBTW_DBModel.AssessmentQuestion" />
+          <EntitySet Name="AssesmentUsers" EntityType="eformulus_IBTW_DBModel.AssesmentUser" />
+          <EntitySet Name="AssessmentResults" EntityType="eformulus_IBTW_DBModel.AssessmentResult" />
         </EntityContainer>
         <EntityType Name="WitnessDetail">
           <Key>
@@ -742,22 +839,6 @@
           <Property Name="btnGenerateQRCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="clsExpBanner1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="clsExpBanner2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ManageAdminLangMaster">
-          <Key>
-            <PropertyRef Name="MURN" />
-          </Key>
-          <Property Name="MURN" Type="Guid" Nullable="false" />
-          <Property Name="MngAdClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LanguageID" Type="Int32" />
-          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
-          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="lblAdminCount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpMngAdminAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpMngStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpVwSubsHistroy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="btnClickhere" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="clsExpVwPolicyDocuments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MyAccountLangMaster">
           <Key>
@@ -982,6 +1063,111 @@
           <Property Name="SubscriptionPlan" Type="Int32" />
           <Property Name="SendAdmNotifyOnNewCase" Type="Boolean" />
           <Property Name="TopBannerAlternateURL" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LanguageDetailsByCompany">
+          <Key>
+            <PropertyRef Name="LangURN" />
+          </Key>
+          <Property Name="LangURN" Type="Guid" Nullable="false" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="CURN" Type="Guid" />
+          <Property Name="PleaseSelect" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsReportable" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SupportingEvidence" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceDetails" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DoyouhaveanyDocument" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BrowseText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NoFileSelected" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HaveWitness" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WitnessPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOnIncident" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AckPolicy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNeverRevel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalComments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ReportIncident" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Signin" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AreYouWhistleBlower" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AServiceForm" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TermsofService" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PrivacyPolicy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AuthrizeDeclaration" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceCanBeUsedForInvestigation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionDateTime" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SubmissionModifiedDate" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SupportingDocuments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AnonymousUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ByEmailUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ByPhoneUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ConcernDetailsPHT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EvidenceDetailsPHT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HowWouldUpdated" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="CloseBtn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViewDocumentsLnk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddresslbl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phonelbl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ManageAdminLangMaster">
+          <Key>
+            <PropertyRef Name="MURN" />
+          </Key>
+          <Property Name="MURN" Type="Guid" Nullable="false" />
+          <Property Name="MngAdClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="FormTitle" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="TitleShortNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="lblAdminCount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpMngAdminAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpMngStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpVwSubsHistroy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="btnClickhere" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpVwPolicyDocuments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clsExpManageLables" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AssessmentQuestion">
+          <Key>
+            <PropertyRef Name="AssURN" />
+          </Key>
+          <Property Name="AssURN" Type="Guid" Nullable="false" />
+          <Property Name="CURN" Type="Guid" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Option1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Option4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CorrectAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExamCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AssesmentUser">
+          <Key>
+            <PropertyRef Name="AUserURN" />
+          </Key>
+          <Property Name="AUserURN" Type="Guid" Nullable="false" />
+          <Property Name="AsClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Organisation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssesmentTaken" Type="Boolean" />
+          <Property Name="AssesmentTakenOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AssessmentResult">
+          <Key>
+            <PropertyRef Name="AsResURN" />
+          </Key>
+          <Property Name="AsResURN" Type="Guid" Nullable="false" />
+          <Property Name="ReClusterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AUserURN" Type="Guid" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="GivenAns" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1223,23 +1409,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ManageAdminLangMasters">
-            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ManageAdminLangMaster">
-              <MappingFragment StoreEntitySet="ManageAdminLangMaster">
-                <ScalarProperty Name="clsExpVwPolicyDocuments" ColumnName="clsExpVwPolicyDocuments" />
-                <ScalarProperty Name="btnClickhere" ColumnName="btnClickhere" />
-                <ScalarProperty Name="clsExpVwSubsHistroy" ColumnName="clsExpVwSubsHistroy" />
-                <ScalarProperty Name="clsExpMngStatusCode" ColumnName="clsExpMngStatusCode" />
-                <ScalarProperty Name="clsExpMngAdminAccount" ColumnName="clsExpMngAdminAccount" />
-                <ScalarProperty Name="lblAdminCount" ColumnName="lblAdminCount" />
-                <ScalarProperty Name="TitleShortNotes" ColumnName="TitleShortNotes" />
-                <ScalarProperty Name="FormTitle" ColumnName="FormTitle" />
-                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
-                <ScalarProperty Name="MngAdClusterID" ColumnName="MngAdClusterID" />
-                <ScalarProperty Name="MURN" ColumnName="MURN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MyAccountLangMasters">
             <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.MyAccountLangMaster">
               <MappingFragment StoreEntitySet="MyAccountLangMaster">
@@ -1471,6 +1640,116 @@
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="CURN" ColumnName="CURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageDetailsByCompanies">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.LanguageDetailsByCompany">
+              <MappingFragment StoreEntitySet="LanguageDetailsByCompany">
+                <ScalarProperty Name="Phonelbl" ColumnName="Phonelbl" />
+                <ScalarProperty Name="EmailAddresslbl" ColumnName="EmailAddresslbl" />
+                <ScalarProperty Name="ViewDocumentsLnk" ColumnName="ViewDocumentsLnk" />
+                <ScalarProperty Name="CloseBtn" ColumnName="CloseBtn" />
+                <ScalarProperty Name="HowWouldUpdated" ColumnName="HowWouldUpdated" />
+                <ScalarProperty Name="EvidenceDetailsPHT" ColumnName="EvidenceDetailsPHT" />
+                <ScalarProperty Name="ConcernDetailsPHT" ColumnName="ConcernDetailsPHT" />
+                <ScalarProperty Name="ByPhoneUpdate" ColumnName="ByPhoneUpdate" />
+                <ScalarProperty Name="ByEmailUpdate" ColumnName="ByEmailUpdate" />
+                <ScalarProperty Name="AnonymousUpdate" ColumnName="AnonymousUpdate" />
+                <ScalarProperty Name="SupportingDocuments" ColumnName="SupportingDocuments" />
+                <ScalarProperty Name="SubmissionModifiedDate" ColumnName="SubmissionModifiedDate" />
+                <ScalarProperty Name="SubmissionDateTime" ColumnName="SubmissionDateTime" />
+                <ScalarProperty Name="EvidenceCanBeUsedForInvestigation" ColumnName="EvidenceCanBeUsedForInvestigation" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AuthrizeDeclaration" ColumnName="AuthrizeDeclaration" />
+                <ScalarProperty Name="PrivacyPolicy" ColumnName="PrivacyPolicy" />
+                <ScalarProperty Name="TermsofService" ColumnName="TermsofService" />
+                <ScalarProperty Name="AServiceForm" ColumnName="AServiceForm" />
+                <ScalarProperty Name="AreYouWhistleBlower" ColumnName="AreYouWhistleBlower" />
+                <ScalarProperty Name="Signin" ColumnName="Signin" />
+                <ScalarProperty Name="ReportIncident" ColumnName="ReportIncident" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IdentityNeverRevel" ColumnName="IdentityNeverRevel" />
+                <ScalarProperty Name="AckPolicy" ColumnName="AckPolicy" />
+                <ScalarProperty Name="UpdatedOnIncident" ColumnName="UpdatedOnIncident" />
+                <ScalarProperty Name="WitnessPhone" ColumnName="WitnessPhone" />
+                <ScalarProperty Name="WitnessEmail" ColumnName="WitnessEmail" />
+                <ScalarProperty Name="WitnessName" ColumnName="WitnessName" />
+                <ScalarProperty Name="HaveWitness" ColumnName="HaveWitness" />
+                <ScalarProperty Name="NoFileSelected" ColumnName="NoFileSelected" />
+                <ScalarProperty Name="BrowseText" ColumnName="BrowseText" />
+                <ScalarProperty Name="DoyouhaveanyDocument" ColumnName="DoyouhaveanyDocument" />
+                <ScalarProperty Name="EvidenceDetails" ColumnName="EvidenceDetails" />
+                <ScalarProperty Name="SupportingEvidence" ColumnName="SupportingEvidence" />
+                <ScalarProperty Name="IsReportable" ColumnName="IsReportable" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Yes" ColumnName="Yes" />
+                <ScalarProperty Name="PleaseSelect" ColumnName="PleaseSelect" />
+                <ScalarProperty Name="CURN" ColumnName="CURN" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="LangURN" ColumnName="LangURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManageAdminLangMasters">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.ManageAdminLangMaster">
+              <MappingFragment StoreEntitySet="ManageAdminLangMaster">
+                <ScalarProperty Name="clsExpManageLables" ColumnName="clsExpManageLables" />
+                <ScalarProperty Name="clsExpVwPolicyDocuments" ColumnName="clsExpVwPolicyDocuments" />
+                <ScalarProperty Name="btnClickhere" ColumnName="btnClickhere" />
+                <ScalarProperty Name="clsExpVwSubsHistroy" ColumnName="clsExpVwSubsHistroy" />
+                <ScalarProperty Name="clsExpMngStatusCode" ColumnName="clsExpMngStatusCode" />
+                <ScalarProperty Name="clsExpMngAdminAccount" ColumnName="clsExpMngAdminAccount" />
+                <ScalarProperty Name="lblAdminCount" ColumnName="lblAdminCount" />
+                <ScalarProperty Name="TitleShortNotes" ColumnName="TitleShortNotes" />
+                <ScalarProperty Name="FormTitle" ColumnName="FormTitle" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="MngAdClusterID" ColumnName="MngAdClusterID" />
+                <ScalarProperty Name="MURN" ColumnName="MURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentQuestions">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AssessmentQuestion">
+              <MappingFragment StoreEntitySet="AssessmentQuestion">
+                <ScalarProperty Name="ExamCategory" ColumnName="ExamCategory" />
+                <ScalarProperty Name="CorrectAns" ColumnName="CorrectAns" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="CURN" ColumnName="CURN" />
+                <ScalarProperty Name="AssURN" ColumnName="AssURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssesmentUsers">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AssesmentUser">
+              <MappingFragment StoreEntitySet="AssesmentUsers">
+                <ScalarProperty Name="AssesmentTakenOn" ColumnName="AssesmentTakenOn" />
+                <ScalarProperty Name="AssesmentTaken" ColumnName="AssesmentTaken" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AsClusterID" ColumnName="AsClusterID" />
+                <ScalarProperty Name="AUserURN" ColumnName="AUserURN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentResults">
+            <EntityTypeMapping TypeName="eformulus_IBTW_DBModel.AssessmentResult">
+              <MappingFragment StoreEntitySet="AssessmentResults">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="GivenAns" ColumnName="GivenAns" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="AUserURN" ColumnName="AUserURN" />
+                <ScalarProperty Name="ReClusterID" ColumnName="ReClusterID" />
+                <ScalarProperty Name="AsResURN" ColumnName="AsResURN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

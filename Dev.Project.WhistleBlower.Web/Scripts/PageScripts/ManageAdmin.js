@@ -118,6 +118,7 @@ function loadManageAdminLanguageDetails() {
                 $('#ancclsExpMngStatusCode').text(response[0].clsExpMngStatusCode);
                 $('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
                 $('#ancclsExpVwPolicyDocuments').text(response[0].clsExpVwPolicyDocuments);
+                $('#ancclsExpManageLables').text(response[0].clsExpManageLables);
                 $('#lblshowLimit').text(response[0].lblAdminCount);
                 //$('#ancclsExpVwSubsHistroy').text(response[0].clsExpVwSubsHistroy);
                 getAdminCount();

@@ -11,6 +11,36 @@ function GetTextBoxEmptyValidation(elm) {
     }
     return flag;
 }
+function GetTextLengthValidation(elm, strLen) {
+    var flag = true;
+    if (elm.val().length > strLen) {
+        flag = false;
+        elm.addClass('error');
+    }
+    else {
+        elm.removeClass('error');
+    }
+    return flag;
+}
+
+function GetRadioButtonGroupEmptyValidation(groupName) {
+    var flag = true;
+    //$('[name="Whistleblowing"]:checked').length 
+    var elm = $("[name=" + groupName + "]:checked");
+
+    if (elm.length == null || elm.length == 0) {
+        flag = false;
+        $("#" + groupName + "").show();
+        $("#" + groupName + "").addClass('rdberror');
+    }
+    else {
+
+        $("#" + groupName + "").hide();
+        $("#" + groupName + "").removeClass('rdberror');
+    }
+    return flag;
+}
+//$('[name="Whistleblowing"]:checked').length
 
 function GetDropdownSelectedValidation(elm) {
     var flag = true;

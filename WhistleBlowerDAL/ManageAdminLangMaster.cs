@@ -25,5 +25,6 @@ namespace WhistleBlowerDAL
         public string clsExpVwSubsHistroy { get; set; }
         public string btnClickhere { get; set; }
         public string clsExpVwPolicyDocuments { get; set; }
+        public string clsExpManageLables { get; set; }
     }
 }

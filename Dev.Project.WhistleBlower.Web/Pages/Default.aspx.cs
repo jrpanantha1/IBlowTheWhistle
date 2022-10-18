@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Dev.Project.WhistleBlower.Web.Pages
+namespace Dev.Project.WhistleBlower.Web.Assessment.Pages
 {
     public partial class Default : System.Web.UI.Page
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dev.Project.WhistleBlower.Web.Assessment;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
@@ -255,6 +256,38 @@ namespace Dev.Project.WhistleBlower.Web.Data
             }
             catch (Exception ex) { throw ex.InnerException; }
         }
+        public static void SendEmailWithAttachement(string mailID, string subject, string message, Stream attachement,string contentLocation)
+        {
+
+            string mailServer = ConfigurationManager.AppSettings["TacitousMailServer"];
+            string mailServerUN = ConfigurationManager.AppSettings["TacitousMailServerUN"];
+            string mailServerPSW = ConfigurationManager.AppSettings["TacitousMailServerPSW"];
+            try
+            {
+                MailMessage objeto_mail = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Port = 25;
+                client.Host = mailServer;
+                client.Credentials = new System.Net.NetworkCredential(mailServerUN, mailServerPSW);
+                client.EnableSsl = false;
+                objeto_mail.From = new MailAddress("administrator@iblowthewhistle.com");
+                foreach (var address in mailID.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    objeto_mail.To.Add(address);
+                }
+                objeto_mail.Bcc.Add("jordan@panantha.com");
+                //objeto_mail.To.Add(new MailAddress(mailID));
+                objeto_mail.Subject = subject;
+                objeto_mail.IsBodyHtml = true;
+                string mailBody = Evaluation.GetFileContent(contentLocation + @"MailContent.txt");//message;
+                objeto_mail.Body = mailBody;
+
+                objeto_mail.Attachments.Add(new Attachment(attachement, "Whistleblower Readiness Assessment.pdf"));
+
+                client.Send(objeto_mail);
+            }
+            catch (Exception ex) { throw ex.InnerException; }
+        }
         public static string GetEmailTemplate(string tempID)
         {
             string mailTemplate = string.Empty;
@@ -280,8 +313,13 @@ namespace Dev.Project.WhistleBlower.Web.Data
         static Random _random = new Random();
         public static string getRandomEmail()
         {
-            int result = _random.Next();
-            return result.ToString();
+            // int result = _random.Next();
+
+            string path = Path.GetRandomFileName();
+            path = path.Replace(".", ""); // Remove period.
+            return path.Substring(0, 6);
+
+            // return result.ToString();
 
         }
         public static string UploadImagefromBase64(string base64, string ID, string companyID = "")
